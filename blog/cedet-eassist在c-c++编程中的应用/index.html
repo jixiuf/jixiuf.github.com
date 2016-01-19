@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>cedet eassist在c c++编程中的应用 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="cedet eassist在c c++编程中的应用" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>cedet eassist在c c++编程中的应用</h1>
+<p>
+eassist.el是cedet/contrib/下的一个文件,主要提供了两项功能，<br  />
+</p>
+<ul class="org-ul">
+<li>列出当前类的所有方法(还可以直接输入方法名来从众多的方法中过滤)<br  /></li>
+<li>在头文件与代码文件间切换，即在 .h 与.c 或.h 与.cpp两个相关文件间切换<br  /></li>
+</ul>
+<p>
+以下内容是从 eassist.el文件中摘出来的<br  />
+</p>
+<blockquote>
+<ol class="org-ol">
+<li>Install CEDET package for Emacs (if you don't have CEDET already).<br  /></li>
+<li><p>
+Add convenient keymaps for fast EmacsAssist calls in c-mode and (or) python-mode<br  />
+and for lisp:<br  />
+</p>
+
+<p>
+(defun my-c-mode-common-hook ()<br  />
+  (define-key c-mode-base-map (kbd "M-o") 'eassist-switch-h-cpp)<br  />
+  (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))<br  />
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)<br  />
+</p>
+
+<p>
+(defun my-python-mode-hook ()<br  />
+  (define-key python-mode-map (kbd "M-m") 'eassist-list-methods))<br  />
+(add-hook 'python-mode-hook 'my-python-mode-hook)<br  />
+</p>
+
+<p>
+(define-key lisp-mode-shared-map (kbd "M-m") 'eassist-list-methods)<br  />
+</p></li>
+
+<li>Open any C++ file with class definition, press M-m.  Try to type<br  />
+any method name(还可以直接输入方法名来从众多的方法中过滤).<br  /></li>
+<li>Open any .cpp file.  Press M-o.  If there is .h or .hpp file in the<br  />
+same folder, it will be opened.<br  /></li>
+</ol>
+</blockquote>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">eassisct</span>)
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">my-c-mode-cedet-hook</span> ()
+  (local-set-key <span style="color: #ffa07a;">"\C-ct"</span> 'eassist-switch-h-cpp)
+  (local-set-key <span style="color: #ffa07a;">"\C-xt"</span> 'eassist-switch-h-cpp)
+  (local-set-key <span style="color: #ffa07a;">"\C-ce"</span> 'eassist-list-methods)
+  )
+(<span style="color: #FF6400;">add-hook</span> 'c-mode-common-hook 'my-c-mode-cedet-hook)
+</pre>
+</div>
+<p>
+可以这样配置<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">(require 'eassisct)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">eassist-switch-h-cpp and eassist-list-methods is autoloaded in cedet-contrib-load</span>
+(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">cedet-contrib-load</span>)
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">my-c-mode-cedet-hook</span> ()
+  (local-set-key <span style="color: #ffa07a;">"\C-ct"</span> 'eassist-switch-h-cpp)
+  (local-set-key <span style="color: #ffa07a;">"\C-xt"</span> 'eassist-switch-h-cpp)
+  (local-set-key <span style="color: #ffa07a;">"\C-ce"</span> 'eassist-list-methods)
+  )
+(<span style="color: #FF6400;">add-hook</span> 'c-mode-common-hook 'my-c-mode-cedet-hook)
+</pre>
+</div>
+<p>
+也可以这样配置<br  />
+</p>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-08-27</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/cedet/">Cedet</a>, <a href="/tags/emacs/">Emacs</a>, <a href="/tags/c/">C</a>, <a href="/tags/c++/">C++</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/cedet-eassist在c-c++编程中的应用/";
+          var disqus_url = "http://jixiuf.github.io/blog/cedet-eassist在c-c++编程中的应用/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

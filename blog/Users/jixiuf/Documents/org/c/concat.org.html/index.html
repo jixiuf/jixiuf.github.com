@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>concat()可变长度参数的实现 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="concat()可变长度参数的实现" />
+    <meta name="keywords" content="c language" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>concat()可变长度参数的实现</h1>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">file name : strcap.c</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">created at: 2011&#24180;10&#26376;22&#26085; &#26143;&#26399;&#20845; 21&#26102;31&#20998;35&#31186;</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">author:  &#32426;&#31168;&#23792;</span>
+
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;malloc.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdarg.h&gt;</span>
+
+
+<span style="color: #8DA6CE;">char</span> *<span style="color: #FF6400;">concat</span>(<span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">first</span> ,...){
+  <span style="color: #8DA6CE;">size_t</span> <span style="color: #40E0D0;">len</span>;
+  <span style="color: #8DA6CE;">va_list</span> <span style="color: #40E0D0;">arg</span>;
+  <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">p</span> ,*<span style="color: #40E0D0;">returnbuf</span>;
+  <span style="color: #FBDE2D;">if</span> (first ==<span style="color: #D8FA3C;">NULL</span>){
+    <span style="color: #FBDE2D;">return</span> <span style="color: #D8FA3C;">NULL</span>;
+  }
+  len= strlen(first);
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#21487;&#21464;&#21442;&#25968;&#30340;&#35843;&#29992;&#22522;&#26412;&#35201; </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_start </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_arg (&#20013;&#38388;&#21487;&#22810;&#27425;&#35843;&#29992;,&#20197;&#20415;&#36941;&#21382;&#25152;&#26377;&#21487;&#21464;&#21442;&#25968;) </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_end </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#19977;&#20010;&#20989;&#25968;&#35843;&#29992;&#26469;&#23436;&#25104; </span><span style="color: #AEAEAE;">*/</span>
+  va_start(arg ,first);
+  <span style="color: #FBDE2D;">while</span> (<span style="color: #D8FA3C;">NULL</span>!= (p= va_arg(arg ,<span style="color: #8DA6CE;">char</span>*))){
+    len+=strlen(p);
+  }
+  va_end(arg);
+
+  len= len++;
+  returnbuf=  malloc(len);
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20197;&#19978;,&#21482;&#20026;&#35745;&#31639;,concat &#21518;&#30340;&#23383;&#31526;&#38271;&#24230;</span>
+
+  <span style="color: #FBDE2D;">if</span> (returnbuf==<span style="color: #D8FA3C;">NULL</span>) <span style="color: #FBDE2D;">return</span> <span style="color: #D8FA3C;">NULL</span>;
+  strcpy(returnbuf ,first);
+  va_start(arg ,first);
+  <span style="color: #FBDE2D;">while</span> (<span style="color: #D8FA3C;">NULL</span>!=(p = va_arg(arg ,<span style="color: #8DA6CE;">char</span>*))){
+    strcat(returnbuf,p);
+  }
+  va_end(arg );
+  <span style="color: #FBDE2D;">return</span> returnbuf;
+}
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[])
+{
+  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#34429;&#35828;&#26159;&#21487;&#21464;&#38271;&#24230;&#21442;&#25968;,&#20294;c&#38656;&#35201;&#30693;&#36947;&#20160;&#20040;&#26102;&#20505;&#32467;&#26463;,&#25925;&#26368;&#21518;&#19968;&#20010;&#21442;&#25968;&#29305;&#27530;,&#20026;&#19968;&#20010;null,</span>
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20026;&#20309;&#35201;&#25226;null&#36716;&#20026;char*:</span>
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#22240;&#20026; NULL &#23601;&#26159;0 ,0&#26377;&#26102;&#20250;&#34987;&#24403;&#20415;&#25968;&#23383;0,&#26377;&#26102;&#20250;&#34987;&#35299;&#26512;&#25104;null pointer</span>
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#27604;&#22914; char *p = 0; if(p != 0)</span>
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">*p &#21021;&#22987;&#21270;&#20026;0,&#23454;&#38469;&#26159;&#31354;&#25351;&#38024;,&#22240;&#20026;&#23427;&#21069;&#38754;&#26377; char* &#30340;&#31867;&#22411;&#22768;&#26126;&#25925;&#32534;&#35793;&#22120;,&#21487;&#20197;&#30693;&#36947;&#23427;&#26159;&#19968;&#20010;char* &#31867;&#22411;&#30340;&#31354;&#25351;&#38024;,&#32780;&#38750;&#25968;&#23383;0</span>
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20294;,&#22312;&#20570;&#20026;&#20989;&#25968;&#21442;&#25968;&#20256;&#20837;&#26102;,&#23427;&#24182;&#19981;&#30693;&#36947;&#23427;&#31350;&#31455;&#26159;&#25968;&#23383;0&#36824;&#26159;&#19968;&#20010;&#31354;&#25351;&#20160;,&#25925;&#23558;&#23427;&#24378;&#36716;</span>
+  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20026;char* &#31867;&#22411;&#30340;&#31354;&#25351;&#20160;,&#26126;&#30830;&#21578;&#35785;&#32534;&#35793;&#22120;&#23427;&#26159;&#19968;&#20010;&#31354;&#25351;&#38024;</span>
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#28982;&#32780;, &#20256;&#20837;&#20989;&#25968;&#30340;&#21442;&#25968;&#19981;&#19968;&#23450;&#34987;&#24403;&#20316;&#25351;&#38024;&#29615;&#22659;, &#22240;&#32780;&#32534;&#35793;&#22120;&#21487;&#33021;&#19981;&#33021;&#35782;&#21035;&#26410;&#21152;&#20462;&#39280;&#30340; 0 ``&#34920;&#31034;" &#25351;&#38024; </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #8DA6CE;">char</span> * <span style="color: #40E0D0;">hel</span>=  concat (<span style="color: #ffa07a;">"hello"</span> <span style="color: #ffa07a;">",world"</span>,(<span style="color: #8DA6CE;">char</span>*)<span style="color: #D8FA3C;">NULL</span>);
+  puts(hel);
+  free(hel);
+
+  hel=  concat (<span style="color: #ffa07a;">"hello"</span> <span style="color: #ffa07a;">",world,"</span>,<span style="color: #ffa07a;">"again"</span>,(<span style="color: #8DA6CE;">char</span>*)<span style="color: #D8FA3C;">NULL</span>);
+  puts(hel);
+  free(hel);
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-10-22</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog//Users/jixiuf/Documents/org/c/concat.org.html";
+          var disqus_url = "http://jixiuf.github.io/blog//Users/jixiuf/Documents/org/c/concat.org.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

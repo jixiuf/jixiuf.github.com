@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>emacs 进行版本控制(Version Control) - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="emacs 进行版本控制(Version Control)" />
+    <meta name="keywords" content="vc emacs svn psvn git scm" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>emacs 进行版本控制(Version Control)</h1>
+<p>
+什么是版本控制就不多说了，常见的版本控制工具有svn git cvs 等。我只用过svn及<br  />
+git ,常用git ，所以以git 以例进行说明。另外，Emacs 中有个vc.el ,vc是version<br  />
+control 的缩写，它不是svn git 之类的版本控制工具。怎么介绍它呢，它是一个接口<br  />
+吧，不论你用的是svn 还是git 都可以用它进行版本控制。但毕竟每个版本控制工具都<br  />
+有它特有的特性，所以vc对svn git 等专有的功能并没有做到统一，不会常用的<br  />
+update commit ,checkout 等最基本的操作它都实现了。所以vc的存在还是很有必要的。<br  />
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v v     vc-next-action -- perform the next logical control operation on file &#20250;&#26681;&#25454;&#24403;&#21069;&#25991;&#20214;&#29366;&#24577;&#20915;&#23450;&#35813;&#20570;&#20160;&#20040;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">1.&#22914;&#26524;&#24403;&#21069;&#30340;&#25991;&#20214;(work file)&#19981;&#22312;&#20219;&#20309;&#19968;&#20010;version control &#31649;&#29702;&#19979;,&#21017;&#35810;&#38382;&#20320;&#21019;&#24314;&#20160;&#20040;&#26679;&#30340;&#20179;&#24211;,&#22914;svn git&#31561;.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">2.&#22914;&#26524;&#22312;&#31649;&#29702;&#19979;,&#21017;register the file. &#21363;git add filename.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">3.&#22914;&#26524;work file &#19982;&#24211;&#20013;&#30340;&#25991;&#20214;&#19968;&#26679;,do nothing.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">4.&#33509;&#19981;&#19968;&#26679;,&#21017;&#36827;&#34892;merge (checkout &#25110;update) &#25805;&#20316;. &#21363;&#26356;&#26032;(&#22909;&#20687;&#24182;&#19981;&#26356;&#26032;,&#26356;&#26032;&#38656;&#35201;`</span><span style="color: #D8FA3C;">C-xvu</span><span style="color: #AEAEAE;">')</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">5.&#22914;&#26524;&#20320;&#23545;work file &#36827;&#34892;&#30340;&#20462;&#25913;&#21017;&#36827;&#34892;checkin(&#21363;commit)&#25805;&#20316;,&#23427;&#20250;&#25171;&#24320;&#19968;&#20010;*VC-LOG*buffer&#35753;&#20320;&#36755;&#20837;&#26085;&#24535;,&#20851;&#20110;*VC-LOG* &#35265;&#19979;&#38754;&#30340;&#27880;&#37322;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">6.&#22914;&#26524;&#26377;&#20914;&#31361;&#21017;&#20808;merge &#26368;&#26032;&#30340;&#25991;&#20214;&#21040;work file,&#27492;&#26102;work file &#22788;&#20110;&#20914;&#31361;&#29366;&#24577;,&#38656;&#35201;&#35299;&#20915;&#20914;&#31361;,&#32487;&#32493;`</span><span style="color: #D8FA3C;">C-xvv</span><span style="color: #AEAEAE;">'&#21518;&#35828;&#26126;&#20914;&#31361;&#24050;&#35299;&#20915;&#27492;&#21518;&#20877;`</span><span style="color: #D8FA3C;">c-xvv</span><span style="color: #AEAEAE;">'&#21017;&#25552;&#20132;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-uC-xvv</span><span style="color: #AEAEAE;">' &#21487;&#20197;&#36873;&#25321;&#36827;&#20837;&#21738;&#20010;&#20998;&#25903;,reversion,</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v i     vc-register -- add a new file to version control  ;;&#30456;&#24403;&#20110;git add .&#23558;&#25991;&#20214;&#21152;&#20837;&#21040;&#29256;&#26412;&#31649;&#29702;&#24403;&#20013;</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v ~     vc-version-other-window -- look at other revisions</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#26597;&#30475;&#27492;&#25991;&#20214;&#20197;&#21069;&#30340;&#29256;&#26412;&#23545;&#24212;&#30340;&#20869;&#23481;,&#38656;&#35201;&#36755;&#20837;&#29256;&#26412;&#21495;,git &#25805;&#20316;&#19981;&#22826;&#26041;&#20415;,&#22240;&#20026;&#29256;&#26412;&#21495;&#19981;&#26159;&#36882;&#22686;&#30340;&#25968;&#23383;,&#32780;&#26159;SHA1&#20540;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v =     vc-diff -- diff with other revisions</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#23545;&#26410;&#25552;&#20132;&#30340;&#25991;&#20214;&#19982;&#26368;&#26032;&#30340;&#29256;&#26412;&#23545;&#24212;&#30340;&#25991;&#20214;&#36827;&#34892;diff&#25805;&#20316;,C-u&#21487;&#20197;&#36873;&#25321;&#29992;&#21738;&#20004;&#20010;&#29256;&#26412;,&#19981;&#20165;&#21487;&#20197;&#21333;&#25991;&#20214;diff,</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#21487;&#20197;&#26159;fileset,&#22914;&#20309;&#23545;&#22810;&#25991;&#20214;&#36827;&#34892;&#25805;&#20316;&#30475;vc-dir mode `</span><span style="color: #D8FA3C;">C-xvd</span><span style="color: #AEAEAE;">' &#31867;&#20284;&#20110;dired, ibuffer.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v D     &#21516;`</span><span style="color: #D8FA3C;">C-xv=</span><span style="color: #AEAEAE;">' ,&#19981;&#36807;&#26159;&#23545;&#25152;&#26377;&#30340;&#25991;&#20214;&#36827;&#34892;&#19982;&#26368;&#26032;&#30340;&#29256;&#26412;&#36827;&#34892;diff&#25805;&#20316;(`</span><span style="color: #D8FA3C;">C-xv=</span><span style="color: #AEAEAE;">'&#38656;&#35201;&#36873;&#25321;&#25805;&#20316;&#21738;&#20123;&#25991;&#20214;),&#21363;&#26174;&#31034;&#26368;&#36817;&#36827;&#34892;&#20102;&#21738;&#20123;&#26410;&#25552;&#20132;&#30340;&#20462;&#25913;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v u     vc-revert-buffer -- undo checkout  &#25918;&#24323;&#23545;&#25991;&#20214;&#30340;&#20462;&#25913;,&#21363;&#37325;&#26032;update &#19968;&#19979;.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#26597;&#30475;&#26085;&#24535; `</span><span style="color: #D8FA3C;">*vc-change-log*</span><span style="color: #AEAEAE;">' buffer</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v l     vc-print-log -- show log (not in ChangeLog format) &#26174;&#31034;&#26085;&#24535;,&#21482;&#26174;&#31034;&#24403;&#21069;&#25991;&#20214;&#26377;&#20851;&#30340;&#26085;&#24535;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#36825;&#20010;&#25171;&#24320;&#30340;&#26085;&#24535;buffer &#21151;&#33021;&#32477;&#23545;&#19981;&#27490;&#26174;&#31034;&#26085;&#24535;&#36825;&#20040;&#31616;&#21333;&#65292;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#20320;&#21487;&#20197;&#25353;&#19979;C-hb &#26597;&#30475;&#19968;&#19979;&#23427;&#30340;&#38190;&#32465;&#23450;&#65292;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#27604;&#22914;= &#26159;&#36827;&#34892;diff&#27604;&#36739;&#65292;&#40664;&#35748;&#26159;&#26368;&#26032;&#30340;&#29256;&#26412;&#65292;&#19982;&#20320;&#20809;&#26631;&#19979;&#30340;&#29256;&#26412;&#36827;&#34892;&#27604;&#36739;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#20063;&#21487;&#20197;&#29992;m ,mark &#20004;&#20010;&#29256;&#26412;&#21518;&#65292;&#28982;&#21518;= ,&#23558;&#20854;&#36827;&#34892;&#27604;&#36739;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v L     `</span><span style="color: #D8FA3C;">vc-print-root-log</span><span style="color: #AEAEAE;">' &#26174;&#31034;&#26085;&#24535;,&#26174;&#31034;&#25152;&#26377;&#26085;&#24535;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#22312;*vc-change-log*buffer &#20013;&#21487;&#20197;&#36827;&#34892;&#20197;&#19979;&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`p' &#36339;&#36716;&#21040;&#21069;&#19968;&#20010;&#26085;&#24535;&#26465;&#30446;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`n' &#36339;&#36716;&#21040;&#19979;&#19968;&#20010;&#26085;&#24535;&#26465;&#30446;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`P'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Move to the log of the previous file, when the logs of multiple</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">files are in the log buffer (*note VC Directory Mode::).</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Otherwise, just move to the beginning of the log.  A numeric</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">prefix argument is a repeat count, so `C-u 10 P' would move</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">backward 10 files.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`N'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Move to the log of the next file, when the logs of multiple files</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">are in the log buffer (*note VC Directory Mode::).  It also takes a</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">numeric prefix argument as a repeat count.</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`a'  &#23545;&#24403;&#21069;&#23545;&#24212;&#30340;&#29256;&#26412;&#36827;&#34892;annotate &#25805;&#20316;,&#35814;&#35265;`</span><span style="color: #D8FA3C;">C-xvg</span><span style="color: #AEAEAE;">' ,&#19979;&#38754;&#26377;&#27880;&#37322;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">e   &#37325;&#26032;&#32534;&#36753;&#24403;&#21069;&#30340;&#26085;&#24535;&#20869;&#23481;,&#24182;&#19981;&#26159;&#25152;&#26377;&#30340;&#31649;&#29702;&#24037;&#20855;&#37117;&#25903;&#25345;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">f   &#26597;&#30475;&#24341;&#29256;&#26412;&#30340;&#25991;&#20214;&#23545;&#24212;&#30340;&#20869;&#23481;,&#30456;&#24403;&#20110;`</span><span style="color: #D8FA3C;">C-xv~</span><span style="color: #AEAEAE;">' &#28982;&#21518;&#36755;&#20837;&#29256;&#26412;&#21495;&#30340;&#25805;&#20316;,&#23545;git &#26469;&#35828;&#27604;`</span><span style="color: #D8FA3C;">C-xv~</span><span style="color: #AEAEAE;">'&#26041;&#20415;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">d   diff &#23545;&#27492;&#29256;&#26412;&#19982;&#21069;&#19968;&#20010;&#29256;&#26412;&#30340;&#24403;&#21069;&#25991;&#20214;diff&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">D   diff ,&#21516;d ,&#19981;&#36807;&#26159;&#25152;&#26377;&#30340;&#25991;&#20214;,</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">ChangeLog &#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-x4a</span><span style="color: #AEAEAE;">' &#22312;ChangeLog&#25991;&#20214;&#20013;&#28155;&#21152;&#19968;&#20010;&#26465;&#30446;,&#20851;&#20110;&#24403;&#21069;&#25991;&#20214;&#30340;&#20462;&#25913;&#30340;,&#24403;&#21069;&#26085;&#26399;&#30340;.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-xva</span><span style="color: #AEAEAE;">' &#26681;&#25454;version control &#26085;&#24535;&#33258;&#21160;&#29983;&#25104;ChangeLog,&#19981;&#36807;svn git &#30446;&#24405;&#36824;&#19981;&#25903;&#25345;.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#22312;&#32534;&#36753;ChangeLog&#26102;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-j</span><span style="color: #AEAEAE;">' &#33258;&#21160;&#32553;&#36827;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">C-x`  &#25171;&#24320;&#27492;&#26465;&#30446;&#23545;&#24212;&#30340;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-xvd</span><span style="color: #AEAEAE;">' vc-dir  &#22810;&#25991;&#20214;&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v d     vc-directory -- show all files which are not up to date</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#25805;&#20316;&#26377;&#28857;&#31867;&#20284;dired ,&#23427;&#26159;VC &#25903;&#25345;&#22810;&#25991;&#20214;&#25805;&#20316;&#30340;&#26041;&#24335;,&#22312;*vc-dir* buffer &#20013;&#20250;&#26174;&#31034;&#22788;&#20110;version control&#31649;&#29702;&#19979;&#30340;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#19981;&#36807;&#40664;&#35748;up-to-date &#30340;&#25991;&#20214;&#21450;&#30456;&#24212;&#30340;&#23376;&#30446;&#24405;&#20250;&#34987;&#38544;&#34255;,&#20363;&#22806;&#26159;&#36825;&#20010;up-to-date &#30340;&#25991;&#20214;&#26159;&#21018;&#21018;&#34987;&#20320;&#25552;&#20132;&#23548;&#33268;&#30340;,&#21017;&#19981;&#38544;&#34255;.</span>
+<span style="color: #AEAEAE;">;;            </span><span style="color: #AEAEAE;">&#20854;&#26684;&#24335;&#22914;&#19979;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">./</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">modified           file1.c</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">needs-update       file2.c</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">needs-merge        file3.c</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">unregistered        g.c</span>
+
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">&#20854;&#20013;&#24456;&#22810;&#21629;&#20196;&#31867;&#20284;&#20110;dired</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">n p TAB SPC &#19978;&#19979;&#31661;&#22836;&#36827;&#34892;&#23548;&#33322;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">RET</span><span style="color: #AEAEAE;">' &#21644;f &#25171;&#24320;&#30456;&#24212;&#25991;&#20214; ,o &#22312;&#21478;&#22806;&#19968;&#20010;&#31383;&#21475;&#25171;&#24320;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">q &#36864;&#20986;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">x &#38544;&#34255;&#25152;&#26377;up-to-date&#30340;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">m &#23545;&#25991;&#20214;&#36827;&#34892;&#26631;&#35760;,&#28982;&#21518;&#21487;&#20197;&#23545;&#26631;&#35760;&#30340;&#25991;&#20214;&#36827;&#34892;&#25805;&#20316;,&#22914;commit&#25552;&#20132;</span>
+<span style="color: #AEAEAE;">;;          </span><span style="color: #AEAEAE;">`M' &#26631;&#35760;&#25152;&#26377;&#19982;&#24403;&#21069;&#25991;&#20214;&#29366;&#24577;&#30456;&#21516;&#30340;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">u &#19982;U&#21017;&#26159;m M&#30456;&#21453;&#30340;&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">&#23545;&#26631;&#35760;&#30340;&#25991;&#20214;&#25110;&#32773;&#24403;&#21069;&#25991;&#20214;&#30340;&#20869;&#23481;&#36827;&#34892;&#25628;&#32034;&#26367;&#25442;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">`S' searches the marked files.</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">`Q' does a query replace on the marked files.</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">`M-s a C-s' does an incremental search on the marked files.</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">`M-s a C-M-s' does an incremental search on the marked files.</span>
+<span style="color: #AEAEAE;">;;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">&#21478;&#22806;&#20197;`</span><span style="color: #D8FA3C;">C-xv</span><span style="color: #AEAEAE;">'&#20026;&#21069;&#32512;&#30340;&#21629;&#20196;&#22312;vc-dir buffer&#20013;&#37117;&#26377;&#23545;&#24212;&#30340;&#30701;&#30340;&#38190;&#32465;&#23450;</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">&#22914;l &#23545;&#24212; `</span><span style="color: #D8FA3C;">C-xvl</span><span style="color: #AEAEAE;">' &#26597;&#30475;&#26085;&#24535;</span>
+<span style="color: #AEAEAE;">;;            </span><span style="color: #AEAEAE;">`=', `+'`l', `i',`v'</span>
+<span style="color: #AEAEAE;">;;           </span><span style="color: #AEAEAE;">&#23545;&#22810;&#25991;&#20214;&#36827;&#34892;&#25805;&#20316;&#26102;,&#25991;&#20214;&#24517;&#39035;&#22788;&#20110;&#30456;&#21516;&#30340;&#29366;&#24577;,&#25110;&#32773;&#20860;&#23481;&#24577;</span>
+<span style="color: #AEAEAE;">;;            </span><span style="color: #AEAEAE;">(added, modified and removed states &#20026;&#20860;&#23481;&#24577;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-xvg</span><span style="color: #AEAEAE;">' vc-annotate &#26597;&#30475;&#26576;&#20010;&#29305;&#23450;&#25991;&#20214;&#33258;&#22987;&#33267;&#32456;&#30340;&#21464;&#21270;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#20301;&#20110;info &#30340;Emacs&gt;&gt;Maintaining&gt;&gt;Version Control&gt;&gt;Old Revisions</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v g     vc-annotate -- show when each line in a tracked file was added and by whom</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-uC-xvg</span><span style="color: #AEAEAE;">' &#21017;&#19981;&#26159;&#23545;&#40664;&#35748;&#30340;&#24403;&#21069;buffer&#36827;&#34892;&#25805;&#20316;,&#35753;&#20320;&#36873;&#25321;?</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#26576;&#19968;&#20010;&#29305;&#23450;&#29256;&#26412;&#25991;&#20214;&#30340;&#20869;&#23481;&#22312;&#19981;&#21516;&#30340;&#29256;&#26412;&#37117;&#26377;&#22686;&#20943;,&#32780;vc-annotate &#29992;&#19981;&#21516;&#30340;&#39068;&#33394;&#34920;&#31034;&#25991;&#20214;&#20013;&#19981;&#21516;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#20195;&#30721;&#30340;&#21382;&#21490;, &#32418;&#33394;&#30340;&#37096;&#20998;&#26159;&#26368;&#36817;&#25165;&#28155;&#21152;&#30340;,&#34013;&#33394;&#30340;&#21017;&#26159;&#26368;&#21021;&#23601;&#21152;&#20837;&#30340;&#20869;&#23481;,&#20013;&#38388;&#36807;&#31243;&#28155;&#21152;&#30340;&#20195;&#30721;&#20063;&#20250;&#29992;&#19981;&#21516;&#30340;&#39068;&#33394;&#36827;&#34892;&#26631;&#35760;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">*Annotate* buffer &#30340;&#26684;&#24335;&#26159;:&#21491;&#36793;&#26159;&#20195;&#30721;,&#24038;&#36793;&#21017;&#26159;&#21491;&#36793;&#27599;&#19968;&#34892;&#20195;&#30721;&#25152;&#23545;&#24212;&#30340;&#29256;&#26412;,&#20063;&#23601;&#26159;&#20195;&#34920;&#20102;&#36825;&#19968;&#34892;&#20195;&#30721;&#26159;&#22312;&#21738;&#20010;&#29256;&#26412;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#30340;&#26102;&#20505;&#28155;&#21152;&#36827;&#26469;&#30340;.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#36827;&#20837;Annotate mode &#21518;&#36824;&#21487;&#20197;&#36827;&#34892;&#20854;&#20182;&#25805;&#20316;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">p  &#23545;&#27492;&#25991;&#20214;&#30340;&#19978;&#19968;&#20010;&#29256;&#26412;&#36827;&#34892;vc-annotate&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">n  ........&#19979;........................</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">j &#23545;`</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' &#25152;&#23545;&#24212;&#30340;&#29256;&#26412;&#30340;&#24403;&#21069;&#25991;&#20214;&#36827;&#34892;vc-annotate&#25805;&#20316;,&#27604;&#22914;&#24403;&#21069;&#34892;&#30340;&#20195;&#30721;&#26159;&#22312;&#29256;&#26412;&#21495;&#20026;3&#30340;&#26102;&#20505;&#28155;&#21152;&#36827;&#26469;&#30340;,</span>
+<span style="color: #AEAEAE;">;;  </span><span style="color: #AEAEAE;">&#21017;&#27492;&#25805;&#20316;&#20250;&#23545;&#27492;&#25991;&#20214;&#29256;&#26412;&#20026;3&#26102;&#30340;&#20869;&#23481;&#36827;&#34892;vc-annotate&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">w  &#36890;&#36807;p n j &#25805;&#20316;&#21518;&#26377;&#21487;&#33021;&#20320;&#24536;&#35760;&#20102;&#24403;&#21069;buffer&#20013;&#30340;&#20869;&#23481;&#21040;&#24213;&#26159;&#21738;&#20010;&#29256;&#26412;&#30340;,&#21487;&#20197;&#29992;w &#22238;&#21040;&#26368;&#21021;&#36816;&#34892;`</span><span style="color: #D8FA3C;">C-xvg</span><span style="color: #AEAEAE;">' &#26102;&#30340;&#29256;&#26412;</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">w &#34920;&#31034;working revision &#20854;&#23454;&#23601;&#26159;&#26368;&#26032;&#30340;&#19968;&#20010;&#29256;&#26412;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">a `</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' &#21017;&#30456;&#24403;&#20110;&#20808;&#36827;&#34892;j&#25805;&#20316;,&#28982;&#21518;&#36827;&#34892;p&#25805;&#20316;,&#20854;&#20316;&#29992;&#26159;&#26597;&#30475;&#36824;&#27809;&#26377;&#21152;&#20837;&#24403;&#21069;&#34892;&#30340;&#20869;&#23481;&#26102;&#30340;&#21069;&#19968;&#20010;&#29256;&#26412;&#23545;&#24212;&#30340;&#25991;&#20214;&#26159;&#20160;&#20040;&#26679;&#23376;&#30340;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">f `</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' file&#36319;j&#31867;&#20284;,&#19981;&#36807;&#19981;&#36827;&#34892;vc-annotate&#25805;&#20316;,&#20165;&#26174;&#31034;&#24403;&#21069;&#34892;&#23545;&#24212;&#29256;&#26412;&#30340;&#25991;&#20214;&#20869;&#23481;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">d `</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' diff&#25805;&#20316;,&#24403;&#21069;&#34892;&#23545;&#24212;&#19968;&#20010;&#29256;&#26412;,&#29992;&#27492;&#29256;&#26412;&#19982;&#23427;&#30340;&#21069;&#19968;&#20010;&#29256;&#26412;&#36827;&#34892;diff&#25805;&#20316;,&#21363;&#26597;&#30475;&#21040;&#24213;&#36825;&#19968;&#27425;&#30340;&#29256;&#26412;&#21464;&#21270;&#26377;&#21738;&#20123;&#21464;&#21270;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">D `</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' diff&#25805;&#20316;,&#19982;d&#31867;&#20284;,&#19981;&#36807;&#27492;&#27425;&#26174;&#31034;&#30340;&#19981;&#20165;&#26159;&#24403;&#21069;&#25991;&#20214;&#30340;diff,&#32780;&#26159;&#27492;&#27425;&#25552;&#20132;&#25152;&#26377;&#25991;&#20214;&#30340;&#21464;&#21270;.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">l `</span><span style="color: #D8FA3C;">&#24403;&#21069;&#34892;</span><span style="color: #AEAEAE;">' log &#26174;&#31034;&#26085;&#24535; ,&#26174;&#31034;&#24403;&#21069;&#34892;&#25152;&#23545;&#24212;&#30340;&#29256;&#26412; &#30456;&#24212;&#30340;&#26085;&#24535;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">v &#40664;&#35748;&#21491;&#36793;&#20195;&#30721;&#24038;&#36793;&#29256;&#26412;&#21495;,v &#21017;toggle &#26159;&#21542;&#26174;&#31034;&#29256;&#26412;&#21495;,&#29992;&#22788;&#19981;&#22823;.</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">(C-x C-q    by default, C-x C-q is no longer bound, so it's better to use the above binding)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v c     vc-cancel-version -- delete the latest revision (often it makes more sense to look at an old revision</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">and check that in again!) &#22238;&#28378;&#25805;&#20316;</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">git svn &#29616;&#22312;&#36824;&#19981;&#25903;&#25345;,</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v s     vc-create-snapshot -- tag all the files with a symbolic name ,</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">&#21019;&#24314;&#26631;&#31614;tag ,git &#30456;&#24403;&#20110;git tag newTAGname</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v r     vc-retrieve-snapshot -- undo checkouts and return to a snapshot with a symbolic name</span>
+<span style="color: #AEAEAE;">;;             </span><span style="color: #AEAEAE;">git &#30456;&#24403;&#20110;git checkout newTAGname ,&#20250;&#22788;&#20110;&#19968;&#20010;&#26080;&#21517;&#30340;branch &#27492;&#26102;work dir&#20013;&#30340;&#25991;&#20214;&#37117;&#26159;tagName&#26102;&#30340;&#29256;&#26412;</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v a     vc-update-change-log -- update ChangeLog</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v m     vc-merge</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">C-x v h     vc-insert-headers</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">VC-LOG</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#20851;&#20110;*VC-LOG*  &#36827;&#20837;&#36825;&#20010;buffer &#21518;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-c</span><span style="color: #AEAEAE;">' &#23436;&#25104;&#26085;&#24535;&#30340;&#22635;&#20889;,commit.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-f</span><span style="color: #AEAEAE;">' &#26174;&#31034;&#36825;&#27425;&#25552;&#20132;&#26377;&#21738;&#20123;&#25991;&#20214;&#20316;&#20102;&#20462;&#25913;,&#19981;&#36807;&#22914;&#26524;&#26159;&#22312;&#30452;&#25509;&#32534;&#36753;&#26576;&#20010;work file&#26102;&#25191;&#34892;`</span><span style="color: #D8FA3C;">C-xvv</span><span style="color: #AEAEAE;">' &#21017;&#26174;&#31034;&#30340;&#20165;&#26159;&#24403;&#21069;work file</span>
+<span style="color: #AEAEAE;">;;          </span><span style="color: #AEAEAE;">&#29992;&#22788;&#19981;&#22823;,&#22914;&#26524;&#26159;&#22312;`</span><span style="color: #D8FA3C;">C-xvd</span><span style="color: #AEAEAE;">'&#36827;&#20837;vc-dir&#27169;&#24335;&#36827;&#34892;&#22810;&#25991;&#20214;&#25805;&#20316;&#21518;,&#25191;&#34892;`</span><span style="color: #D8FA3C;">C-xvv</span><span style="color: #AEAEAE;">'&#36827;&#20837;vc-log&#21017;`</span><span style="color: #D8FA3C;">C-cC-f</span><span style="color: #AEAEAE;">'&#26174;&#31034;&#30340;&#25165;&#26159;&#25805;&#20316;&#30340;&#22810;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-d</span><span style="color: #AEAEAE;">' &#26174;&#31034;diff.</span>
+<span style="color: #AEAEAE;">;;  </span><span style="color: #AEAEAE;">&#22312;minibuffer&#20013;&#25105;&#20204;&#21487;&#20197;&#29992;`</span><span style="color: #D8FA3C;">M-p</span><span style="color: #AEAEAE;">'&#21069;&#19968;&#20010; `</span><span style="color: #D8FA3C;">M-n</span><span style="color: #AEAEAE;">'&#19979;&#19968;&#20010; `</span><span style="color: #D8FA3C;">M-r</span><span style="color: #AEAEAE;">'&#21521;&#21518;&#25628;&#32034; `</span><span style="color: #D8FA3C;">M-s</span><span style="color: #AEAEAE;">'&#21521;&#21069;&#25628;&#32034; &#31561;&#26597;&#30475;&#20197;&#24448;&#30340;&#21382;&#21490;,</span>
+<span style="color: #AEAEAE;">;;  </span><span style="color: #AEAEAE;">&#21516;&#26679;&#22312;*VC-LOG*&#20013;&#20063;&#21487;&#20197;&#26597;&#30475;&#20197;&#24448;&#30340;&#25552;&#20132;&#21382;&#21490;.&#25805;&#20316;&#30456;&#21516;.</span>
+
+
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#20851;&#20110;diff ,patch &#34917;&#19969;&#30340;&#20351;&#29992;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#26377;&#19968;&#20010;&#26087;&#30340;&#25991;&#20214;a , &#20320;&#32534;&#36753;&#20102;a&#23558;&#36825;&#20010;&#32534;&#36753;&#21518;&#30340;&#25991;&#20214;&#21629;&#20196;&#20026;b</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#29616;&#22312;&#24819;&#29983;&#25104;&#19968;&#20010;&#34917;&#19969;&#25991;&#20214;,&#23558;&#36825;&#20010;&#34917;&#19969;&#25991;&#20214;&#24212;&#29992;&#21040;a &#19978;,&#23601;&#20250;&#21464;&#25104;b</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#29983;&#25104;&#36825;&#20010;&#34917;&#19969;&#25991;&#20214;&#30340;&#21629;&#20196;&#26159;diff</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">diff -ubB a b&gt;a.patch  (-u&#25351;&#23450;&#29983;&#25104;&#30340;&#26684;&#24335;,-b&#24573;&#30053;&#31354;&#26684;-B&#24573;&#30053;&#31354;&#26684;&#24341;&#36215;&#30340;&#24046;&#24322;)</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#36825;&#26679;&#22312;&#24403;&#21069;&#30446;&#24405;&#19979;&#20250;&#29983;&#25104;a.patch&#30340;&#25991;&#20214;,</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#36825;&#26679;&#20320;&#21487;&#20197;&#23558;&#20320;&#30340;&#34917;&#19969;&#25991;&#20214;&#21457;&#24067;&#21040;&#32593;&#19978;,&#21035;&#20154;&#25343;&#21040;&#20320;&#30340;&#34917;&#19969;&#21450;a&#25991;&#20214; &#25918;&#22312;&#21516;&#19968;&#20010;&#30446;&#24405;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">patch -p0 &lt;a.patch a  &#36825;&#26679;&#25171;&#19978;&#34917;&#19969;&#21518;,a&#20013;&#30340;&#20869;&#23481;&#23601;&#19982;b&#20013;&#30340;&#20869;&#23481;&#26080;&#24322;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#21487;&#26159;&#20320;&#21518;&#24724;&#20102;,&#19981;&#36215;&#25171;&#36825;&#20010;&#34917;&#19969;,&#24819;&#23601;a&#24674;&#22797;&#21407;&#26679;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">patch -R &lt;a.patch a  &#36825;&#26679;a&#25991;&#20214;&#23601;&#21464;&#25104;&#20102;&#26368;&#21021;&#30340;&#27169;&#26679;&#20102;.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">diff mode &#20687;Compilation mode &#19968;&#26679;,&#21487;&#20197;&#29992;C-x` `</span><span style="color: #D8FA3C;">C-cC-c</span><span style="color: #AEAEAE;">' &#22312;&#21508;&#20010;&#26465;&#30446;&#38388;&#36339;&#36716;</span>
+
+(<span style="color: #FF6400;">setq</span> diff-switches <span style="color: #ffa07a;">"-ubB"</span>)
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#27880;&#24847;linux&#19979;&#30340;diff a b ,&#20854;&#20013;a &#26159;&#26087;&#25991;&#20214;,b&#26159;&#26032;&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#22312;Emacs&#20013;`</span><span style="color: #D8FA3C;">M-x</span><span style="color: #AEAEAE;">' diff  &#20808;&#23601;&#20320;&#36873;&#25321;&#30340;&#26159;b&#28982;&#21518;&#25165;&#26159;a</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">&#19968;&#20010;hunk &#23601;&#26159;&#19968;&#22788;: :@ -130:,7 +130,7 :@</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-n</span><span style="color: #AEAEAE;">' &#36339;&#21040;&#19979;&#19968;&#20010;&#24046;&#24322;&#22788;(hunk)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-p</span><span style="color: #AEAEAE;">' &#36339;&#21040;&#19978;&#19968;&#20010;&#24046;&#24322;&#22788;(hunk)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-}</span><span style="color: #AEAEAE;">' &#36339;&#21040;&#19979;&#19968;&#20010;&#25991;&#20214; (&#22312;&#22810;&#25991;&#20214;&#34917;&#19969;&#20013;)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-{</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-k</span><span style="color: #AEAEAE;">' &#21024;&#38500;&#36825;&#20010;(hunk)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">M-K</span><span style="color: #AEAEAE;">' &#21024;&#38500;&#20851;&#20110;&#36825;&#20010;&#25991;&#20214;&#30340;(hunk)</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-a</span><span style="color: #AEAEAE;">' &#23558;&#24403;&#21069;&#30340;hunk&#25171;&#21040;&#26087;&#25991;&#20214;&#20013; `</span><span style="color: #D8FA3C;">diff-apply-hunk</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;;          </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-u</span><span style="color: #AEAEAE;">' &#21017;&#36827;&#34892;&#30456;&#21453;&#30340;&#25805;&#20316;,&#27880;&#24847;&#22914;&#26524;&#36825;&#20010;hunk&#24050;&#32463;&#25171;&#36807;</span>
+<span style="color: #AEAEAE;">;;          </span><span style="color: #AEAEAE;">&#20877;&#36816;&#34892;`</span><span style="color: #D8FA3C;">C-cC-a</span><span style="color: #AEAEAE;">'&#20250;&#38382;&#20320;&#26159;&#21542;reverse&#21453;&#21521;&#25805;&#20316;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-b</span><span style="color: #AEAEAE;">' &#39640;&#20142;&#26174;&#31034;&#21040;&#26102;&#24213;&#26377;&#21738;&#20123;&#21024;&#20943;`</span><span style="color: #D8FA3C;">diff-refine-hunk</span><span style="color: #AEAEAE;">'</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-c</span><span style="color: #AEAEAE;">' &#26597;&#30475;&#26087;&#30340;&#25991;&#20214;`</span><span style="color: #D8FA3C;">diff-goto-source</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-e</span><span style="color: #AEAEAE;">' &#36215;&#19968;&#20010;Ediff&#20250;&#35805;`</span><span style="color: #D8FA3C;">diff-ediff-patch</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-n</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">diff-restrict-view</span><span style="color: #AEAEAE;">' &#23601;&#26159;Narrowing ,&#21482;&#26174;&#31034;&#24403;&#21069;hunk&#30340;&#20869;&#23481;`</span><span style="color: #D8FA3C;">C-xnw</span><span style="color: #AEAEAE;">' &#30456;&#21453;&#25805;&#20316;widen&#20043;</span>
+<span style="color: #AEAEAE;">;;         </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-u</span><span style="color: #AEAEAE;">',&#21017;&#23545;&#25991;&#20214;&#32780;&#38750;hunk</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">C-cC-r</span><span style="color: #AEAEAE;">'  `</span><span style="color: #D8FA3C;">diff-reverse-direction</span><span style="color: #AEAEAE;">' &#20132;&#25442;&#26032;&#32769;&#25991;&#20214;(diff a b &#21464;&#25104;diff b a)</span>
+<span style="color: #AEAEAE;">;;</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`C-c C-s'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Split the hunk at point (`</span><span style="color: #D8FA3C;">diff-split-hunk</span><span style="color: #AEAEAE;">').  This is for manually</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">editing patches, and only works with the "unified diff format"</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">produced by the `</span><span style="color: #D8FA3C;">-u</span><span style="color: #AEAEAE;">' or `</span><span style="color: #D8FA3C;">--unified</span><span style="color: #AEAEAE;">' options to the `</span><span style="color: #D8FA3C;">diff</span><span style="color: #AEAEAE;">' program.</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">If you need to split a hunk in the "context diff format" produced</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">by the `</span><span style="color: #D8FA3C;">-c</span><span style="color: #AEAEAE;">' or `</span><span style="color: #D8FA3C;">--context</span><span style="color: #AEAEAE;">' options to `</span><span style="color: #D8FA3C;">diff</span><span style="color: #AEAEAE;">', first convert the</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">buffer to the unified diff format with `C-c C-u'.</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`C-c C-d'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Convert the entire buffer to the "context diff format"</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">(`</span><span style="color: #D8FA3C;">diff-unified-&gt;context</span><span style="color: #AEAEAE;">').  With a prefix argument, convert only</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">the text within the region.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`C-c C-u'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Convert the entire buffer to unified diff format</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">(`</span><span style="color: #D8FA3C;">diff-context-&gt;unified</span><span style="color: #AEAEAE;">').  With a prefix argument, convert</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">unified format to context format.  When the mark is active, convert</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">only the text within the region.</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`C-c C-w' &#37325;&#26032;&#29983;&#25104;diff&#25991;&#20214;,&#27492;&#27425;&#24573;&#30053;&#31354;&#26684;</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Refine the current hunk so that it disregards changes in whitespace</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">(`</span><span style="color: #D8FA3C;">diff-refine-hunk</span><span style="color: #AEAEAE;">').</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`C-x 4 A'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Generate a ChangeLog entry, like `C-x 4 a' does (*note Change</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Log::), for each one of the hunks</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">(`</span><span style="color: #D8FA3C;">diff-add-change-log-entries-other-window</span><span style="color: #AEAEAE;">').  This creates a</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">skeleton of the log of changes that you can later fill with the</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">actual descriptions of the changes.  `C-x 4 a' itself in Diff mode</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">operates on behalf of the current hunk's file, but gets the</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">function name from the patch itself.  This is useful for making</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">log entries for functions that are deleted by the patch.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`M-x diff-show-trailing-whitespaces RET'</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">Highlight trailing whitespace characters, except for those used by</span>
+<span style="color: #AEAEAE;">;;      </span><span style="color: #AEAEAE;">the patch syntax (*note Useless Whitespace::).</span>
+
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">Ediff&#24120;&#29992;&#30340;&#21629;&#20196;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ediff-files</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-current-file</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-directories</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">edir-revisions</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">edir-merge-revisions</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-show-registry</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">edir-merge-revisions-with-ancestor</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ediff-revision</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-patch-file</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ediff-merge-files</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-merge-files-with-ancestor</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ediff-merge-directories</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">ediff-merge-revisions</span><span style="color: #AEAEAE;">'</span>
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`v'            scroll A and B</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`V'            scroll the buffers down</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">wd</span><span style="color: #AEAEAE;">'           write diff to a file</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">wb</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">wc</span><span style="color: #AEAEAE;">'`</span><span style="color: #D8FA3C;">wa</span><span style="color: #AEAEAE;">'  Saves buffer A, if it was modified.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`a'  `b' `c'   &#25226;A&#20013;&#30456;&#21069;&#30340;&#30340;difference region copy&#21040;B&#20013;&#30456;&#24212;&#30456;&#24212;&#20301;&#32622;,`</span><span style="color: #D8FA3C;">rb</span><span style="color: #AEAEAE;">' &#21487;&#20197;&#24674;&#22797;B&#21040;&#21407;&#29366;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ab</span><span style="color: #AEAEAE;">'           &#21516;`a'&#19981;&#36807;&#26159;&#22312;3&#20010;&#25991;&#20214;&#23545;&#27604;&#30340;&#26102;&#20505;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`p' `n'         &#36873;&#20013;&#19978;&#19968;&#20010;(&#19979;&#19968;&#20010;)difference region</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`j' `</span><span style="color: #D8FA3C;">-j</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">Nj</span><span style="color: #AEAEAE;">';; `n' &#19982;'p'&#26159;&#30456;&#23545;&#36339;&#36716;,&#27492;&#20026;&#32477;&#23545;&#36339;&#36716;,N&#26159;&#25968;&#23383;,&#34920;&#31034;&#36339;&#21040;&#31532;N&#20010;difference region,</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">-j&#34920;&#31034;&#36339;&#21040;&#36339;&#21518;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ga</span><span style="color: #AEAEAE;">'              &#23558;A&#20013;&#36339;(point)&#26368;&#36817;&#30340;difference region&#36873;&#20013;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">`!'               Recomputes the difference regions ,&#38450;&#27490;&#22240;&#20026;&#20462;&#25913;&#23548;&#33268;&#39640;&#20142;&#20986;&#38169;</span>
+<span style="color: #AEAEAE;">;;  </span><span style="color: #AEAEAE;">`m'             &#35843;&#25972;&#31383;&#21475;&#22312;&#22823;&#23567;&#23613;&#37327;&#22823;(toggle</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">`|'            toggle &#26159;&#27700;&#24179;&#36824;&#26159;&#22402;&#30452;&#25670;&#25918;&#20004;&#20010;window</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">'r'            &#37325;&#32622;merge&#20013;&#30340;&#20869;&#23481;&#21040;&#26410;&#20462;&#25913;&#21069;(&#21482;&#22312;merge&#20250;&#35805;&#20013;&#26377;&#29992;)</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">`</span><span style="color: #D8FA3C;">ra</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">rb</span><span style="color: #AEAEAE;">' `</span><span style="color: #D8FA3C;">rc</span><span style="color: #AEAEAE;">' ::: `a' `b' `c' undo&#25805;&#20316; (&#21482;&#22312;compare&#20250;&#35805;&#20013;&#26377;&#29992;)</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">`##'          &#36339;&#36807;&#21482;&#22240; &#31354;&#26684;TAB&#19981;&#21516;&#24341;&#36215;&#30340;difference</span>
+<span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">`#c'          &#36339;&#36807;&#21482;&#22240; &#22823;&#23567;&#20889;&#19981;&#21516;&#24341;&#36215;&#30340;difference</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`#h' `#f'       &#22788;&#29702;&#22240;&#20026;&#22823;&#37327;&#30456;&#21516;&#30340;&#21464;&#37327;&#26367;&#25442;&#24341;&#36215;&#30340;difference</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`A' `B' `C'    toggle Read-Only in A(B,C)</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">~             &#20132;&#25442;A B&#31383;&#21475;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">i            &#26174;&#31034;&#24403;&#21069;&#36827;&#34892;&#30340;Ediff Session&#30340;&#20449;&#24687;,&#22914;&#22312;&#23545;&#21738;&#20004;&#20010;&#25991;&#20214;&#36827;&#34892;&#23545;&#27604;&#31561;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">D             &#26174;&#31034;diff&#21629;&#20196;&#30340;&#36755;&#20986;&#32467;&#26524;,&#29983;&#25104;diff&#25991;&#20214;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">R             &#26174;&#31034;&#25152;&#26377;&#21487;&#29992;&#30340;Ediff Session,&#22522;&#26412;&#23601;&#26159;&#21382;&#21490;&#27983;&#35272;`</span><span style="color: #D8FA3C;">ediff-show-registry</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">z            &#26242;&#26102;&#25346;&#36215;,(&#20851;&#38381;&#30456;&#20851;&#31383;&#21475;,) &#21487;&#20197;`R' &#36827;&#34892;&#24674;&#22797;&#20250;&#35805;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">q               quit.</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">`/' Displays the ancestor file during merges.</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">s            &#25910;&#32553;merge&#31383;&#21475;(toggle) ,`</span><span style="color: #D8FA3C;">4s</span><span style="color: #AEAEAE;">' &#21017;&#22686;&#22823;4&#34892;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">+            &#21512;&#24182;A B &#30340;&#24403;&#21069; difference region</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">=           &#21551;&#29992;&#19968;&#20010;&#26032;&#30340;&#23376;&#20250;&#35805;&#23545;&#24403;&#21069;difference region&#36827;&#34892;&#23545;&#27604;</span>
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">git mergetool &#20351;&#29992;ediff ,&#21069;&#25552;&#21487;&#20197;&#27491;&#24120;&#20351;&#29992;emacsclient ,&#24182;&#19988;Emacs&#24050;&#32463;&#21551;&#21160;&#12290;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">~/.gitconfig</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">[mergetool "ediff"]</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">cmd = emacsclient --eval \"(git-mergetool-emacsclient-ediff \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" \\\"$MERGED\\\")\"</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">trustExitCode = false</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">[mergetool]</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">prompt = false</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">[merge]</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">tool = ediff</span>
+<span style="color: #AEAEAE;">;;</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">Setup for ediff.</span>
+<span style="color: #AEAEAE;">;;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">(require 'ediff)</span>
+
+(<span style="color: #FBDE2D;">defvar</span> <span style="color: #40E0D0;">ediff-after-quit-hooks</span> <span style="color: #D8FA3C;">nil</span>
+  <span style="color: #ffa07a;">"* Hooks to run after ediff or emerge is quit."</span>)
+
+(<span style="color: #FBDE2D;">defadvice</span> <span style="color: #FF6400;">ediff-quit</span> (after edit-after-quit-hooks activate)
+  (run-hooks 'ediff-after-quit-hooks))
+
+(<span style="color: #FF6400;">setq</span> git-mergetool-emacsclient-ediff-active <span style="color: #D8FA3C;">nil</span>)
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">local-ediff-frame-maximize</span> ()
+  (<span style="color: #FBDE2D;">when</span> (boundp 'display-usable-bounds)
+    (<span style="color: #FBDE2D;">let*</span> ((bounds (display-usable-bounds))
+           (x (nth 0 bounds))
+           (y (nth 1 bounds))
+           (width (/ (nth 2 bounds) (frame-char-width)))
+           (height (/ (nth 3 bounds) (frame-char-height))))
+      (set-frame-width (selected-frame) width)
+      (set-frame-height (selected-frame) height)
+      (set-frame-position (selected-frame) x y))  )
+  )
+(<span style="color: #FF6400;">setq</span> ediff-window-setup-function 'ediff-setup-windows-plain)
+(<span style="color: #FF6400;">setq</span> ediff-split-window-function 'split-window-horizontally)
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">local-ediff-before-setup-hook</span> ()
+  (<span style="color: #FF6400;">setq</span> local-ediff-saved-frame-configuration (current-frame-configuration))
+  (<span style="color: #FF6400;">setq</span> local-ediff-saved-window-configuration (current-window-configuration))
+  (local-ediff-frame-maximize)
+  (<span style="color: #FBDE2D;">if</span> git-mergetool-emacsclient-ediff-active
+      (raise-frame)))
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">local-ediff-quit-hook</span> ()
+  (set-frame-configuration local-ediff-saved-frame-configuration)
+  (set-window-configuration local-ediff-saved-window-configuration))
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">local-ediff-suspend-hook</span> ()
+  (set-frame-configuration local-ediff-saved-frame-configuration)
+  (set-window-configuration local-ediff-saved-window-configuration))
+
+(<span style="color: #FF6400;">add-hook</span> 'ediff-before-setup-hook 'local-ediff-before-setup-hook)
+(<span style="color: #FF6400;">add-hook</span> 'ediff-quit-hook 'local-ediff-quit-hook 'append)
+(<span style="color: #FF6400;">add-hook</span> 'ediff-suspend-hook 'local-ediff-suspend-hook 'append)
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">Useful for ediff merge from emacsclient.</span>
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">git-mergetool-emacsclient-ediff</span> (local remote base merged)
+  (<span style="color: #FF6400;">setq</span> git-mergetool-emacsclient-ediff-active <span style="color: #D8FA3C;">t</span>)
+  (<span style="color: #FBDE2D;">if</span> (file-readable-p base)
+      (ediff-merge-files-with-ancestor local remote base <span style="color: #D8FA3C;">nil</span> merged)
+    (ediff-merge-files local remote <span style="color: #D8FA3C;">nil</span> merged))
+  (recursive-edit))
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">git-mergetool-emacsclient-ediff-after-quit-hook</span> ()
+  (exit-recursive-edit))
+
+(<span style="color: #FF6400;">add-hook</span> 'ediff-after-quit-hooks 'git-mergetool-emacsclient-ediff-after-quit-hook 'append)
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-07-05</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/ediff/">Ediff</a>, <a href="/tags/git/">Git</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/emacs-进行版本控制(version-control)/";
+          var disqus_url = "http://jixiuf.github.io/blog/emacs-进行版本控制(version-control)/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

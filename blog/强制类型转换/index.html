@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>强制类型转换 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="强制类型转换" />
+    <meta name="keywords" content="C cast" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>强制类型转换</h1>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">long</span> <span style="color: #40E0D0;">a</span> =2;
+<span style="color: #8DA6CE;">int</span>   <span style="color: #40E0D0;">intVar</span>= (*((<span style="color: #8DA6CE;">int</span>*) (&amp;(a))));
+printf (<span style="color: #ffa07a;">"%d\n"</span>,intVar);
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;malloc.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
+<span style="color: #FBDE2D;">typedef</span> <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">MS</span> {
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>;
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>;
+} <span style="color: #8DA6CE;">my_union</span>;
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
+
+  <span style="color: #8DA6CE;">long</span>    <span style="color: #40E0D0;">longvar</span>;
+  <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">MS</span> *<span style="color: #40E0D0;">m</span>= malloc(<span style="color: #FBDE2D;">sizeof</span>(my_union));
+  m-&gt;a=1;
+  m-&gt;b=2;
+  longvar= (*((<span style="color: #8DA6CE;">long</span>*) (&amp;(m))));
+  printf (<span style="color: #ffa07a;">"%ld\n"</span>,longvar);
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;malloc.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
+
+<span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">CAST</span>(<span style="color: #40E0D0;">new_type</span>,<span style="color: #40E0D0;">old_object</span>) (*((<span style="color: #8DA6CE;">new_type</span> *)(&amp;(old_object))))
+
+<span style="color: #FBDE2D;">typedef</span> <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">MS</span> {
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>;
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>;
+} <span style="color: #8DA6CE;">my_union</span>;
+
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
+
+  <span style="color: #8DA6CE;">long</span>    <span style="color: #40E0D0;">longvar</span>;
+  <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">MS</span> *<span style="color: #40E0D0;">m</span>= malloc(<span style="color: #FBDE2D;">sizeof</span>(my_union));
+  m-&gt;a=1;
+  m-&gt;b=2;
+  longvar = CAST(<span style="color: #8DA6CE;">long</span> ,m);
+  printf (<span style="color: #ffa07a;">"%ld\n"</span>,longvar);
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-10-26</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/强制类型转换/";
+          var disqus_url = "http://jixiuf.github.io/blog/强制类型转换/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

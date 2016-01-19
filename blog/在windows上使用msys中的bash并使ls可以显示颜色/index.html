@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>在Windows上使用MSYS中的bash并使ls可以显示颜色 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="在Windows上使用MSYS中的bash并使ls可以显示颜色" />
+    <meta name="keywords" content="msys windows bash emacs color" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>在Windows上使用MSYS中的bash并使ls可以显示颜色</h1>
+<p>
+在Windows上，有Emacs中使用MSYS中的bash作为shell,首先为了方便使用，写了两个<br  />
+函数bash 与bash-cd 分别绑定在 Control+F1 ,Alt+F1上<br  />
+，两者的区别上bash-cd 会在每次切换到*bash* buffer时，<br  />
+运行cd 命令，跳到当前文件所在目录，而bash则不会。<br  />
+另外按一个C-f1 是以半窗口的形式启动bash ,按下两次C-f1<br  />
+切换到全屏模式，这两次按下C-f1中间不能有其他按键 ，否则是隐藏bash所在窗口，<br  />
+而在全屏模式按下C-f1则是隐藏*bash*<br  />
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #FF6400;">global-set-key</span> [C-f1] 'bash-cd)
+(<span style="color: #FF6400;">global-set-key</span> [M-f1] 'bash)
+
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#36825;&#37324;&#24456;&#22810;&#21464;&#37327;&#65292;&#37117;&#34987;&#25105;&#29992;let &#32622;&#25104;&#20020;&#26102;&#21464;&#37327;&#65292;&#32780;&#20840;&#23616;&#30340;&#30456;&#24212;&#21464;&#37327;&#24182;&#27809;&#20570;&#20462;&#25913;&#65292;</span>
+<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#22240;&#20026;&#22312;windows &#19978;&#65292;&#25105;&#20351;&#29992;&#40664;&#35748;&#30340;cdmproxy</span>
+<span style="color: #AEAEAE;">;;;</span><span style="color: #AEAEAE;">###</span><span style="color: #ffc0cb;">autoload</span>
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">bash</span> ()
+  <span style="color: #ffa07a;">"Start `</span><span style="color: #D8FA3C;">bash</span><span style="color: #ffa07a;">' shell."</span>
+  (<span style="color: #FBDE2D;">interactive</span>)
+  (<span style="color: #FBDE2D;">let</span> ((binary-process-input <span style="color: #D8FA3C;">t</span>)
+        (binary-process-output <span style="color: #D8FA3C;">nil</span>)
+        (comint-scroll-show-maximum-output 'this)
+        (shell-file-name <span style="color: #ffa07a;">"bash"</span>)
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">I don't know why on windows ,if I add -C switch ,then the color</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">can't show correctly, so I comment it (shell-command-switch "-c");</span>
+        (explicit-shell-file-name <span style="color: #ffa07a;">"bash"</span>) <span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">term.el</span>
+        (explicit-bash-args '(<span style="color: #ffa07a;">"-login"</span> <span style="color: #ffa07a;">"-i"</span>))
+        (comint-completion-addsuffix <span style="color: #D8FA3C;">t</span>)<span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#30446;&#24405;&#34917;&#20840;&#26102;,&#22312;&#26411;&#23614;&#21152;&#19968;&#20010;"/"&#23383;&#31526;</span>
+        (comint-eol-on-send <span style="color: #D8FA3C;">t</span>)
+        (comint-file-name-<span style="color: #FBDE2D;">quote</span>-list '(?\  ?\")) <span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#24403;&#25991;&#20214;&#21517;&#20013;&#26377;&#36825;&#20123;(&#31354;&#26684;&#24341;&#21495;)&#29305;&#27530;&#23383;&#31526;&#26102;&#20250;&#25226;&#36825;&#20123;&#29305;&#27530;&#23383;&#31526;&#29992;"\"&#36716;&#20041;</span>
+        (w32-<span style="color: #FBDE2D;">quote</span>-process-args ?\")  <span style="color: #AEAEAE;">;;</span><span style="color: #AEAEAE;">&#20877;&#32473;&#31243;&#24207;&#20256;&#36882;&#21442;&#25968;&#30340;&#26102;&#20505;,&#20351;&#29992;&#36825;&#20010;&#23383;&#31526;&#23558;&#21442;&#25968;&#25324;&#36215;&#26469;</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">(eval-after-load 'ediff-diff '(progn (setq ediff-shell shell-file-name))) ;;Ediff shell</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">Unfortunately, when you visit a DOS text file within an</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">encoded file, you'll see CRs (^Ms) in the buffer.</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">If `</span><span style="color: #D8FA3C;">binary-process-output</span><span style="color: #AEAEAE;">' is set to `</span><span style="color: #D8FA3C;">nil</span><span style="color: #AEAEAE;">', this problem goes</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">away, which is fine for files of type `</span><span style="color: #D8FA3C;">.gz</span><span style="color: #AEAEAE;">'.</span>
+        (ediff-shell shell-file-name))
+    <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">(when (equal system-type 'windows-nt)</span>
+    <span style="color: #AEAEAE;">;;   </span><span style="color: #AEAEAE;">(setq comint-output-filter-functions '(comint-strip-ctrl-m))) &#19981;&#30693;&#21407;&#22240;&#20026;&#20309;windows &#19978;&#65292;&#21152;&#20102;&#36825;&#21477;&#21518;&#65292;shell&#19981;&#26174;&#39068;&#33394;</span>
+    (setenv <span style="color: #ffa07a;">"SHELL"</span> explicit-shell-file-name)
+    (<span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">and</span> (get-buffer <span style="color: #ffa07a;">"*bash*"</span>)
+             (buffer-live-p (get-buffer <span style="color: #ffa07a;">"*bash*"</span>)))
+        (<span style="color: #FBDE2D;">cond</span>
+         ( (<span style="color: #FBDE2D;">not</span> (string= (buffer-name) <span style="color: #ffa07a;">"*bash*"</span>))
+           (switch-to-buffer-other-window <span style="color: #ffa07a;">"*bash*"</span>))
+         ((<span style="color: #FBDE2D;">and</span> (string= (buffer-name) <span style="color: #ffa07a;">"*bash*"</span>)
+               (&gt; (length (window-list)) 1)
+               (member last-command '(bash-cd bash)))
+          (delete-other-windows)
+          )
+         ((<span style="color: #FBDE2D;">and</span> (string= (buffer-name) <span style="color: #ffa07a;">"*bash*"</span>)
+               (&gt; (length (window-list)) 1))
+          (delete-window)
+          )
+         ((<span style="color: #FBDE2D;">and</span>
+           (string= (buffer-name) <span style="color: #ffa07a;">"*bash*"</span>)
+           (<span style="color: #FBDE2D;">equal</span> (length (window-list)) 1))
+          (bury-buffer)
+          ))
+      (shell <span style="color: #ffa07a;">"*bash*"</span>)(sleep-for 1)
+      )
+    ))
+
+<span style="color: #AEAEAE;">;;;</span><span style="color: #AEAEAE;">###</span><span style="color: #ffc0cb;">autoload</span>
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">bash-cd</span>(<span style="color: #8DA6CE;">&amp;optional</span> dir)
+  (<span style="color: #FBDE2D;">interactive</span>)
+  (<span style="color: #FBDE2D;">let</span> ((dest-dir-cd (<span style="color: #FBDE2D;">or</span> dir default-directory)))
+    (bash)
+    (<span style="color: #FBDE2D;">with-current-buffer</span> <span style="color: #ffa07a;">"*bash*"</span>
+      (goto-char (point-max))
+      (insert (concat <span style="color: #ffa07a;">"cd "</span> dest-dir-cd))
+      (comint-send-input))
+    ))
+</pre>
+</div>
+
+<p>
+$HOME/.bashrc的设置<br  />
+注意，在 d:/usr/MinGW/msys/1.0/etc/profile中需要加上下面一句放在$HOME下<br  />
+的.bashrc才会起作用<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">. <span style="color: #ffa07a;">"$HOME/.bashrc"</span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #F8F8F8;">cd</span> <span style="color: #ffa07a;">"$HOME"</span>
+<span style="color: #F8F8F8;">cd</span> ~
+
+<span style="color: #40E0D0;">GREP_OPTIONS</span>=<span style="color: #ffa07a;">"--exclude-dir=\.svn --exclude=*.class --exclude-dir=classes --exclude=*.doc --exclude=*.csv --exclude=TAGS"</span>
+<span style="color: #F8F8F8;">export</span> GREP_OPTIONS
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#35774;&#32622;&#39068;&#33394;</span>
+<span style="color: #40E0D0;">LS_COLORS</span>=<span style="color: #ffa07a;">'no=00:fi=00:di=01;37;44:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mng=01;35:*.xcf=01;35:*.pcx=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.avi=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.mov=01;35:*.qt=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.mp3=01;32:*.wav=01;32:*.mid=01;32:*.midi=01;32:*.au=01;32:*.ogg=01;32:*.flac=01;32:*.aac=01;32:'</span>;
+<span style="color: #F8F8F8;">export</span> LS_COLORS 
+
+
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LANG=zh_CN.UTF-8</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_CTYPE="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_NUMERIC="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_TIME="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_COLLATE="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_MONETARY="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_MESSAGES="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">export LC_ALL="zh_CN.UTF-8"</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">alias ls='ls --show-control-chars -F --color=tty'</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">ls</span>=<span style="color: #ffa07a;">"ls --color  --show-control-chars -F"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">la</span>=<span style="color: #ffa07a;">"ls -a --color=auto"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">ll</span>=<span style="color: #ffa07a;">"ls -lh --color=auto"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">rm</span>=<span style="color: #ffa07a;">"rm -r"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">cp</span>=<span style="color: #ffa07a;">"cp -r"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">ps</span>=<span style="color: #ffa07a;">"ps -ef -W"</span>
+<span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">pp</span>=<span style="color: #ffa07a;">"ps -ef -W |grep"</span>
+<span style="color: #F8F8F8;">alias</span> ..=<span style="color: #ffa07a;">"cd .."</span>
+<span style="color: #F8F8F8;">alias</span> cd..=<span style="color: #ffa07a;">"cd .."</span>
+
+
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LANG</span>=zh_CN.UTF-8
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_CTYPE</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_NUMERIC</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_TIME</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_COLLATE</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_MONETARY</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_MESSAGES</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">LC_ALL</span>=<span style="color: #ffa07a;">"zh_CN.UTF-8"</span>
+
+;;&#36825;&#37324;&#20026;emacs&#21450;&#27491;&#24120;&#30340;cygwin ,&#25110;mssy &#35774;&#32622;&#19981;&#21516;&#30340;PS1
+<span style="color: #FBDE2D;">case</span> $<span style="color: #40E0D0;">TERM</span><span style="color: #FBDE2D;"> in</span>
+cygwin)
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">PS1</span>=<span style="color: #ffa07a;">'\[\033]0;$MSYSTEM:\w\007</span>
+<span style="color: #ffa07a;">\033[32m\]\u@\h \[\033[33m\w\033[0m\]</span>
+<span style="color: #ffa07a;">$ '</span>
+;;
+*)
+<span style="color: #F8F8F8;">export</span> <span style="color: #40E0D0;">PS1</span>=<span style="color: #ffa07a;">'\W\$ '</span> <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">for emacs and others </span>
+;;
+<span style="color: #FBDE2D;">esac</span>
+</pre>
+</div>
+
+<p>
+;; (when (equal system-type 'windows-nt)<br  />
+;;   (setq comint-output-filter-functions '(comint-strip-ctrl-m))) 不知原因为何windows 上，加了这句后，shell不显颜色<br  />
+</p>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-10-28</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/windows/">Windows</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/在windows上使用msys中的bash并使ls可以显示颜色/";
+          var disqus_url = "http://jixiuf.github.io/blog/在windows上使用msys中的bash并使ls可以显示颜色/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

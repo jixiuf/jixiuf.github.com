@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>fscanf示例 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="fscanf示例" />
+    <meta name="keywords" content="C fscanf" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>fscanf示例</h1>
+<p>
+首先向文件中写入格式化数据,然后再用fscanf读出<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>( <span style="color: #8DA6CE;">void</span> )
+{
+  <span style="color: #8DA6CE;">long</span> <span style="color: #40E0D0;">l</span>;
+  <span style="color: #8DA6CE;">float</span> <span style="color: #40E0D0;">fp</span>;
+  <span style="color: #8DA6CE;">char</span> <span style="color: #40E0D0;">s</span>[81];
+  <span style="color: #8DA6CE;">char</span> <span style="color: #40E0D0;">c</span>;
+  <span style="color: #8DA6CE;">FILE</span> *<span style="color: #40E0D0;">f</span> = fopen(<span style="color: #ffa07a;">"fscanf.out"</span>, <span style="color: #ffa07a;">"w+"</span>);
+ <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">w&#34920;&#31034;&#21487;&#20889;,+&#34920;&#31034;&#22914;&#26524;&#25991;&#20214;&#19981;&#23384;&#22312;&#21017;&#21019;&#24314;&#20043; </span><span style="color: #AEAEAE;">*/</span>
+
+  fprintf( f, <span style="color: #ffa07a;">"%s %ld %f%c"</span>, <span style="color: #ffa07a;">"a-string"</span>, 65000l, 3.14159, <span style="color: #ffa07a;">'x'</span> );
+
+  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Set pointer to beginning of file:</span>
+  fseek( f, 0L, SEEK_SET );
+
+  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Read data back from file:</span>
+  fscanf(f, <span style="color: #ffa07a;">"%s"</span>, s );   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">C4996</span>
+  fscanf(f, <span style="color: #ffa07a;">"%ld"</span>, &amp;l ); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">C4996</span>
+  fscanf(f, <span style="color: #ffa07a;">"%f"</span>, &amp;fp ); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">C4996</span>
+  fscanf(f, <span style="color: #ffa07a;">"%c"</span>, &amp;c );  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">C4996</span>
+
+  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Output data read:</span>
+  printf( <span style="color: #ffa07a;">"%s\n"</span>, s );
+  printf( <span style="color: #ffa07a;">"%ld\n"</span>, l );
+  printf( <span style="color: #ffa07a;">"%f\n"</span>, fp );
+  printf( <span style="color: #ffa07a;">"%c\n"</span>, c );
+
+  fclose( f );
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">file name : a.c</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">created at: 2011&#24180;10&#26376;20&#26085; &#26143;&#26399;&#22235; 00&#26102;26&#20998;11&#31186;</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">author:  &#32426;&#31168;&#23792;</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">a.in&#20013;&#27599;&#34892;&#19968;&#20010;&#25968;&#23383;</span>
+
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">void</span>){
+  <span style="color: #8DA6CE;">FILE</span> *<span style="color: #40E0D0;">in</span> = fopen(<span style="color: #ffa07a;">"a.in"</span>, <span style="color: #ffa07a;">"r"</span>);
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">sum</span>=0,<span style="color: #40E0D0;">i</span>;
+  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36825;&#20010;&#37325;&#28857;&#26159;&#22914;&#20309;&#21028;&#26029;&#35835;&#33267;&#25991;&#20214;&#26411;&#23614;</span>
+  <span style="color: #FBDE2D;">while</span> (fscanf(in,<span style="color: #ffa07a;">"%d\n"</span>,&amp;i)!=EOF){
+    printf (<span style="color: #ffa07a;">"%d\n"</span>,i);
+    sum+=i;
+  }
+  printf (<span style="color: #ffa07a;">"sum=%d\n"</span>,sum);
+}
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-10-25</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/fscanf示例/";
+          var disqus_url = "http://jixiuf.github.io/blog/fscanf示例/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

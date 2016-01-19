@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>dfs(深度优先算法)算法 走迷宫 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="dfs(深度优先算法)算法 走迷宫" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>dfs(深度优先算法)算法 走迷宫</h1>
+<p>
+<a href="/assets/blog/Users/jixiuf/Documents/org/c/dfs_maze.org.html/dfs_maze.c">source</a><br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">file name : /assets/blog/Users/jixiuf/Documents/org/c/dfs_maze.org.html/dfs_maze.c</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">created at: 2012&#24180;04&#26376;23&#26085; &#26143;&#26399;&#19968; 23&#26102;33&#20998;07&#31186;</span>
+<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">author:  &#32426;&#31168;&#23792;</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">dfs(&#28145;&#24230;&#20248;&#20808;&#31639;&#27861;)&#31639;&#27861; &#36208;&#36855;&#23467; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">int maze[5][5] = { </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">0, 1, 0, 0, 0, </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">0, 1, 0, 1, 0, </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">0, 0, 0, 0, 0, </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">0, 1, 1, 1, 0, </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">0, 0, 0, 1, 0, </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">}; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#23427;&#34920;&#31034;&#19968;&#20010;&#36855;&#23467;&#65292;&#20854;&#20013;&#30340;1&#34920;&#31034;&#22681;&#22721;&#65292;0&#34920;&#31034;&#21487;&#20197;&#36208;&#30340;&#36335;&#65292;&#21482;&#33021;&#27178;&#30528;&#36208;&#25110;&#31446;&#30528;&#36208;&#65292;&#19981;&#33021;&#26012;</span>
+<span style="color: #AEAEAE;">   &#30528;&#36208;&#65292;&#35201;&#27714;&#32534;&#31243;&#24207;&#25214;&#20986;&#20174;&#24038;&#19978;&#35282;&#21040;&#21491;&#19979;&#35282;&#30340;&#36335;&#32447;&#12290;&#31243;&#24207;&#22914;&#19979;&#65306; </span><span style="color: #AEAEAE;">*/</span>
+
+
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#36825;&#27425;&#22534;&#26632;&#37324;&#30340;&#20803;&#32032;&#26159;&#32467;&#26500;&#20307;&#31867;&#22411;&#30340;&#65292;&#29992;&#26469;&#34920;&#31034;&#36855;&#23467;&#20013;&#19968;&#20010;&#28857;&#30340;x&#21644;y&#22352;&#26631;&#12290;&#25105;&#20204;&#29992;&#19968;&#20010;&#26032;</span>
+<span style="color: #AEAEAE;">   &#30340;&#25968;&#25454;&#32467;&#26500;&#20445;&#23384;&#36208;&#36855;&#23467;&#30340;&#36335;&#32447;&#65292;&#27599;&#20010;&#36208;&#36807;&#30340;&#28857;&#37117;&#26377;&#19968;&#20010;&#21069;&#36235;&#65288;Predecessor&#65289;&#28857;&#65292;&#34920;&#31034;</span>
+<span style="color: #AEAEAE;">   &#26159;&#20174;&#21738;&#20799;&#36208;&#21040;&#24403;&#21069;&#28857;&#30340;&#65292;&#27604;&#22914;predecessor[4][4]&#26159;&#22352;&#26631;&#20026;(3, 4)&#30340;&#28857;&#65292;&#23601;&#34920;&#31034;&#20174;(3,</span>
+<span style="color: #AEAEAE;">   4)&#36208;&#21040;&#20102;(4, 4)&#65292;&#19968;&#24320;&#22987;predecessor&#30340;&#21508;&#20803;&#32032;&#21021;&#22987;&#21270;&#20026;&#26080;&#25928;&#22352;&#26631;(-1, -1)&#12290;&#22312;&#36855;&#23467;&#20013;</span>
+<span style="color: #AEAEAE;">   &#25506;&#32034;&#36335;&#32447;&#30340;&#21516;&#26102;&#23601;&#25226;&#36335;&#32447;&#20445;&#23384;&#22312;predecessor&#25968;&#32452;&#20013;&#65292;&#24050;&#32463;&#36208;&#36807;&#30340;&#28857;&#22312;maze&#25968;&#32452;&#20013;&#35760;&#20026;</span>
+<span style="color: #AEAEAE;">   2&#38450;&#27490;&#37325;&#22797;&#36208;&#65292;&#26368;&#21518;&#25214;&#21040;&#32456;&#28857;&#26102;&#23601;&#26681;&#25454;predecessor&#25968;&#32452;&#20445;&#23384;&#30340;&#36335;&#32447;&#20174;&#32456;&#28857;&#25171;&#21360;&#21040;&#36215;&#28857;</span>
+<span style="color: #AEAEAE;">    </span><span style="color: #AEAEAE;">*/</span>
+
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#27599;&#25506;&#32034;&#19968;&#27493;&#37117;&#25171;&#21360;&#20986;&#24403;&#21069;&#36855;&#23467;&#30340;&#29366;&#24577;&#65288;&#26631;&#35760;&#20102;&#21738;&#20123;&#28857;&#65289;&#65292;&#20174;&#25171;&#21360;&#32467;&#26524;&#21487;&#20197;&#30475;&#20986;&#36825;&#31181;&#25628;&#32034;</span>
+<span style="color: #AEAEAE;">   &#31639;&#27861;&#30340;&#29305;&#28857;&#26159;&#65306;&#27599;&#27425;&#25506;&#32034;&#23436;&#21508;&#20010;&#26041;&#21521;&#30456;&#37051;&#30340;&#28857;&#20043;&#21518;&#65292;&#21462;&#20854;&#20013;&#19968;&#20010;&#30456;&#37051;&#30340;&#28857;&#36208;&#19979;&#21435;&#65292;&#19968;&#30452;</span>
+<span style="color: #AEAEAE;">   &#36208;&#21040;&#26080;&#36335;&#21487;&#36208;&#20102;&#20877;&#36864;&#22238;&#26469;&#65292;&#21462;&#21478;&#19968;&#20010;&#30456;&#37051;&#30340;&#28857;&#20877;&#36208;&#19979;&#21435;&#12290;&#36825;&#31216;&#20026;&#28145;&#24230;&#20248;&#20808;&#25628;&#32034;&#65288;DFS&#65292;</span>
+<span style="color: #AEAEAE;">   Depth First Search&#65289;&#12290;&#25506; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#22914;&#26524;&#22312;&#25506;&#32034;&#38382;&#39064;&#30340;&#35299;&#26102;&#36208;&#36827;&#20102;&#27515;&#32993;&#21516;&#65292;&#21017;&#38656;&#35201;&#36864;&#22238;&#26469;&#20174;&#21478;&#19968;&#26465;&#36335;&#32487;&#32493;&#25506;&#32034;&#65292;&#36825;&#31181;&#24605;&#24819;&#31216;</span>
+<span style="color: #AEAEAE;">   &#20026;&#22238;&#28335;&#65288;Backtrack&#65289;&#65292;&#19968;&#20010;&#20856;&#22411;&#30340;&#20363;&#23376;&#26159;&#24456;&#22810;&#32534;&#31243;&#20070;&#19978;&#37117;&#20250;&#35762;&#30340;&#20843;&#30343;&#21518;&#38382;&#39064;&#12290; </span><span style="color: #AEAEAE;">*/</span>
+
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;malloc.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
+<span style="color: #7fffd4;">#define</span> <span style="color: #40E0D0;">MAX_ROW</span> 5
+<span style="color: #7fffd4;">#define</span> <span style="color: #40E0D0;">MAX_COL</span> 5
+
+<span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> {
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">x</span>, <span style="color: #40E0D0;">y</span>;
+} <span style="color: #40E0D0;">stack</span>[215];
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">top</span>=0;
+
+<span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">push</span>(<span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #40E0D0;">p</span>){
+  stack[top++]=p;
+}
+
+<span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #FF6400;">pop</span>(){
+  <span style="color: #FBDE2D;">return</span> stack[--top];
+}
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">is_empty</span>(){
+  <span style="color: #FBDE2D;">return</span> top==0;
+}
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">maze</span>[MAX_ROW][MAX_COL] = {
+  0, 1, 0, 0, 0,
+  0, 1, 0, 1, 0,
+  0, 0, 0, 0, 0,
+  0, 1, 1, 1, 0,
+  0, 0, 0, 1, 0,
+};
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#35760;&#24405;&#27599;&#20010;&#33410;&#28857;&#30340;&#21069;&#39537;&#26159;&#21738;&#20010;&#33410;&#28857;&#65292;&#21363;&#20174;&#21738;&#20010;&#33410;&#28857;&#26469;&#21040;&#27492;&#33410;&#28857;&#30340; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #40E0D0;">predecessor</span>[MAX_ROW][MAX_COL]={
+  {  {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}  },
+  {  {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}, },
+  {  {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}, },
+  {  {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}, },
+  {  {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}, }
+};
+
+<span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">visit</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">row</span>,<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">col</span>,<span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #40E0D0;">pre</span>){
+  <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #40E0D0;">cur</span> ={row,col};
+  maze[row][col]=2;             <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">2 &#34920;&#31034;&#36825;&#20010;&#33410;&#28857;&#34987;&#35775;&#38382;&#36807; </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #FBDE2D;">if</span>(!(row==0&amp;&amp;col==0)){        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">0,0&#27809;&#26377;&#21069;&#39537;&#33410;&#28857;&#65292;&#26080;&#20174;&#21152;&#36215; </span><span style="color: #AEAEAE;">*/</span>
+    predecessor[row][col]=pre;
+  }
+  push(cur);
+}
+
+<span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">print_maze</span>(){
+  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>,<span style="color: #40E0D0;">j</span>;
+  <span style="color: #FBDE2D;">for</span> ( i = 0; i &lt; MAX_ROW; ++i) {
+    <span style="color: #FBDE2D;">for</span> ( j = 0; j&lt; MAX_COL; ++j) {
+      printf (<span style="color: #ffa07a;">"%d, "</span>,maze[i][j]);
+    }
+    printf (<span style="color: #ffa07a;">"\n"</span>);
+  }
+  printf (<span style="color: #ffa07a;">"\n"</span>);
+}
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
+  <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">point</span> <span style="color: #40E0D0;">p</span>={0,0};
+  visit(0,0,p);
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">push(p); </span><span style="color: #AEAEAE;">*/</span>
+
+  <span style="color: #FBDE2D;">while</span>(!is_empty()){
+    p=pop();
+    printf (<span style="color: #ffa07a;">"current=%d,%d\n"</span>,p.x,p.y);
+    <span style="color: #FBDE2D;">if</span> (p.x==MAX_ROW-1&amp;&amp;p.y==MAX_COL-1){
+      <span style="color: #FBDE2D;">break</span>;
+    }
+    <span style="color: #FBDE2D;">if</span>(p.y&lt;MAX_COL-1 &amp;&amp; maze[p.x][p.y+1]==0){        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">right </span><span style="color: #AEAEAE;">*/</span>
+      visit(p.x,p.y+1,p);
+    }
+    <span style="color: #FBDE2D;">if</span>(p.x&lt;MAX_ROW-1 &amp;&amp; maze[p.x+1][p.y]==0){        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">down </span><span style="color: #AEAEAE;">*/</span>
+      visit(p.x+1,p.y,p);
+    }
+    <span style="color: #FBDE2D;">if</span>(p.y&gt;0 &amp;&amp; maze[p.x][p.y-1]==0){        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">left </span><span style="color: #AEAEAE;">*/</span>
+      visit(p.x,p.y-1,p);
+    }
+    <span style="color: #FBDE2D;">if</span>(p.x&gt;0 &amp;&amp; maze[p.x-1][p.y]==0){        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">up </span><span style="color: #AEAEAE;">*/</span>
+      visit(p.x-1,p.y,p);
+    }
+    print_maze();
+  }
+  <span style="color: #FBDE2D;">if</span> (p.x==MAX_ROW-1 &amp;&amp; p.y==MAX_COL-1){ <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#22914;&#26524;&#21040;&#36798;&#20102;&#32456;&#28857;&#65292;&#25171;&#21360;&#22238;&#36335; </span><span style="color: #AEAEAE;">*/</span>
+    printf (<span style="color: #ffa07a;">"%d,%d\n"</span>,p.x,p.y);
+    <span style="color: #FBDE2D;">while</span>(predecessor[p.x][p.y].x!=-1){
+      p=predecessor[p.x][p.y];
+      printf (<span style="color: #ffa07a;">"%d,%d\n"</span>,p.x,p.y);
+    }
+  }
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-04-24</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog//Users/jixiuf/Documents/org/c/dfs_maze.org.html";
+          var disqus_url = "http://jixiuf.github.io/blog//Users/jixiuf/Documents/org/c/dfs_maze.org.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

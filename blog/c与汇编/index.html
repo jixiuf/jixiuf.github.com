@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>c与汇编 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="c与汇编" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>c与汇编</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">参考</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">参考</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://learn.akae.cn/media/ch19s01.html">http://learn.akae.cn/media/ch19s01.html</a><br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">bar</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">c</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">d</span>)
+{
+    <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">e</span> = c + d;
+    <span style="color: #FBDE2D;">return</span> e;
+}
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">foo</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>)
+{
+    <span style="color: #FBDE2D;">return</span> bar(a, b);
+}
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">void</span>)
+{
+    foo(2, 3);
+    <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+如果在编译时加上-g选项（在第 10 章 gdb讲过-g选项），那么用objdump反汇编时可以把<br  />
+C代码和汇编代码穿插起来显示，这样C代码和汇编代码的对应关系看得更清楚。反汇编的<br  />
+结果很长，以下只列出我们关心的部分。<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">gcc -g main.c
+objdump -dS a.out
+</pre>
+</div>
+<p>
+输出结果如下:<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #D8FA3C;">main</span>:     file <span style="color: #8DA6CE;">format</span> <span style="color: #40E0D0;">elf32</span>-i386
+
+
+Disassembly of section .init:
+
+08048294 &lt;_init&gt;:
+ 8048294:    55                       push   %ebp
+ 8048295:    89 e5                    mov    %esp,%ebp
+ 8048297:    83 ec 08                 sub    $0x8,%esp
+ 804829a:    e8 65 00 00 00           call   8048304 &lt;_start+0x24&gt;
+ 804829f:    e8 ec 00 00 00           call   8048390 &lt;_start+0xb0&gt;
+ 80482a4:    e8 d7 01 00 00           call   8048480 &lt;__libc_csu_fini+0x10&gt;
+ 80482a9:    c9                       leave
+ 80482aa:    c3                       ret
+
+Disassembly of section .plt:
+
+080482ac <a href="mailto:__gmon_start__%40plt-0x10">&lt;__gmon_start__@plt-0x10&gt;</a>:
+ 80482ac:    ff 35 f8 9f 04 08        pushl  0x8049ff8
+ 80482b2:    ff 25 fc 9f 04 08        jmp    *0x8049ffc
+ 80482b8:    00 00                    add    %al,(%eax)
+    ...
+
+080482bc <a href="mailto:__gmon_start__%40plt">&lt;__gmon_start__@plt&gt;</a>:
+ 80482bc:    ff 25 00 a0 04 08        jmp    *0x804a000
+ 80482c2:    68 00 00 00 00           push   $0x0
+ 80482c7:    e9 e0 ff ff ff           jmp    80482ac &lt;_init+0x18&gt;
+
+080482cc <a href="mailto:__libc_start_main%40plt">&lt;__libc_start_main@plt&gt;</a>:
+ 80482cc:    ff 25 04 a0 04 08        jmp    *0x804a004
+ 80482d2:    68 08 00 00 00           push   $0x8
+ 80482d7:    e9 d0 ff ff ff           jmp    80482ac &lt;_init+0x18&gt;
+
+Disassembly of section .text:
+
+080482e0 &lt;_start&gt;:
+ 80482e0:    31 ed                    xor    %ebp,%ebp
+ 80482e2:    5e                       pop    %esi
+ 80482e3:    89 e1                    mov    %esp,%ecx
+ 80482e5:    83 e4 f0                 and    $0xfffffff0,%esp
+ 80482e8:    50                       push   %eax
+ 80482e9:    54                       push   %esp
+ 80482ea:    52                       push   %edx
+ 80482eb:    68 70 84 04 08           push   $0x8048470
+ 80482f0:    68 10 84 04 08           push   $0x8048410
+ 80482f5:    51                       push   %ecx
+ 80482f6:    56                       push   %esi
+ 80482f7:    68 e5 83 04 08           push   $0x80483e5
+ 80482fc:    e8 cb ff ff ff           call   80482cc <a href="mailto:__libc_start_main%40plt">&lt;__libc_start_main@plt&gt;</a>
+ 8048301:    f4                       hlt
+ 8048302:    90                       nop
+ 8048303:    90                       nop
+ 8048304:    55                       push   %ebp
+ 8048305:    89 e5                    mov    %esp,%ebp
+ 8048307:    53                       push   %ebx
+ 8048308:    83 ec 04                 sub    $0x4,%esp
+ 804830b:    e8 00 00 00 00           call   8048310 &lt;_start+0x30&gt;
+ 8048310:    5b                       pop    %ebx
+ 8048311:    81 c3 e4 1c 00 00        add    $0x1ce4,%ebx
+ 8048317:    8b 93 fc ff ff ff        mov    -0x4(%ebx),%edx
+ 804831d:    85 d2                    test   %edx,%edx
+ 804831f:    74 05                    je     8048326 &lt;_start+0x46&gt;
+ 8048321:    e8 96 ff ff ff           call   80482bc <a href="mailto:__gmon_start__%40plt">&lt;__gmon_start__@plt&gt;</a>
+ 8048326:    58                       pop    %eax
+ 8048327:    5b                       pop    %ebx
+ 8048328:    c9                       leave
+ 8048329:    c3                       ret
+ 804832a:    90                       nop
+ 804832b:    90                       nop
+ 804832c:    90                       nop
+ 804832d:    90                       nop
+ 804832e:    90                       nop
+ 804832f:    90                       nop
+ 8048330:    55                       push   %ebp
+ 8048331:    89 e5                    mov    %esp,%ebp
+ 8048333:    53                       push   %ebx
+ 8048334:    83 ec 04                 sub    $0x4,%esp
+ 8048337:    80 3d 10 a0 04 08 00     cmpb   $0x0,0x804a010
+ 804833e:    75 3d                    jne    804837d &lt;_start+0x9d&gt;
+ 8048340:    a1 14 a0 04 08           mov    0x804a014,%eax
+ 8048345:    bb 18 9f 04 08           mov    $0x8049f18,%ebx
+ 804834a:    81 eb 14 9f 04 08        sub    $0x8049f14,%ebx
+ 8048350:    c1 fb 02                 sar    $0x2,%ebx
+ 8048353:    4b                       dec    %ebx
+ 8048354:    39 d8                    cmp    %ebx,%eax
+ 8048356:    73 1e                    jae    8048376 &lt;_start+0x96&gt;
+ 8048358:    90                       nop
+ 8048359:    8d b4 26 00 00 00 00     lea    0x0(%esi,%eiz,1),%esi
+ 8048360:    40                       inc    %eax
+ 8048361:    a3 14 a0 04 08           mov    %eax,0x804a014
+ 8048366:    ff 14 85 14 9f 04 08     call   *0x8049f14(,%eax,4)
+ 804836d:    a1 14 a0 04 08           mov    0x804a014,%eax
+ 8048372:    39 d8                    cmp    %ebx,%eax
+ 8048374:    72 ea                    jb     8048360 &lt;_start+0x80&gt;
+ 8048376:    c6 05 10 a0 04 08 01     movb   $0x1,0x804a010
+ 804837d:    83 c4 04                 add    $0x4,%esp
+ 8048380:    5b                       pop    %ebx
+ 8048381:    c9                       leave
+ 8048382:    c3                       ret
+ 8048383:    8d b6 00 00 00 00        lea    0x0(%esi),%esi
+ 8048389:    8d bc 27 00 00 00 00     lea    0x0(%edi,%eiz,1),%edi
+ 8048390:    55                       push   %ebp
+ 8048391:    89 e5                    mov    %esp,%ebp
+ 8048393:    83 ec 18                 sub    $0x18,%esp
+ 8048396:    a1 1c 9f 04 08           mov    0x8049f1c,%eax
+ 804839b:    85 c0                    test   %eax,%eax
+ 804839d:    74 12                    je     80483b1 &lt;_start+0xd1&gt;
+ 804839f:    b8 00 00 00 00           mov    $0x0,%eax
+ 80483a4:    85 c0                    test   %eax,%eax
+ 80483a6:    74 09                    je     80483b1 &lt;_start+0xd1&gt;
+ 80483a8:    c7 04 24 1c 9f 04 08     movl   $0x8049f1c,(%esp)
+ 80483af:    ff d0                    call   *%eax
+ 80483b1:    c9                       leave
+ 80483b2:    c3                       ret
+ 80483b3:    90                       nop
+
+080483b4 &lt;bar&gt;:
+<span style="color: #8DA6CE;">int</span> bar(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">c</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">d</span>)
+{
+ 80483b4:    55                       push   %ebp
+ 80483b5:    89 e5                    mov    %esp,%ebp
+ 80483b7:    83 ec 10                 sub    $0x10,%esp
+    <span style="color: #8DA6CE;">int</span> e = c + d;
+ 80483ba:    8b 45 0c                 mov    0xc(%ebp),%eax
+ 80483bd:    8b 55 08                 mov    0x8(%ebp),%edx
+ 80483c0:    8d 04 02                 lea    (%edx,%eax,1),%eax
+ 80483c3:    89 45 fc                 mov    %eax,-0x4(%ebp)
+    <span style="color: #FBDE2D;">return</span> e;
+ 80483c6:    8b 45 fc                 mov    -0x4(%ebp),%eax
+}
+ 80483c9:    c9                       leave
+ 80483ca:    c3                       ret
+
+080483cb &lt;foo&gt;:
+
+<span style="color: #8DA6CE;">int</span> foo(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>)
+{
+ 80483cb:    55                       push   %ebp
+ 80483cc:    89 e5                    mov    %esp,%ebp
+ 80483ce:    83 ec 08                 sub    $0x8,%esp
+    <span style="color: #FBDE2D;">return</span> bar(a, b);
+ 80483d1:    8b 45 0c                 mov    0xc(%ebp),%eax
+ 80483d4:    89 44 24 04              mov    %eax,0x4(%esp)
+ 80483d8:    8b 45 08                 mov    0x8(%ebp),%eax
+ 80483db:    89 04 24                 mov    %eax,(%esp)
+ 80483de:    e8 d1 ff ff ff           call   80483b4 &lt;bar&gt;
+}
+ 80483e3:    c9                       leave
+ 80483e4:    c3                       ret
+
+080483e5 &lt;main&gt;:
+
+<span style="color: #8DA6CE;">int</span> main(<span style="color: #8DA6CE;">void</span>)
+{
+ 80483e5:    55                       push   %ebp
+ 80483e6:    89 e5                    mov    %esp,%ebp
+ 80483e8:    83 ec 08                 sub    $0x8,%esp
+    foo(2, 3);
+ 80483eb:    c7 44 24 04 03 00 00     movl   $0x3,0x4(%esp)
+ 80483f2:    00
+ 80483f3:    c7 04 24 02 00 00 00     movl   $0x2,(%esp)
+ 80483fa:    e8 cc ff ff ff           call   80483cb &lt;foo&gt;
+    <span style="color: #FBDE2D;">return</span> 0;
+ 80483ff:    b8 00 00 00 00           mov    $0x0,%eax
+}
+ 8048404:    c9                       leave
+ 8048405:    c3                       ret
+ 8048406:    90                       nop
+ 8048407:    90                       nop
+ 8048408:    90                       nop
+ 8048409:    90                       nop
+ 804840a:    90                       nop
+ 804840b:    90                       nop
+ 804840c:    90                       nop
+ 804840d:    90                       nop
+ 804840e:    90                       nop
+ 804840f:    90                       nop
+
+08048410 &lt;__libc_csu_init&gt;:
+ 8048410:    55                       push   %ebp
+ 8048411:    89 e5                    mov    %esp,%ebp
+ 8048413:    57                       push   %edi
+ 8048414:    56                       push   %esi
+ 8048415:    53                       push   %ebx
+ 8048416:    e8 00 00 00 00           call   804841b &lt;__libc_csu_init+0xb&gt;
+ 804841b:    5b                       pop    %ebx
+ 804841c:    81 c3 d9 1b 00 00        add    $0x1bd9,%ebx
+ 8048422:    83 ec 1c                 sub    $0x1c,%esp
+ 8048425:    8d bb 18 ff ff ff        lea    -0xe8(%ebx),%edi
+ 804842b:    e8 64 fe ff ff           call   8048294 &lt;_init&gt;
+ 8048430:    8d 83 18 ff ff ff        lea    -0xe8(%ebx),%eax
+ 8048436:    29 c7                    sub    %eax,%edi
+ 8048438:    c1 ff 02                 sar    $0x2,%edi
+ 804843b:    85 ff                    test   %edi,%edi
+ 804843d:    74 29                    je     8048468 &lt;__libc_csu_init+0x58&gt;
+ 804843f:    31 f6                    xor    %esi,%esi
+ 8048441:    8d b4 26 00 00 00 00     lea    0x0(%esi,%eiz,1),%esi
+ 8048448:    8b 45 10                 mov    0x10(%ebp),%eax
+ 804844b:    89 44 24 08              mov    %eax,0x8(%esp)
+ 804844f:    8b 45 0c                 mov    0xc(%ebp),%eax
+ 8048452:    89 44 24 04              mov    %eax,0x4(%esp)
+ 8048456:    8b 45 08                 mov    0x8(%ebp),%eax
+ 8048459:    89 04 24                 mov    %eax,(%esp)
+ 804845c:    ff 94 b3 18 ff ff ff     call   *-0xe8(%ebx,%esi,4)
+ 8048463:    46                       inc    %esi
+ 8048464:    39 fe                    cmp    %edi,%esi
+ 8048466:    72 e0                    jb     8048448 &lt;__libc_csu_init+0x38&gt;
+ 8048468:    83 c4 1c                 add    $0x1c,%esp
+ 804846b:    5b                       pop    %ebx
+ 804846c:    5e                       pop    %esi
+ 804846d:    5f                       pop    %edi
+ 804846e:    c9                       leave
+ 804846f:    c3                       ret
+
+08048470 &lt;__libc_csu_fini&gt;:
+ 8048470:    55                       push   %ebp
+ 8048471:    89 e5                    mov    %esp,%ebp
+ 8048473:    c9                       leave
+ 8048474:    c3                       ret
+ 8048475:    90                       nop
+ 8048476:    90                       nop
+ 8048477:    90                       nop
+ 8048478:    90                       nop
+ 8048479:    90                       nop
+ 804847a:    90                       nop
+ 804847b:    90                       nop
+ 804847c:    90                       nop
+ 804847d:    90                       nop
+ 804847e:    90                       nop
+ 804847f:    90                       nop
+ 8048480:    55                       push   %ebp
+ 8048481:    89 e5                    mov    %esp,%ebp
+ 8048483:    53                       push   %ebx
+ 8048484:    83 ec 04                 sub    $0x4,%esp
+ 8048487:    a1 0c 9f 04 08           mov    0x8049f0c,%eax
+ 804848c:    83 f8 ff                 cmp    $0xffffffff,%eax
+ 804848f:    74 1b                    je     80484ac &lt;__libc_csu_fini+0x3c&gt;
+ 8048491:    bb 0c 9f 04 08           mov    $0x8049f0c,%ebx
+ 8048496:    8d 76 00                 lea    0x0(%esi),%esi
+ 8048499:    8d bc 27 00 00 00 00     lea    0x0(%edi,%eiz,1),%edi
+ 80484a0:    ff d0                    call   *%eax
+ 80484a2:    83 eb 04                 sub    $0x4,%ebx
+ 80484a5:    8b 03                    mov    (%ebx),%eax
+ 80484a7:    83 f8 ff                 cmp    $0xffffffff,%eax
+ 80484aa:    75 f4                    jne    80484a0 &lt;__libc_csu_fini+0x30&gt;
+ 80484ac:    83 c4 04                 add    $0x4,%esp
+ 80484af:    5b                       pop    %ebx
+ 80484b0:    c9                       leave
+ 80484b1:    c3                       ret
+ 80484b2:    90                       nop
+ 80484b3:    90                       nop
+
+Disassembly of section .fini:
+
+080484b4 &lt;_fini&gt;:
+ 80484b4:    55                       push   %ebp
+ 80484b5:    89 e5                    mov    %esp,%ebp
+ 80484b7:    53                       push   %ebx
+ 80484b8:    83 ec 04                 sub    $0x4,%esp
+ 80484bb:    e8 00 00 00 00           call   80484c0 &lt;_fini+0xc&gt;
+ 80484c0:    5b                       pop    %ebx
+ 80484c1:    81 c3 34 1b 00 00        add    $0x1b34,%ebx
+ 80484c7:    e8 64 fe ff ff           call   8048330 &lt;_start+0x50&gt;
+ 80484cc:    59                       pop    %ecx
+ 80484cd:    5b                       pop    %ebx
+ 80484ce:    c9                       leave
+ 80484cf:    c3                       ret
+</pre>
+</div>
+
+<p>
+一段一段的理解,从main 开始:<br  />
+首先 栈的分配 是从高地址向低地址扩展的，所以入栈会导致栈顶地址变小。<br  />
+在 <span class="underline">每个函数</span> 的 <span class="underline">栈帧</span> 中，ebp指向栈底，而esp指向栈顶，在 <span class="underline">某一个函数</span> 执行过<br  />
+程中esp随着压栈和出栈操作随时变化，而ebp是不动的，函数的参数和局部变量都是通过ebp的值加上一个偏<br  />
+移量来访问<br  />
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">void</span>)
+{
+&#20851;&#20110;&#36825;&#20004;&#20010;&#25805;&#20316;&#22312;foo&#20989;&#25968;&#20013;&#36827;&#34892;&#35762;&#35299;
+ 80483e5:    55                       push   %ebp
+ 80483e6:    89 e5                    mov    %esp,%ebp
+
+&#23558;&#26632;&#39030;&#25351;&#38024;&#22320;&#22336;&#20943;8byte(&#20004;&#20010;<span style="color: #8DA6CE;">int</span>&#30340;&#38271;&#24230;),&#22312;&#26632;&#19978;&#24320;&#36767;&#20004;&#20010;<span style="color: #8DA6CE;">int</span>&#23383;&#33410;&#30340;&#38271;&#24230;
+ 80483e8:    83 ec 08                 sub    $0x8,%esp
+    foo(2, 3);
+
+ <span style="color: #8DA6CE;">&#20381;&#27425;&#23558;</span> <span style="color: #40E0D0;">&#21442;&#25968;3</span> &#12289;2&#20837; &#26632; ,0x4(%esp)&#34920;&#31034;&#30340;&#22320;&#22336;&#26159; :4+ esp&#20013;&#25152;&#25351;&#22320;&#22336;
+ 80483eb:    c7 44 24 04 03 00 00     movl   $0x3,0x4(%esp)
+ 80483f2:    00
+ 80483f3:    c7 04 24 02 00 00 00     movl   $0x2,(%esp)
+&#36339;&#21040;foo()&#20989;&#25968;&#30340;&#39318;&#22320;&#22336;&#36827;&#34892;&#25191;&#34892;
+ 80483fa:    e8 cc ff ff ff           call   80483cb &lt;foo&gt;
+    <span style="color: #FBDE2D;">return</span> 0;
+&#36825;&#34892;move&#19981;&#29702;&#35299;
+ 80483ff:    b8 00 00 00 00           mov    $0x0,%eax
+}
+</pre>
+</div>
+<p>
+foo函数的调用<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">foo</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>)
+{
+&#39318;&#20808;&#32463;&#36807;main&#30340;&#35843;&#29992;&#65292;&#26632;&#19978;&#20803;&#32032;&#20381;&#27425;&#26159; 3,2,
+&#32463;&#36807;&#27492;&#27493;push   %ebp ,&#26632;&#21464;&#25104;&#20102;&#65292;3 ,2 ,%ebp ,&#27880;&#24847;&#65292;&#27492;&#26102;&#65292;%ebp&#20013;&#30340;&#22320;&#22336;&#26159;main &#20989;&#25968;
+&#30340;&#39318;&#22320;&#22336;,<span style="color: #8DA6CE;">&#21363;&#23558;main</span> <span style="color: #40E0D0;">&#20989;&#25968;&#30340;&#39318;&#22320;&#22336;&#21387;&#26632;</span>&#65292;&#65288;&#20445;&#23384;main&#30340;&#39318;&#22320;&#22336;&#65292;&#20197;&#20415;&#35843;&#29992;&#23436;foo&#20989;&#25968;&#65292;&#32487;
+&#32493;&#25191;&#34892;main&#20989;&#25968;&#26102;&#24674;&#22797;ebp&#30340;&#20540;&#65289;(push&#25805;&#20316;&#22312;&#20837;&#26632;&#26102;&#65292;&#20250;&#33258;&#21160;&#23558;esp&#30340;&#20540;&#20943;4)
+80483cb:    55                       push   %ebp
+%esp &#22987;&#32456;&#25351;&#21521;&#26632;&#39030;&#20803;&#32032;
+&#32463;mov    %esp,%ebp &#65292;&#27492;&#26102;ebp&#25152;&#25351;&#30340;&#22320;&#22336;&#36319;&#24403;&#19979; esp&#25152;&#25351;&#30340;&#26632;&#39030;&#22320;&#22336;&#30456;&#21516;
+&#21363;&#23558;ebp&#25351;&#21521;&#26032;&#30340; foo&#20989;&#25968;&#26632;&#24103;&#30340;&#39318;&#22320;&#22336;
+ 80483cc:    89 e5                    mov    %esp,%ebp
+&#20934;&#22791;&#21521;&#26632;&#19978;&#21387;&#20837;&#20004;&#20010;&#20803;&#32032;&#65292;
+&#27492;&#26102;&#26632;&#19978;&#20803;&#32032;&#20026;: 3,2,main_ebp,&#31354;,<span style="color: #8DA6CE;">&#31354;</span>
+<span style="color: #40E0D0;">&#27492;&#26102;ebp&#19982;esp&#20043;&#38388;&#26377;&#20004;&#20010;&#31354;&#20803;&#32032;</span>
+ 80483ce:    83 ec 08                 sub    $0x8,%esp
+    <span style="color: #FBDE2D;">return</span> bar(a, b);
+<span style="color: #8DA6CE;">&#32463;&#27492;&#25805;&#20316;</span> <span style="color: #40E0D0;">&#26632;&#21464;&#25104;</span> 3,2,main_ebp,3,&#31354;
+0xc+%ebp&#30340;&#22320;&#22336;&#20013;&#30340;&#20869;&#23481;&#26159;3,
+ 80483d1:    8b 45 0c                 mov    0xc(%ebp),%eax
+ 80483d4:    89 44 24 04              mov    %eax,0x4(%esp)
+
+<span style="color: #8DA6CE;">&#32463;&#27492;&#25805;&#20316;</span> <span style="color: #40E0D0;">&#26632;&#21464;&#25104;</span> 3,2,main_ebp,3,2
+ 80483d8:    8b 45 08                 mov    0x8(%ebp),%eax
+ 80483db:    89 04 24                 mov    %eax,(%esp)
+
+&#36339;&#21040;80483b4&#22788;&#25191;&#34892;bar()&#20989;&#25968;
+ 80483de:    e8 d1 ff ff ff           call   80483b4 &lt;bar&gt;
+}
+</pre>
+</div>
+<p>
+P.S.关于地址的表示方式 0xc(%ebp)内容见 <a href="x86.html">寻址方式</a><br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c">080483b4 &lt;bar&gt;:
+<span style="color: #8DA6CE;">int</span> bar(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">c</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">d</span>)
+{
+ 80483b4:    55                       push   %ebp
+ 80483b5:    89 e5                    mov    %esp,%ebp
+<span style="color: #7fffd4;"># &#36825;&#20010;sub</span> &#21629;&#20196;&#65292;&#25105;&#19981;&#22826;&#26126;&#30333; &#65292;&#21442;&#25968;&#20026;&#20160;&#20040;&#26159;10,&#32780;&#19981;&#26159;0xc,&#25110;&#32773;8
+<span style="color: #7fffd4;">#&#22914;&#26524;&#31639;&#19978;&#23616;&#37096;&#21464;&#37327;e</span> &#30340;&#31350;&#31455;&#24212;&#35813;&#26159;8+4,&#22914;&#26524;&#19981;&#31639;&#65292;&#21017;&#20026;8,&#20026;&#20160;&#20040;&#26159;10&#21602;
+ 80483b7:    83 ec 10                 sub    $0x10,%esp
+    <span style="color: #8DA6CE;">int</span> e = c + d;
+<span style="color: #7fffd4;"># &#36825;&#26159;&#23558;foo&#20989;&#25968;&#20013;&#26368;&#21518;&#21387;&#26632;&#30340;&#20004;&#20010;&#21442;&#25968;&#21462;&#20986;&#25918;&#21040;eax</span> edx&#20013;&#65292;
+ 80483ba:    8b 45 0c                 mov    0xc(%ebp),%eax
+ 80483bd:    8b 55 08                 mov    0x8(%ebp),%edx
+<span style="color: #7fffd4;">#&#36825;&#20010;&#21033;&#29992;</span> &#23547;&#22336;(%dex,%eax,1)= %edx+%eax+1 ,&#21363;&#20570;&#21152;&#27861;&#36816;&#31639;&#65292;
+<span style="color: #7fffd4;">#&#38590;&#36947;&#27809;&#26377;add&#25351;&#20196;</span>&#65311; lea&#26159;&#23558;&#36816;&#31639;&#21518;&#30340;&#32467;&#26524;&#23384;&#21040;%eax&#20013;
+ 80483c0:    8d 04 02                 lea    (%edx,%eax,1),%eax
+<span style="color: #7fffd4;">#&#23558;&#36816;&#31639;&#32467;&#26524;&#23384;&#21040;&#23616;&#37096;&#21464;&#37327;e&#20013;</span>
+ 80483c3:    89 45 fc                 mov    %eax,-0x4(%ebp)
+    <span style="color: #FBDE2D;">return</span> e;
+ &#25226;e&#30340;&#20540;&#25918;&#21040;%eax&#20013;&#65292;&#36820;&#21152;
+ 80483c6:    8b 45 fc                 mov    -0x4(%ebp),%eax
+}
+ 80483c9:    c9                       leave
+ 80483ca:    c3                       ret
+</pre>
+</div>
+<p>
+bar函数有一个int型的返回值，这个返回值是通过eax寄存器传递的，所以首先把e的值读<br  />
+到eax寄存器中。然后执行leave指令，这个指令是函数开头的push %ebp和mov %esp,%ebp<br  />
+的逆操作：<br  />
+最后是ret指令，它是call指令的逆操作：<br  />
+</p>
+
+<ul class="org-ul">
+<li>参数压栈传递，并且是从右向左依次压栈。<br  />
+</li>
+<li>ebp总是指向当前栈帧的栈底。<br  />
+</li>
+<li>返回值通过eax寄存器传递<br  />
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-04-29</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/c与汇编/";
+          var disqus_url = "http://jixiuf.github.io/blog/c与汇编/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

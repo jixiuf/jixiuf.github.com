@@ -1,0 +1,12 @@
+# -*- coding:utf-8-unix -*-
+#+LANGUAGE:  zh
+#+TITLE:     一个人的狂欢
+#+AUTHOR:    纪秀峰
+#+EMAIL:     jixiuf@gmail.com
+#+DATE:      2011-06-04 星期六
+
+ + 你想更多地了解我，请前往@@html:<a href="/about/">About</a>@@页面
+ + 我想找工作的时候 ，你会在这里看到我的简历@@html:<a href="/author/">简历</a>@@
+ + 这是我firefox 密码管理器， 对你就没什么用了. [[file:passhash.htm][password hash密码生成器网页便携版]]
+ + safari firefox supergenpass 密码生成器 https://chriszarate.github.io/supergenpass/mobile/
+ + -----------------------------------------------------------------------------------------

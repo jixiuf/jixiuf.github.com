@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>用cow 翻墙的配置 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="用cow 翻墙的配置" />
+    <meta name="keywords" content="proxy cow golang linux Windows Mac" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>用cow 翻墙的配置</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">cow 配置文件示例</a>
+<ul>
+<li><a href="#sec-1-1">本机上的配置</a></li>
+<li><a href="#sec-1-2">server 上的配置</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Windows</a></li>
+<li><a href="#sec-3">mac</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">cow 配置文件示例</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://github.com/cyfdecyf/cow">https://github.com/cyfdecyf/cow</a><br  />
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">本机上的配置</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #AEAEAE;">##### </span><span style="color: #AEAEAE;">##### ##### ##### ##### ######      on client</span>
+<span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">&#35774;&#32622;&#26412;&#26426;&#30340;http&#20195;&#29702;&#26381;&#21153;&#22120;&#21644;&#31471;&#21475;</span>
+<span style="color: #40E0D0;">listen</span>=http://127.0.0.1:6666
+<span style="color: #40E0D0;">dialTimeout</span> = 60s
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#20174;&#26381;&#21153;&#22120;&#35835;&#36229;&#26102;</span>
+<span style="color: #40E0D0;">readTimeout</span> = 60s
+<span style="color: #40E0D0;">authTimeout</span> = 2h
+<span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">&#35774;&#32622;&#22681;&#22806;&#30340;&#20108;&#32423;&#20195;&#29702;&#65292;&#36825;&#37324;&#21516;&#26679;&#29992;&#20102;COW&#30340;&#65292;&#22240;&#20026;&#23433;&#35013;&#22826;&#31616;&#21333;&#65292;&#26681;&#25454;&#20108;&#32423;&#20195;&#29702;&#30340;&#24773;&#20917;&#35774;&#32622;&#29992;&#25143;&#65292;&#23494;&#30721;&#65292;&#26381;&#21153;&#22120;ip&#65292;&#31471;&#21475;</span>
+<span style="color: #40E0D0;">proxy</span>=cow://aes-128-cfb:passwordddddddddddd@taphero.yinni.chaoshenxy.com:6666
+<span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">===================================================end on client</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">server 上的配置</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #AEAEAE;">##### </span><span style="color: #AEAEAE;">##### ##### ##### ##### #####</span>
+<span style="color: #AEAEAE;">#          </span><span style="color: #AEAEAE;">on server</span>
+<span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">6666 &#31471;&#21475;&#38656;&#25171;&#24320;</span>
+<span style="color: #40E0D0;">listen</span> = cow://aes-128-cfb:passwordddddddddddd@0.0.0.0:6666
+<span style="color: #AEAEAE;">##### </span><span style="color: #AEAEAE;">##### ##### ##### ##### #####</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Windows</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+然后 在 IE/工具/Internet选项/连接/局域网设置/使用自动配置脚本<br  />
+填入 <a href="http://127.0.0.1:6666/pac">http://127.0.0.1:6666/pac</a><br  />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">mac</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+系统偏好配置/网络/高级/代理<br  />
+  自动代理配置中  <a href="http://127.0.0.1:6666/pac">http://127.0.0.1:6666/pac</a><br  />
+  Web 代理  127.0.0.1   6666<br  />
+  https代理  127.0.0.1   6666<br  />
+  socks 代理 127.0.0.1   6666<br  />
+</p>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-01-19</span>
+        <span title="last modification date" class="post-info">2016-01-29</span>
+        <span title="tags" class="post-info"><a href="/tags/proxy/">proxy</a>, <a href="/tags/cow/">cow</a>, <a href="/tags/golang/">Golang</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog//Users/jixiuf/Documents/org/go/golang_cow_proxy.org.html";
+          var disqus_url = "http://jixiuf.github.io/blog//Users/jixiuf/Documents/org/go/golang_cow_proxy.org.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

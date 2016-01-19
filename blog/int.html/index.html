@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>数值转换 - 拾遗笔记</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="数值转换" />
+    <meta name="keywords" content=":C:" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">拾遗笔记</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>数值转换</h1>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">atoi</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">nptr</span>);
+<span style="color: #8DA6CE;">double</span> <span style="color: #FF6400;">atof</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">nptr</span>);
+ <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#36820;&#22238;&#20540;&#65306;&#36716;&#25442;&#32467;&#26524; </span><span style="color: #AEAEAE;">*/</span>
+</pre>
+</div>
+
+<p>
+atoi把一个字符串开头可以识别成十进制整数的部分转换成int型，相当于下面要讲的<br  />
+strtol(nptr, (char **) NULL, 10);。例如atoi("123abc")的返回值是123，字符串开头<br  />
+可以有若干空格，例如atoi(" -90.6-")的返回值是-90。如果字符串开头没有可识别的整<br  />
+数，例如atoi("asdf")，则返回0，而atoi("0***")也返回0，根据返回值并不能区分这两<br  />
+种情况，所以使用atoi函数不能检查出错的情况。下面要讲的strtol函数可以设置errno，<br  />
+因此可以检查出错的情况，在严格的场合下应该用strtol，而atoi用起来更简便，所以也<br  />
+很常用。<br  />
+</p>
+
+<p>
+atof把一个字符串开头可以识别成浮点数的部分转换成double型，相当于下面要讲的<br  />
+strtod(nptr, (char **) NULL);。字符串开头可以识别的浮点数格式和C语言的浮点数常<br  />
+量相同，例如atof("31.4 ")的返回值是31.4，atof("3.14e+1AB")的返回值也是31.4。<br  />
+atof也不能检查出错的情况，而strtod可以。<br  />
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+
+<span style="color: #8DA6CE;">long</span> <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">strtol</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">nptr</span>, <span style="color: #8DA6CE;">char</span> **<span style="color: #40E0D0;">endptr</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">base</span>);
+<span style="color: #8DA6CE;">double</span> <span style="color: #FF6400;">strtod</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">nptr</span>, <span style="color: #8DA6CE;">char</span> **<span style="color: #40E0D0;">endptr</span>);
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#36820;&#22238;&#20540;&#65306;&#36716;&#25442;&#32467;&#26524;&#65292;&#20986;&#38169;&#26102;&#35774;&#32622;errno </span><span style="color: #AEAEAE;">*/</span>
+</pre>
+</div>
+<p>
+strtol是atoi的增强版，主要体现在这几方面：<br  />
+</p>
+
+<ul class="org-ul">
+<li>不仅可以识别十进制整数，还可以识别其它进制的整数，取决于base参数，比如<br  />
+strtol("0XDEADbeE~~", NULL, 16)返回0xdeadbee的值，strtol("0777~~", NULL,<br  />
+8)返回0777的值。<br  />
+</li>
+
+<li>endptr是一个传出参数，函数返回时指向后面未被识别的第一个字符。例如char<br  />
+*pos; strtol("123abc", &amp;pos, 10);，strtol返回123，pos指向字符串中的字母a。<br  />
+如果字符串开头没有可识别的整数，例如char *pos; strtol("ABCabc", &amp;pos,<br  />
+10);，则strtol返回0，pos指向字符串开头，可以据此判断这种出错的情况，而这<br  />
+是atoi处理不了的。<br  />
+</li>
+
+<li>如果字符串中的整数值超出long int的表示范围（上溢或下溢），则strtol返回它<br  />
+所能表示的最大（或最小）整数，并设置errno为ERANGE，例如<br  />
+strtol("0XDEADbeef~~", NULL, 16)返回0x7fffffff并设置errno为ERANGE。<br  />
+</li>
+</ul>
+
+<p>
+回想一下使用fopen的套路<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #FBDE2D;">if</span> ( (fp = fopen(...)) == <span style="color: #D8FA3C;">NULL</span>) { &#35835;&#21462;errno }&#65292;
+</pre>
+</div>
+<p>
+fopen在出错时会返回NULL，因此我们知道需要读errno，但strtol在成功调用时也可能返<br  />
+回0x7fffffff，我们如何知道需要读errno呢？最严谨的做法是首先把errno置0，再调用<br  />
+strtol，再查看errno是否变成了错误码。Man Page上有一个很好的例子：<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;limits.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;errno.h&gt;</span>
+
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[])
+{
+    <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">base</span>;
+    <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">endptr</span>, *<span style="color: #40E0D0;">str</span>;
+    <span style="color: #8DA6CE;">long</span> <span style="color: #40E0D0;">val</span>;
+
+    <span style="color: #FBDE2D;">if</span> (argc &lt; 2) {
+        fprintf(stderr, <span style="color: #ffa07a;">"Usage: %s str [base]\n"</span>, argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    str = argv[1];
+    base = (argc &gt; 2) ? atoi(argv[2]) : 10;
+
+    errno = 0;    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">To distinguish success/failure after call </span><span style="color: #AEAEAE;">*/</span>
+    val = strtol(str, &amp;endptr, base);
+
+    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">Check for various possible errors </span><span style="color: #AEAEAE;">*/</span>
+
+    <span style="color: #FBDE2D;">if</span> ((errno == ERANGE &amp;&amp; (val == LONG_MAX || val == LONG_MIN))
+        || (errno != 0 &amp;&amp; val == 0)) {
+        perror(<span style="color: #ffa07a;">"strtol"</span>);
+        exit(EXIT_FAILURE);
+    }
+
+    <span style="color: #FBDE2D;">if</span> (endptr == str) {
+        fprintf(stderr, <span style="color: #ffa07a;">"No digits were found\n"</span>);
+        exit(EXIT_FAILURE);
+    }
+
+    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">If we got here, strtol() successfully parsed a number </span><span style="color: #AEAEAE;">*/</span>
+
+    printf(<span style="color: #ffa07a;">"strtol() returned %ld\n"</span>, val);
+
+    <span style="color: #FBDE2D;">if</span> (*endptr != <span style="color: #ffa07a;">'\0'</span>)        <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">Not necessarily an error... </span><span style="color: #AEAEAE;">*/</span>
+        printf(<span style="color: #ffa07a;">"Further characters after number: %s\n"</span>, endptr);
+
+    exit(EXIT_SUCCESS);
+}
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-04-23</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/int.html";
+          var disqus_url = "http://jixiuf.github.io/blog/int.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

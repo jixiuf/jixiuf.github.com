@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>c中的宏 - 拾遗笔记</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="c中的宏" />
+    <meta name="keywords" content="macro c 宏" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">拾遗笔记</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>c中的宏</h1>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#&#19982;</span>##&#22312;&#23439;&#23450;&#20041;&#20013;&#30340;--&#23439;&#23637;&#24320;
+<span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">f</span>(<span style="color: #40E0D0;">a</span>,<span style="color: #40E0D0;">b</span>) a##b
+<span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">g</span>(<span style="color: #40E0D0;">a</span>) #a
+<span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">h</span>(<span style="color: #40E0D0;">a</span>) g(a)
+<span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>()
+{
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, h(f(1,2))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">12</span>
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, g(f(1,2))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">f(1,2)</span>
+  <span style="color: #FBDE2D;">return</span> 0;
+}
+</pre>
+</div>
+<blockquote>
+<p>
+"#" 与"##" 是宏中两个特殊的符号<br  />
+"##"相当于连字符,即java中进行字符串连接的加号,sqlplus 中的||  如a##b##c 等同于 "abc"<br  />
+而#用来控制是否展开宏,下面详解.<br  />
+</p>
+</blockquote>
+<ul class="org-ul">
+<li>规则1: 如果宏定义以#开头，不展开参数，直接替换。 规则1包括三句话<br  />
+<ul class="org-ul">
+<li>如果宏定义以#开头,<br  />
+在代码中遇到一个宏,而这个宏的定义,二话没说,第一个字符是#<br  />
+</li>
+<li>不展开参数<br  />
+无论参数有多复杂,把它作为一个字符串整体,不再进行展开,因为一个宏内容中<br  />
+可能包含另一个宏,正常情况下,这个宏中宏也会被展开,但遇到#则例外.<br  />
+</li>
+<li>直接替换。<br  />
+把这个参数放到宏内容中参数的相应位置,即所谓的"直接替换".<br  />
+比如 下面这个宏<br  />
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">g</span>(<span style="color: #40E0D0;">a</span>) #a
+ &#36825;&#20010;&#23439;&#30340;&#20869;&#23481;&#20197;#&#24320;&#22836;,<span style="color: #8DA6CE;">&#23427;&#30340;&#21442;&#25968;&#21517;&#20026;a</span>
+<span style="color: #40E0D0;">&#19979;&#38754;&#23545;&#20854;&#36827;&#34892;&#35843;&#29992;&#26102;&#20256;&#36807;&#21435;&#30340;&#21442;&#25968;&#26159;</span><span style="color: #ffa07a;">"f(1,2)"</span>
+&#34429;&#28982;&#20256;&#36807;&#21435;&#30340;&#21442;&#25968;&#26159;&#21478;&#19968;&#20010;&#23439;,&#20294;&#24182;&#19981;&#25226;&#23427;&#24403;&#20316;&#23439;,<span style="color: #8DA6CE;">&#32780;&#20165;&#35748;&#20026;&#23427;&#26159;&#20010;&#23383;&#31526;&#20018;</span>
+ <span style="color: #FF6400;">printf</span>(<span style="color: #ffa07a;">"%s\n"</span>, <span style="color: #8DA6CE;">g</span>(<span style="color: #40E0D0;">f</span>(1,2))); <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#32467;&#26524;&#25171;: f(1,2)</span>
+</pre>
+</div>
+</li>
+</ul>
+</li>
+<li>规则2:如果宏定义不以#开头，展开参数，直接替换，如果碰到的是#开头的宏，不继续往里层展开，往外层展开。<br  />
+<ul class="org-ul">
+<li>含义是,首先把参数作为一个宏进行展开,将其展开后的结果作为参数传到本宏<br  />
+中,然后才对本宏进行展开<br  />
+<div class="org-src-container">
+
+<pre class="src src-c">printf(<span style="color: #ffa07a;">"%s\n"</span>, h(f(1,2))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">12</span>
+</pre>
+</div>
+<p>
+比如对h(a)这个宏,传过去的参数是"f(1,2)",首先把其作为一个宏进行展开<br  />
+如展开 f(1,2)的结果是:12<br  />
+然后对h(12)进行展开,第一步展开的结果是g(12)<br  />
+g(12)展开的结果是12<br  />
+h(f(1,2))&#x2013;&gt;h(12)&#x2013;&gt;g(12)&#x2013;&gt;12<br  />
+</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #8DA6CE;">&#21478;&#22806;&#20960;&#20010;&#26356;&#22797;&#26434;&#30340;&#20363;&#23376;</span>
+<span style="color: #FF6400;">printf</span>(<span style="color: #ffa07a;">"%s\n"</span>, <span style="color: #8DA6CE;">h</span>(<span style="color: #40E0D0;">f</span>(1,2))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">12</span>
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, g(f(1,2))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">f(1,2)</span>
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, g(h(f(1,2)))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">h(f(1,2))</span>
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, h(g(f(1,2)))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">"f(1,2)"</span>
+  printf(<span style="color: #ffa07a;">"%s\n"</span>, h(h(f(1,2)))); <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">"12"</span>
+</pre>
+</div>
+<p>
+总而言之,先展开参数,再展开自身. 遇#则停<br  />
+另外,如果验证结果gcc 可以加 -E 选项<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">gcc -E macro.c
+&#25110;
+gcc -E macro.c -o macro.i
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-10-24</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/macro.html";
+          var disqus_url = "http://jixiuf.github.io/blog/macro.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

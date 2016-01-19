@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>x86.汇编的一些知识 - 拾遗笔记</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="x86.汇编的一些知识" />
+    <meta name="keywords" content="x86 as c" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">拾遗笔记</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>x86.汇编的一些知识</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">寻址方式</a></li>
+<li><a href="#sec-2">代码示例</a></li>
+<li><a href="#sec-3">x86寄存器</a></li>
+</ul>
+</div>
+</div>
+<p>
+参考 <a href="http://learn.akae.cn/media/ch18s01.html">http://learn.akae.cn/media/ch18s01.html</a><br  />
+</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">寻址方式</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+通过上一节的例子我们了解到，访问内存时在指令中可以用多种方式表示内存地址，比如<br  />
+可以用数组基地址、元素长度和下标三个量来表示，增加了寻址的灵活性。本节介绍x86常<br  />
+用的几种寻址方式（Addressing Mode）。内存寻址在指令中可以表示成如下的通用格式：<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #FF6400;">ADDRESS_OR_OFFSET</span>(%BASE_OR_OFFSET,%INDEX,MULTIPLIER)
+</pre>
+</div>
+<p>
+它所表示的地址可以这样计算出来：<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">FINAL <span style="color: #40E0D0;">ADDRESS</span> = ADDRESS_OR_OFFSET + BASE_OR_OFFSET + MULTIPLIER * INDEX
+</pre>
+</div>
+<p>
+其中ADDRESS_OR_OFFSET和MULTIPLIER必须是常数，BASE_OR_OFFSET和INDEX必须是寄存器。<br  />
+在有些寻址方式中会省略这4项中的某些项，相当于这些项是0。<br  />
+</p>
+
+<p>
+如<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-asm"><span style="color: #FF6400;">data_items</span>(,<span style="color: #40E0D0;">%edi</span>,4)
+</pre>
+</div>
+<p>
+data_items是一个数组 ，<br  />
+data_items表示数组的基地址ADDRESS_OR_OFFSET<br  />
+%BASE_OR_OFFSET,空着为0<br  />
+%edi寄存器中存着数组的当前索引位置，<br  />
+数组每个元素大小为4,MULTIPLIER 表示每个数组元素占用的字节大小（可能单位不是字节）<br  />
+</p>
+
+
+<ul class="org-ul">
+<li>直接寻址（Direct Addressing Mode）。只使用ADDRESS_OR_OFFSET寻址，例如movl ADDRESS, %eax把ADDRESS地址处的32位数传送到eax寄存器。<br  />
+</li>
+<li>变址寻址（Indexed Addressing Mode） 。上一节的movl data_items(,%edi,4), %eax就属于这种寻址方式，用于访问数组元素比较方便。<br  />
+</li>
+<li>间接寻址（Indirect Addressing Mode）。只使用BASE_OR_OFFSET寻址，例如movl (%eax), %ebx，把eax寄存器的值看作地址，把内存中这个地址处的32位数传送到ebx寄存器。注意和movl %eax, %ebx区分开。<br  />
+</li>
+<li>基址寻址（Base Pointer Addressing Mode）。只使用ADDRESS_OR_OFFSET和BASE_OR_OFFSET寻址，例如movl 4(%eax), %ebx，用于访问结构体成员比较方便，例如一个结构体的基地址保存在eax寄存器中，其中一个成员在结构体内的偏移量是4字节，要把这个成员读上来就可以用这条指令。<br  />
+</li>
+<li>立即数寻址（Immediate Mode）。就是指令中有一个操作数是立即数，例如movl $12, %eax中的$12，这其实跟寻址没什么关系，但也算作一种寻址方式。<br  />
+</li>
+<li>寄存器寻址（Register Addressing Mode）。就是指令中有一个操作数是寄存器，例如movl $12, %eax中的%eax，这跟内存寻址没什么关系，但也算作一种寻址方式。在汇编程序中寄存器用助记符来表示，在机器指令中则要用几个Bit表示寄存器的编号，这几个Bit也可以看作寄存器的地址，但是和内存地址不在一个地址空间。<br  />
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">代码示例</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-asm">#PURPOSE: This program finds the maximum number of a
+#     set of data items.
+#
+#VARIABLES: The registers have the following uses:
+#
+# <span style="color: #40E0D0;">%edi</span> - Holds the index of the data item being examined
+# <span style="color: #40E0D0;">%ebx</span> - Largest data item found
+# <span style="color: #40E0D0;">%eax</span> - Current data item
+#
+# The following memory locations are used:
+#
+# data_items - contains the item data. A 0 is used
+# to terminate the data
+#
+ <span style="color: #FBDE2D;">.section</span> .data
+<span style="color: #FF6400;">data_items</span>:         #These are the data items
+ <span style="color: #FBDE2D;">.long</span> 3,67,34,222,45,75,54,34,44,33,22,11,66,0
+
+ <span style="color: #FBDE2D;">.section</span> .text
+ <span style="color: #FBDE2D;">.globl</span> _start
+<span style="color: #FF6400;">_start</span>:
+ <span style="color: #FBDE2D;">movl</span> $0, <span style="color: #40E0D0;">%edi</span>      # move 0 into the index register
+ <span style="color: #FBDE2D;">movl</span> data_items(,<span style="color: #40E0D0;">%edi</span>,4), <span style="color: #40E0D0;">%eax</span> # load the first byte of data
+ <span style="color: #FBDE2D;">movl</span> <span style="color: #40E0D0;">%eax</span>, <span style="color: #40E0D0;">%ebx</span>    # since this is the first item, <span style="color: #40E0D0;">%eax</span> is
+            # the biggest
+
+<span style="color: #FF6400;">start_loop</span>:         # start loop
+ <span style="color: #FBDE2D;">cmpl</span> $0, <span style="color: #40E0D0;">%eax</span>      # check to see if we've hit the end
+ <span style="color: #FBDE2D;">je</span> loop_exit
+ <span style="color: #FBDE2D;">incl</span> <span style="color: #40E0D0;">%edi</span>      # load next value
+ <span style="color: #FBDE2D;">movl</span> data_items(,<span style="color: #40E0D0;">%edi</span>,4), <span style="color: #40E0D0;">%eax</span>
+ <span style="color: #FBDE2D;">cmpl</span> <span style="color: #40E0D0;">%ebx</span>, <span style="color: #40E0D0;">%eax</span>    # compare values
+ <span style="color: #FBDE2D;">jle</span> start_loop     # jump to loop beginning if the new
+            # one isn't bigger
+ <span style="color: #FBDE2D;">movl</span> <span style="color: #40E0D0;">%eax</span>, <span style="color: #40E0D0;">%ebx</span>    # move the value as the largest
+ <span style="color: #FBDE2D;">jmp</span> start_loop     # jump to loop beginning
+
+<span style="color: #FF6400;">loop_exit</span>:
+ # <span style="color: #40E0D0;">%ebx</span> is the status code for the _exit system call
+ # and it already has the maximum number
+ <span style="color: #FBDE2D;">movl</span> $1, <span style="color: #40E0D0;">%eax</span>      #1 is the _exit() syscall
+ <span style="color: #FBDE2D;">int</span> $0x80
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-sh">&#27719;&#32534;&#12289;&#38142;&#25509;&#12289;&#36816;&#34892;
+$ as max.s -o max.o
+$ ld max.o -o max
+$ ./max
+$ echo $<span style="color: #40E0D0;">?</span> <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">shell&#20013;&#26597;&#30475;&#19978;&#19968;&#20010;&#31243;&#24207;&#30340;&#36820;&#22238;&#29366;&#24577;</span>
+&#36825;&#20010;&#31243;&#24207;&#22312;&#19968;&#32452;&#25968;&#20013;&#25214;&#21040;&#19968;&#20010;&#26368;&#22823;&#30340;&#25968;&#65292;&#24182;&#25226;&#23427;&#20316;&#20026;&#31243;&#24207;&#30340;&#36864;&#20986;&#29366;&#24577;&#12290;&#36825;&#32452;&#25968;&#22312;.data&#27573;&#32473;&#20986;&#65306;
+</pre>
+</div>
+<blockquote>
+<p>
+data_items:         #These are the data items<br  />
+ .long 3,67,34,222,45,75,54,34,44,33,22,11,66,0<br  />
+</p>
+</blockquote>
+<p>
+.long指示声明一组数，每个数占32位，相当于C语言中的数组。这个数组开头定义了一个<br  />
+符号data_items，汇编器会把数组的首地址作为data_items符号所代表的地址，<br  />
+data_items类似于C语言中的数组名。data_items这个标号没有用.globl声明，因为它只在<br  />
+这个汇编程序内部使用，链接器不需要用到这个名字。<br  />
+</p>
+
+<p>
+除了.long之外，常用的数据声明还有：<br  />
+</p>
+<ul class="org-ul">
+<li>.byte，也是声明一组数，每个数占8位<br  />
+</li>
+<li>.ascii，例如.ascii "Hello world"，声明11个数，取值为相应字符的ASCII码。注<br  />
+意，和C语言不同，这样声明的字符串末尾是没有'\0'字符的，如果需要以'\0'结尾<br  />
+可以声明为.ascii "Hello world\0"。<br  />
+</li>
+</ul>
+
+<p>
+data_items数组的最后一个数是0，我们在一个循环中依次比较每个数，碰到0的时候让循环终止。在这个循环中：<br  />
+    edi寄存器保存数组中的当前位置，每次比较完一个数就把edi的值加1，指向数组中的下一个数。<br  />
+    ebx寄存器保存到目前为止找到的最大值，如果发现有更大的数就更新ebx的值。<br  />
+    eax寄存器保存当前要比较的数，每次更新edi之后，就把下一个数读到eax中。<br  />
+</p>
+<div class="org-src-container">
+
+<pre class="src src-asm"><span style="color: #FF6400;">_start</span>:
+ <span style="color: #FBDE2D;">movl</span> $0, <span style="color: #40E0D0;">%edi</span>                        #    &#21021;&#22987;&#21270;edi&#65292;&#25351;&#21521;&#25968;&#32452;&#30340;&#31532;0&#20010;&#20803;&#32032;
+ <span style="color: #FBDE2D;">movl</span> data_items(,<span style="color: #40E0D0;">%edi</span>,4), <span style="color: #40E0D0;">%eax</span>
+</pre>
+</div>
+<p>
+这条指令把数组的第0个元素传送到eax寄存器中。data_items是数组的首地址，edi的值是<br  />
+数组的下标，4表示数组的每个元素占4字节，那么数组中第edi个元素的地址应该是<br  />
+data_items + edi * 4，写在指令中就是data_items(,%edi,4)，<br  />
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-asm"><span style="color: #FF6400;">start_loop</span>:
+ <span style="color: #FBDE2D;">cmpl</span> $0, <span style="color: #40E0D0;">%eax</span>
+ <span style="color: #FBDE2D;">je</span> loop_exit
+</pre>
+</div>
+<p>
+在循环中比较%eax中的值是不是0<br  />
+</p>
+
+<p>
+cmpl指令将两个操作数相减，但计算结果并不保存，只是根据计算结果改变eflags寄存器<br  />
+中的标志位。如果两个操作数相等，则计算结果为0，eflags中的ZF位置1。je是一个条件<br  />
+跳转指令，它检查eflags中的ZF位，ZF位为1则发生跳转，ZF位为0则不跳转，继续执行下<br  />
+一条指令。可见比较指令和条件跳转指令是配合使用的，前者改变标志位，后者根据标志<br  />
+位决定是否跳转。je可以理解成“jump if equal”，如果参与比较的两数相等则跳转。<br  />
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-asm"><span style="color: #FF6400;">incl</span> <span style="color: #FBDE2D;">%edi</span>
+<span style="color: #FF6400;">movl</span> <span style="color: #FBDE2D;">data</span>_items(,<span style="color: #40E0D0;">%edi</span>,4), <span style="color: #40E0D0;">%eax</span>
+<span style="color: #FF6400;">&#23558;edi&#30340;&#20540;&#21152;1&#65292;&#25226;&#25968;&#32452;&#20013;&#30340;&#19979;&#19968;&#20010;&#25968;&#20256;&#36865;&#21040;eax&#23492;&#23384;&#22120;&#20013;</span>&#12290;
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-asm"><span style="color: #FF6400;">cmpl</span> <span style="color: #FBDE2D;">%ebx</span>, <span style="color: #40E0D0;">%eax</span>
+<span style="color: #FF6400;">jle</span> <span style="color: #FBDE2D;">start</span>_loop
+</pre>
+</div>
+<p>
+把当前数组元素eax和目前为止找到的最大值ebx做比较，如果前者小于等于后者，则最大<br  />
+值没有变，跳转到循环开头比较下一个数，否则继续执行下一条指令。jle表示“jump if<br  />
+less than or equal”。<br  />
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">x86寄存器</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+x86的通用寄存器有eax、ebx、ecx、edx、edi、esi。这些寄存器在大多数指令中是可以任<br  />
+意选用的，比如movl指令可以把一个立即数传送到eax中，也可传送到ebx中。但也有一些<br  />
+指令规定只能用其中某个寄存器做某种用途，例如除法指令idivl要求被除数在eax寄存器<br  />
+中，edx寄存器必须是0，而除数可以在任意寄存器中，计算结果的商数保存在eax寄存器中<br  />
+（覆盖原来的被除数），余数保存在edx寄存器中。也就是说，通用寄存器对于某些特殊指<br  />
+令来说也不是通用的。<br  />
+</p>
+
+<p>
+x86的特殊寄存器有ebp、esp、eip、eflags。eip是程序计数器，eflags保存着计算过程中<br  />
+产生的标志位，其中包括第 3 节 “整数的加减运算”讲过的进位标志、溢出标志、零标<br  />
+志和负数标志，在intel的手册中这几个标志位分别称为CF、OF、ZF、SF。ebp和esp用于维<br  />
+护函数调用的栈帧，在第 1 节 “函数调用”详细讨论。<br  />
+</p>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-04-21</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/x86.html";
+          var disqus_url = "http://jixiuf.github.io/blog/x86.html";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

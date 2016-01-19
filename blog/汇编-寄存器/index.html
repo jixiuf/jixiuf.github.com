@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>汇编 寄存器 - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="汇编 寄存器" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ji -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6633117582073327"
+     data-ad-slot="1629980291"
+     data-ad-format="link"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>汇编 寄存器</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">32位CPU所含有的寄存器有：</a>
+<ul>
+<li><a href="#sec-1-1">通用寄存器</a></li>
+<li><a href="#sec-1-2">段寄存器</a></li>
+<li><a href="#sec-1-3">指令指针寄存器 (Instruction Pointer)</a></li>
+<li><a href="#sec-1-4">标志寄存器</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+<img src="/assets/blog/汇编-寄存器/register.png" alt="register.png" /> <img src="/assets/blog/汇编-寄存器/stack.jpg" alt="stack.jpg" /><br  />
+</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">32位CPU所含有的寄存器有：</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+4个数据寄存器(EAX、EBX、ECX和EDX)<br  />
+2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP)<br  />
+6个段寄存器(ES、CS、SS、DS、FS和GS)<br  />
+1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)<br  />
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">通用寄存器</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><ul class="org-ul"><li><a id="sec-1-1-1" name="sec-1-1-1"></a>数据寄存器<br  /><div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>ebp和esp是32位的SP，BP, esp是堆栈指针,ebp是基址指针,ESP与SP的关系就象(AX与AL，<br  />
+AH的关系.(AX=AL+AH)(16=8+8))<br  />
+(AH,AL 中的H, L 是，high ,lower)<br  />
+</li>
+<li>32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响<br  />
+高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的<br  />
+寄存器相一致。<br  />
+</li>
+<li>4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、<br  />
+DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这<br  />
+种“可分可合”的特性，灵活地处理字/字节的信息。<br  />
+</li>
+
+<li>寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、<br  />
+除、输入/输出等操作，它们的使用频率很高；<br  />
+</li>
+<li>寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用；<br  />
+</li>
+<li>寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作<br  />
+中，当移多位时，要用CL来指明移位的位数；<br  />
+</li>
+<li>寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作<br  />
+数参与运算，也可用于存放I/O的端口地址。<br  />
+
+<p>
+在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在<br  />
+32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运<br  />
+算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。<br  />
+</p>
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-1-1-2" name="sec-1-1-2"></a>变址寄存器(Index Register)<br  /><div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16<br  />
+位数据的存取，不影响高16位的数据。<br  />
+</li>
+<li>寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储<br  />
+单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式<br  />
+访问存储单元提供方便。<br  />
+</li>
+<li>变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作<br  />
+数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它<br  />
+们有特定的要求，而且还具有特殊的功能。<br  />
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-1-1-3" name="sec-1-1-3"></a>指针寄存器 (Pointer Register)<br  /><div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的BP和SP，对低16位<br  />
+数据的存取，不影响高16位的数据。<br  />
+</li>
+<li>寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存<br  />
+储单元的偏移量，<br  />
+</li>
+<li>BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；<br  />
+SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。<br  />
+</li>
+</ul>
+</div>
+</li></ul>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">段寄存器</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和<br  />
+一个偏移量组合而成的,这样可用两个较少位数的值组合成一个可访问较大物理空间的内<br  />
+存地址。<br  />
+CPU内部的段寄存器：<br  />
+</p>
+<ul class="org-ul">
+<li>CS——代码段寄存器(Code Segment Register)，其值为代码段的段值；<br  />
+</li>
+<li>DS——数据段寄存器(Data Segment Register)，其值为数据段的段值；<br  />
+</li>
+<li>ES——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值；<br  />
+</li>
+<li>SS——堆栈段寄存器(Stack Segment Register)，其值为堆栈段的段值；<br  />
+</li>
+<li>FS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值；<br  />
+</li>
+<li>GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。<br  />
+</li>
+</ul>
+<p>
+在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可<br  />
+直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同<br  />
+时访问6个段。<br  />
+</p>
+
+<p>
+32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用<br  />
+是不同的。有关规定简单描述如下：<br  />
+</p>
+<ul class="org-ul">
+<li>实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全<br  />
+一致，内存单元的逻辑地址仍为“段值：偏移量”的形式。为访问某内存段内的数据，必<br  />
+须使用该段寄存器和存储单元的偏移量。<br  />
+</li>
+<li>保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为<br  />
+“选择子”(Selector)的某个值。。<br  />
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">指令指针寄存器 (Instruction Pointer)</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。<br  />
+指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。<br  />
+在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发<br  />
+生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。在实方式下，<br  />
+由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低<br  />
+16位的IP来反映程序中指令的执行次序(2^16=65535=64*1024)<br  />
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">标志寄存器</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><ul class="org-ul"><li><a id="sec-1-4-1" name="sec-1-4-1"></a>运算结果标志位<br  /><div class="outline-text-4" id="text-1-4-1">
+<ul class="org-ul">
+<li>进位标志CF(Carry Flag)<br  />
+进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一<br  />
+个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数<br  />
+的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变<br  />
+CF值的指令等。<br  />
+</li>
+<li>奇偶标志PF(Parity Flag)<br  />
+奇偶标志PF用于反映运算结果中“1”的个数的奇偶性。如果“1”的个数为偶数，则<br  />
+PF的值为1，否则其值为0。<br  />
+利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的<br  />
+可靠性，如果采用奇偶校验的方法，就可使用该标志位。<br  />
+</li>
+<li>辅助进位标志AF(Auxiliary Carry Flag)<br  />
+在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：<br  />
+(1)、在字操作时，发生低字节向高字节进位或借位时；<br  />
+(2)、在字节操作时，发生低4位向高4位进位或借位时。<br  />
+</li>
+<li>零标志ZF(Zero Flag)<br  />
+零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在<br  />
+判断运算结果是否为0时，可使用此标志位。<br  />
+</li>
+<li>符号标志SF(Sign Flag)<br  />
+符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，<br  />
+有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，<br  />
+SF的值为0，否则其值为1。<br  />
+</li>
+<li>溢出标志OF(Overflow Flag)<br  />
+ 溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算<br  />
+ 位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。<br  />
+ “溢出”和“进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅<br  />
+《计算机组成原理》课程中的有关章节。<br  />
+ 对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较<br  />
+ 高，而标志位PF和AF的使用频率较低。<br  />
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-1-4-2" name="sec-1-4-2"></a>状态控制标志位<br  /><div class="outline-text-4" id="text-1-4-2">
+<p>
+状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。<br  />
+</p>
+<ol class="org-ol">
+<li>追踪标志TF(Trap Flag)<br  />
+当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，<br  />
+产生一个单步中断请求。这种方式主要用于程序的调试。<br  />
+指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。<br  />
+</li>
+<li>中断允许标志IF(Interrupt-enable Flag)<br  />
+中断允许标志IF是用来决定CPU是否响应CPU外部的可屏蔽中断发出的中断请求。但不<br  />
+管该标志为何值，CPU都必须响应CPU外部的不可屏蔽中断所发出的中断请求，以及CPU<br  />
+内部产生的中断请求。具体规定如下：<br  />
+(1)、当IF=1时，CPU可以响应CPU外部的可屏蔽中断发出的中断请求；<br  />
+(2)、当IF=0时，CPU不响应CPU外部的可屏蔽中断发出的中断请求。<br  />
+CPU的指令系统中也有专门的指令来改变标志位IF的值。<br  />
+</li>
+<li>方向标志DF(Direction Flag)<br  />
+
+<p>
+方向标志DF用来决定在串操作指令执行时有关指针寄存器发生调整的方向。具体规定<br  />
+在第5.2.11节——字符串操作指令——中给出。在微机的指令系统中，还提供了专门的指令<br  />
+来改变标志位DF的值。<br  />
+</p>
+</li>
+</ol>
+</div>
+</li>
+<li><a id="sec-1-4-3" name="sec-1-4-3"></a>32位标志寄存器增加的标志位<br  /><div class="outline-text-4" id="text-1-4-3">
+<ol class="org-ol">
+<li>I/O特权标志IOPL(I/O Privilege Level)<br  />
+I/O特权标志用两位二进制位来表示，也称为I/O特权级字段。该字段指定了要求执行I/O指<br  />
+令的特权级。如果当前的特权级别在数值上小于等于IOPL的值，那么，该I/O指令可执行，<br  />
+否则将发生一个保护异常。<br  />
+</li>
+<li>嵌套任务标志NT(Nested Task)<br  />
+ 嵌套任务标志NT用来控制中断返回指令IRET的执行。具体规定如下：<br  />
+(1)、当NT=0，用堆栈中保存的值恢复EFLAGS、CS和EIP，执行常规的中断返回操作；<br  />
+(2)、当NT=1，通过任务转换实现中断返回<br  />
+</li>
+<li>重启动标志RF(Restart Flag)<br  />
+重启动标志RF用来控制是否接受调试故障。规定：RF=0时，表示“接受”调试故障，<br  />
+否则拒绝之。在成功执行完一条指令后，处理机把RF置为0，当接受到一个非调试故障<br  />
+时，处理机就把它置为1。<br  />
+</li>
+
+<li>虚拟8086方式标志VM(Virtual 8086 Mode)<br  />
+如果该标志的值为1，则表示处理机处于虚拟的8086方式下的工作状态，否则，处理机处于<br  />
+一般保护方式下的工作状态。<br  />
+</li>
+</ol>
+</div>
+</li></ul>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2012-04-29</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/汇编-寄存器/";
+          var disqus_url = "http://jixiuf.github.io/blog/汇编-寄存器/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>

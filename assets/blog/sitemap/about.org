@@ -1,0 +1,8 @@
+# -*- coding:utf-8-unix -*-
+#+LANGUAGE:  zh
+#+title: 关于本站
+*** 关于本站:
+    本站使用Emacs 编辑器上的org-page  生成。
+*** 关于我
+    qq:374346117
+    mail:jixiuf@gmail.com

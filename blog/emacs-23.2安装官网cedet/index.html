@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>emacs-23.2安装官网cedet - 一个人的狂欢</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="纪秀峰" />
+    <meta name="description" content="emacs cedet " />
+    <meta name="keywords" content="emacs cedet " />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/media/css/prettify.css" type="text/css"> -->
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">一个人的狂欢</a></h1>
+        <p></p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="http://github.com/jixiuf">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="jixiuf.github.io">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>emacs-23.2安装官网cedet</h1>
+<p>
+关于emacs-23.2安装官方提供的cedet 的方法
+对于linux 来说来cedet目录下执行make 一般就可以了.
+但对于windows来说,因为没有make等一系列的命令,这招就不管用了,
+官方的安装指南上说windows上可以
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">;;     emacs -Q -l cedet-build.el -f cedet-build
+</pre>
+</div>
+<p>
+运行这条命令来编译cedet-1.0
+我要说的重点不在这
+重点是
+在配置文件中运行这条命令的时候
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(load-file <span style="color: #ffa07a;">"~/.emacs.d/site-lisp/cedet-1.0/common/cedet.el"</span>)
+</pre>
+</div>
+<p>
+报
+     (error "CEDET Version 1.0 already loaded.")
+ 这样的错误的解决办法.
+  因为 emacs-23.2内置了一个cedet.导致加载失败.
+  不过Emacs内置的CEDET和CEDET的官网发布的是不一样的, 我觉得内置的
+  可能稳定些, 但是最新的功能可能没有, 所以我还是选择了CEDET官方的
+  版本, 具体做法就是把CEDET官方版本下载下来后, 然后把它的路径加到
+  load-path的最前面, 这样就可以覆盖Emacs内置的了.
+  至于加载路径的方法,你可以一个个将cedet目录下的所有目录
+  通过这种方式一个个手动加到load-path中
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(add-to-list 'load-path  <span style="color: #ffa07a;">"cedet/.."</span>)<span style="color: #AEAEAE;">;</span>
+</pre>
+</div>
+
+<p>
+不过我在网上找到一编文章
+<a href="http://emacser.com/emacs-23-2-release.htm">http://emacser.com/emacs-23-2-release.htm</a>
+这位仁兄的配置文件在<a href="http://dea.googlecode.com">http://dea.googlecode.com</a>
+</p>
+
+<p>
+我从里面找到了它的解决方法:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">defvar</span> <span style="color: #40E0D0;">cedet-path</span> <span style="color: #ffa07a;">"/tmp/cedet-1.0/"</span> <span style="color: #ffa07a;">"Path of `</span><span style="color: #D8FA3C;">cedet</span><span style="color: #ffa07a;">'"</span>)  
+(my-add-subdirs-to-load-path cedet-path)
+</pre>
+</div>
+<p>
+基本内容就这两句,但问题是 my-add-subdirs-to-load-path
+函数在何处定义却费了一番手脚,今把它摘录出来仅供参考
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"> <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">-*- Emacs-Lisp -*-</span>
+
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">my-add-subdirs-to-load-path</span> (dir)
+  <span style="color: #ffa07a;">"&#25226;DIR&#30340;&#25152;&#26377;&#23376;&#30446;&#24405;&#37117;&#21152;&#21040;`</span><span style="color: #D8FA3C;">load-path</span><span style="color: #ffa07a;">'&#37324;&#38754;"</span>
+  (<span style="color: #FBDE2D;">interactive</span>)
+  (<span style="color: #FBDE2D;">let</span> ((default-directory (concat dir <span style="color: #ffa07a;">"/"</span>)))
+    (add-to-list 'load-path dir)
+    (<span style="color: #FBDE2D;">if</span> (fboundp 'normal-top-level-add-subdirs-to-load-path)
+        (normal-top-level-add-subdirs-to-load-path))))
+
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">Fix bug of `</span><span style="color: #D8FA3C;">normal-top-level-add-subdirs-to-load-path</span><span style="color: #AEAEAE;">'</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">which can not add directory which name end with ".elc?"</span>
+<span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">copy from emacs23 startup.el and modify it</span>
+(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">normal-top-level-add-subdirs-to-load-path</span> ()
+  <span style="color: #ffa07a;">"Add all subdirectories of current directory to `</span><span style="color: #D8FA3C;">load-path</span><span style="color: #ffa07a;">'.</span>
+<span style="color: #ffa07a;">More precisely, this uses only the subdirectories whose names</span>
+<span style="color: #ffa07a;">start with letters or digits; it excludes any subdirectory named `</span><span style="color: #D8FA3C;">RCS</span><span style="color: #ffa07a;">'</span>
+<span style="color: #ffa07a;">or `</span><span style="color: #D8FA3C;">CVS</span><span style="color: #ffa07a;">', and any subdirectory that contains a file named `</span><span style="color: #D8FA3C;">.nosearch</span><span style="color: #ffa07a;">'."</span>
+  (<span style="color: #FBDE2D;">let</span> (dirs
+        attrs
+        (pending (list default-directory)))
+    <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">This loop does a breadth-first tree walk on DIR's subtree,</span>
+    <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">putting each subdir into DIRS as its contents are examined.</span>
+    (<span style="color: #FBDE2D;">while</span> pending
+      (<span style="color: #FBDE2D;">push</span> (<span style="color: #FBDE2D;">pop</span> pending) dirs)
+      (<span style="color: #FBDE2D;">let*</span> ((this-dir (car dirs))
+             (contents (directory-files this-dir))
+             (default-directory this-dir)
+             (canonicalized (<span style="color: #FBDE2D;">if</span> (fboundp 'untranslated-canonical-name)
+                                (untranslated-canonical-name this-dir))))
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">The Windows version doesn't report meaningful inode</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">numbers, so use the canonicalized absolute file name of the</span>
+        <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">directory instead.</span>
+        (<span style="color: #FF6400;">setq</span> attrs (<span style="color: #FBDE2D;">or</span> canonicalized
+                        (nthcdr 10 (file-attributes this-dir))))
+        (<span style="color: #FBDE2D;">unless</span> (member attrs normal-top-level-add-subdirs-inode-list)
+          (<span style="color: #FBDE2D;">push</span> attrs normal-top-level-add-subdirs-inode-list)
+          (<span style="color: #FBDE2D;">dolist</span> (file contents)
+            <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">The lower-case variants of RCS and CVS are for DOS/Windows.</span>
+            (<span style="color: #FBDE2D;">unless</span> (member file '(<span style="color: #ffa07a;">"."</span> <span style="color: #ffa07a;">".."</span> <span style="color: #ffa07a;">"RCS"</span> <span style="color: #ffa07a;">"CVS"</span> <span style="color: #ffa07a;">"rcs"</span> <span style="color: #ffa07a;">"cvs"</span>))
+              (<span style="color: #FBDE2D;">when</span> (<span style="color: #FBDE2D;">and</span> (string-match <span style="color: #ffa07a;">"\\`[[:alnum:]]"</span> file)
+                         <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">Avoid doing a `</span><span style="color: #D8FA3C;">stat</span><span style="color: #AEAEAE;">' when it isn't necessary</span>
+                         <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">because that can cause trouble when an NFS server</span>
+                         <span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;">is down.</span>
+                         (file-directory-p file))
+                (<span style="color: #FBDE2D;">let</span> ((expanded (expand-file-name file)))
+                  (<span style="color: #FBDE2D;">unless</span> (file-exists-p (expand-file-name <span style="color: #ffa07a;">".nosearch"</span>
+                                                           expanded))
+                    (<span style="color: #FF6400;">setq</span> pending (nconc pending (list expanded)))))))))))
+    (<span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">equal</span> window-system 'w32)
+        (<span style="color: #FF6400;">setq</span> load-path (append (nreverse dirs) load-path))
+      (normal-top-level-add-to-load-path (cdr (nreverse dirs))))))
+</pre>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2011-06-08</span>
+        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/linux/">Linux</a>, <a href="/tags/windows/">Windows</a></span>
+        <span title="author" class="post-info">纪秀峰</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/emacs-23.2安装官网cedet/";
+          var disqus_url = "http://jixiuf.github.io/blog/emacs-23.2安装官网cedet/";
+          var disqus_shortname = 'jixiuf';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'jixiuf'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script> -->
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
