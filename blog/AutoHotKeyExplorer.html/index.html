@@ -29,7 +29,6 @@
         <ul>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/tags/">Tags</a></li>
-          <li><a href="/tags/">Tags</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="http://github.com/jixiuf">GitHub</a></li>
           <li><a href="/rss.xml">RSS</a></li>
@@ -48,13 +47,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge974e1c">复制当前文件的路径</a></li>
-<li><a href="#org3b267ef">Alt+h 一键显隐扩展名</a></li>
-<li><a href="#org1ae0385">Ctl+Alt+c 在当前路径下打开Cmd.exe 窗口。</a></li>
-<li><a href="#orgcbb7917">Alt+n 新建文本文件 Shift+= 新建文件夹</a></li>
-<li><a href="#orge016754">焦点的移动</a></li>
-<li><a href="#orgf0180ae">用键盘进行管理</a></li>
-<li><a href="#org4632e10">Ctrl+e 用Emacs编辑器打开选中的文件</a></li>
+<li><a href="#org889f605">复制当前文件的路径</a></li>
+<li><a href="#orga98b1e6">Alt+h 一键显隐扩展名</a></li>
+<li><a href="#org5ab712e">Ctl+Alt+c 在当前路径下打开Cmd.exe 窗口。</a></li>
+<li><a href="#org444994f">Alt+n 新建文本文件 Shift+= 新建文件夹</a></li>
+<li><a href="#org358aadc">焦点的移动</a></li>
+<li><a href="#orge2c7398">用键盘进行管理</a></li>
+<li><a href="#orgd4b2f20">Ctrl+e 用Emacs编辑器打开选中的文件</a></li>
 </ul>
 </div>
 </div>
@@ -63,9 +62,9 @@
 AutoHotKey几个简单的小例子</a> 中已经有一个关于对资源管理器中实现Ctl+alt+h<br />
 <a href="/blog/AutoHotKey_1.html#sec-2_3">一键显隐 隐藏文件</a>的功能，这里再给出其他几个与资源管理器有关的功能增强。<br />
 </p>
-<div id="outline-container-orge974e1c" class="outline-2">
-<h2 id="orge974e1c">复制当前文件的路径</h2>
-<div class="outline-text-2" id="text-orge974e1c">
+<div id="outline-container-org889f605" class="outline-2">
+<h2 id="org889f605">复制当前文件的路径</h2>
+<div class="outline-text-2" id="text-org889f605">
 <p>
 这段代码实现<br />
 </p>
@@ -106,9 +105,9 @@ AutoHotKey几个简单的小例子</a> 中已经有一个关于对资源管理�
 </div>
 </div>
 
-<div id="outline-container-org3b267ef" class="outline-2">
-<h2 id="org3b267ef">Alt+h 一键显隐扩展名</h2>
-<div class="outline-text-2" id="text-org3b267ef">
+<div id="outline-container-orga98b1e6" class="outline-2">
+<h2 id="orga98b1e6">Alt+h 一键显隐扩展名</h2>
+<div class="outline-text-2" id="text-orga98b1e6">
 <div class="org-src-container">
 <pre class="src src-xahk">SetTitleMatchMode Regex ;可以使用正则表达式对标题进行匹配
 #IfWinActive ahk_class CabinetWClass|ExploreWClass
@@ -130,9 +129,9 @@ Return
 </div>
 </div>
 
-<div id="outline-container-org1ae0385" class="outline-2">
-<h2 id="org1ae0385">Ctl+Alt+c 在当前路径下打开Cmd.exe 窗口。</h2>
-<div class="outline-text-2" id="text-org1ae0385">
+<div id="outline-container-org5ab712e" class="outline-2">
+<h2 id="org5ab712e">Ctl+Alt+c 在当前路径下打开Cmd.exe 窗口。</h2>
+<div class="outline-text-2" id="text-org5ab712e">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #8DA6CE;">SetTitleMatchMode</span> <span style="color: #40E0D0;">Regex</span> ;&#21487;&#20197;&#20351;&#29992;&#27491;&#21017;&#34920;&#36798;&#24335;&#23545;&#26631;&#39064;&#36827;&#34892;&#21305;&#37197;
 <span style="color: #7fffd4;">#IfWinActive</span> ahk_class CabinetWClass|ExploreWClass
@@ -160,9 +159,9 @@ Return
 </div>
 </div>
 
-<div id="outline-container-orgcbb7917" class="outline-2">
-<h2 id="orgcbb7917">Alt+n 新建文本文件 Shift+= 新建文件夹</h2>
-<div class="outline-text-2" id="text-orgcbb7917">
+<div id="outline-container-org444994f" class="outline-2">
+<h2 id="org444994f">Alt+n 新建文本文件 Shift+= 新建文件夹</h2>
+<div class="outline-text-2" id="text-org444994f">
 <div class="org-src-container">
 <pre class="src src-c">; create new text file
 <span style="color: #8DA6CE;">SetTitleMatchMode</span> <span style="color: #40E0D0;">Regex</span> ;&#21487;&#20197;&#20351;&#29992;&#27491;&#21017;&#34920;&#36798;&#24335;&#23545;&#26631;&#39064;&#36827;&#34892;&#21305;&#37197;
@@ -181,27 +180,27 @@ InputBox, UserInput, New <span style="color: #8DA6CE;">File</span> <span style="
 ControlGetText, ExplorePath, Edit1, <span style="color: #8DA6CE;">A</span>
 <span style="color: #40E0D0;">StringRight</span>, isEndsWithPathSeaprator, ExplorePath, 1
 <span style="color: #FBDE2D;">if</span> (isEndsWithPathSeaprator =<span style="color: #ffc0cb;">"</span><span style="color: #ffa07a;">\")</span>
-<span style="color: #ffa07a;">{</span>
-<span style="color: #ffa07a;">  newFilePath=%ExplorePath%%UserInput%.txt</span>
-<span style="color: #ffa07a;">}else</span>
-<span style="color: #ffa07a;">{</span>
-<span style="color: #ffa07a;">  newFilePath=%ExplorePath%\%UserInput%.txt</span>
-<span style="color: #ffa07a;">}</span>
-<span style="color: #ffa07a;">FileAppend,, %newFilepath%</span>
-<span style="color: #ffa07a;">ControlFocus, SysListView321,A</span>
-<span style="color: #ffa07a;">; Switch the active window's keyboard layout/language to English:</span>
-<span style="color: #ffa07a;">PostMessage, 0x50, 0, 0x4090409,, A  ; 0x50 is WM_INPUTLANGCHANGEREQUEST.</span>
-<span style="color: #ffa07a;">SendInput {F5}%UserInput%  </span>
-<span style="color: #ffa07a;">}</span>
-<span style="color: #ffa07a;">return</span>
-<span style="color: #ffa07a;">#IfWinActive </span>
+{
+  newFilePath=%ExplorePath%%UserInput%.txt
+}<span style="color: #FBDE2D;">else</span>
+{
+  newFilePath=%ExplorePath%\%UserInput%.txt
+}
+FileAppend,, %newFilepath%
+ControlFocus, SysListView321,A
+; Switch the <span style="color: #8DA6CE;">active</span> <span style="color: #40E0D0;">window</span><span style="color: #ffc0cb;">'</span>s keyboard layout/language to English:
+PostMessage, 0x50, 0, 0x4090409,, A  ; 0x50 is WM_INPUTLANGCHANGEREQUEST.
+SendInput {F5}%UserInput%  
+}
+<span style="color: #FBDE2D;">return</span>
+<span style="color: #7fffd4;">#IfWinActive</span> 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge016754" class="outline-2">
-<h2 id="orge016754">焦点的移动</h2>
-<div class="outline-text-2" id="text-orge016754">
+<div id="outline-container-org358aadc" class="outline-2">
+<h2 id="org358aadc">焦点的移动</h2>
+<div class="outline-text-2" id="text-org358aadc">
 <ul class="org-ul">
 <li>Ctrl+, 选中第一个文件<br /></li>
 <li>Ctrl+. 选中最后一个文件<br /></li>
@@ -233,9 +232,9 @@ ControlGetText, ExplorePath, Edit1, <span style="color: #8DA6CE;">A</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf0180ae" class="outline-2">
-<h2 id="orgf0180ae">用键盘进行管理</h2>
-<div class="outline-text-2" id="text-orgf0180ae">
+<div id="outline-container-orge2c7398" class="outline-2">
+<h2 id="orge2c7398">用键盘进行管理</h2>
+<div class="outline-text-2" id="text-orge2c7398">
 <p>
 一些绑定模拟Emacs 中Dired（Emacs中目录管理工具） 的操作。<br />
 </p>
@@ -293,9 +292,9 @@ ControlGetText, ExplorePath, Edit1, <span style="color: #8DA6CE;">A</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org4632e10" class="outline-2">
-<h2 id="org4632e10">Ctrl+e 用Emacs编辑器打开选中的文件</h2>
-<div class="outline-text-2" id="text-org4632e10">
+<div id="outline-container-orgd4b2f20" class="outline-2">
+<h2 id="orgd4b2f20">Ctrl+e 用Emacs编辑器打开选中的文件</h2>
+<div class="outline-text-2" id="text-orgd4b2f20">
 <div class="org-src-container">
 <pre class="src src-c">;;&#38656;&#35201; emacsclientw <span style="color: #8DA6CE;">&#22312;Path&#36335;&#24452;&#19979;</span>
 <span style="color: #FF6400;">openSelectedfileWithEamcs</span>()
@@ -325,7 +324,7 @@ ControlGetText, ExplorePath, Edit1, <span style="color: #8DA6CE;">A</span>
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-06-15</span>
-        <span title="last modification date" class="post-info">2019-01-13</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/autohotkey/">AutoHotKey</a>, <a href="/tags/windows/">Windows</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -366,7 +365,7 @@ ControlGetText, ExplorePath, Edit1, <span style="color: #8DA6CE;">A</span>
       <div class="footer">
         <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
-          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; qq &lt;dot&gt; com">纪秀峰</a>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;
           Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
           <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>

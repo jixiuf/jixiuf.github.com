@@ -29,7 +29,6 @@
         <ul>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/tags/">Tags</a></li>
-          <li><a href="/tags/">Tags</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="http://github.com/jixiuf">GitHub</a></li>
           <li><a href="/rss.xml">RSS</a></li>
@@ -48,34 +47,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9843c92">链接</a></li>
-<li><a href="#orgd36c605">ext2</a>
+<li><a href="#org2594ff6">链接</a></li>
+<li><a href="#org5a073c6">ext2</a>
 <ul>
-<li><a href="#org54f7d3d">超级块（Super Block）</a></li>
-<li><a href="#orgf2d280c">块组描述符表（GDT，Group Descriptor Table）</a></li>
-<li><a href="#orgb7a3283">块位图（Block Bitmap）</a></li>
-<li><a href="#orgf8e37ff">inode位图（inode Bitmap）</a></li>
-<li><a href="#org9eef811">inode表（inode Table）</a></li>
-<li><a href="#orga0f0004">数据块（Data Block）</a></li>
+<li><a href="#orge8c87a7">超级块（Super Block）</a></li>
+<li><a href="#orgf5bf9f8">块组描述符表（GDT，Group Descriptor Table）</a></li>
+<li><a href="#orgfa71034">块位图（Block Bitmap）</a></li>
+<li><a href="#orgc16c4fb">inode位图（inode Bitmap）</a></li>
+<li><a href="#orga10b2a9">inode表（inode Table）</a></li>
+<li><a href="#org8a8f108">数据块（Data Block）</a></li>
 </ul>
 </li>
-<li><a href="#org643f341">可用的命令</a></li>
-<li><a href="#orgbdcb1e0">系统函数</a></li>
+<li><a href="#org8188f92">可用的命令</a></li>
+<li><a href="#org28ed3ab">系统函数</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9843c92" class="outline-2">
-<h2 id="org9843c92">链接</h2>
-<div class="outline-text-2" id="text-org9843c92">
+<div id="outline-container-org2594ff6" class="outline-2">
+<h2 id="org2594ff6">链接</h2>
+<div class="outline-text-2" id="text-org2594ff6">
 <p>
 <a href="http://learn.akae.cn/media/ch29s02.html">http://learn.akae.cn/media/ch29s02.html</a><br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgd36c605" class="outline-2">
-<h2 id="orgd36c605">ext2</h2>
-<div class="outline-text-2" id="text-orgd36c605">
+<div id="outline-container-org5a073c6" class="outline-2">
+<h2 id="org5a073c6">ext2</h2>
+<div class="outline-text-2" id="text-org5a073c6">
 
 <div class="figure">
 <p><img src="/assets/blog/ext2.html/ext2.png" alt="ext2.png" /><br />
@@ -90,9 +89,9 @@ mke2fs的-b选项可以设定块大小为1024、2048或4096字节,默认是1024b
 ext2文件系统将整个分区划成若干个同样大小的块组（Block Group）<br />
 </p>
 </div>
-<div id="outline-container-org54f7d3d" class="outline-3">
-<h3 id="org54f7d3d">超级块（Super Block）</h3>
-<div class="outline-text-3" id="text-org54f7d3d">
+<div id="outline-container-orge8c87a7" class="outline-3">
+<h3 id="orge8c87a7">超级块（Super Block）</h3>
+<div class="outline-text-3" id="text-orge8c87a7">
 <p>
 描述 <i>整个分区</i> 的文件系统信息，例如块大小、文件系统版本号、上次mount的时间等<br />
 等。超级块在每个块组的开头都有一份拷贝。(占用一个block块大小).<br />
@@ -101,9 +100,9 @@ ext2文件系统将整个分区划成若干个同样大小的块组（Block Grou
 </div>
 </div>
 
-<div id="outline-container-orgf2d280c" class="outline-3">
-<h3 id="orgf2d280c">块组描述符表（GDT，Group Descriptor Table）</h3>
-<div class="outline-text-3" id="text-orgf2d280c">
+<div id="outline-container-orgf5bf9f8" class="outline-3">
+<h3 id="orgf5bf9f8">块组描述符表（GDT，Group Descriptor Table）</h3>
+<div class="outline-text-3" id="text-orgf5bf9f8">
 <p>
 由很多块组描述符组成，整个分区分成多少个块组就对应有多少个块组描述符。每个<br />
 块组描述符（Group Descriptor）存储一个块组的描述信息，例如在这个块组中从哪<br />
@@ -117,9 +116,9 @@ ext2文件系统将整个分区划成若干个同样大小的块组（Block Grou
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7a3283" class="outline-3">
-<h3 id="orgb7a3283">块位图（Block Bitmap）</h3>
-<div class="outline-text-3" id="text-orgb7a3283">
+<div id="outline-container-orgfa71034" class="outline-3">
+<h3 id="orgfa71034">块位图（Block Bitmap）</h3>
+<div class="outline-text-3" id="text-orgfa71034">
 <p>
 一个块组中的块是这样利用的：数据块存储所有文件的数据，比如某个分区的块大小<br />
 是1024字节，某个文件是2049字节，那么就需要三个数据块来存，即使第三个块只存<br />
@@ -141,17 +140,17 @@ inode表这几部分存储该块组的描述信息。那么如何知道哪些块
 </div>
 </div>
 
-<div id="outline-container-orgf8e37ff" class="outline-3">
-<h3 id="orgf8e37ff">inode位图（inode Bitmap）</h3>
-<div class="outline-text-3" id="text-orgf8e37ff">
+<div id="outline-container-orgc16c4fb" class="outline-3">
+<h3 id="orgc16c4fb">inode位图（inode Bitmap）</h3>
+<div class="outline-text-3" id="text-orgc16c4fb">
 <p>
 和块位图类似，本身占一个块，其中每个bit表示一个inode是否空闲可用。<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org9eef811" class="outline-3">
-<h3 id="org9eef811">inode表（inode Table）</h3>
-<div class="outline-text-3" id="text-org9eef811">
+<div id="outline-container-orga10b2a9" class="outline-3">
+<h3 id="orga10b2a9">inode表（inode Table）</h3>
+<div class="outline-text-3" id="text-orga10b2a9">
 <p>
 我们知道，一个文件除了数据需要存储之外，一些描述信息也需要存储，例如文件类<br />
 型（常规、目录、符号链接等），权限，文件大小，创建/修改/访问时间等，也就是<br />
@@ -173,9 +172,9 @@ inode表占多少个块在格式化时就要决定并写入块组描述符中，
 </div>
 </div>
 
-<div id="outline-container-orga0f0004" class="outline-3">
-<h3 id="orga0f0004">数据块（Data Block）</h3>
-<div class="outline-text-3" id="text-orga0f0004">
+<div id="outline-container-org8a8f108" class="outline-3">
+<h3 id="org8a8f108">数据块（Data Block）</h3>
+<div class="outline-text-3" id="text-org8a8f108">
 <p>
 根据不同的文件类型有以下几种情况<br />
 </p>
@@ -318,31 +317,31 @@ inode号（4bytes）|记录长度   (2bytes)|filename length(1byte)|filetype(1by
 </div>
 </div>
 
-<div id="outline-container-org643f341" class="outline-2">
-<h2 id="org643f341">可用的命令</h2>
-<div class="outline-text-2" id="text-org643f341">
+<div id="outline-container-org8188f92" class="outline-2">
+<h2 id="org8188f92">可用的命令</h2>
+<div class="outline-text-2" id="text-org8188f92">
 <p>
 dumpe2fs<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgbdcb1e0" class="outline-2">
-<h2 id="orgbdcb1e0">系统函数</h2>
-<div class="outline-text-2" id="text-orgbdcb1e0">
+<div id="outline-container-org28ed3ab" class="outline-2">
+<h2 id="org28ed3ab">系统函数</h2>
+<div class="outline-text-2" id="text-org28ed3ab">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;dirent.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
 
-<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">struct dirent { </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">ino_t          d_ino;       /\* inode number *\/ </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">off_t          d_off;       /\* offset to the next dirent *\/ </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">unsigned short d_reclen;    /\* length of this record *\/ </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">unsigned char  d_type;      /\* type of file *\/ </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">char           d_name[256]; /\* filename *\/ </span><span style="color: #AEAEAE;">*/</span>
-<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">}; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">struct dirent {</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">ino_t          d_ino;       /\* inode number *\/</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">off_t          d_off;       /\* offset to the next dirent *\/</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">unsigned short d_reclen;    /\* length of this record *\/</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">unsigned char  d_type;      /\* type of file *\/</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/*  </span><span style="color: #AEAEAE;">char           d_name[256]; /\* filename *\/</span><span style="color: #AEAEAE;"> */</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">};</span><span style="color: #AEAEAE;"> */</span>
 
 <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[])
 {
@@ -368,7 +367,7 @@ dumpe2fs<br />
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-05-01</span>
-        <span title="last modification date" class="post-info">2019-01-13</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/linux/">Linux</a>, <a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -409,7 +408,7 @@ dumpe2fs<br />
       <div class="footer">
         <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
-          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; qq &lt;dot&gt; com">纪秀峰</a>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;
           Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
           <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>

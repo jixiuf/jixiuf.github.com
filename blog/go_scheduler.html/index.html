@@ -47,19 +47,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org377a9a2">参考链接</a></li>
-<li><a href="#org169eed4">拾遗</a></li>
-<li><a href="#org1f3066a">系统调用阻塞时(同步系统调用)</a></li>
-<li><a href="#org2f03285">net poller</a></li>
-<li><a href="#org4c18984">用户态阻塞/唤醒</a></li>
-<li><a href="#org05e8ffd">调度器跟踪调试</a></li>
-<li><a href="#org325c4af">goroutine的创建</a></li>
+<li><a href="#orga94f4ed">参考链接</a></li>
+<li><a href="#org8a34ceb">拾遗</a></li>
+<li><a href="#org9951b91">系统调用阻塞时(同步系统调用)</a></li>
+<li><a href="#orgb0cb81b">net poller</a></li>
+<li><a href="#org4519587">用户态阻塞/唤醒</a>
+<ul>
+<li><a href="#orga4f574b">channel操作</a></li>
+<li><a href="#org7b8a2db">network I/O</a></li>
+</ul>
+</li>
+<li><a href="#orgfc612d4">调度器跟踪调试</a></li>
+<li><a href="#orgfabf327">goroutine的创建</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org377a9a2" class="outline-2">
-<h2 id="org377a9a2">参考链接</h2>
-<div class="outline-text-2" id="text-org377a9a2">
+<div id="outline-container-orga94f4ed" class="outline-2">
+<h2 id="orga94f4ed">参考链接</h2>
+<div class="outline-text-2" id="text-orga94f4ed">
 <p>
 <a href="https://segmentfault.com/a/1190000015464889">https://segmentfault.com/a/1190000015464889</a><br />
 </p>
@@ -71,9 +76,9 @@
 </div>
 </div>
 
-<div id="outline-container-org169eed4" class="outline-2">
-<h2 id="org169eed4">拾遗</h2>
-<div class="outline-text-2" id="text-org169eed4">
+<div id="outline-container-org8a34ceb" class="outline-2">
+<h2 id="org8a34ceb">拾遗</h2>
+<div class="outline-text-2" id="text-org8a34ceb">
 <p>
   go的调度本质上是一个协作式调度器,后来加入了些抢占机制，但并不能<br />
 保障一定能抢占的到sysmon 线程会定期扫goroutine ,如果running&gt;10ms则将其<br />
@@ -85,9 +90,9 @@ cpu密集型计算，则并不会把执行权让出去。<br />
 </div>
 
 
-<div id="outline-container-org1f3066a" class="outline-2">
-<h2 id="org1f3066a">系统调用阻塞时(同步系统调用)</h2>
-<div class="outline-text-2" id="text-org1f3066a">
+<div id="outline-container-org9951b91" class="outline-2">
+<h2 id="org9951b91">系统调用阻塞时(同步系统调用)</h2>
+<div class="outline-text-2" id="text-org9951b91">
 <p>
     当G被阻塞在某个系统调用上时(并不是所有的系统调用都是阻塞的)，此时G<br />
 会阻塞在_Gsyscall状态，M也处于 block on syscall 状态，此时的M可被操作<br />
@@ -103,9 +108,9 @@ cpu密集型计算，则并不会把执行权让出去。<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org2f03285" class="outline-2">
-<h2 id="org2f03285">net poller</h2>
-<div class="outline-text-2" id="text-org2f03285">
+<div id="outline-container-orgb0cb81b" class="outline-2">
+<h2 id="orgb0cb81b">net poller</h2>
+<div class="outline-text-2" id="text-orgb0cb81b">
 <p>
     除了G P M 角色golang 专门有个net poller 用来处理网络IO，即如果某<br />
 G1想要进行网络系统调用，则它会从P的队列中移除，并被移动到网络轮询器的队列中<br />
@@ -118,30 +123,27 @@ G1想要进行网络系统调用，则它会从P的队列中移除，并被移�
 </div>
 </div>
 
-<div id="outline-container-org4c18984" class="outline-2">
-<h2 id="org4c18984">用户态阻塞/唤醒</h2>
-<div class="outline-text-2" id="text-org4c18984">
-<ol class="org-ol">
-<li>channel操作<br /></li>
-
-<li><p>
-network I/O<br />
-</p>
-
+<div id="outline-container-org4519587" class="outline-2">
+<h2 id="org4519587">用户态阻塞/唤醒</h2>
+<div class="outline-text-2" id="text-org4519587">
+</div>
+<div id="outline-container-orga4f574b" class="outline-3">
+<h3 id="orga4f574b">channel操作</h3>
+</div>
+<div id="outline-container-org7b8a2db" class="outline-3">
+<h3 id="org7b8a2db">network I/O</h3>
+<div class="outline-text-3" id="text-org7b8a2db">
 <p>
 golang已经用netpoller实现了goroutine网络I/O阻塞不会导致M被阻塞，仅阻塞G，<br />
-</p>
-
-<p>
 对应的G会被放置到某个wait队列(如channel的waitq)<br />
-</p></li>
-</ol>
+</p>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org05e8ffd" class="outline-2">
-<h2 id="org05e8ffd">调度器跟踪调试</h2>
-<div class="outline-text-2" id="text-org05e8ffd">
+<div id="outline-container-orgfc612d4" class="outline-2">
+<h2 id="orgfc612d4">调度器跟踪调试</h2>
+<div class="outline-text-2" id="text-orgfc612d4">
 <p>
 G ODEBUG=scheddetail=1,schedtrace=1000 ./program<br />
 </p>
@@ -164,9 +166,9 @@ G1: status=8() m=0 lockedm=0
 </div>
 </div>
 
-<div id="outline-container-org325c4af" class="outline-2">
-<h2 id="org325c4af">goroutine的创建</h2>
-<div class="outline-text-2" id="text-org325c4af">
+<div id="outline-container-orgfabf327" class="outline-2">
+<h2 id="orgfabf327">goroutine的创建</h2>
+<div class="outline-text-2" id="text-orgfabf327">
 <p>
 proc.go newproc<br />
 </p>

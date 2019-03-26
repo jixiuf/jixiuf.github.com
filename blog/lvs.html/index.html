@@ -29,7 +29,6 @@
         <ul>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/tags/">Tags</a></li>
-          <li><a href="/tags/">Tags</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="http://github.com/jixiuf">GitHub</a></li>
           <li><a href="/rss.xml">RSS</a></li>
@@ -48,24 +47,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org76b1fa3">前言</a></li>
-<li><a href="#orgf22b662">LVS (linux virtual server) 什么是LVS？</a></li>
-<li><a href="#org0dd5584">安装</a></li>
-<li><a href="#orga624180">LVS的组成</a></li>
-<li><a href="#org58c938b">LVS负载均衡方式</a>
+<li><a href="#org662eee5">前言</a></li>
+<li><a href="#org96309b3">LVS (linux virtual server) 什么是LVS？</a></li>
+<li><a href="#org0b3577f">安装</a></li>
+<li><a href="#org3f01f46">LVS的组成</a></li>
+<li><a href="#org73260c9">LVS负载均衡方式</a>
 <ul>
-<li><a href="#org58b7749">Virtual Server via Network Address Translation NAT（VS/NAT）</a></li>
-<li><a href="#orga727f1b">Virtual Server via IP Tunneling(VS/TUN)</a></li>
-<li><a href="#orgf191fbb">Virtual Server via Direct Routing(VS/DR) 推荐使用的</a></li>
+<li><a href="#org8d6e713">Virtual Server via Network Address Translation NAT（VS/NAT）</a></li>
+<li><a href="#orgf41e509">Virtual Server via IP Tunneling(VS/TUN)</a></li>
+<li><a href="#org9a8380d">Virtual Server via Direct Routing(VS/DR) 推荐使用的</a></li>
 </ul>
 </li>
-<li><a href="#org7057253">8种调度算法</a></li>
+<li><a href="#orge363a75">8种调度算法</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org76b1fa3" class="outline-2">
-<h2 id="org76b1fa3">前言</h2>
-<div class="outline-text-2" id="text-org76b1fa3">
+<div id="outline-container-org662eee5" class="outline-2">
+<h2 id="org662eee5">前言</h2>
+<div class="outline-text-2" id="text-org662eee5">
 <p>
 参考<br />
 <a href="https://my.oschina.net/leeypp1/blog/294807">https://my.oschina.net/leeypp1/blog/294807</a><br />
@@ -75,9 +74,9 @@
 </p>
 </div>
 </div>
-<div id="outline-container-orgf22b662" class="outline-2">
-<h2 id="orgf22b662">LVS (linux virtual server) 什么是LVS？</h2>
-<div class="outline-text-2" id="text-orgf22b662">
+<div id="outline-container-org96309b3" class="outline-2">
+<h2 id="org96309b3">LVS (linux virtual server) 什么是LVS？</h2>
+<div class="outline-text-2" id="text-org96309b3">
 <p>
   首先简单介绍一下LVS (Linux Virtual Server)到底是什么东西，其实它是一<br />
 种集群(Cluster)技术，基于IP的负载均衡技术。<br />
@@ -92,18 +91,18 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org0dd5584" class="outline-2">
-<h2 id="org0dd5584">安装</h2>
-<div class="outline-text-2" id="text-org0dd5584">
+<div id="outline-container-org0b3577f" class="outline-2">
+<h2 id="org0b3577f">安装</h2>
+<div class="outline-text-2" id="text-org0b3577f">
 <pre class="example">
 yum install ipvsadm
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga624180" class="outline-2">
-<h2 id="orga624180">LVS的组成</h2>
-<div class="outline-text-2" id="text-orga624180">
+<div id="outline-container-org3f01f46" class="outline-2">
+<h2 id="org3f01f46">LVS的组成</h2>
+<div class="outline-text-2" id="text-org3f01f46">
 <ol class="org-ol">
 <li><p>
 负载调度器（load balancer/ Director）<br />
@@ -125,13 +124,13 @@ Load balancer 将客户真实的请求通过一定的负载均衡策略从 RealS
 </div>
 </div>
 
-<div id="outline-container-org58c938b" class="outline-2">
-<h2 id="org58c938b">LVS负载均衡方式</h2>
-<div class="outline-text-2" id="text-org58c938b">
+<div id="outline-container-org73260c9" class="outline-2">
+<h2 id="org73260c9">LVS负载均衡方式</h2>
+<div class="outline-text-2" id="text-org73260c9">
 </div>
-<div id="outline-container-org58b7749" class="outline-3">
-<h3 id="org58b7749">Virtual Server via Network Address Translation NAT（VS/NAT）</h3>
-<div class="outline-text-3" id="text-org58b7749">
+<div id="outline-container-org8d6e713" class="outline-3">
+<h3 id="org8d6e713">Virtual Server via Network Address Translation NAT（VS/NAT）</h3>
+<div class="outline-text-3" id="text-org8d6e713">
 <p>
 VS/NAT是一种最简单的方式，所有的RealServer只需要将自己的网关指向<br />
 Director即可。客户端可以是任意操作系统，但此方式下，一个Director<br />
@@ -212,9 +211,9 @@ ipvsadm -e -t 192.168.244.132:80 -r 192.168.27.131 -m -w 1
 </div>
 </div>
 
-<div id="outline-container-orga727f1b" class="outline-3">
-<h3 id="orga727f1b">Virtual Server via IP Tunneling(VS/TUN)</h3>
-<div class="outline-text-3" id="text-orga727f1b">
+<div id="outline-container-orgf41e509" class="outline-3">
+<h3 id="orgf41e509">Virtual Server via IP Tunneling(VS/TUN)</h3>
+<div class="outline-text-3" id="text-orgf41e509">
 <p>
 IP隧道（IP tunneling）是将一个IP报文封装在另一个IP报文的技术，这可以<br />
 使得目标为一个IP地址的数据报文能被封装和转发到另一个IP地址。IP隧道技术<br />
@@ -296,9 +295,9 @@ route add -host 192.168.182.200 dev tunl0
 </div>
 
 
-<div id="outline-container-orgf191fbb" class="outline-3">
-<h3 id="orgf191fbb">Virtual Server via Direct Routing(VS/DR) 推荐使用的</h3>
-<div class="outline-text-3" id="text-orgf191fbb">
+<div id="outline-container-org9a8380d" class="outline-3">
+<h3 id="org9a8380d">Virtual Server via Direct Routing(VS/DR) 推荐使用的</h3>
+<div class="outline-text-3" id="text-org9a8380d">
 <p>
 VS/DR方式是通过改写请求报文中的MAC地址部分来实现的。Director和<br />
 RealServer必需在物理上有一个网卡通过不间断的局域网相连。<br />
@@ -443,9 +442,9 @@ ipvsadm -a -t 192.168.182.200:80 -r 192.168.182.129 -g
 </div>
 
 
-<div id="outline-container-org7057253" class="outline-2">
-<h2 id="org7057253">8种调度算法</h2>
-<div class="outline-text-2" id="text-org7057253">
+<div id="outline-container-orge363a75" class="outline-2">
+<h2 id="orge363a75">8种调度算法</h2>
+<div class="outline-text-2" id="text-orge363a75">
 <ol class="org-ol">
 <li>轮叫调度（Round Robin Scheduling）<br />
 算法就是以轮叫的方式依次将请求调度不同的服务器，即每次调度执行i=(i+1)mod n，并选出第i台服务器。算法的优点是其简洁性，它无需记录当前所有连接的状态，所以它是一种无状态调度。<br /></li>
@@ -531,7 +530,7 @@ Cache服务器中按“最小连接”原则选出一台Cache服务器，映射�
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2017-07-29</span>
-        <span title="last modification date" class="post-info">2017-07-29</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/linux/">Linux</a>, <a href="/tags/mysql/">Mysql</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
