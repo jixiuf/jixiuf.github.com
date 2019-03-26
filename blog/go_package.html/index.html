@@ -47,28 +47,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org003b342">日志相关</a>
+<li><a href="#org29117a3">日志相关</a>
 <ul>
-<li><a href="#orgc57707d">github.com/cihub/seelog</a></li>
-<li><a href="#org33cf97d">github.com/op/go-logging</a></li>
+<li><a href="#orgeb8f109">github.com/cihub/seelog</a></li>
+<li><a href="#org7f8244b">github.com/op/go-logging</a></li>
 </ul>
 </li>
-<li><a href="#org82f3883">解析命令行参数的工具 gopkg.in/alecthomas/kingpin.v2</a></li>
-<li><a href="#org2604dba">github.com/spf13/cobra 命令行相关</a></li>
-<li><a href="#orgd781738">读取配置文件 相关(json ,yaml,环境变量,etcd,命令行参数)</a></li>
-<li><a href="#org433c6ae">github.com/dgryski/go-jump</a></li>
-<li><a href="#org64d3940">github.com/pquerna/ffjson</a></li>
-<li><a href="#orgaee143b">github.com/tools/godep</a></li>
-<li><a href="#org232cfb8">github.com/gogo/protobuf/proto</a></li>
-<li><a href="#orga941e93">github.com/stretchr/testify/assert</a></li>
-<li><a href="#org441e975">leveldb 的hashmap cache与LRU 实现可以参考使用</a></li>
-<li><a href="#org2812c6d">leveldb 的memdb 实现分析</a></li>
-<li><a href="#orgc62dcfc">乱入之一个位操作的小技巧</a></li>
-<li><a href="#orgadb9581">乱入一段 UUID 生成算法（从fabric/common/util来）</a></li>
-<li><a href="#org6f2ac0e">github.com/eapache/queue</a></li>
-<li><a href="#org128dc89">github.com/fsouza/go-dockerclient docker的go客户端</a></li>
-<li><a href="#org3d86ca1">github.com/gocraft/web 一个轻量http框架</a></li>
-<li><a href="#org65d5d96">github.com/mitchellh/mapstructure</a></li>
+<li><a href="#orgbc2d395">解析命令行参数的工具 gopkg.in/alecthomas/kingpin.v2</a></li>
+<li><a href="#orgb100227">github.com/spf13/cobra 命令行相关</a></li>
+<li><a href="#orgc2f08e0">读取配置文件 相关(json ,yaml,环境变量,etcd,命令行参数)</a></li>
+<li><a href="#org48590e5">github.com/dgryski/go-jump</a></li>
+<li><a href="#org7f08238">github.com/pquerna/ffjson</a></li>
+<li><a href="#org38453a7">github.com/tools/godep</a></li>
+<li><a href="#orgcc2333f">github.com/gogo/protobuf/proto</a></li>
+<li><a href="#orgd261dad">github.com/stretchr/testify/assert</a></li>
+<li><a href="#orgc4e8944">leveldb 的hashmap cache与LRU 实现可以参考使用</a></li>
+<li><a href="#org33c12d4">leveldb 的memdb 实现分析</a></li>
+<li><a href="#org500bbf3">乱入之一个位操作的小技巧</a></li>
+<li><a href="#org2f37d42">乱入一段 UUID 生成算法（从fabric/common/util来）</a></li>
+<li><a href="#org28d44bc">github.com/eapache/queue</a></li>
+<li><a href="#org50307a6">github.com/fsouza/go-dockerclient docker的go客户端</a></li>
+<li><a href="#org1f0b385">github.com/gocraft/web 一个轻量http框架</a></li>
+<li><a href="#orge732478">github.com/mitchellh/mapstructure</a></li>
 </ul>
 </div>
 </div>
@@ -77,15 +77,16 @@
 记下来以备后用,看多少加多少<br />
 最近在看<a href="https://github.com/hyperledger/fabric">https://github.com/hyperledger/fabric</a><br />
 </p>
-<div id="outline-container-org003b342" class="outline-2">
-<h2 id="org003b342">日志相关</h2>
-<div class="outline-text-2" id="text-org003b342">
-</div><div id="outline-container-orgc57707d" class="outline-3">
-<h3 id="orgc57707d">github.com/cihub/seelog</h3>
+<div id="outline-container-org29117a3" class="outline-2">
+<h2 id="org29117a3">日志相关</h2>
+<div class="outline-text-2" id="text-org29117a3">
 </div>
-<div id="outline-container-org33cf97d" class="outline-3">
-<h3 id="org33cf97d">github.com/op/go-logging</h3>
-<div class="outline-text-3" id="text-org33cf97d">
+<div id="outline-container-orgeb8f109" class="outline-3">
+<h3 id="orgeb8f109">github.com/cihub/seelog</h3>
+</div>
+<div id="outline-container-org7f8244b" class="outline-3">
+<h3 id="org7f8244b">github.com/op/go-logging</h3>
+<div class="outline-text-3" id="text-org7f8244b">
 <p>
 可以支持多种backend ,包括seelog 、文件等<br />
 可以实现按模块定制日志输出级别（通过正则匹配package名实现）<br />
@@ -94,9 +95,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org82f3883" class="outline-2">
-<h2 id="org82f3883">解析命令行参数的工具 gopkg.in/alecthomas/kingpin.v2</h2>
-<div class="outline-text-2" id="text-org82f3883">
+<div id="outline-container-orgbc2d395" class="outline-2">
+<h2 id="orgbc2d395">解析命令行参数的工具 gopkg.in/alecthomas/kingpin.v2</h2>
+<div class="outline-text-2" id="text-orgbc2d395">
 <p>
 轻松实现以下格式的命令行参数<br />
 </p>
@@ -167,9 +168,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org2604dba" class="outline-2">
-<h2 id="org2604dba">github.com/spf13/cobra 命令行相关</h2>
-<div class="outline-text-2" id="text-org2604dba">
+<div id="outline-container-orgb100227" class="outline-2">
+<h2 id="orgb100227">github.com/spf13/cobra 命令行相关</h2>
+<div class="outline-text-2" id="text-orgb100227">
 <p>
 可以参考 <a href="https://studygolang.com/articles/7588">https://studygolang.com/articles/7588</a><br />
 似乎是可以用这个工具帮你生成一部分代码,然后去填充每个具体的命令的实现<br />
@@ -235,9 +236,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgd781738" class="outline-2">
-<h2 id="orgd781738">读取配置文件 相关(json ,yaml,环境变量,etcd,命令行参数)</h2>
-<div class="outline-text-2" id="text-orgd781738">
+<div id="outline-container-orgc2f08e0" class="outline-2">
+<h2 id="orgc2f08e0">读取配置文件 相关(json ,yaml,环境变量,etcd,命令行参数)</h2>
+<div class="outline-text-2" id="text-orgc2f08e0">
 <p>
 github.com/spf13/viper<br />
 可以设定默认值，以各种方式读取配置，各个配置可以相互覆盖,甚至可以通过e,tcd、Consul等方式进行读取<br />
@@ -246,34 +247,34 @@ github.com/spf13/viper<br />
 </div>
 </div>
 
-<div id="outline-container-org433c6ae" class="outline-2">
-<h2 id="org433c6ae">github.com/dgryski/go-jump</h2>
-<div class="outline-text-2" id="text-org433c6ae">
+<div id="outline-container-org48590e5" class="outline-2">
+<h2 id="org48590e5">github.com/dgryski/go-jump</h2>
+<div class="outline-text-2" id="text-org48590e5">
 <p>
 golang 使用memcached 集群时有用到一致性哈希算法，这是一种实现<br />
 纯计算 内在占用少<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org64d3940" class="outline-2">
-<h2 id="org64d3940">github.com/pquerna/ffjson</h2>
-<div class="outline-text-2" id="text-org64d3940">
+<div id="outline-container-org7f08238" class="outline-2">
+<h2 id="org7f08238">github.com/pquerna/ffjson</h2>
+<div class="outline-text-2" id="text-org7f08238">
 <p>
 json decode encode 加速<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgaee143b" class="outline-2">
-<h2 id="orgaee143b">github.com/tools/godep</h2>
-<div class="outline-text-2" id="text-orgaee143b">
+<div id="outline-container-org38453a7" class="outline-2">
+<h2 id="org38453a7">github.com/tools/godep</h2>
+<div class="outline-text-2" id="text-org38453a7">
 <p>
 go 包版本管理工具,<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org232cfb8" class="outline-2">
-<h2 id="org232cfb8">github.com/gogo/protobuf/proto</h2>
-<div class="outline-text-2" id="text-org232cfb8">
+<div id="outline-container-orgcc2333f" class="outline-2">
+<h2 id="orgcc2333f">github.com/gogo/protobuf/proto</h2>
+<div class="outline-text-2" id="text-orgcc2333f">
 <p>
 protobuf decode encode 加速<br />
 可以实现为每条协议 生成 Marshaler UnMarshaler Size 等函数<br />
@@ -296,9 +297,9 @@ protobuf decode encode 加速<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orga941e93" class="outline-2">
-<h2 id="orga941e93">github.com/stretchr/testify/assert</h2>
-<div class="outline-text-2" id="text-orga941e93">
+<div id="outline-container-orgd261dad" class="outline-2">
+<h2 id="orgd261dad">github.com/stretchr/testify/assert</h2>
+<div class="outline-text-2" id="text-orgd261dad">
 <p>
 写测试用的工具 demo:<br />
 </p>
@@ -308,9 +309,9 @@ protobuf decode encode 加速<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org441e975" class="outline-2">
-<h2 id="org441e975">leveldb 的hashmap cache与LRU 实现可以参考使用</h2>
-<div class="outline-text-2" id="text-org441e975">
+<div id="outline-container-orgc4e8944" class="outline-2">
+<h2 id="orgc4e8944">leveldb 的hashmap cache与LRU 实现可以参考使用</h2>
+<div class="outline-text-2" id="text-orgc4e8944">
 <p>
 <a href="https://github.com/syndtr/goleveldb/blob/master/leveldb/cache/cache.go">https://github.com/syndtr/goleveldb/blob/master/leveldb/cache/cache.go</a><br />
 目前似乎key 只支持uint64,不支持string<br />
@@ -392,9 +393,9 @@ geter.Get(11).Release()
 </div>
 </div>
 
-<div id="outline-container-org2812c6d" class="outline-2">
-<h2 id="org2812c6d">leveldb 的memdb 实现分析</h2>
-<div class="outline-text-2" id="text-org2812c6d">
+<div id="outline-container-org33c12d4" class="outline-2">
+<h2 id="org33c12d4">leveldb 的memdb 实现分析</h2>
+<div class="outline-text-2" id="text-org33c12d4">
 <p>
 关于跳表可以参考  <a href="http://blog.sina.com.cn/s/blog_72995dcc01017w1t.html,%E4%B8%8D%E5%86%8D">http://blog.sina.com.cn/s/blog_72995dcc01017w1t.html,不再</a><br />
 跳表是一种随机化的数据结构，目前开源软件 Redis 和 LevelDB 都有用到它，<br />
@@ -443,9 +444,9 @@ BenchmarkGetRandom  	 1000000	      3831 ns/op<br />
 
 
 
-<div id="outline-container-orgc62dcfc" class="outline-2">
-<h2 id="orgc62dcfc">乱入之一个位操作的小技巧</h2>
-<div class="outline-text-2" id="text-orgc62dcfc">
+<div id="outline-container-org500bbf3" class="outline-2">
+<h2 id="org500bbf3">乱入之一个位操作的小技巧</h2>
+<div class="outline-text-2" id="text-org500bbf3">
 <p>
 声明位常量的时候可以这样声明<br />
 </p>
@@ -461,9 +462,9 @@ const (
 </div>
 </div>
 </div>
-<div id="outline-container-orgadb9581" class="outline-2">
-<h2 id="orgadb9581">乱入一段 UUID 生成算法（从fabric/common/util来）</h2>
-<div class="outline-text-2" id="text-orgadb9581">
+<div id="outline-container-org2f37d42" class="outline-2">
+<h2 id="org2f37d42">乱入一段 UUID 生成算法（从fabric/common/util来）</h2>
+<div class="outline-text-2" id="text-org2f37d42">
 <div class="org-src-container">
 <pre class="src src-go">// GenerateBytesUUID returns a UUID based on RFC 4122 returning the generated bytes
 func GenerateBytesUUID() []byte {
@@ -501,17 +502,17 @@ func idBytesToStr(id []byte) string {
 </div>
 </div>
 </div>
-<div id="outline-container-org6f2ac0e" class="outline-2">
-<h2 id="org6f2ac0e">github.com/eapache/queue</h2>
-<div class="outline-text-2" id="text-org6f2ac0e">
+<div id="outline-container-org28d44bc" class="outline-2">
+<h2 id="org28d44bc">github.com/eapache/queue</h2>
+<div class="outline-text-2" id="text-org28d44bc">
 <p>
 一个简单的非并发安全的queue(非常简单)<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org128dc89" class="outline-2">
-<h2 id="org128dc89">github.com/fsouza/go-dockerclient docker的go客户端</h2>
-<div class="outline-text-2" id="text-org128dc89">
+<div id="outline-container-org50307a6" class="outline-2">
+<h2 id="org50307a6">github.com/fsouza/go-dockerclient docker的go客户端</h2>
+<div class="outline-text-2" id="text-org50307a6">
 <p>
 demo:<br />
 </p>
@@ -537,9 +538,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org3d86ca1" class="outline-2">
-<h2 id="org3d86ca1">github.com/gocraft/web 一个轻量http框架</h2>
-<div class="outline-text-2" id="text-org3d86ca1">
+<div id="outline-container-org1f0b385" class="outline-2">
+<h2 id="org1f0b385">github.com/gocraft/web 一个轻量http框架</h2>
+<div class="outline-text-2" id="text-org1f0b385">
 <div class="org-src-container">
 <pre class="src src-go">  package main
 
@@ -575,9 +576,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org65d5d96" class="outline-2">
-<h2 id="org65d5d96">github.com/mitchellh/mapstructure</h2>
-<div class="outline-text-2" id="text-org65d5d96">
+<div id="outline-container-orge732478" class="outline-2">
+<h2 id="orge732478">github.com/mitchellh/mapstructure</h2>
+<div class="outline-text-2" id="text-orge732478">
 <p>
 实现 了 将一个 map[string]interface{} 转成结构体的功能<br />
 比如遇到以下问题： 一串json ,在未解析json某些字段之前，并不知道具体还有哪些字段<br />
@@ -591,7 +592,7 @@ func main() {
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2017-08-21</span>
-        <span title="last modification date" class="post-info">2017-08-29</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info">N/A</span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -630,7 +631,7 @@ func main() {
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; qq &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

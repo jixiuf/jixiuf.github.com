@@ -29,7 +29,6 @@
         <ul>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/tags/">Tags</a></li>
-          <li><a href="/tags/">Tags</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="http://github.com/jixiuf">GitHub</a></li>
           <li><a href="/rss.xml">RSS</a></li>
@@ -48,28 +47,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">nginx 做反向代理配置示例</a></li>
-<li><a href="#sec-2">利用nginx 做简单的认证</a></li>
-<li><a href="#sec-3">利用nginx 404错误 下载某个文件</a></li>
-<li><a href="#sec-4">nginx init.d script</a></li>
-<li><a href="#sec-5">nginx 编译安装支持https(ssl)</a>
+<li><a href="#org8252326">nginx 做反向代理配置示例</a></li>
+<li><a href="#org5ea4701">利用nginx 做简单的认证</a></li>
+<li><a href="#org5dbc5cc">利用nginx 404错误 下载某个文件</a></li>
+<li><a href="#org347a0b3">nginx init.d script</a></li>
+<li><a href="#orgb0858be">nginx 编译安装支持https(ssl)</a>
 <ul>
-<li><a href="#sec-5-1">自己颁发证书给自己</a></li>
+<li><a href="#org9d86b6e">自己颁发证书给自己</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">nginx 做反向代理配置示例</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org8252326" class="outline-2">
+<h2 id="org8252326">nginx 做反向代理配置示例</h2>
+<div class="outline-text-2" id="text-org8252326">
 <p>
-/etc/nginx/conf.d/your.dns.com.conf<br  />
-比如 tomcat 兼听127.0.1:10080端口，<br  />
-当通过域名 your.dns.com 访问 此机器的 80端口时 ，访问会被转到到tomcat 上<br  />
+/etc/nginx/conf.d/your.dns.com.conf<br />
+比如 tomcat 兼听127.0.1:10080端口，<br />
+当通过域名 your.dns.com 访问 此机器的 80端口时 ，访问会被转到到tomcat 上<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">  upstream your.dns.com{
         server 127.0.0.1:10080;
 }
@@ -92,7 +90,6 @@ server {
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">upstream your.dns.com{
         server 127.0.0.1:8888;
 }
@@ -132,30 +129,29 @@ server {
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">利用nginx 做简单的认证</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org5ea4701" class="outline-2">
+<h2 id="org5ea4701">利用nginx 做简单的认证</h2>
+<div class="outline-text-2" id="text-org5ea4701">
 <p>
-开发了简单的网站 ，但是没有 认证功能。 又不想不加认证 暴露在外网环境下<br  />
-可以用此方法进行 用户名密码认证<br  />
+开发了简单的网站 ，但是没有 认证功能。 又不想不加认证 暴露在外网环境下<br />
+可以用此方法进行 用户名密码认证<br />
 </p>
 
 <p>
-使用nignx反向代理kibana<br  />
-nginx配置Http Basic Auth账号密码登陆<br  />
-<a href="http://trac.edgewall.org/export/10770/trunk/contrib/htpasswd.py">http://trac.edgewall.org/export/10770/trunk/contrib/htpasswd.py</a> （nginx wiki里推荐的）<br  />
-运行示例<br  />
-chmod 755 htpasswd.py<br  />
-./htpasswd.py -c -b htpasswd username password<br  />
-这个脚本会生成一个htpasswd 文件，里面存username 及加密后的password, nginx 配置中 会引用这个文件<br  />
-#-c为生成文件 htpasswd为文件名<br  />
+使用nignx反向代理kibana<br />
+nginx配置Http Basic Auth账号密码登陆<br />
+<a href="http://trac.edgewall.org/export/10770/trunk/contrib/htpasswd.py">http://trac.edgewall.org/export/10770/trunk/contrib/htpasswd.py</a> （nginx wiki里推荐的）<br />
+运行示例<br />
+chmod 755 htpasswd.py<br />
+./htpasswd.py -c -b htpasswd username password<br />
+这个脚本会生成一个htpasswd 文件，里面存username 及加密后的password, nginx 配置中 会引用这个文件<br />
+#-c为生成文件 htpasswd为文件名<br />
 </p>
 
 <p>
-比如 /etc/nginx/conf.d/elk.dev.yourdns.com.conf<br  />
+比如 /etc/nginx/conf.d/elk.dev.yourdns.com.conf<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">server {
     listen 80;
     <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">listen [::]:80;</span>
@@ -175,19 +171,19 @@ chmod 755 htpasswd.py<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">利用nginx 404错误 下载某个文件</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org5dbc5cc" class="outline-2">
+<h2 id="org5dbc5cc">利用nginx 404错误 下载某个文件</h2>
+<div class="outline-text-2" id="text-org5dbc5cc">
 <p>
-随便访问一个不存在的路么， 会下载/tmp/static.txt 这个文件，<br  />
-用于快速搭建一个web 服务器 传文件<br  />
+随便访问一个不存在的路么， 会下载/tmp/static.txt 这个文件，<br />
+用于快速搭建一个web 服务器 传文件<br />
 </p>
+
 <p>
-python -m SimpleHTTPServer 8888<br  />
+python -m SimpleHTTPServer 8888<br />
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-sh">server {
     listen 80 default;
 
@@ -200,11 +196,10 @@ python -m SimpleHTTPServer 8888<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">nginx init.d script</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org347a0b3" class="outline-2">
+<h2 id="org347a0b3">nginx init.d script</h2>
+<div class="outline-text-2" id="text-org347a0b3">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">!/bin/</span><span style="color: #FBDE2D;">sh</span>
 <span style="color: #AEAEAE;">#</span>
 <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">nginx - this script starts and stops the nginx daemon</span>
@@ -353,11 +348,10 @@ python -m SimpleHTTPServer 8888<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">nginx 编译安装支持https(ssl)</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgb0858be" class="outline-2">
+<h2 id="orgb0858be">nginx 编译安装支持https(ssl)</h2>
+<div class="outline-text-2" id="text-orgb0858be">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">yum install -y zsh</span>
 yum install -y gcc gcc-c++
 yum install -y zip unzip
@@ -393,11 +387,10 @@ ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">自己颁发证书给自己</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org9d86b6e" class="outline-3">
+<h3 id="org9d86b6e">自己颁发证书给自己</h3>
+<div class="outline-text-3" id="text-org9d86b6e">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #F8F8F8;">cd</span> /usr/local/nginx/conf
 openssl genrsa -des3 -out server.key 1024
 openssl req -new -key server.key -out server.csr
@@ -407,213 +400,215 @@ openssl x509 -req -days 365 -in server.csr -signkey server_nopwd.key -out server
 </div>
 <blockquote>
 <p>
-server {<br  />
-    listen 443;<br  />
-    ssl on;<br  />
-    ssl_certificate  /usr/local/nginx/conf/server.crt;<br  />
-    ssl_certificate_key  /usr/local/nginx/conf/server_nopwd.key;<br  />
-}<br  />
+server {<br />
+    listen 443;<br />
+    ssl on;<br />
+    ssl_certificate  /usr/local/nginx/conf/server.crt;<br />
+    ssl_certificate_key  /usr/local/nginx/conf/server_nopwd.key;<br />
+}<br />
 </p>
 </blockquote>
 <blockquote>
 <p>
-upstream login{<br  />
-server 127.0.0.1:8080;<br  />
-}<br  />
+upstream login{<br />
+server 127.0.0.1:8080;<br />
+}<br />
 </p>
 
 <p>
-map $http_accept_language $language {<br  />
-default  zh_tw;<br  />
-~*^zh-cn zh_cn;<br  />
-~*^en    en;<br  />
-~*^zh,   zh_cn;<br  />
-}<br  />
+map $http_accept_language $language {<br />
+default  zh_tw;<br />
+~*^zh-cn zh_cn;<br />
+~*^en    en;<br />
+~*^zh,   zh_cn;<br />
+}<br />
 </p>
 
 <p>
-server {<br  />
-listen  443;<br  />
-server_name login.casino.najaplus.com;<br  />
+server {<br />
+listen  443;<br />
+server_name login.casino.najaplus.com;<br />
 </p>
 
 <p>
-ssl_certificate     /data/casino/nginx/login.crt;<br  />
-ssl_certificate_key /data/casino/nginx/login.key;<br  />
+ssl_certificate     /data/casino/nginx/login.crt;<br />
+ssl_certificate_key /data/casino/nginx/login.key;<br />
 </p>
 
 <p>
-ssl on;<br  />
-ssl_session_cache  builtin:1000  shared:SSL:10m;<br  />
-ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;<br  />
-ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;<br  />
-ssl_prefer_server_ciphers on;<br  />
+ssl on;<br />
+ssl_session_cache  builtin:1000  shared:SSL:10m;<br />
+ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;<br />
+ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;<br />
+ssl_prefer_server_ciphers on;<br />
 </p>
 
 <p>
-gzip on;<br  />
-gzip_min_length  100;<br  />
-gzip_buffers  8 32k;<br  />
-gzip_types  text/plain text/css application/x-javascript text/xml application/xml text/javascript;<br  />
-gzip_vary on;<br  />
+gzip on;<br />
+gzip_min_length  100;<br />
+gzip_buffers  8 32k;<br />
+gzip_types  text/plain text/css application/x-javascript text/xml application/xml text/javascript;<br />
+gzip_vary on;<br />
 </p>
 
 <p>
-set $root_dir /data/webgame;<br  />
+set $root_dir /data/webgame;<br />
 </p>
 
 <p>
-location = /casino.html {<br  />
-    if ( \(query_string ~* ^(.*)language=([\w|_]*)(&|\)) ) {<br  />
-    set $language $2;<br  />
-    }<br  />
-    lower $suffix $language;<br  />
-</p>
-<p>
-    rewrite /casino.html /casino_$suffix.html; # permanent 用于重定向<br  />
-}<br  />
+location = /casino.html {<br />
+    if ( \(query_string ~* ^(.*)language=([\w|_]*)(&|\)) ) {<br />
+    set $language $2;<br />
+    }<br />
+    lower $suffix $language;<br />
 </p>
 
 <p>
-location ~* (.*\.html)$ {<br  />
-    root $root_dir;<br  />
-    add_header Cache-Control 'no-store';<br  />
-    error_page 405 =200 $1; # 支持静态网页POST<br  />
-}<br  />
+    rewrite /casino.html /casino_$suffix.html; # permanent 用于重定向<br />
+}<br />
 </p>
 
 <p>
-location  ~* \.(proto|json|gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {<br  />
-    root $root_dir;<br  />
-    expires 30d;<br  />
-    access_log off;<br  />
-}<br  />
+location ~* (.*\.html)$ {<br />
+    root $root_dir;<br />
+    add_header Cache-Control 'no-store';<br />
+    error_page 405 =200 $1; # 支持静态网页POST<br />
+}<br />
 </p>
 
 <p>
-rewrite_log on;<br  />
-access_log  /data/logs/nginx/login.http.log;<br  />
-error_log   /data/logs/nginx/login.http.log;<br  />
+location  ~* \.(proto|json|gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {<br />
+    root $root_dir;<br />
+    expires 30d;<br />
+    access_log off;<br />
+}<br />
 </p>
 
 <p>
-location / {<br  />
-    proxy_set_header Host $http_host;<br  />
-    proxy_set_header X-Real-IP $remote_addr;<br  />
-    proxy_set_header X-Scheme $scheme;<br  />
-    proxy_pass <a href="http://login">http://login</a>;<br  />
-}<br  />
-}<br  />
+rewrite_log on;<br />
+access_log  /data/logs/nginx/login.http.log;<br />
+error_log   /data/logs/nginx/login.http.log;<br />
+</p>
+
+<p>
+location / {<br />
+    proxy_set_header Host $http_host;<br />
+    proxy_set_header X-Real-IP $remote_addr;<br />
+    proxy_set_header X-Scheme $scheme;<br />
+    proxy_pass <a href="http://login">http://login</a>;<br />
+}<br />
+}<br />
 </p>
 </blockquote>
 <blockquote>
 <p>
-server {<br  />
-    listen 443;<br  />
-    server_name www.demo2.com;<br  />
+server {<br />
+    listen 443;<br />
+    server_name www.demo2.com;<br />
 </p>
 
 <p>
-ssl on;<br  />
-ssl_certificate      /data/nginx/server.crt;<br  />
-ssl_certificate_key  /data/nginx/server.key;<br  />
+ssl on;<br />
+ssl_certificate      /data/nginx/server.crt;<br />
+ssl_certificate_key  /data/nginx/server.key;<br />
 </p>
 
 <p>
-ssl_session_timeout  5m;<br  />
+ssl_session_timeout  5m;<br />
 </p>
 
 <p>
-ssl_protocols  SSLv2 SSLv3 TLSv1;<br  />
-ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;<br  />
-ssl_prefer_server_ciphers   on;<br  />
+ssl_protocols  SSLv2 SSLv3 TLSv1;<br />
+ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;<br />
+ssl_prefer_server_ciphers   on;<br />
 </p>
 
 <p>
-access_log  /data/logs/nginx/demo2.log;<br  />
+access_log  /data/logs/nginx/demo2.log;<br />
 </p>
 
 <p>
-    location / {<br  />
-        proxy_pass <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>;<br  />
-        proxy_http_version 1.1;<br  />
-        proxy_set_header Upgrade $http_upgrade;<br  />
-        proxy_set_header Connection "upgrade";<br  />
-    }<br  />
-}<br  />
+    location / {<br />
+	proxy_pass <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>;<br />
+	proxy_http_version 1.1;<br />
+	proxy_set_header Upgrade $http_upgrade;<br />
+	proxy_set_header Connection "upgrade";<br />
+    }<br />
+}<br />
 </p>
 </blockquote>
 
 <blockquote>
 <p>
-upstream ssl{<br  />
-         server 127.0.0.1:8080;<br  />
- }<br  />
+upstream ssl{<br />
+	 server 127.0.0.1:8080;<br />
+ }<br />
 </p>
 
 <p>
-server {<br  />
-listen 443;<br  />
-server_name www.demo3.com;<br  />
+server {<br />
+listen 443;<br />
+server_name www.demo3.com;<br />
 </p>
 
 <p>
-ssl_certificate /data/nginx/server.crt;<br  />
-ssl_certificate_key /data/nginx/server.key;<br  />
+ssl_certificate /data/nginx/server.crt;<br />
+ssl_certificate_key /data/nginx/server.key;<br />
 </p>
 
 <p>
-ssl_session_cache  builtin:1000  shared:SSL:10m;<br  />
-ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;<br  />
-ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;<br  />
-ssl_prefer_server_ciphers on;<br  />
+ssl_session_cache  builtin:1000  shared:SSL:10m;<br />
+ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;<br />
+ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;<br />
+ssl_prefer_server_ciphers on;<br />
 </p>
 
 <p>
-gzip on;<br  />
-gzip_min_length  100;<br  />
-gzip_buffers  8 32k;<br  />
-gzip_types  text/plain text/css application/x-javascript text/xml application/xml text/javascript;<br  />
-gzip_vary on;<br  />
+gzip on;<br />
+gzip_min_length  100;<br />
+gzip_buffers  8 32k;<br />
+gzip_types  text/plain text/css application/x-javascript text/xml application/xml text/javascript;<br />
+gzip_vary on;<br />
 </p>
 
 <p>
-location ~* \.(html)$ {<br  />
-    root /data/webserver;<br  />
-    add_header Cache-Control 'no-store';<br  />
-}<br  />
+location ~* \.(html)$ {<br />
+    root /data/webserver;<br />
+    add_header Cache-Control 'no-store';<br />
+}<br />
 </p>
 
 <p>
-location  ~* \.(proto|json|gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {<br  />
-    root /data/webserver;<br  />
-    expires 7d;<br  />
-</p>
-<p>
-}<br  />
+location  ~* \.(proto|json|gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {<br />
+    root /data/webserver;<br />
+    expires 7d;<br />
 </p>
 
 <p>
-error_page 405 =200 @405;<br  />
-location @405<br  />
-{<br  />
-    root  /data/webserver;<br  />
-}<br  />
+}<br />
 </p>
 
 <p>
-error_log  /data/logs/nginx/ssl.http.log;<br  />
-access_log  /data/logs/nginx/ssl.http.log;<br  />
+error_page 405 =200 @405;<br />
+location @405<br />
+{<br />
+    root  /data/webserver;<br />
+}<br />
 </p>
 
 <p>
-location / {<br  />
-    proxy_set_header Host $http_host;<br  />
-    proxy_set_header X-Real-IP $remote_addr;<br  />
-    proxy_set_header X-Scheme $scheme;<br  />
-    proxy_pass <a href="http://ssl">http://ssl</a>;<br  />
-}<br  />
-}<br  />
+error_log  /data/logs/nginx/ssl.http.log;<br />
+access_log  /data/logs/nginx/ssl.http.log;<br />
+</p>
+
+<p>
+location / {<br />
+    proxy_set_header Host $http_host;<br />
+    proxy_set_header X-Real-IP $remote_addr;<br />
+    proxy_set_header X-Scheme $scheme;<br />
+    proxy_pass <a href="http://ssl">http://ssl</a>;<br />
+}<br />
+}<br />
 </p>
 </blockquote>
 </div>
@@ -625,7 +620,7 @@ location / {<br  />
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2016-05-09</span>
-        <span title="last modification date" class="post-info">2017-02-24</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/nginx/">Nginx</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -664,7 +659,7 @@ location / {<br  />
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

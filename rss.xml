@@ -4,79 +4,79 @@
     <title>拾遗笔记</title>
     <link>http://jixiuf.github.io</link>
     <description></description>
-    <pubDate>六, 19  1 2019 22:14:07 CST</pubDate>
-    <lastBuildDate>六, 19  1 2019 22:14:07 CST</lastBuildDate>
+    <pubDate>三, 27  3 2019 00:20:05 CST</pubDate>
+    <lastBuildDate>三, 27  3 2019 00:20:05 CST</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
-      <title>纪秀峰_个人简历</title>
-      <link>http://jixiuf.github.io/author/</link>
-      <description><![CDATA[个人简历]]></description>
-      <pubDate>2019-01-19</pubDate>
-      <guid>http://jixiuf.github.io/author/</guid>
+      <title>AutoHotKey 简介</title>
+      <link>http://jixiuf.github.io/blog/AutoHotKey_Introduce.html</link>
+      <description><![CDATA[autohotkey 简介]]></description>
+      <pubDate>2019-03-26</pubDate>
+      <guid>http://jixiuf.github.io/blog/AutoHotKey_Introduce.html</guid>
     </item>
     <item>
-      <title>redis拾遗</title>
-      <link>http://jixiuf.github.io/blog/redis.html</link>
-      <description><![CDATA[redis拾遗]]></description>
-      <pubDate>2019-01-13</pubDate>
-      <guid>http://jixiuf.github.io/blog/redis.html</guid>
+      <title>emacs画文本图</title>
+      <link>http://jixiuf.github.io/blog/artist-mode.html</link>
+      <description><![CDATA[emacs画文本图]]></description>
+      <pubDate>2019-03-26</pubDate>
+      <guid>http://jixiuf.github.io/blog/artist-mode.html</guid>
     </item>
     <item>
-      <title>go net包里的异步IO实现原理分析</title>
-      <link>http://jixiuf.github.io/blog/go_epoll.html</link>
-      <description><![CDATA[go IO模型分析(epoll为例)]]></description>
-      <pubDate>2018-08-02</pubDate>
-      <guid>http://jixiuf.github.io/blog/go_epoll.html</guid>
-    </item>
-    <item>
-      <title>consul集群拾遗</title>
-      <link>http://jixiuf.github.io/blog/go_consul.html</link>
-      <description><![CDATA[consul集群拾遗]]></description>
-      <pubDate>2018-01-25</pubDate>
-      <guid>http://jixiuf.github.io/blog/go_consul.html</guid>
-    </item>
-    <item>
-      <title>linux拾遗</title>
-      <link>http://jixiuf.github.io/blog/linux.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-12-19</pubDate>
-      <guid>http://jixiuf.github.io/blog/linux.html</guid>
+      <title>goroutine调度 拾遗</title>
+      <link>http://jixiuf.github.io/blog/go_scheduler.html</link>
+      <description><![CDATA[goroutine调度]]></description>
+      <pubDate>2019-03-26</pubDate>
+      <guid>http://jixiuf.github.io/blog/go_scheduler.html</guid>
     </item>
     <item>
       <title>vitess 代码阅读之Context</title>
       <link>http://jixiuf.github.io/blog/go_vitess_code_context.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-09-29</pubDate>
+      <description><![CDATA[vitess 代码阅读之Context]]></description>
+      <pubDate>2019-03-22</pubDate>
       <guid>http://jixiuf.github.io/blog/go_vitess_code_context.html</guid>
     </item>
     <item>
-      <title>mac 上利用rvi抓iphone的包</title>
-      <link>http://jixiuf.github.io/blog/mac_iphone_wireshark_rvi.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-09-07</pubDate>
-      <guid>http://jixiuf.github.io/blog/mac_iphone_wireshark_rvi.html</guid>
+      <title>ext2文件系统</title>
+      <link>http://jixiuf.github.io/blog/ext2.html</link>
+      <description><![CDATA[ext2文件系统]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/ext2.html</guid>
     </item>
     <item>
-      <title>go语言一些开源的package拾遗</title>
-      <link>http://jixiuf.github.io/blog/go_package.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-08-29</pubDate>
-      <guid>http://jixiuf.github.io/blog/go_package.html</guid>
+      <title>linux 下字体相关</title>
+      <link>http://jixiuf.github.io/blog/font.html</link>
+      <description><![CDATA[font.org]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/font.html</guid>
     </item>
     <item>
-      <title>LVS负载均衡</title>
-      <link>http://jixiuf.github.io/blog/lvs.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-07-29</pubDate>
-      <guid>http://jixiuf.github.io/blog/lvs.html</guid>
+      <title>Gentoo 拾遗</title>
+      <link>http://jixiuf.github.io/blog/gentoo.html</link>
+      <description><![CDATA[gentoo.org]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/gentoo.html</guid>
     </item>
     <item>
-      <title>mysql 双主 高可用实现方案 keepalived 自动自动切换</title>
-      <link>http://jixiuf.github.io/blog/mysql_keepalived.html</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2017-07-29</pubDate>
-      <guid>http://jixiuf.github.io/blog/mysql_keepalived.html</guid>
+      <title>linux 下gbk utf8 转换</title>
+      <link>http://jixiuf.github.io/blog/iconv.html</link>
+      <description><![CDATA[linux 下gbk utf8 转换]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/iconv.html</guid>
+    </item>
+    <item>
+      <title>iptables防火墙</title>
+      <link>http://jixiuf.github.io/blog/iptables.html</link>
+      <description><![CDATA[iptables防火墙]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/iptables.html</guid>
+    </item>
+    <item>
+      <title>linux拾遗</title>
+      <link>http://jixiuf.github.io/blog/linux.html</link>
+      <description><![CDATA[linux拾遗]]></description>
+      <pubDate>2019-01-20</pubDate>
+      <guid>http://jixiuf.github.io/blog/linux.html</guid>
     </item>
   </channel>
 </rss>

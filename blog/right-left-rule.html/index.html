@@ -47,521 +47,468 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">比如看到这样一个声明,你肯定头都大了.:</a></li>
-<li><a href="#sec-2">法则</a></li>
-<li><a href="#sec-3">一些示例</a></li>
+<li><a href="#orgfd45650">比如看到这样一个声明,你肯定头都大了.:</a></li>
+<li><a href="#org1561608">法则</a></li>
+<li><a href="#org6018366">一些示例</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">比如看到这样一个声明,你肯定头都大了.:</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgfd45650" class="outline-2">
+<h2 id="orgfd45650">比如看到这样一个声明,你肯定头都大了.:</h2>
+<div class="outline-text-2" id="text-orgfd45650">
 <p>
-int *(*(*F())[])();<br  />
+int *(*(*F())[])();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to an array of pointers to<br  />
-functions returning a pointer to int.<br  />
-</li>
+<li>F is a function returning a pointer to an array of pointers to<br />
+functions returning a pointer to int.<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">法则</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org1561608" class="outline-2">
+<h2 id="org1561608">法则</h2>
+<div class="outline-text-2" id="text-org1561608">
 <p>
-1 先找到或变量或函数或数组(因为现在还不知道它倒底是什么,暂命名为id)的名称.比如此处的F<br  />
-2 接下来,从F往右读,如果遇到<br  />
-     下面三种标专时的读法:<br  />
+1 先找到或变量或函数或数组(因为现在还不知道它倒底是什么,暂命名为id)的名称.比如此处的F<br />
+2 接下来,从F往右读,如果遇到<br />
+     下面三种标专时的读法:<br />
 </p>
 <ul class="org-ul">
-<li>*          as "pointer to"           指向..的指针<br  />
-</li>
-<li>[]         as "array of"            是&#x2026;类型的数组<br  />
-</li>
-<li>()         as "function returning"  是一个返回..类型的函数<br  />
-</li>
+<li>*          as "pointer to"           指向..的指针<br /></li>
+<li>[]         as "array of"            是&#x2026;类型的数组<br /></li>
+<li>()         as "function returning"  是一个返回..类型的函数<br /></li>
 </ul>
 <p>
-比如<br  />
+比如<br />
 </p>
 <ul class="org-ul">
-<li>F()<br  />
-</li>
+<li>F()<br /></li>
 </ul>
 <p>
-读作<br  />
+读作<br />
 </p>
 <ul class="org-ul">
-<li>F是一个返回(..类型)的函数,<br  />
-</li>
-<li>F is a function returing &#x2026;<br  />
-</li>
+<li>F是一个返回(..类型)的函数,<br /></li>
+<li>F is a function returing &#x2026;<br /></li>
 </ul>
 <p>
-类型我们还不知道.<br  />
-当读完这个id,或者遇到右括号)时,开始沿id 往左读<br  />
-比如接下来是<br  />
+类型我们还不知道.<br />
+当读完这个id,或者遇到右括号)时,开始沿id 往左读<br />
+比如接下来是<br />
 </p>
 <ul class="org-ul">
-<li>*F()<br  />
-读作<br  />
+<li>*F()<br />
+读作<br />
 <ul class="org-ul">
-<li>F是一个返回 ((指向..的指针) 类型)的函数, (1因为这个指针指向什么,还不清楚用..代替)<br  />
-</li>
-<li>F is a function returing a pointer to &#x2026;<br  />
-</li>
-</ul>
-</li>
+<li>F是一个返回 ((指向..的指针) 类型)的函数, (1因为这个指针指向什么,还不清楚用..代替)<br /></li>
+<li>F is a function returing a pointer to &#x2026;<br /></li>
+</ul></li>
 </ul>
 
 <p>
-遇到左括号,则返回继续向右读<br  />
+遇到左括号,则返回继续向右读<br />
 </p>
 
 <ul class="org-ul">
-<li>(*F())[]<br  />
-</li>
+<li>(*F())[]<br /></li>
 </ul>
 <p>
-遇到)往左,又遇到(,变为往右,然后是[]:<br  />
+遇到)往左,又遇到(,变为往右,然后是[]:<br />
 </p>
 <ul class="org-ul">
-<li>F是一个返回(指向(..类型的数组)的指针)的函数,<br  />
-</li>
-<li>F is a function returing a pointer to  an array of&#x2026;<br  />
-</li>
-
-<li>(*(*F())[])<br  />
-<ul class="org-ul">
-<li>F是一个返回( 指向((指向..类型的指针) 类型的数组)的指针)的函数,<br  />
-</li>
-<li>F is a function returing a pointer to  an array of a pointer to &#x2026;<br  />
-</li>
+<li>F是一个返回(指向(..类型的数组)的指针)的函数,<br /></li>
+<li>F is a function returing a pointer to  an array of&#x2026;<br /></li>
 </ul>
-</li>
+<ul class="org-ul">
+<li>(*(*F())[])<br />
+<ul class="org-ul">
+<li>F是一个返回( 指向((指向..类型的指针) 类型的数组)的指针)的函数,<br /></li>
+<li>F is a function returing a pointer to  an array of a pointer to &#x2026;<br /></li>
+</ul></li>
 
-<li>(*(*F())[])()<br  />
-</li>
-<li>F是一个返回 (指向 ((指向(返回..类型的函数)的指针) 类型的数组)  的指针) 的函数,<br  />
-</li>
-<li>F is a function returing a pointer to  an array of a pointer to  a function returing ..<br  />
-</li>
+<li>(*(*F())[])()<br /></li>
+<li>F是一个返回 (指向 ((指向(返回..类型的函数)的指针) 类型的数组)  的指针) 的函数,<br /></li>
+<li>F is a function returing a pointer to  an array of a pointer to  a function returing ..<br /></li>
 
-<li>int *(*(*F())[])();<br  />
+<li>int *(*(*F())[])();<br />
 
 <ul class="org-ul">
-<li>F是一个返回(指向 ((指向(返回(指向int的指针)类型的函数)指针) 类型的数组) 的指针) 的函数,<br  />
-</li>
-<li>F is a function returing a pointer to  an array of a pointer to  a function returing   a pointer to int<br  />
-</li>
-</ul>
-</li>
+<li>F是一个返回(指向 ((指向(返回(指向int的指针)类型的函数)指针) 类型的数组) 的指针) 的函数,<br /></li>
+<li>F is a function returing a pointer to  an array of a pointer to  a function returing   a pointer to int<br /></li>
+</ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">一些示例</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org6018366" class="outline-2">
+<h2 id="org6018366">一些示例</h2>
+<div class="outline-text-2" id="text-org6018366">
 <p>
-int x;<br  />
+int x;<br />
 </p>
 <ul class="org-ul">
-<li>x is an int.<br  />
-</li>
+<li>x is an int.<br /></li>
 </ul>
 
 <p>
-int *x;<br  />
+int *x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to an int.<br  />
-</li>
+<li>x is a pointer to an int.<br /></li>
 </ul>
 
 <p>
-int **x;<br  />
+int **x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to a pointer to an int.<br  />
-</li>
+<li>x is a pointer to a pointer to an int.<br /></li>
 </ul>
 
 <p>
-const int x;<br  />
+const int x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a const int (constant integer).<br  />
-</li>
+<li>x is a const int (constant integer).<br /></li>
 </ul>
 
 <p>
-const int *x;<br  />
+const int *x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to a const int. The value of x may change, but<br  />
-the integer that it points to not be changed. In other words,<br  />
-x cannot be used to alter the value to which it points.<br  />
-</li>
+<li>x is a pointer to a const int. The value of x may change, but<br />
+the integer that it points to not be changed. In other words,<br />
+x cannot be used to alter the value to which it points.<br /></li>
 </ul>
 
 <p>
-int *const x;<br  />
+int *const x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a constant pointer to an int. The value may not change,<br  />
-but the integer that it points to may change. In other words,<br  />
-x will always point at the same location, but the contents may<br  />
-vary.<br  />
-</li>
+<li>x is a constant pointer to an int. The value may not change,<br />
+but the integer that it points to may change. In other words,<br />
+x will always point at the same location, but the contents may<br />
+vary.<br /></li>
 </ul>
 
 <p>
-const int *const x;<br  />
+const int *const x;<br />
 </p>
 <ul class="org-ul">
-<li>x is a constant pointer to a constant integer. The value of x<br  />
-may not change, and the integer that it points to may not<br  />
-change. In other words, x will always point at the same<br  />
-location, which cannot be modified via x.<br  />
-</li>
+<li>x is a constant pointer to a constant integer. The value of x<br />
+may not change, and the integer that it points to may not<br />
+change. In other words, x will always point at the same<br />
+location, which cannot be modified via x.<br /></li>
 </ul>
 
 <p>
-int x[];<br  />
+int x[];<br />
 </p>
 <ul class="org-ul">
-<li>x is an array of int.<br  />
-</li>
+<li>x is an array of int.<br /></li>
 </ul>
 
 <p>
-int x[99 ];<br  />
+int x[99 ];<br />
 </p>
 <ul class="org-ul">
-<li>x is an array of 99 int's.<br  />
-</li>
+<li>x is an array of 99 int's.<br /></li>
 </ul>
 
 <p>
-int *x[];<br  />
+int *x[];<br />
 </p>
 <ul class="org-ul">
-<li>x is an array of pointers to int.<br  />
-</li>
+<li>x is an array of pointers to int.<br /></li>
 </ul>
 
 <p>
-int (*x)[];<br  />
+int (*x)[];<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to an array of int.<br  />
-</li>
+<li>x is a pointer to an array of int.<br /></li>
 </ul>
 
 <p>
-int *(*x)[];<br  />
+int *(*x)[];<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to an array of pointers to int.<br  />
-</li>
+<li>x is a pointer to an array of pointers to int.<br /></li>
 </ul>
 
 <p>
-int F();<br  />
+int F();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning int.<br  />
-</li>
+<li>F is a function returning int.<br /></li>
 </ul>
 
 <p>
-int *F();<br  />
+int *F();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to int.<br  />
-</li>
+<li>F is a function returning a pointer to int.<br /></li>
 </ul>
 
 <p>
-int (*x)();<br  />
+int (*x)();<br />
 </p>
 <ul class="org-ul">
-<li>x is a pointer to a function returning int.<br  />
-</li>
+<li>x is a pointer to a function returning int.<br /></li>
 </ul>
 
 <p>
-int (*x[ 99])();<br  />
+int (*x[ 99])();<br />
 </p>
 <ul class="org-ul">
-<li>x is an array of 99 pointers to functions returning int.<br  />
-</li>
+<li>x is an array of 99 pointers to functions returning int.<br /></li>
 </ul>
 
 <p>
-int (*F())();<br  />
+int (*F())();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to a function returning int.<br  />
-</li>
+<li>F is a function returning a pointer to a function returning int.<br /></li>
 </ul>
 
 <p>
-int *(*F())();<br  />
+int *(*F())();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to a function returning a<br  />
-pointer to an int.<br  />
-</li>
+<li>F is a function returning a pointer to a function returning a<br />
+pointer to an int.<br /></li>
 </ul>
 
 <p>
-int (*F())[];<br  />
+int (*F())[];<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to an array of int.<br  />
-</li>
+<li>F is a function returning a pointer to an array of int.<br /></li>
 </ul>
 
 <p>
-int (*(*F())[])();<br  />
+int (*(*F())[])();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to an array of pointers to<br  />
-functions returning int.<br  />
-</li>
+<li>F is a function returning a pointer to an array of pointers to<br />
+functions returning int.<br /></li>
 </ul>
 
 <p>
-int *(*(*F())[])();<br  />
+int *(*(*F())[])();<br />
 </p>
 <ul class="org-ul">
-<li>F is a function returning a pointer to an array of pointers to<br  />
-functions returning a pointer to int.<br  />
-</li>
+<li>F is a function returning a pointer to an array of pointers to<br />
+functions returning a pointer to int.<br /></li>
 </ul>
 
 
 <p>
-+++Date last modified: 05-Jul-1997<br  />
++++Date last modified: 05-Jul-1997<br />
 </p>
 
 <p>
-Organization: KFW Corporation, Newbury Park, CA<br  />
-Message-ID: &lt;1990Jul16.195111.5976@kfw.COM&gt;<br  />
-Newsgroups: comp.lang.c<br  />
+Organization: KFW Corporation, Newbury Park, CA<br />
+Message-ID: &lt;1990Jul16.195111.5976@kfw.COM&gt;<br />
+Newsgroups: comp.lang.c<br />
 </p>
 
 <p>
-I've received several mail messages since offering to explain the<br  />
-right-left rule via e-mail, so I've decided to post.  For those of<br  />
-you who already know this or don't care, quit now (this is a little<br  />
-long).<br  />
+I've received several mail messages since offering to explain the<br />
+right-left rule via e-mail, so I've decided to post.  For those of<br />
+you who already know this or don't care, quit now (this is a little<br />
+long).<br />
 </p>
 
 <p>
-The "right-left" rule is a completely regular rule for deciphering C<br  />
-declarations.  It can also be useful in creating them.<br  />
+The "right-left" rule is a completely regular rule for deciphering C<br />
+declarations.  It can also be useful in creating them.<br />
 </p>
 
 <p>
-First, symbols.  Read<br  />
+First, symbols.  Read<br />
 </p>
 
 <ul class="org-ul">
-<li>as "pointer to"<br  />
-</li>
+<li>as "pointer to"<br /></li>
 </ul>
 <p>
-[]         as "array of"<br  />
-()         as "function returning"<br  />
+[]         as "array of"<br />
+()         as "function returning"<br />
 </p>
 
 <p>
-as you encounter them in the declaration.<br  />
+as you encounter them in the declaration.<br />
 </p>
 
 <p>
-STEP 1<br  />
+STEP 1<br />
 </p>
-<hr  />
+<hr />
 <p>
-Find the identifier.  This is your starting point.  Then say to yourself,<br  />
-"identifier is".  You've started your declaration.<br  />
-</p>
-
-<p>
-STEP 2<br  />
-</p>
-<hr  />
-<p>
-Look at the symbols on the right of the identifier.  If, say, you find "()"<br  />
-there, then you know that this is the declaration for a function.  So you<br  />
-would then have "identifier is function returning".  Or if you found a<br  />
-"[]" there, you would say "identifier is array of".  Continue right until<br  />
-you run out of symbols <b>OR</b> hit a <b>right</b> parenthesis ")".  (If you hit a<br  />
-left parenthesis, that's the beginning of a () symbol, even if there<br  />
-is stuff in between the parentheses.  More on that below.)<br  />
+Find the identifier.  This is your starting point.  Then say to yourself,<br />
+"identifier is".  You've started your declaration.<br />
 </p>
 
 <p>
-STEP 3<br  />
+STEP 2<br />
 </p>
-<hr  />
+<hr />
 <p>
-Look at the symbols to the left of the identifier.  If it is not one of our<br  />
-symbols above (say, something like "int"), just say it.  Otherwise, translate<br  />
-it into English using that table above.  Keep going left until you run out of<br  />
-symbols <b>OR</b> hit a <b>left</b> parenthesis "(".<br  />
-</p>
-
-<p>
-Now repeat steps 2 and 3 until you've formed your declaration.  Here are some<br  />
-examples:<br  />
+Look at the symbols on the right of the identifier.  If, say, you find "()"<br />
+there, then you know that this is the declaration for a function.  So you<br />
+would then have "identifier is function returning".  Or if you found a<br />
+"[]" there, you would say "identifier is array of".  Continue right until<br />
+you run out of symbols <b>OR</b> hit a <b>right</b> parenthesis ")".  (If you hit a<br />
+left parenthesis, that's the beginning of a () symbol, even if there<br />
+is stuff in between the parentheses.  More on that below.)<br />
 </p>
 
 <p>
-int *p[];<br  />
+STEP 3<br />
+</p>
+<hr />
+<p>
+Look at the symbols to the left of the identifier.  If it is not one of our<br />
+symbols above (say, something like "int"), just say it.  Otherwise, translate<br />
+it into English using that table above.  Keep going left until you run out of<br />
+symbols <b>OR</b> hit a <b>left</b> parenthesis "(".<br />
+</p>
+
+<p>
+Now repeat steps 2 and 3 until you've formed your declaration.  Here are some<br />
+examples:<br />
+</p>
+
+<p>
+int *p[];<br />
 </p>
 
 <ol class="org-ol">
-<li>Find identifier.          int *p[];<br  />
-                               ^<br  />
-"p is"<br  />
-</li>
+<li>Find identifier.          int *p[];<br />
+			       ^<br />
+"p is"<br /></li>
 
-<li>Move right until out of symbols or left parenthesis hit.<br  />
-                          int *p[];<br  />
-                                ^^<br  />
-"p is array of"<br  />
-</li>
+<li>Move right until out of symbols or left parenthesis hit.<br />
+			  int *p[];<br />
+				^^<br />
+"p is array of"<br /></li>
 
-<li>Can't move right anymore (out of symbols), so move left and find:<br  />
-                          int *p[];<br  />
-                              ^<br  />
-"p is array of pointer to"<br  />
-</li>
+<li>Can't move right anymore (out of symbols), so move left and find:<br />
+			  int *p[];<br />
+			      ^<br />
+"p is array of pointer to"<br /></li>
 
-<li>Keep going left and find:<br  />
-                          int *p[];<br  />
-                          ^^^<br  />
-"p is array of pointer to int".<br  />
-</li>
+<li>Keep going left and find:<br />
+			  int *p[];<br />
+			  ^^^<br />
+"p is array of pointer to int".<br /></li>
 </ol>
 
 <p>
-Another example:<br  />
+Another example:<br />
 </p>
 
 <p>
-int *(*func())();<br  />
+int *(*func())();<br />
 </p>
 
 <ol class="org-ol">
-<li>Find the identifier.      int *(*func())();<br  />
-                                 ^^^^<br  />
-"func is"<br  />
-</li>
+<li>Find the identifier.      int *(*func())();<br />
+				 ^^^^<br />
+"func is"<br /></li>
 
-<li>Move right.               int *(*func())();<br  />
-                                     ^^<br  />
-"func is function returning"<br  />
-</li>
+<li>Move right.               int *(*func())();<br />
+				     ^^<br />
+"func is function returning"<br /></li>
 
-<li>Can't move right anymore because of the right parenthesis, so move left.<br  />
-                          int *(*func())();<br  />
-                                ^<br  />
-"func is function returning pointer to"<br  />
-</li>
+<li>Can't move right anymore because of the right parenthesis, so move left.<br />
+			  int *(*func())();<br />
+				^<br />
+"func is function returning pointer to"<br /></li>
 
-<li>Can't move left anymore because of the left parenthesis, so keep going<br  />
-right.                    int *(*func())();<br  />
-                                        ^^<br  />
-"func is function returning pointer to function returning"<br  />
-</li>
+<li>Can't move left anymore because of the left parenthesis, so keep going<br />
+right.                    int *(*func())();<br />
+					^^<br />
+"func is function returning pointer to function returning"<br /></li>
 
-<li>Can't move right anymore because we're out of symbols, so go left.<br  />
-                          int *(*func())();<br  />
-                              ^<br  />
-"func is function returning pointer to function returning pointer to"<br  />
-</li>
+<li>Can't move right anymore because we're out of symbols, so go left.<br />
+			  int *(*func())();<br />
+			      ^<br />
+"func is function returning pointer to function returning pointer to"<br /></li>
 
-<li>And finally, keep going left, because there's nothing left on the right.<br  />
-                          int *(*func())();<br  />
-                          ^^^<br  />
-"func is function returning pointer to function returning pointer to int".<br  />
-</li>
+<li>And finally, keep going left, because there's nothing left on the right.<br />
+			  int *(*func())();<br />
+			  ^^^<br />
+"func is function returning pointer to function returning pointer to int".<br /></li>
 </ol>
 
 <p>
-As you can see, this rule can be quite useful.  You can also use it to<br  />
-sanity check yourself while you are creating declarations, and to give<br  />
-you a hint about where the put the next symbol and whether parentheses<br  />
-are required.<br  />
+As you can see, this rule can be quite useful.  You can also use it to<br />
+sanity check yourself while you are creating declarations, and to give<br />
+you a hint about where the put the next symbol and whether parentheses<br />
+are required.<br />
 </p>
 
 <p>
-Some declarations look much more complicated than they are due to array<br  />
-sizes and argument lists in prototype form.  If you see "[ 3]", that's<br  />
-read as "array (size 3) of&#x2026;".  If you see "(char *,int)" that's read<br  />
-as "function expecting (char *,int) and returning&#x2026;".  Here's a fun<br  />
-one:<br  />
+Some declarations look much more complicated than they are due to array<br />
+sizes and argument lists in prototype form.  If you see "[ 3]", that's<br />
+read as "array (size 3) of&#x2026;".  If you see "(char *,int)" that's read<br />
+as "function expecting (char *,int) and returning&#x2026;".  Here's a fun<br />
+one:<br />
 </p>
 
 <p>
-int (*(*fun<sub>one</sub>)(char *,double))[9 ][20 ];<br  />
+int (*(*fun<sub>one</sub>)(char *,double))[9 ][20 ];<br />
 </p>
 
 <p>
-I won't go through each of the steps to decipher this one.  It's:<br  />
+I won't go through each of the steps to decipher this one.  It's:<br />
 </p>
 
 <p>
-"fun<sub>one</sub> is pointer to function expecting (char *,double) and<br  />
- returning pointer to array (size 9) of array (size 20) of int."<br  />
+"fun<sub>one</sub> is pointer to function expecting (char *,double) and<br />
+ returning pointer to array (size 9) of array (size 20) of int."<br />
 </p>
 
 <p>
-As you can see, it's not as complicated if you get rid of the array sizes<br  />
-and argument lists:<br  />
+As you can see, it's not as complicated if you get rid of the array sizes<br />
+and argument lists:<br />
 </p>
 
 <p>
-int (*(*fun<sub>one</sub>)())[][];<br  />
+int (*(*fun<sub>one</sub>)())[][];<br />
 </p>
 
 <p>
-You can decipher it that way, and then put in the array sizes and argument<br  />
-lists later.<br  />
+You can decipher it that way, and then put in the array sizes and argument<br />
+lists later.<br />
 </p>
 
 <p>
-Some final words:<br  />
+Some final words:<br />
 </p>
 
 <p>
-It is quite possible to make illegal declarations using this rule,<br  />
-so some knowledge of what's legal in C is necessary.  For instance,<br  />
-if the above had been:<br  />
+It is quite possible to make illegal declarations using this rule,<br />
+so some knowledge of what's legal in C is necessary.  For instance,<br />
+if the above had been:<br />
 </p>
 
 <p>
-int *((*fun<sub>one</sub>)())[][];<br  />
+int *((*fun<sub>one</sub>)())[][];<br />
 </p>
 
 <p>
-it would have been "fun<sub>one</sub> is pointer to function returning array of array of<br  />
-                                          ^^^^^^^^^^^^^^^^^^^^^^^^<br  />
-pointer to int".  Since a function cannot return an array, but only a<br  />
-pointer to an array, that declaration is illegal.<br  />
+it would have been "fun<sub>one</sub> is pointer to function returning array of array of<br />
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^<br />
+pointer to int".  Since a function cannot return an array, but only a<br />
+pointer to an array, that declaration is illegal.<br />
 </p>
 
 <p>
-Will<br  />
-will@kfw.com<br  />
-uunet!charyb!will<br  />
+Will<br />
+will@kfw.com<br />
+uunet!charyb!will<br />
 </p>
 </div>
 </div>
@@ -571,7 +518,7 @@ uunet!charyb!will<br  />
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-10-26</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -610,7 +557,7 @@ uunet!charyb!will<br  />
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

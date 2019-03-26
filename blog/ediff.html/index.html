@@ -47,58 +47,56 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">link 关于几种diff tool 的比较 KDiff3, Diffuse, and VimDiff  Meld Emacs-Ediff(有图有真相)</a></li>
-<li><a href="#sec-2">一些配置</a></li>
+<li><a href="#org2205425">link 关于几种diff tool 的比较 KDiff3, Diffuse, and VimDiff  Meld Emacs-Ediff(有图有真相)</a></li>
+<li><a href="#org5a95294">一些配置</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">link 关于几种diff tool 的比较 KDiff3, Diffuse, and VimDiff  Meld Emacs-Ediff(有图有真相)</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org2205425" class="outline-2">
+<h2 id="org2205425">link 关于几种diff tool 的比较 KDiff3, Diffuse, and VimDiff  Meld Emacs-Ediff(有图有真相)</h2>
+<div class="outline-text-2" id="text-org2205425">
 <p>
-<a href="http://rvb.mytanet.de/comparing-latex-files-with-latexdiff.shtml">http://rvb.mytanet.de/comparing-latex-files-with-latexdiff.shtml</a> (此链接已失效)<br  />
-以下几张图 可以显示出 几种diff tool 在比较时的不同，可以明显看出 ediff 能够清<br  />
-晰的显示 添加了什么，修改了什么，而其他几种工具， 简直一团糟<br  />
-<img src="/assets/blog/ediff.html/ediff.png" alt="ediff.png" /><br  />
-<img src="/assets/blog/ediff.html/meld.png" alt="meld.png" /><br  />
-<img src="/assets/blog/ediff.html/vimdiff.png" alt="vimdiff.png" /><br  />
-<img src="/assets/blog/ediff.html/diffuse.png" alt="diffuse.png" /><br  />
-<img src="/assets/blog/ediff.html/kdiff3.png" alt="kdiff3.png" /><br  />
+<a href="http://rvb.mytanet.de/comparing-latex-files-with-latexdiff.shtml">http://rvb.mytanet.de/comparing-latex-files-with-latexdiff.shtml</a> (此链接已失效)<br />
+以下几张图 可以显示出 几种diff tool 在比较时的不同，可以明显看出 ediff 能够清<br />
+晰的显示 添加了什么，修改了什么，而其他几种工具， 简直一团糟<br />
+<img src="/assets/blog/ediff.html/ediff.png" alt="ediff.png" /><br />
+<img src="/assets/blog/ediff.html/meld.png" alt="meld.png" /><br />
+<img src="/assets/blog/ediff.html/vimdiff.png" alt="vimdiff.png" /><br />
+<img src="/assets/blog/ediff.html/diffuse.png" alt="diffuse.png" /><br />
+<img src="/assets/blog/ediff.html/kdiff3.png" alt="kdiff3.png" /><br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">一些配置</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org5a95294" class="outline-2">
+<h2 id="org5a95294">一些配置</h2>
+<div class="outline-text-2" id="text-org5a95294">
 <p>
-值得一提的一点Emacs中的ediff进行文件比较及合并的工具,<br  />
+值得一提的一点Emacs中的ediff进行文件比较及合并的工具,<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">emacsclientw -eval <span style="color: #ffa07a;">"(ediff-files \"&#25991;&#20214;1.txt\" \"&#25991;&#20214;2.txt\")"</span>
 <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#36825;&#20010;&#27979;&#35797;&#20102;&#19968;&#19979;&#22909;&#20687;&#19981;&#34892;&#65292;&#25253;&#25214;&#19981;&#30528;&#25991;&#20214;1.txt&#30340;&#38169;</span>
 emacs -eval <span style="color: #ffa07a;">"(ediff-files \"&#25991;&#20214;1.txt\" \"&#25991;&#20214;2.txt\")"</span>
 </pre>
 </div>
 <p>
-这样就可以对文件1.txt 文件2.txt进行比较了不过要让它与其他工具进行集成,还真有点麻烦.<br  />
-1是路径文件 对d:\asd\1sda\a.txt这样的路径它不理解d:/asd/1sda/a.txt它理解 .<br  />
-但与其他工具进行集成的时候,它是不知道该用"/"而不是"\"<br  />
-<a href="http://www.emacswiki.org/emacs/EdiffOnWThirtyTwo">EdiffOnEmacsWiki</a> 上找到<br  />
-这样一段程序，它使用gcc 编译之后生成一个程序，这个程序接收两个参数，即两个文件名<br  />
-然后emacs就会调用ediff 对这文件进行比较<br  />
+这样就可以对文件1.txt 文件2.txt进行比较了不过要让它与其他工具进行集成,还真有点麻烦.<br />
+1是路径文件 对d:\asd\1sda\a.txt这样的路径它不理解d:/asd/1sda/a.txt它理解 .<br />
+但与其他工具进行集成的时候,它是不知道该用"/"而不是"\"<br />
+<a href="http://www.emacswiki.org/emacs/EdiffOnWThirtyTwo">EdiffOnEmacsWiki</a> 上找到<br />
+这样一段程序，它使用gcc 编译之后生成一个程序，这个程序接收两个参数，即两个文件名<br />
+然后emacs就会调用ediff 对这文件进行比较<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
 
 <span style="color: #AEAEAE;">/*</span>
 <span style="color: #AEAEAE;"> * call-ediff is used to call ediff from Perforce.</span>
 <span style="color: #AEAEAE;"> * gcc -o call-ediff call-ediff.c &amp;&amp; call-ediff y:/Source/find_audio_xmls.sh y:/Source/find_audio_xmls.sh~</span>
-<span style="color: #AEAEAE;"> </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;"> */</span>
 
 <span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">hackPathSeparator</span>(<span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">windozePath</span>) {
     <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">c</span>;
@@ -113,15 +111,15 @@ emacs -eval <span style="color: #ffa07a;">"(ediff-files \"&#25991;&#20214;1.txt\
     <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">param1</span> = argv[1];
     <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">param2</span> = argv[2];
 
-    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">We get \ part separators from Perforce; hack these to / </span><span style="color: #AEAEAE;">*/</span>
+    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">We get \ part separators from Perforce; hack these to /</span><span style="color: #AEAEAE;"> */</span>
 
     hackPathSeparator(param1);
     hackPathSeparator(param2);
 
-    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">hack the arg list (ugh) </span><span style="color: #AEAEAE;">*/</span>
+    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">hack the arg list (ugh)</span><span style="color: #AEAEAE;"> */</span>
 
     argv[1] = <span style="color: #ffa07a;">"-e"</span>;
-    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">Sample usage: argv[2] = "(progn (message \"foo\") (raise-frame))"; </span><span style="color: #AEAEAE;">*/</span>
+    <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">Sample usage: argv[2] = "(progn (message \"foo\") (raise-frame))";</span><span style="color: #AEAEAE;"> */</span>
 
     <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">command</span> = (<span style="color: #8DA6CE;">char</span> *)malloc(4096);
     sprintf(command, <span style="color: #ffa07a;">"(progn (raise-frame) (ediff \"%s\" \"%s\"))"</span>, param1, param2);
@@ -131,40 +129,40 @@ emacs -eval <span style="color: #ffa07a;">"(ediff-files \"&#25991;&#20214;1.txt\
     execvp(<span style="color: #ffa07a;">"gnuclientw.exe"</span>, argv);
     <span style="color: #FBDE2D;">return</span> 0;
 }
+
+
 </pre>
 </div>
 
 <p>
-将文件命名为call-ediff.c<br  />
-然后在Windows上的cygwin 或mingw上,用gcc进行编译,编译后生成的文件接收两个参数,两个文件名,它会自动将路径进行转换.<br  />
+将文件命名为call-ediff.c<br />
+然后在Windows上的cygwin 或mingw上,用gcc进行编译,编译后生成的文件接收两个参数,两个文件名,它会自动将路径进行转换.<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">gcc -Wl,--subsystem,windows -o call-ediff call-ediff.c
 </pre>
 </div>
 <p>
-不过有个问题我用emacsclient.exe 而不是gnuclientw.exe 所以编译前需要对代码进行一下修改<br  />
-我用cygwin下的gcc 编译了生成了三个文件,分别是用<br  />
-runemacs.exe emacsclientw.exe gnuclientw.exe<br  />
-运行(ediff)函数的结果 ，不过要想使用它们，你得安装cygwin<br  />
-<a href="/assets/blog/ediff.html/runemacs-ediff.exe">emacs-ediff.exe</a><br  />
-<a href="/assets/blog/ediff.html/emacsclientw-ediff.exe">emacsclientw-ediff.exe</a><br  />
-<a href="/assets/blog/ediff.html/gnuclientw-ediff.exe">gnuclinet-ediff.exe</a><br  />
-你可以直接下载使用使用它们,只需emacsclientw-ediff c:\a.txt c:\b.txt即可,不必担心路径的问题.<br  />
+不过有个问题我用emacsclient.exe 而不是gnuclientw.exe 所以编译前需要对代码进行一下修改<br />
+我用cygwin下的gcc 编译了生成了三个文件,分别是用<br />
+runemacs.exe emacsclientw.exe gnuclientw.exe<br />
+运行(ediff)函数的结果 ，不过要想使用它们，你得安装cygwin<br />
+<a href="/assets/blog/ediff.html/runemacs-ediff.exe">emacs-ediff.exe</a><br />
+<a href="/assets/blog/ediff.html/emacsclientw-ediff.exe">emacsclientw-ediff.exe</a><br />
+<a href="/assets/blog/ediff.html/gnuclientw-ediff.exe">gnuclinet-ediff.exe</a><br />
+你可以直接下载使用使用它们,只需emacsclientw-ediff c:\a.txt c:\b.txt即可,不必担心路径的问题.<br />
 </p>
 
 
 
 <p>
-但是用gcc 编译有个问题，那就是你必须有个gcc 编译器，且离了gcc编译器后这个程序就没用了<br  />
-我试图用VC 编译它，发现编译不了，做了一些修改，修改后的内容如下<br  />
-修改后，我是调用 emacsclientw.exe 来调用 ediff 的，所以你必须配置好让 emacs 启动server<br  />
-关于emacsclient 的另一篇文章在<a href="emacs-on-windows.html">这里</a> 有介绍。<br  />
-有这样一段程序<br  />
+但是用gcc 编译有个问题，那就是你必须有个gcc 编译器，且离了gcc编译器后这个程序就没用了<br />
+我试图用VC 编译它，发现编译不了，做了一些修改，修改后的内容如下<br />
+修改后，我是调用 emacsclientw.exe 来调用 ediff 的，所以你必须配置好让 emacs 启动server<br />
+关于emacsclient 的另一篇文章在<a href="emacs-on-windows.html">这里</a> 有介绍。<br />
+有这样一段程序<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">//start here.
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">include &lt;stdio.h&gt;</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">include &lt;stdlib.h&gt;</span>
@@ -206,7 +204,7 @@ int main(int argc, char *argv[], char *envp[]) {
 </pre>
 </div>
 <p>
-用VC编译的<a href="/assets/blog/ediff.html/call-ediff-by-emacsclientw-compiled-by-vc.exe">run-ediff-compiled-by-vc.exe</a><br  />
+用VC编译的<a href="/assets/blog/ediff.html/call-ediff-by-emacsclientw-compiled-by-vc.exe">run-ediff-compiled-by-vc.exe</a><br />
 </p>
 </div>
 </div>
@@ -216,7 +214,7 @@ int main(int argc, char *argv[], char *envp[]) {
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-06-04</span>
-        <span title="last modification date" class="post-info">2016-09-12</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/windows/">Windows</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -255,7 +253,7 @@ int main(int argc, char *argv[], char *envp[]) {
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

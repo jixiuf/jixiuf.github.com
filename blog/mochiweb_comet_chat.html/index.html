@@ -45,31 +45,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. 代码 位置</a></li>
-<li><a href="#sec-2">2. 操作:</a></li>
-<li><a href="#sec-3">3. Comet</a></li>
-<li><a href="#sec-4">4. 代码讲解</a></li>
+<li><a href="#org449758e">1. 代码 位置</a></li>
+<li><a href="#orgeb71bc8">2. 操作:</a></li>
+<li><a href="#orgaefeec4">3. Comet</a></li>
+<li><a href="#org5bc0798">4. 代码讲解</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> 代码 位置</h2>
+<div id="outline-container-org449758e" class="outline-2">
+<h2 id="org449758e"><span class="section-number-2">1</span> 代码 位置</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://github.com/jixiuf/helloerlang/tree/master/mochiweb_comet_chat">https://github.com/jixiuf/helloerlang/tree/master/mochiweb_comet_chat</a>
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> 操作:</h2>
+<div id="outline-container-orgeb71bc8" class="outline-2">
+<h2 id="orgeb71bc8"><span class="section-number-2">2</span> 操作:</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 分别打开两个网页，然后，对textfield中输入内容，在另一个网页中会即时显现.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Comet</h2>
+<div id="outline-container-orgaefeec4" class="outline-2">
+<h2 id="orgaefeec4"><span class="section-number-2">3</span> Comet</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Comet 是一项很时髦的技术。其目的很简单：由于历史原因，目前 HTTP 协议信息都是客
@@ -77,12 +77,9 @@ Comet 是一项很时髦的技术。其目的很简单：由于历史原因，�
 某些应用的时候就会遇到麻烦。例如：
 </p>
 <ul class="org-ul">
-<li>当邮件服务器收到新的邮件时，及时报告给用户，如果他在线的话（GMail 这样做了）
-</li>
-<li>当 Web Chat 服务器收到新的信息时，及时发送信息到相应的在线用户（Web Chat 的基本需求）。
-</li>
-<li>聊天时提示你对方正在输入（时下 IM 客户端很时髦的一个功能）。
-</li>
+<li>当邮件服务器收到新的邮件时，及时报告给用户，如果他在线的话（GMail 这样做了）</li>
+<li>当 Web Chat 服务器收到新的信息时，及时发送信息到相应的在线用户（Web Chat 的基本需求）。</li>
+<li>聊天时提示你对方正在输入（时下 IM 客户端很时髦的一个功能）。</li>
 </ul>
 
 <p>
@@ -93,14 +90,13 @@ Erlang + MochiWeb，还是很好的利用了 Erlang 可以轻松建立大量连�
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 代码讲解</h2>
+<div id="outline-container-org5bc0798" class="outline-2">
+<h2 id="org5bc0798"><span class="section-number-2">4</span> 代码讲解</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 index.html
 </p>
 <div class="org-src-container">
-
 <pre class="src src-javascript"><span style="color: #FBDE2D;">function</span> <span style="color: #FF6400;">get</span>(){
         $.ajax({
             type: <span style="color: #ffa07a;">"GET"</span>,
@@ -113,13 +109,13 @@ index.html
     $(<span style="color: #ffa07a;">"#history"</span>).append(<span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">Date</span>().toLocaleString()+<span style="color: #ffa07a;">":"</span>+data+<span style="color: #ffa07a;">"&lt;br/&gt;"</span>);
     get();
 }
+
 </pre>
 </div>
 <p>
 在index.html 加载完比后，会先调用一次:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-javascript">get();
 </pre>
 </div>
@@ -132,7 +128,6 @@ index.html
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-javascript">$(<span style="color: #ffa07a;">'#send'</span>).click(
     <span style="color: #FBDE2D;">function</span>(){
         $.ajax({
@@ -148,6 +143,7 @@ index.html
     }
 );
 });
+
 </pre>
 </div>
 <p>
@@ -155,7 +151,6 @@ index.html
 服务器在接到这条消息后,会进行如下处理:
 </p>
 <div class="org-src-container">
-
 <pre class="src src-erlang">Data = Req:parse_post(),
 Room = get_the_room(),
 % post
@@ -169,7 +164,6 @@ Room ! {self(), post, list_to_binary(proplists:get_value("message", Data))},
 那些以GET方式请求的客户端到此时才返回（如果没有超时的话。）
 </p>
 <div class="org-src-container">
-
 <pre class="src src-erlang">{From, post, Message} -&gt;
     From ! posted,
     lists:foreach(fun(User) -&gt;
@@ -182,6 +176,7 @@ Room ! {self(), post, list_to_binary(proplists:get_value("message", Data))},
     room([]),
     io:format("~n",[]) ;
 %% room([]);
+
 </pre>
 </div>
 </div>
@@ -192,7 +187,7 @@ Room ! {self(), post, list_to_binary(proplists:get_value("message", Data))},
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-06-26</span>
-        <span title="last modification date" class="post-info">2017-01-22</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/erlang/">Erlang</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -231,7 +226,7 @@ Room ! {self(), post, list_to_binary(proplists:get_value("message", Data))},
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; qq &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

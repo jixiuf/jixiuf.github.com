@@ -47,73 +47,84 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">and or andalso orelse</a></li>
-<li><a href="#sec-2">Key-Value 存储</a>
+<li><a href="#org9b515ce">and or andalso orelse</a></li>
+<li><a href="#org2166169">Key-Value 存储</a>
 <ul>
-<li><a href="#sec-2-1">对于小数据量，  有proplist 和 orddict</a></li>
-<li><a href="#sec-2-2">对于大数据量 有dicts gb_trees</a></li>
+<li><a href="#org2ff34a2">对于小数据量，  有proplist 和 orddict</a></li>
+<li><a href="#org02c0d89">对于大数据量 有dicts gb_trees</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">and or andalso orelse</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org9b515ce" class="outline-2">
+<h2 id="org9b515ce">and or andalso orelse</h2>
+<div class="outline-text-2" id="text-org9b515ce">
 <p>
-Expr1 orelse Expr2 Expr2可能被短路， 不运算<br  />
-Expr1 or Expr2 Expr2一定会被运算<br  />
-Expr1 andalso Expr2 Expr2一定会被运算<br  />
-Expr1 and Expr2 Expr2可能被短路， 不运算<br  />
+Expr1 orelse Expr2 Expr2可能被短路， 不运算<br />
+Expr1 or Expr2 Expr2一定会被运算<br />
+Expr1 andalso Expr2 Expr2一定会被运算<br />
+Expr1 and Expr2 Expr2可能被短路， 不运算<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Key-Value 存储</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">对于小数据量，  有proplist 和 orddict</h3>
-<div class="outline-text-3" id="text-2-1">
-</div><ul class="org-ul"><li><a id="sec-2-1-1" name="sec-2-1-1"></a>proplist<br  /><div class="outline-text-4" id="text-2-1-1">
+<div id="outline-container-org2166169" class="outline-2">
+<h2 id="org2166169">Key-Value 存储</h2>
+<div class="outline-text-2" id="text-org2166169">
+</div>
+<div id="outline-container-org2ff34a2" class="outline-3">
+<h3 id="org2ff34a2">对于小数据量，  有proplist 和 orddict</h3>
+<div class="outline-text-3" id="text-org2ff34a2">
+</div>
+<ul class="org-ul">
+<li><a id="org4e8de5f"></a>proplist<br />
+<div class="outline-text-4" id="text-org4e8de5f">
 <p>
-提供了，<br  />
-proplists:delete/2, proplists:get_value/2, proplists:get_all_values/2, proplists:lookup/2 and<br  />
-proplists:lookup_all/2.<br  />
-没有add or update 方法，只能手工使用 [H|T] 的方式自已处理，其内部结构[{Key,Value}].<br  />
-可以使用lists:keyreplace/4.进行处理<br  />
+提供了，<br />
+proplists:delete/2, proplists:get_value/2, proplists:get_all_values/2, proplists:lookup/2 and<br />
+proplists:lookup_all/2.<br />
+没有add or update 方法，只能手工使用 [H|T] 的方式自已处理，其内部结构[{Key,Value}].<br />
+可以使用lists:keyreplace/4.进行处理<br />
 </p>
 </div>
 </li>
-<li><a id="sec-2-1-2" name="sec-2-1-2"></a>orddict<br  /><div class="outline-text-4" id="text-2-1-2">
+<li><a id="org05d5ab4"></a>orddict<br />
+<div class="outline-text-4" id="text-org05d5ab4">
 <p>
-the whole list is sorted for faster average lookup,<br  />
-75左右个元素时效率最高<br  />
-</p>
-</div>
-</li></ul>
-</div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">对于大数据量 有dicts gb_trees</h3>
-<div class="outline-text-3" id="text-2-2">
-</div><ul class="org-ul"><li><a id="sec-2-2-1" name="sec-2-2-1"></a>dicts 适于读多于写的<br  /><div class="outline-text-4" id="text-2-2-1">
-<p>
-Dicts are thus very good choices to scale orddicts up whenever it is needed.<br  />
+the whole list is sorted for faster average lookup,<br />
+75左右个元素时效率最高<br />
 </p>
 </div>
 </li>
-<li><a id="sec-2-2-2" name="sec-2-2-2"></a>gb_trees适于写多于读的<br  /><div class="outline-text-4" id="text-2-2-2">
+</ul>
+</div>
+<div id="outline-container-org02c0d89" class="outline-3">
+<h3 id="org02c0d89">对于大数据量 有dicts gb_trees</h3>
+<div class="outline-text-3" id="text-org02c0d89">
+</div>
+<ul class="org-ul">
+<li><a id="org904e262"></a>dicts 适于读多于写的<br />
+<div class="outline-text-4" id="text-org904e262">
 <p>
-正常的gb_trees:enter/2, gb_trees:lookup/2 and gb_trees:delete_any/2<br  />
-smart 的：gb_trees:insert/3, gb_trees:get/2, gb_trees:update/3 and gb_trees:delete/2.<br  />
-smart的之处在于，它认为要处理的key在 gb_trees中存在，所以一些检查不必做，速度会快一点。<br  />
+Dicts are thus very good choices to scale orddicts up whenever it is needed.<br />
+</p>
+</div>
+</li>
+<li><a id="org2f35bdb"></a>gb_trees适于写多于读的<br />
+<div class="outline-text-4" id="text-org2f35bdb">
+<p>
+正常的gb_trees:enter/2, gb_trees:lookup/2 and gb_trees:delete_any/2<br />
+smart 的：gb_trees:insert/3, gb_trees:get/2, gb_trees:update/3 and gb_trees:delete/2.<br />
+smart的之处在于，它认为要处理的key在 gb_trees中存在，所以一些检查不必做，速度会快一点。<br />
 </p>
 
 <p>
-<a href="https://github.com/jixiuf/helloerlang/tree/master/benchmark/src">https://github.com/jixiuf/helloerlang/tree/master/benchmark/src</a><br  />
+<a href="https://github.com/jixiuf/helloerlang/tree/master/benchmark/src">https://github.com/jixiuf/helloerlang/tree/master/benchmark/src</a><br />
 </p>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -122,7 +133,7 @@ smart的之处在于，它认为要处理的key在 gb_trees中存在，所以一
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-11-20</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/erlang/">Erlang</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -161,7 +172,7 @@ smart的之处在于，它认为要处理的key在 gb_trees中存在，所以一
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

@@ -44,7 +44,6 @@
 <div class="post">
 <h1>concat()可变长度参数的实现</h1>
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">file name : strcap.c</span>
 <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">created at: 2011&#24180;10&#26376;22&#26085; &#26143;&#26399;&#20845; 21&#26102;31&#20998;35&#31186;</span>
 <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">author:  &#32426;&#31168;&#23792;</span>
@@ -64,11 +63,11 @@
     <span style="color: #FBDE2D;">return</span> <span style="color: #D8FA3C;">NULL</span>;
   }
   len= strlen(first);
-  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#21487;&#21464;&#21442;&#25968;&#30340;&#35843;&#29992;&#22522;&#26412;&#35201; </span><span style="color: #AEAEAE;">*/</span>
-  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_start </span><span style="color: #AEAEAE;">*/</span>
-  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_arg (&#20013;&#38388;&#21487;&#22810;&#27425;&#35843;&#29992;,&#20197;&#20415;&#36941;&#21382;&#25152;&#26377;&#21487;&#21464;&#21442;&#25968;) </span><span style="color: #AEAEAE;">*/</span>
-  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_end </span><span style="color: #AEAEAE;">*/</span>
-  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#19977;&#20010;&#20989;&#25968;&#35843;&#29992;&#26469;&#23436;&#25104; </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#21487;&#21464;&#21442;&#25968;&#30340;&#35843;&#29992;&#22522;&#26412;&#35201;</span><span style="color: #AEAEAE;"> */</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_start</span><span style="color: #AEAEAE;"> */</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_arg (&#20013;&#38388;&#21487;&#22810;&#27425;&#35843;&#29992;,&#20197;&#20415;&#36941;&#21382;&#25152;&#26377;&#21487;&#21464;&#21442;&#25968;)</span><span style="color: #AEAEAE;"> */</span>
+  <span style="color: #AEAEAE;">/*   </span><span style="color: #AEAEAE;">va_end</span><span style="color: #AEAEAE;"> */</span>
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#19977;&#20010;&#20989;&#25968;&#35843;&#29992;&#26469;&#23436;&#25104;</span><span style="color: #AEAEAE;"> */</span>
   va_start(arg ,first);
   <span style="color: #FBDE2D;">while</span> (<span style="color: #D8FA3C;">NULL</span>!= (p= va_arg(arg ,<span style="color: #8DA6CE;">char</span>*))){
     len+=strlen(p);
@@ -98,7 +97,7 @@
   <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">*p &#21021;&#22987;&#21270;&#20026;0,&#23454;&#38469;&#26159;&#31354;&#25351;&#38024;,&#22240;&#20026;&#23427;&#21069;&#38754;&#26377; char* &#30340;&#31867;&#22411;&#22768;&#26126;&#25925;&#32534;&#35793;&#22120;,&#21487;&#20197;&#30693;&#36947;&#23427;&#26159;&#19968;&#20010;char* &#31867;&#22411;&#30340;&#31354;&#25351;&#38024;,&#32780;&#38750;&#25968;&#23383;0</span>
   <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20294;,&#22312;&#20570;&#20026;&#20989;&#25968;&#21442;&#25968;&#20256;&#20837;&#26102;,&#23427;&#24182;&#19981;&#30693;&#36947;&#23427;&#31350;&#31455;&#26159;&#25968;&#23383;0&#36824;&#26159;&#19968;&#20010;&#31354;&#25351;&#20160;,&#25925;&#23558;&#23427;&#24378;&#36716;</span>
   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20026;char* &#31867;&#22411;&#30340;&#31354;&#25351;&#20160;,&#26126;&#30830;&#21578;&#35785;&#32534;&#35793;&#22120;&#23427;&#26159;&#19968;&#20010;&#31354;&#25351;&#38024;</span>
-  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#28982;&#32780;, &#20256;&#20837;&#20989;&#25968;&#30340;&#21442;&#25968;&#19981;&#19968;&#23450;&#34987;&#24403;&#20316;&#25351;&#38024;&#29615;&#22659;, &#22240;&#32780;&#32534;&#35793;&#22120;&#21487;&#33021;&#19981;&#33021;&#35782;&#21035;&#26410;&#21152;&#20462;&#39280;&#30340; 0 ``&#34920;&#31034;" &#25351;&#38024; </span><span style="color: #AEAEAE;">*/</span>
+  <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#28982;&#32780;, &#20256;&#20837;&#20989;&#25968;&#30340;&#21442;&#25968;&#19981;&#19968;&#23450;&#34987;&#24403;&#20316;&#25351;&#38024;&#29615;&#22659;, &#22240;&#32780;&#32534;&#35793;&#22120;&#21487;&#33021;&#19981;&#33021;&#35782;&#21035;&#26410;&#21152;&#20462;&#39280;&#30340; 0 ``&#34920;&#31034;" &#25351;&#38024;</span><span style="color: #AEAEAE;"> */</span>
   <span style="color: #8DA6CE;">char</span> * <span style="color: #40E0D0;">hel</span>=  concat (<span style="color: #ffa07a;">"hello"</span> <span style="color: #ffa07a;">",world"</span>,(<span style="color: #8DA6CE;">char</span>*)<span style="color: #D8FA3C;">NULL</span>);
   puts(hel);
   free(hel);
@@ -116,7 +115,7 @@
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-10-22</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -155,7 +154,7 @@
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

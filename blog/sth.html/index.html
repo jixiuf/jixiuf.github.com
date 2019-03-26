@@ -47,211 +47,209 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">make_mark</a></li>
-<li><a href="#sec-2">c cpp  的一些判断</a></li>
-<li><a href="#sec-3">const 的作用</a></li>
-<li><a href="#sec-4">c++的初始化</a></li>
-<li><a href="#sec-5">c++ 的声明与定义，</a>
+<li><a href="#orgdb93af4">make_mark</a></li>
+<li><a href="#org12caae9">c cpp  的一些判断</a></li>
+<li><a href="#org5af15de">const 的作用</a></li>
+<li><a href="#org01e0f1e">c++的初始化</a></li>
+<li><a href="#org44872ee">c++ 的声明与定义，</a>
 <ul>
-<li><a href="#sec-5-1">在头文件中不可以出现定义,只能有声明,因为会被多个源文件引用， 导致多处定义</a></li>
+<li><a href="#orgcb4bfc2">在头文件中不可以出现定义,只能有声明,因为会被多个源文件引用， 导致多处定义</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">c++ 引用</a></li>
-<li><a href="#sec-7">c++ 枚举 enum</a></li>
-<li><a href="#sec-8">string 相关</a>
+<li><a href="#orgb3d5455">c++ 引用</a></li>
+<li><a href="#org38405b9">c++ 枚举 enum</a></li>
+<li><a href="#org74fa9d8">string 相关</a>
 <ul>
-<li><a href="#sec-8-1">string.size() 返回string::size_type类型,而非int</a></li>
-<li><a href="#sec-8-2">取string第n个字符用[]下标操作即可,也可对其赋值,只能对已经存在的元素赋值，不能添加</a></li>
-<li><a href="#sec-8-3">cctype 头文件里一些函数如isupper tolower isspace</a></li>
+<li><a href="#org5506936">string.size() 返回string::size_type类型,而非int</a></li>
+<li><a href="#orgfb8b399">取string第n个字符用[]下标操作即可,也可对其赋值,只能对已经存在的元素赋值，不能添加</a></li>
+<li><a href="#org0e414c1">cctype 头文件里一些函数如isupper tolower isspace</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">vector 容器</a>
+<li><a href="#org3ccc62b">vector 容器</a>
 <ul>
-<li><a href="#sec-9-1">vector [] 下标操作同 string ,可get 可set,只能针对存在的元素,但不能add</a></li>
-<li><a href="#sec-9-2">使用iterator</a></li>
-<li><a href="#sec-9-3">使用const_iterator</a></li>
-<li><a href="#sec-9-4">vector的iterator可以进行简单的算术运算操作，</a></li>
-<li><a href="#sec-9-5">任何改变vector长度的操作，都会使已存在的iterator 失效,</a></li>
+<li><a href="#orgdca4702">vector [] 下标操作同 string ,可get 可set,只能针对存在的元素,但不能add</a></li>
+<li><a href="#org8bc11bf">使用iterator</a></li>
+<li><a href="#org681e98c">使用const_iterator</a></li>
+<li><a href="#orgdb012ca">vector的iterator可以进行简单的算术运算操作，</a></li>
+<li><a href="#orge7f2ff7">任何改变vector长度的操作，都会使已存在的iterator 失效,</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">bitset</a></li>
-<li><a href="#sec-11">数组</a>
+<li><a href="#org5f2fbea">bitset</a></li>
+<li><a href="#orgf015b42">数组</a>
 <ul>
-<li><a href="#sec-11-1">初始化</a></li>
+<li><a href="#orgc12d063">初始化</a></li>
 </ul>
 </li>
-<li><a href="#sec-12">指针</a>
+<li><a href="#org627f529">指针</a>
 <ul>
-<li><a href="#sec-12-1">指针的定义 风格</a></li>
-<li><a href="#sec-12-2">指针的初始化</a></li>
-<li><a href="#sec-12-3">指针类型要匹配</a></li>
-<li><a href="#sec-12-4">指针与引用的区别</a></li>
-<li><a href="#sec-12-5">指针的运算</a></li>
-<li><a href="#sec-12-6">指向const对象的指针 和const 指针(本身的值不可变)</a></li>
+<li><a href="#org781110d">指针的定义 风格</a></li>
+<li><a href="#org758c89d">指针的初始化</a></li>
+<li><a href="#orge64c258">指针类型要匹配</a></li>
+<li><a href="#orgbe9e03d">指针与引用的区别</a></li>
+<li><a href="#orgd454f1b">指针的运算</a></li>
+<li><a href="#orge156d22">指向const对象的指针 和const 指针(本身的值不可变)</a></li>
 </ul>
 </li>
-<li><a href="#sec-13">动态数组</a></li>
-<li><a href="#sec-14">-&gt; 操作符</a></li>
-<li><a href="#sec-15">sizeof 操作符 的结果是 编译时常量</a></li>
-<li><a href="#sec-16">new delete</a></li>
-<li><a href="#sec-17">强制类型转换( static_cast const_cast, dynamic_cast, reinterpret_cast)</a>
+<li><a href="#org797d468">动态数组</a></li>
+<li><a href="#orgbb14d9b">-&gt; 操作符</a></li>
+<li><a href="#orga1edbed">sizeof 操作符 的结果是 编译时常量</a></li>
+<li><a href="#org465d317">new delete</a></li>
+<li><a href="#org82c689f">强制类型转换( static_cast const_cast, dynamic_cast, reinterpret_cast)</a>
 <ul>
-<li><a href="#sec-17-1">static_cast 默认所有的隐式类型转换，都可以通过static_cast显示实现</a></li>
-<li><a href="#sec-17-2">const_cast 去掉var的const 属性</a></li>
-<li><a href="#sec-17-3">reinterpret_cast</a></li>
+<li><a href="#org78864ea">static_cast 默认所有的隐式类型转换，都可以通过static_cast显示实现</a></li>
+<li><a href="#orga7aa1da">const_cast 去掉var的const 属性</a></li>
+<li><a href="#org808c710">reinterpret_cast</a></li>
 </ul>
 </li>
-<li><a href="#sec-18">switch</a></li>
-<li><a href="#sec-19">内联函数</a>
+<li><a href="#org5c53734">switch</a></li>
+<li><a href="#org9354826">内联函数</a>
 <ul>
-<li><a href="#sec-19-1">内联函数应该在头文件中定义(对编译器必须是可见的)</a></li>
+<li><a href="#orgcad2afd">内联函数应该在头文件中定义(对编译器必须是可见的)</a></li>
 </ul>
 </li>
-<li><a href="#sec-20">成员函数</a>
+<li><a href="#org0fe0e2f">成员函数</a>
 <ul>
-<li><a href="#sec-20-1">成员函数可在类外或类内定义，在类内定义 ，编译器隐式的将其转成内联函数</a></li>
-<li><a href="#sec-20-2">成员函数的隐含形参this 是一个指针(不是引用),指向调用此函数的对象的地址</a></li>
+<li><a href="#org7453035">成员函数可在类外或类内定义，在类内定义 ，编译器隐式的将其转成内联函数</a></li>
+<li><a href="#org130a419">成员函数的隐含形参this 是一个指针(不是引用),指向调用此函数的对象的地址</a></li>
 </ul>
 </li>
-<li><a href="#sec-21">构造函数</a>
+<li><a href="#org0df705e">构造函数</a>
 <ul>
-<li><a href="#sec-21-1">必须在类中声明， 可在类内或类外定义</a></li>
-<li><a href="#sec-21-2">构造函数的初始化列表(在参数列表后，函数体前的代码)</a></li>
-<li><a href="#sec-21-3">默认构造函数不能自动初始化 内置类型 的成员,必须自定义构造函数初始化这些成员,对于类类型的成员默认用他们默认构造函数来初始化</a></li>
-<li><a href="#sec-21-4">构造函数隐式转换</a></li>
+<li><a href="#org3f826dd">必须在类中声明， 可在类内或类外定义</a></li>
+<li><a href="#org3a7316d">构造函数的初始化列表(在参数列表后，函数体前的代码)</a></li>
+<li><a href="#org564212d">默认构造函数不能自动初始化 内置类型 的成员,必须自定义构造函数初始化这些成员,对于类类型的成员默认用他们默认构造函数来初始化</a></li>
+<li><a href="#orgb713eff">构造函数隐式转换</a></li>
 </ul>
 </li>
-<li><a href="#sec-22">函数重载(同一个类中 ，函数名相同参数不同)</a>
+<li><a href="#org729aad2">函数重载(同一个类中 ，函数名相同参数不同)</a>
 <ul>
-<li><a href="#sec-22-1">参数不同的含义，使用typedef定义一个别名后，认为使用别名跟使用本名是同一种类型</a></li>
-<li><a href="#sec-22-2">参数的const 与否，与重载</a></li>
-<li><a href="#sec-22-3">不能仅仅根据返回值类型不同来区别两个函数</a></li>
+<li><a href="#orgf90a592">参数不同的含义，使用typedef定义一个别名后，认为使用别名跟使用本名是同一种类型</a></li>
+<li><a href="#org136a19a">参数的const 与否，与重载</a></li>
+<li><a href="#org2b2fa47">不能仅仅根据返回值类型不同来区别两个函数</a></li>
 </ul>
 </li>
-<li><a href="#sec-23">函数指针</a></li>
-<li><a href="#sec-24">IO</a>
+<li><a href="#org794ca89">函数指针</a></li>
+<li><a href="#org7ce8a1c">IO</a>
 <ul>
-<li><a href="#sec-24-1">类的关系</a></li>
-<li><a href="#sec-24-2">io 与宽字符</a></li>
-<li><a href="#sec-24-3">IO 对象 不可赋值或复制</a></li>
-<li><a href="#sec-24-4">条件状态</a></li>
-<li><a href="#sec-24-5">File</a></li>
-<li><a href="#sec-24-6">字符流 stringstream ostringstream istringstream</a></li>
+<li><a href="#org7868c6d">类的关系</a></li>
+<li><a href="#org3983016">io 与宽字符</a></li>
+<li><a href="#org891beb6">IO 对象 不可赋值或复制</a></li>
+<li><a href="#org88b07f6">条件状态</a></li>
+<li><a href="#org82c2b11">File</a></li>
+<li><a href="#org8584d95">字符流 stringstream ostringstream istringstream</a></li>
 </ul>
 </li>
-<li><a href="#sec-25">顺序容器</a>
+<li><a href="#org3f10b6a">顺序容器</a>
 <ul>
-<li><a href="#sec-25-1">包括哪些</a></li>
-<li><a href="#sec-25-2">容器内元素的约束</a></li>
-<li><a href="#sec-25-3">容器iterator支持的操作</a></li>
-<li><a href="#sec-25-4">容器提供的类型</a></li>
-<li><a href="#sec-25-5">插入元素</a></li>
-<li><a href="#sec-25-6">删除元素</a></li>
+<li><a href="#orgc866dfc">包括哪些</a></li>
+<li><a href="#org9525ebe">容器内元素的约束</a></li>
+<li><a href="#org5bef342">容器iterator支持的操作</a></li>
+<li><a href="#orga628245">容器提供的类型</a></li>
+<li><a href="#org90e5a2f">插入元素</a></li>
+<li><a href="#orgce51f2b">删除元素</a></li>
 </ul>
 </li>
-<li><a href="#sec-26">关联容器</a>
+<li><a href="#orgffd868f">关联容器</a>
 <ul>
-<li><a href="#sec-26-1">关联窗口列表</a></li>
-<li><a href="#sec-26-2">pair</a></li>
-<li><a href="#sec-26-3">map</a></li>
-<li><a href="#sec-26-4">set</a></li>
+<li><a href="#org09aabdf">关联窗口列表</a></li>
+<li><a href="#orgff24005">pair</a></li>
+<li><a href="#org30d0834">map</a></li>
+<li><a href="#org088089e">set</a></li>
 </ul>
 </li>
-<li><a href="#sec-27">泛形算法(可以操作在多种容器类型上)</a>
+<li><a href="#org7a0d78b">泛形算法(可以操作在多种容器类型上)</a>
 <ul>
-<li><a href="#sec-27-1">find(iter_beg,iter_end,search_value) 从某段范围内查找search_value,失败返回iter_end,成功返回iter</a></li>
-<li><a href="#sec-27-2">accumulate(iter_beg,iter_end,init_value) 求和,类似于erlang里的lists:foldl</a></li>
-<li><a href="#sec-27-3">find_first_of(iter1_beg,iter1_end,iter2_beg,iter2_end)</a></li>
-<li><a href="#sec-27-4">fill(beg,end,value) 填充value</a></li>
-<li><a href="#sec-27-5">fill_n(beg,N,value) 填充N个value</a></li>
-<li><a href="#sec-27-6">replace(beg,end,old,new) 把old换成new</a></li>
-<li><a href="#sec-27-7">replace_copy(beg,end,NewIterBeg,old,new) 不改变原来的容器，将改变后的内容存入NewIterBeg所指容器中</a></li>
-<li><a href="#sec-27-8">sort unique 排序 去重，</a></li>
-<li><a href="#sec-27-9">count_if(beg,end,Pred)  类似函数式编程，</a></li>
-<li><a href="#sec-27-10">泛形与iterator</a></li>
+<li><a href="#orgaf12e72">find(iter_beg,iter_end,search_value) 从某段范围内查找search_value,失败返回iter_end,成功返回iter</a></li>
+<li><a href="#org40fed21">accumulate(iter_beg,iter_end,init_value) 求和,类似于erlang里的lists:foldl</a></li>
+<li><a href="#orgef97162">find_first_of(iter1_beg,iter1_end,iter2_beg,iter2_end)</a></li>
+<li><a href="#orga9d6639">fill(beg,end,value) 填充value</a></li>
+<li><a href="#org0b7d40b">fill_n(beg,N,value) 填充N个value</a></li>
+<li><a href="#orgff50f10">replace(beg,end,old,new) 把old换成new</a></li>
+<li><a href="#orga1fb71d">replace_copy(beg,end,NewIterBeg,old,new) 不改变原来的容器，将改变后的内容存入NewIterBeg所指容器中</a></li>
+<li><a href="#org7f67887">sort unique 排序 去重，</a></li>
+<li><a href="#org7c3dc3e">count_if(beg,end,Pred)  类似函数式编程，</a></li>
+<li><a href="#org38649b7">泛形与iterator</a></li>
 </ul>
 </li>
-<li><a href="#sec-28">类</a></li>
-<li><a href="#sec-29">类 this 指针</a>
+<li><a href="#org0d0ab49">类</a></li>
+<li><a href="#orgb80fe56">类 this 指针</a>
 <ul>
-<li><a href="#sec-29-1">this 与const</a></li>
+<li><a href="#org9ad181d">this 与const</a></li>
 </ul>
 </li>
-<li><a href="#sec-30">mutable 可变数据成员</a></li>
-<li><a href="#sec-31">友元 friend</a>
+<li><a href="#org47d046e">mutable 可变数据成员</a></li>
+<li><a href="#orgba2eefa">友元 friend</a>
 <ul>
-<li><a href="#sec-31-1">friend Class</a></li>
-<li><a href="#sec-31-2">friend Function</a></li>
+<li><a href="#org1197100">friend Class</a></li>
+<li><a href="#org9627dc4">friend Function</a></li>
 </ul>
 </li>
-<li><a href="#sec-32">static 数据成员</a>
+<li><a href="#org3607b84">static 数据成员</a>
 <ul>
-<li><a href="#sec-32-1">static 数据成员必须在 类的定义 外 初始化 (只能一次）</a></li>
+<li><a href="#orgfdcc752">static 数据成员必须在 类的定义 外 初始化 (只能一次）</a></li>
 </ul>
 </li>
-<li><a href="#sec-33">复制构造函数</a></li>
-<li><a href="#sec-34">赋值操作符</a></li>
-<li><a href="#sec-35">析构函数</a></li>
-<li><a href="#sec-36">管理具有指针成员的类（引用计数)</a></li>
-<li><a href="#sec-37">操作符重载</a></li>
-<li><a href="#sec-38">面向对象 多承 多态(动态绑定,父类引用指向子类对象)) 封装</a>
+<li><a href="#orgb782fcb">复制构造函数</a></li>
+<li><a href="#org6e55715">赋值操作符</a></li>
+<li><a href="#org0e712f8">析构函数</a></li>
+<li><a href="#org71c3110">管理具有指针成员的类（引用计数)</a></li>
+<li><a href="#orgf90cc18">操作符重载</a></li>
+<li><a href="#orgb3f4241">面向对象 多承 多态(动态绑定,父类引用指向子类对象)) 封装</a>
 <ul>
-<li><a href="#sec-38-1">父类 通常 应该 将 子类需要重新定义的函数 声明为 virtual</a></li>
-<li><a href="#sec-38-2">继承语法  子类:[public |private|protected] 父类, 子类权限的控制</a></li>
-<li><a href="#sec-38-3">子类可以选择性的继承父类的 virtaul 函数</a></li>
-<li><a href="#sec-38-4">子类的声明(并非定义)</a></li>
-<li><a href="#sec-38-5">virtaul</a></li>
-<li><a href="#sec-38-6">virtaul 函数 与　默认参数</a></li>
-<li><a href="#sec-38-7">友元关系不能继承</a></li>
-<li><a href="#sec-38-8">static</a></li>
-<li><a href="#sec-38-9">继承与转化</a></li>
-<li><a href="#sec-38-10">构造函数 与继承</a></li>
-<li><a href="#sec-38-11">复制构造函数 与继承</a></li>
-<li><a href="#sec-38-12">赋值操作符 与继承</a></li>
-<li><a href="#sec-38-13">如果在构造函数 或 析构函数 中调用  虚函数,</a></li>
-<li><a href="#sec-38-14">名字冲突与继承</a></li>
-<li><a href="#sec-38-15">重载</a></li>
-<li><a href="#sec-38-16">纯虚函数 ,</a></li>
-<li><a href="#sec-38-17">容器与继承</a></li>
+<li><a href="#orgc2174e6">父类 通常 应该 将 子类需要重新定义的函数 声明为 virtual</a></li>
+<li><a href="#org44ab473">继承语法  子类:[public |private|protected] 父类, 子类权限的控制</a></li>
+<li><a href="#orgbeb672d">子类可以选择性的继承父类的 virtaul 函数</a></li>
+<li><a href="#org2ed6904">子类的声明(并非定义)</a></li>
+<li><a href="#org6e4c779">virtaul</a></li>
+<li><a href="#org8ed938c">virtaul 函数 与　默认参数</a></li>
+<li><a href="#orgb5fd92c">友元关系不能继承</a></li>
+<li><a href="#orga8a749e">static</a></li>
+<li><a href="#org7cc005b">继承与转化</a></li>
+<li><a href="#orge9db614">构造函数 与继承</a></li>
+<li><a href="#org4b1f4c7">复制构造函数 与继承</a></li>
+<li><a href="#orgeb16e4f">赋值操作符 与继承</a></li>
+<li><a href="#org607ebe2">如果在构造函数 或 析构函数 中调用  虚函数,</a></li>
+<li><a href="#org3f40686">名字冲突与继承</a></li>
+<li><a href="#org247eaa2">重载</a></li>
+<li><a href="#org962c59e">纯虚函数 ,</a></li>
+<li><a href="#orgda56ead">容器与继承</a></li>
 </ul>
 </li>
-<li><a href="#sec-39">模版</a></li>
-<li><a href="#sec-40">高级内存分配</a>
+<li><a href="#org4f9b1e3">模版</a></li>
+<li><a href="#org2f10b8a">高级内存分配</a>
 <ul>
-<li><a href="#sec-40-1">allocator 模版类</a></li>
-<li><a href="#sec-40-2">普通的new</a></li>
-<li><a href="#sec-40-3">特殊的new ,定位new表达式</a></li>
-<li><a href="#sec-40-4">string *str = new string("hello");</a></li>
-<li><a href="#sec-40-5">例子 一个内存分配置基类</a></li>
+<li><a href="#orgf49e11a">allocator 模版类</a></li>
+<li><a href="#orgad2577d">普通的new</a></li>
+<li><a href="#org9cdfff0">特殊的new ,定位new表达式</a></li>
+<li><a href="#orgb4f8c03">string *str = new string("hello");</a></li>
+<li><a href="#org8b5e550">例子 一个内存分配置基类</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">make_mark</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgdb93af4" class="outline-2">
+<h2 id="orgdb93af4">make_mark</h2>
+<div class="outline-text-2" id="text-orgdb93af4">
 <div class="org-src-container">
-
 <pre class="src src-c">&#27604;&#22914;MAKE_MASK(3 )<span style="color: #8DA6CE;">&#20250;&#29983;&#25104;</span>  <span style="color: #40E0D0;">&#20108;&#36827;&#21046;&#30340;</span> 00000111
 <span style="color: #7fffd4;">#define</span> <span style="color: #FF6400;">MAKE_MASK</span>(<span style="color: #40E0D0;">n</span>)  ((((<span style="color: #8DA6CE;">int</span>)1) &lt;&lt; (n)) -1)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">c cpp  的一些判断</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org12caae9" class="outline-2">
+<h2 id="org12caae9">c cpp  的一些判断</h2>
+<div class="outline-text-2" id="text-org12caae9">
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #FBDE2D;">if</span>(flag)
 <span style="color: #FBDE2D;">if</span>(!flag)
-<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#32780;&#38750; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#32780;&#38750;</span><span style="color: #AEAEAE;"> */</span>
 <span style="color: #FBDE2D;">if</span>(0==flag)
 
-<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#21028;&#26029;&#25351;&#38024;&#38750;&#31354;&#29992; </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#21028;&#26029;&#25351;&#38024;&#38750;&#31354;&#29992;</span><span style="color: #AEAEAE;"> */</span>
 <span style="color: #FBDE2D;">if</span>(p==<span style="color: #D8FA3C;">NULL</span>) <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">NULL &#23450;&#20041;&#30340; #include&lt;cstdlib&gt;  &#25110;c&#30340;stdlib.h</span>
-<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#23613;&#37327;&#23569;&#29992;: </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">&#23613;&#37327;&#23569;&#29992;:</span><span style="color: #AEAEAE;"> */</span>
 <span style="color: #FBDE2D;">if</span>(p)
 <span style="color: #FBDE2D;">if</span>(p==0)
 </pre>
@@ -259,22 +257,19 @@
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">const 的作用</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org5af15de" class="outline-2">
+<h2 id="org5af15de">const 的作用</h2>
+<div class="outline-text-2" id="text-org5af15de">
 <ol class="org-ol">
-<li>定义常量<br  />
-</li>
-<li>在函数的返回值或参数中对其类型进行限制，防止函数内修改参数，一般多指指针类型<br  />
-</li>
+<li>定义常量<br /></li>
+<li>在函数的返回值或参数中对其类型进行限制，防止函数内修改参数，一般多指指针类型<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">c++的初始化</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org01e0f1e" class="outline-2">
+<h2 id="org01e0f1e">c++的初始化</h2>
+<div class="outline-text-2" id="text-org01e0f1e">
 <div class="org-src-container">
-
 <pre class="src src-c++">   <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>(1024);<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#30452;&#25509;&#21021;&#22987;&#21270;</span>
    <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=1024; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#22797;&#21046;&#21021;&#22987;&#21270;</span>
 
@@ -285,15 +280,14 @@
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">c++ 的声明与定义，</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org44872ee" class="outline-2">
+<h2 id="org44872ee">c++ 的声明与定义，</h2>
+<div class="outline-text-2" id="text-org44872ee">
 <p>
-声明可以多次， 定义只能一次，声明不分配内存<br  />
-用extern关键来来声明<br  />
+声明可以多次， 定义只能一次，声明不分配内存<br />
+用extern关键来来声明<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #FBDE2D;">extern</span> <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span> ;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#22768;&#26126;i</span>
  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span> ;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#22768;&#26126; &#24182;&#23450;&#20041;,&#25152;&#20197;&#36825;&#26159;&#23450;&#20041; &#65292;&#19981;&#21487;&#20197;&#20986;&#29616;&#22810;&#27425;</span>
  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=2 ;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#22768;&#26126; &#24182;&#23450;&#20041;,&#24182;&#21021;&#22987;&#20540;</span>
@@ -303,7 +297,6 @@
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
   <span style="color: #FBDE2D;">extern</span>  <span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">s</span>;<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#21482;&#26159;&#22768;&#26126; &#65292;&#32534;&#35793;&#20250;&#25253;&#38169;</span>
   <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; s &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
@@ -311,46 +304,42 @@
 </pre>
 </div>
 <p>
-非const 变量默认extern ,要使const 变量可以在其他文件中使用，<br  />
-必须在本文件及其他文件中声明它为extern<br  />
-默认const 变量只在定义它的文件中有用的局部变量,<br  />
+非const 变量默认extern ,要使const 变量可以在其他文件中使用，<br />
+必须在本文件及其他文件中声明它为extern<br />
+默认const 变量只在定义它的文件中有用的局部变量,<br />
 </p>
 </div>
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1">在头文件中不可以出现定义,只能有声明,因为会被多个源文件引用， 导致多处定义</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgcb4bfc2" class="outline-3">
+<h3 id="orgcb4bfc2">在头文件中不可以出现定义,只能有声明,因为会被多个源文件引用， 导致多处定义</h3>
+<div class="outline-text-3" id="text-orgcb4bfc2">
 <p>
-头文件里不能有定义有3个例外:<br  />
+头文件里不能有定义有3个例外:<br />
 </p>
 <ol class="org-ol">
-<li>定义类<br  />
-</li>
-<li>编译期就已经知道的const对象<br  />
-</li>
-<li>内联函数<br  />
-</li>
+<li>定义类<br /></li>
+<li>编译期就已经知道的const对象<br /></li>
+<li>内联函数<br /></li>
 </ol>
 <p>
-这些实体可在多个源文件中出现 只要处处定义相同<br  />
-编译器需要知道这些来产生代码(为什么允许这3个例外)<br  />
-默认const 变量只在定义它的文件中有用的局部变量,这样规定后， const变量就允许<br  />
-出现在头文件里,但是必须用常量表达式出始化 否则必须像正常变量一样源文件里定义并<br  />
-初始化，在头文件里添加extern 声明，以使其被多个文件共享<br  />
-const int a = squt(2 ) ;就不是常量表达式<br  />
+这些实体可在多个源文件中出现 只要处处定义相同<br />
+编译器需要知道这些来产生代码(为什么允许这3个例外)<br />
+默认const 变量只在定义它的文件中有用的局部变量,这样规定后， const变量就允许<br />
+出现在头文件里,但是必须用常量表达式出始化 否则必须像正常变量一样源文件里定义并<br />
+初始化，在头文件里添加extern 声明，以使其被多个文件共享<br />
+const int a = squt(2 ) ;就不是常量表达式<br />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">c++ 引用</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgb3d5455" class="outline-2">
+<h2 id="orgb3d5455">c++ 引用</h2>
+<div class="outline-text-2" id="text-orgb3d5455">
 <p>
-引用不可以为null ,定义时必须初始化,<br  />
-初始化后，不可能绑定到其他对象了,所以一个引用只能绑定一个对象<br  />
-const 引用 是指向 const对象的 引用 both ref and object are const<br  />
+引用不可以为null ,定义时必须初始化,<br />
+初始化后，不可能绑定到其他对象了,所以一个引用只能绑定一个对象<br />
+const 引用 是指向 const对象的 引用 both ref and object are const<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span> =1;
 <span style="color: #8DA6CE;">int</span> &amp;<span style="color: #40E0D0;">iRef</span>=i;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#27491;&#30830;</span>
 <span style="color: #8DA6CE;">int</span> &amp;<span style="color: #40E0D0;">iRef2</span>; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#38169;</span>
@@ -365,11 +354,10 @@ const 引用 是指向 const对象的 引用 both ref and object are const<br  /
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">c++ 枚举 enum</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org38405b9" class="outline-2">
+<h2 id="org38405b9">c++ 枚举 enum</h2>
+<div class="outline-text-2" id="text-org38405b9">
 <div class="org-src-container">
-
 <pre class="src src-c++">  <span style="color: #FBDE2D;">enum</span> <span style="color: #8DA6CE;">Forms</span>{<span style="color: #40E0D0;">shape</span>=1,<span style="color: #40E0D0;">sphere</span>,<span style="color: #40E0D0;">cylinder</span>,<span style="color: #40E0D0;">polygon</span>}
   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#26522;&#20030;&#30340;&#20540;&#21518;&#19968;&#20010;&#27604;&#21069;&#19968;&#20010;&#21152;1,&#38500;&#38750;&#26174;&#31034;&#21021;&#22987;&#21270;</span>
   <span style="color: #40E0D0;">shape</span>=1 , <span style="color: #40E0D0;">sphere</span>=2,<span style="color: #40E0D0;">cylinder</span>=3,
@@ -381,41 +369,41 @@ const 引用 是指向 const对象的 引用 both ref and object are const<br  /
  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#22914;</span>
 <span style="color: #8DA6CE;">Froms</span> <span style="color: #40E0D0;">f1</span>=shape; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">ok</span>
 <span style="color: #8DA6CE;">Froms</span> <span style="color: #40E0D0;">f2</span>=2 ; <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">error</span>
+
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">string 相关</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1">string.size() 返回string::size_type类型,而非int</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-org74fa9d8" class="outline-2">
+<h2 id="org74fa9d8">string 相关</h2>
+<div class="outline-text-2" id="text-org74fa9d8">
+</div>
+<div id="outline-container-org5506936" class="outline-3">
+<h3 id="org5506936">string.size() 返回string::size_type类型,而非int</h3>
+<div class="outline-text-3" id="text-org5506936">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #D8FA3C;">string</span>::<span style="color: #8DA6CE;">size_type</span> <span style="color: #40E0D0;">len</span>=  s.size();<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">ok</span>
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">len</span>=  s.size();<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">error, &#20294;&#26159;&#25105;&#35797;&#20102; &#32534;&#35793;&#36816;&#34892;&#37117; &#21487;&#36807;&#65292; &#20294;&#26159;&#19981;&#25512;&#33616;</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2">取string第n个字符用[]下标操作即可,也可对其赋值,只能对已经存在的元素赋值，不能添加</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orgfb8b399" class="outline-3">
+<h3 id="orgfb8b399">取string第n个字符用[]下标操作即可,也可对其赋值,只能对已经存在的元素赋值，不能添加</h3>
+<div class="outline-text-3" id="text-orgfb8b399">
 <p>
-[]中的数是一个size_type类型,从0 始计<br  />
+[]中的数是一个size_type类型,从0 始计<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">str</span>(<span style="color: #ffa07a;">"hello"</span>);
 <span style="color: #8DA6CE;">char</span> <span style="color: #40E0D0;">c</span>=str [1];
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; c &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
 str[1]=<span style="color: #ffa07a;">'E'</span>;
-<span style="color: #D8FA3C;">std</span>::cout &lt;&lt; str &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">"hEllo"</span>
+<span style="color: #D8FA3C;">std</span>::cout &lt;&lt; str &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">"hEllo</span><span style="color: #ffc0cb;">"</span>
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#36941;&#21382;</span>
 <span style="color: #FBDE2D;">for</span> (<span style="color: #D8FA3C;">string</span>::<span style="color: #8DA6CE;">size_type</span>  <span style="color: #40E0D0;">i</span>= 0; i &lt; str.size(); i++){
   <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; str[i] &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
@@ -424,11 +412,10 @@ str[1]=<span style="color: #ffa07a;">'E'</span>;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3">cctype 头文件里一些函数如isupper tolower isspace</h3>
-<div class="outline-text-3" id="text-8-3">
+<div id="outline-container-org0e414c1" class="outline-3">
+<h3 id="org0e414c1">cctype 头文件里一些函数如isupper tolower isspace</h3>
+<div class="outline-text-3" id="text-org0e414c1">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;cctype&gt;</span>
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">isdigit(int)</span>
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">islower(int)</span>
@@ -437,21 +424,21 @@ str[1]=<span style="color: #ffa07a;">'E'</span>;
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">isspace &#36825;&#20123;&#20989;&#25968;&#20063;&#26159;&#22312;std::&#19979;&#30340;</span>
 <span style="color: #8DA6CE;">char</span> <span style="color: #40E0D0;">c</span>=<span style="color: #ffa07a;">'d'</span>;
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; isupper(c) &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
+
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9">vector 容器</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org3ccc62b" class="outline-2">
+<h2 id="org3ccc62b">vector 容器</h2>
+<div class="outline-text-2" id="text-org3ccc62b">
 <p>
-是同一种类型的对象的集合<br  />
-vector是类模版，不是数据类型<br  />
-vector&lt;int&gt; vector&lt;string&gt;则是数据类型<br  />
+是同一种类型的对象的集合<br />
+vector是类模版，不是数据类型<br />
+vector&lt;int&gt; vector&lt;string&gt;则是数据类型<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v1</span>;
 <span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">s1</span>(<span style="color: #ffa07a;">"aaa"</span>);
 <span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">s2</span>(<span style="color: #ffa07a;">"bbb"</span>);
@@ -474,14 +461,13 @@ s1=<span style="color: #ffa07a;">"ccc"</span>;<span style="color: #AEAEAE;">//</
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1">vector [] 下标操作同 string ,可get 可set,只能针对存在的元素,但不能add</h3>
+<div id="outline-container-orgdca4702" class="outline-3">
+<h3 id="orgdca4702">vector [] 下标操作同 string ,可get 可set,只能针对存在的元素,但不能add</h3>
 </div>
-<div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2">使用iterator</h3>
-<div class="outline-text-3" id="text-9-2">
+<div id="outline-container-org8bc11bf" class="outline-3">
+<h3 id="org8bc11bf">使用iterator</h3>
+<div class="outline-text-3" id="text-org8bc11bf">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;"># vector1</span>.begin()&#25351;&#21521;&#39318;&#20803;&#32032;&#65292;
 <span style="color: #7fffd4;">#vector1</span>.end()&#25351;&#21521;&#23614;&#20803;&#32032;&#30340;&#19979;&#19968;&#20010;&#20301;&#32622;
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">iterator&#30340;&#35299;&#24341;&#29992;&#25805;&#20316;(*it)&#65292;&#21462;&#24471;&#25351;&#21521;&#20803;&#32032;&#30340;&#23545;&#35937; &#22914;&#20803;&#32032;&#31867;&#22411;&#26159;string ,&#21017;&#36820;&#22238;&#30340;&#26159;string&#23545;&#35937;</span>
@@ -493,49 +479,48 @@ s1=<span style="color: #ffa07a;">"ccc"</span>;<span style="color: #AEAEAE;">//</
 </div>
 </div>
 </div>
-<div id="outline-container-sec-9-3" class="outline-3">
-<h3 id="sec-9-3">使用const_iterator</h3>
-<div class="outline-text-3" id="text-9-3">
+<div id="outline-container-org681e98c" class="outline-3">
+<h3 id="org681e98c">使用const_iterator</h3>
+<div class="outline-text-3" id="text-org681e98c">
 <p>
-与iterator一样， 只是不能对iterator指向的元素进行赋值操作.<br  />
-其指向的元素是只读的，并不是 const_iterator只读<br  />
-意思是不能改变它指向元素的值， 但能改变他指向什么元素<br  />
-所以 const vector&lt;string&gt;:iterator it;<br  />
-vector&lt;string&gt;:const_iterator it;<br  />
-并不相同<br  />
+与iterator一样， 只是不能对iterator指向的元素进行赋值操作.<br />
+其指向的元素是只读的，并不是 const_iterator只读<br />
+意思是不能改变它指向元素的值， 但能改变他指向什么元素<br />
+所以 const vector&lt;string&gt;:iterator it;<br />
+vector&lt;string&gt;:const_iterator it;<br />
+并不相同<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-9-4" class="outline-3">
-<h3 id="sec-9-4">vector的iterator可以进行简单的算术运算操作，</h3>
-<div class="outline-text-3" id="text-9-4">
+<div id="outline-container-orgdb012ca" class="outline-3">
+<h3 id="orgdb012ca">vector的iterator可以进行简单的算术运算操作，</h3>
+<div class="outline-text-3" id="text-orgdb012ca">
 <p>
-不是所有的容器类型都支持<br  />
-iter+n<br  />
-iter-n<br  />
-iter1-iter2<br  />
-// 返回两元素间的位置差,返回的类型是vector&lt;string&gt;:difference_type<br  />
-//可正可负<br  />
+不是所有的容器类型都支持<br />
+iter+n<br />
+iter-n<br />
+iter1-iter2<br />
+// 返回两元素间的位置差,返回的类型是vector&lt;string&gt;:difference_type<br />
+//可正可负<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-9-5" class="outline-3">
-<h3 id="sec-9-5">任何改变vector长度的操作，都会使已存在的iterator 失效,</h3>
-<div class="outline-text-3" id="text-9-5">
+<div id="outline-container-orge7f2ff7" class="outline-3">
+<h3 id="orge7f2ff7">任何改变vector长度的操作，都会使已存在的iterator 失效,</h3>
+<div class="outline-text-3" id="text-orge7f2ff7">
 <p>
-如push_back()之后，   原来iterator指向的值就不可信了<br  />
+如push_back()之后，   原来iterator指向的值就不可信了<br />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10">bitset</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-org5f2fbea" class="outline-2">
+<h2 id="org5f2fbea">bitset</h2>
+<div class="outline-text-2" id="text-org5f2fbea">
 <p>
-bitset 是模版， 不同的是区别只在长度 ，不在类型<br  />
+bitset 是模版， 不同的是区别只在长度 ，不在类型<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;"> #include</span><span style="color: #ffa07a;">&lt;bitset&gt;</span>
  <span style="color: #FBDE2D;">using</span> <span style="color: #D8FA3C;">std</span>::<span style="color: #8DA6CE;">bitset</span>;
  <span style="color: #8DA6CE;">bitset</span>&lt;32&gt; <span style="color: #40E0D0;">bs</span>; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">32 bits all 0</span>
@@ -552,15 +537,14 @@ bitset 是模版， 不同的是区别只在长度 ，不在类型<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11">数组</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-orgf015b42" class="outline-2">
+<h2 id="orgf015b42">数组</h2>
+<div class="outline-text-2" id="text-orgf015b42">
 <p>
-数组的维数 只能用 包含整形字面值常量、枚举常量 或者用常量表达式初始化的整形<br  />
-const对象 ,非const变量， 以及到运行时才知道其值的const变量都不能用来定义其维数<br  />
+数组的维数 只能用 包含整形字面值常量、枚举常量 或者用常量表达式初始化的整形<br />
+const对象 ,非const变量， 以及到运行时才知道其值的const变量都不能用来定义其维数<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=10;
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">j</span>=10;
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">arr</span>[i+1];                   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#21512;&#27861;&#30340; &#24120;&#37327;&#34920;&#36798;&#24335;(i&#26159;const&#21464;&#37327;&#65292; &#32534;&#35793;&#20854;&#23601;&#30693;&#36947;&#20854;&#22823;&#23567;)</span>
@@ -568,11 +552,10 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-11-1" class="outline-3">
-<h3 id="sec-11-1">初始化</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-orgc12d063" class="outline-3">
+<h3 id="orgc12d063">初始化</h3>
+<div class="outline-text-3" id="text-orgc12d063">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#25968;&#32452;&#21021;&#22987;&#21270;</span>
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">array</span>[3] = {1,2,3};
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">array</span>[] = {1,2,3};<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#19981;&#25351;&#23450;&#25968;&#25454;&#38271;&#24230;&#20063;&#21487;&#65292;&#27492;&#26102;</span>
@@ -583,19 +566,21 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 
-<ul class="org-ul"><li><a id="sec-11-1-1" name="sec-11-1-1"></a>在函数体外定义的内置类型的数组，其元素初始化为0<br  /></li>
-<li><a id="sec-11-1-2" name="sec-11-1-2"></a>在函数体内定义的内置类型的数组，其元素未初始化，<br  /></li>
-<li><a id="sec-11-1-3" name="sec-11-1-3"></a>不论数组在哪定义，若元素类型为类，则自动调用其默认构造函数初始化，若无默认构造函数，则必须显示初始化<br  /></li></ul>
+<ul class="org-ul">
+<li><a id="org316ee4f"></a>在函数体外定义的内置类型的数组，其元素初始化为0<br /></li>
+<li><a id="org6326276"></a>在函数体内定义的内置类型的数组，其元素未初始化，<br /></li>
+<li><a id="org2a24fef"></a>不论数组在哪定义，若元素类型为类，则自动调用其默认构造函数初始化，若无默认构造函数，则必须显示初始化<br /></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12">指针</h2>
-<div class="outline-text-2" id="text-12">
-</div><div id="outline-container-sec-12-1" class="outline-3">
-<h3 id="sec-12-1">指针的定义 风格</h3>
-<div class="outline-text-3" id="text-12-1">
+<div id="outline-container-org627f529" class="outline-2">
+<h2 id="org627f529">指针</h2>
+<div class="outline-text-2" id="text-org627f529">
+</div>
+<div id="outline-container-org781110d" class="outline-3">
+<h3 id="org781110d">指针的定义 风格</h3>
+<div class="outline-text-3" id="text-org781110d">
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">p1</span> ,*<span style="color: #40E0D0;">p2</span>; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">p1 p2 &#37117;&#26159;&#25351;&#38024;</span>
 
 <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">p1 &#26159;&#25351;&#38024; &#65292;p2&#26159;char ,//&#36319; char *p1 p2;&#20889;&#27861;&#19968;&#26679;</span>
@@ -605,11 +590,10 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12-2" class="outline-3">
-<h3 id="sec-12-2">指针的初始化</h3>
-<div class="outline-text-3" id="text-12-2">
+<div id="outline-container-org758c89d" class="outline-3">
+<h3 id="org758c89d">指针的初始化</h3>
+<div class="outline-text-3" id="text-org758c89d">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#25351;&#38024;&#19981;&#21487;&#20197;&#29992;int&#31867;&#22411;&#30340;&#21464;&#37327;&#26469;&#36171;&#20540;,</span>
  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20294;&#21487;&#20197;&#29992;&#20540;&#20026;0 &#30340;const &#21464;&#37327;&#26469;&#21021;&#22987;&#21270;</span>
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span> =0;
@@ -622,11 +606,10 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12-3" class="outline-3">
-<h3 id="sec-12-3">指针类型要匹配</h3>
-<div class="outline-text-3" id="text-12-3">
+<div id="outline-container-orge64c258" class="outline-3">
+<h3 id="orge64c258">指针类型要匹配</h3>
+<div class="outline-text-3" id="text-orge64c258">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">double</span> <span style="color: #40E0D0;">d</span> =10;
 <span style="color: #8DA6CE;">double</span> *<span style="color: #40E0D0;">pd</span>=&amp;d;
 <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">pi</span> =pd;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">error</span>
@@ -634,28 +617,25 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12-4" class="outline-3">
-<h3 id="sec-12-4">指针与引用的区别</h3>
-<div class="outline-text-3" id="text-12-4">
+<div id="outline-container-orgbe9e03d" class="outline-3">
+<h3 id="orgbe9e03d">指针与引用的区别</h3>
+<div class="outline-text-3" id="text-orgbe9e03d">
 <ol class="org-ol">
-<li>引用必须指向某个对象，不可以为null, 必须进行初始化<br  />
-</li>
-<li>赋值行为的差异，对指针进行赋值，是让指针指向另一个对象<br  />
-而对引用进行赋值，则是改变当前引用所指对象的值(引用就是对象)<br  />
-</li>
+<li>引用必须指向某个对象，不可以为null, 必须进行初始化<br /></li>
+<li>赋值行为的差异，对指针进行赋值，是让指针指向另一个对象<br />
+而对引用进行赋值，则是改变当前引用所指对象的值(引用就是对象)<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-12-5" class="outline-3">
-<h3 id="sec-12-5">指针的运算</h3>
-<div class="outline-text-3" id="text-12-5">
+<div id="outline-container-orgd454f1b" class="outline-3">
+<h3 id="orgd454f1b">指针的运算</h3>
+<div class="outline-text-3" id="text-orgd454f1b">
 <p>
-指针的类型不能乱用，所以一个指针是什么类型的是知道的 ，<br  />
-对指针加一个数， 实际就是将指针往后移动这种类型的一个单位<br  />
-比如<br  />
+指针的类型不能乱用，所以一个指针是什么类型的是知道的 ，<br />
+对指针加一个数， 实际就是将指针往后移动这种类型的一个单位<br />
+比如<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=1;
  <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">p</span> =&amp;i;
  p++; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#24448;&#21518;&#31227;&#21160;&#19968;&#20010;int&#21333;&#20301;,&#25351;&#21521;&#19979;&#19968;&#20010;int</span>
@@ -664,12 +644,14 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-12-6" class="outline-3">
-<h3 id="sec-12-6">指向const对象的指针 和const 指针(本身的值不可变)</h3>
-<div class="outline-text-3" id="text-12-6">
-</div><ul class="org-ul"><li><a id="sec-12-6-1" name="sec-12-6-1"></a>指向const对象的指针<br  /><div class="outline-text-4" id="text-12-6-1">
+<div id="outline-container-orge156d22" class="outline-3">
+<h3 id="orge156d22">指向const对象的指针 和const 指针(本身的值不可变)</h3>
+<div class="outline-text-3" id="text-orge156d22">
+</div>
+<ul class="org-ul">
+<li><a id="org3b033ab"></a>指向const对象的指针<br />
+<div class="outline-text-4" id="text-org3b033ab">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">double</span> <span style="color: #40E0D0;">d</span>=1;
 <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">double</span> *<span style="color: #40E0D0;">p</span>=&amp;d;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">ok, &#25351;&#21521;const &#23545;&#35937;&#30340;&#25351;&#38024; ,p &#24182;&#19981;&#26159;const&#30340;</span>
 <span style="color: #8DA6CE;">double</span> *<span style="color: #40E0D0;">p2</span> = &amp;d;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">error ,&#26222;&#36890;&#30340;&#25351;&#38024; &#19981;&#21487;&#20197;&#25351;&#21521;const&#23545;&#35937;</span>
@@ -685,18 +667,18 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </li>
-<li><a id="sec-12-6-2" name="sec-12-6-2"></a>const 指针(本身的值不可变),即定义时必须初始化<br  /><div class="outline-text-4" id="text-12-6-2">
+<li><a id="org216fa37"></a>const 指针(本身的值不可变),即定义时必须初始化<br />
+<div class="outline-text-4" id="text-org216fa37">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=1;
 <span style="color: #8DA6CE;">int</span> *<span style="color: #FBDE2D;">const</span> <span style="color: #40E0D0;">p</span> = &amp;i;<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">p &#21482;&#33021;&#25351;&#21521;i , &#19981;&#21487;&#20197;&#25351;&#21521;&#20854;&#20182;&#20540;&#20102;</span>
 </pre>
 </div>
 </div>
 </li>
-<li><a id="sec-12-6-3" name="sec-12-6-3"></a>typedef 与const易引起歧义<br  /><div class="outline-text-4" id="text-12-6-3">
+<li><a id="orgc06c311"></a>typedef 与const易引起歧义<br />
+<div class="outline-text-4" id="text-orgc06c311">
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #FBDE2D;">typedef</span> <span style="color: #8DA6CE;">string</span> *<span style="color: #8DA6CE;">pstring</span>;
  <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">pstring</span> <span style="color: #40E0D0;">ctr</span>;
  &#24182;&#19981;&#33021;&#31616;&#21333;&#30340;&#23558; &#19978;&#36848;&#20004;&#21477;&#20687;&#23439;&#19968;&#26679; <span style="color: #8DA6CE;">&#25193;&#23637;&#25104;</span> <span style="color: #FBDE2D;">const</span>  *<span style="color: #40E0D0;">pstring</span> ctr; ,&#36825;&#21017;&#35828;&#26126;ctr&#26159;&#25351;&#21521;const&#23545;&#35937;&#30340;&#25351;&#38024;
@@ -708,17 +690,17 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13">动态数组</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-org797d468" class="outline-2">
+<h2 id="org797d468">动态数组</h2>
+<div class="outline-text-2" id="text-org797d468">
 <p>
-普通数组长度在编译期就需要确定下来，动态数组长度可以在运行期确定<br  />
+普通数组长度在编译期就需要确定下来，动态数组长度可以在运行期确定<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">p</span> = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">int</span>[10];<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36820;&#22238;&#25351;&#21521;&#31532;&#19968;&#20010;&#20803;&#32032;&#30340;&#25351;&#38024;</span>
 
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#21160;&#24577;&#25968;&#25454;&#20801;&#35768;&#38271;&#24230;&#20026;0</span>
@@ -730,11 +712,10 @@ const对象 ,非const变量， 以及到运行时才知道其值的const变量�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14">-&gt; 操作符</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-orgbb14d9b" class="outline-2">
+<h2 id="orgbb14d9b">-&gt; 操作符</h2>
+<div class="outline-text-2" id="text-orgbb14d9b">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">Item</span> <span style="color: #40E0D0;">item</span>;
 <span style="color: #8DA6CE;">Item</span> *<span style="color: #40E0D0;">p</span>=&amp;item;
 item.sth().
@@ -745,18 +726,16 @@ item.sth().
 </div>
 </div>
 </div>
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15">sizeof 操作符 的结果是 编译时常量</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-orga1edbed" class="outline-2">
+<h2 id="orga1edbed">sizeof 操作符 的结果是 编译时常量</h2>
+<div class="outline-text-2" id="text-orga1edbed">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">array</span>[3]={1,2,3};
 <span style="color: #FBDE2D;">sizeof</span>(array); <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">12  3*sizeof(int)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">c</span>=(<span style="color: #8DA6CE;">char</span>*) malloc(<span style="color: #FBDE2D;">sizeof</span>(<span style="color: #8DA6CE;">char</span>)*3);
 strcpy(c, <span style="color: #ffa07a;">"ab"</span>);
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; <span style="color: #FBDE2D;">sizeof</span>(c) &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl; <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">4 &#36820;&#22238;&#25351;&#38024;&#30340;&#22823;&#23567;</span>
@@ -766,11 +745,10 @@ strcpy(c, <span style="color: #ffa07a;">"ab"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16">new delete</h2>
-<div class="outline-text-2" id="text-16">
+<div id="outline-container-org465d317" class="outline-2">
+<h2 id="org465d317">new delete</h2>
+<div class="outline-text-2" id="text-org465d317">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">string</span> *<span style="color: #40E0D0;">str</span>= <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">string</span>; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#21021;&#22987;&#21270;&#20026;&#31354;&#20018;</span>
 <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">i</span> = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">int</span>;   <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20869;&#24314;&#31867;&#22411; &#21017;&#26410;&#21021;&#22987;&#21270;</span>
 
@@ -779,14 +757,14 @@ strcpy(c, <span style="color: #ffa07a;">"ab"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17">强制类型转换( static_cast const_cast, dynamic_cast, reinterpret_cast)</h2>
-<div class="outline-text-2" id="text-17">
-</div><div id="outline-container-sec-17-1" class="outline-3">
-<h3 id="sec-17-1">static_cast 默认所有的隐式类型转换，都可以通过static_cast显示实现</h3>
-<div class="outline-text-3" id="text-17-1">
+<div id="outline-container-org82c689f" class="outline-2">
+<h2 id="org82c689f">强制类型转换( static_cast const_cast, dynamic_cast, reinterpret_cast)</h2>
+<div class="outline-text-2" id="text-org82c689f">
+</div>
+<div id="outline-container-org78864ea" class="outline-3">
+<h3 id="org78864ea">static_cast 默认所有的隐式类型转换，都可以通过static_cast显示实现</h3>
+<div class="outline-text-3" id="text-org78864ea">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">double</span> <span style="color: #40E0D0;">d</span> =1;
 <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span> =2;
 i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8DA6CE;">int</span>&gt;(d) ;<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#23558;d &#24378;&#21046;&#36716;&#21270;&#25104;int ,&#28982;&#21518;&#19982; int i&#30456;&#20056;</span>
@@ -797,11 +775,10 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </div>
-<div id="outline-container-sec-17-2" class="outline-3">
-<h3 id="sec-17-2">const_cast 去掉var的const 属性</h3>
-<div class="outline-text-3" id="text-17-2">
+<div id="outline-container-orga7aa1da" class="outline-3">
+<h3 id="orga7aa1da">const_cast 去掉var的const 属性</h3>
+<div class="outline-text-3" id="text-orga7aa1da">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">void</span> <span style="color: #FF6400;">test</span>(<span style="color: #8DA6CE;">char</span>* <span style="color: #40E0D0;">c</span>){}
 <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(){
   <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">char</span>* <span style="color: #40E0D0;">c</span>;
@@ -812,11 +789,10 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </div>
-<div id="outline-container-sec-17-3" class="outline-3">
-<h3 id="sec-17-3">reinterpret_cast</h3>
-<div class="outline-text-3" id="text-17-3">
+<div id="outline-container-org808c710" class="outline-3">
+<h3 id="org808c710">reinterpret_cast</h3>
+<div class="outline-text-3" id="text-org808c710">
 <div class="org-src-container">
-
 <pre class="src src-c++">  <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span> =1;
  <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">ip</span>=&amp;i;
  <span style="color: #AEAEAE;">//  </span><span style="color: #AEAEAE;">&#36716;&#21270;&#20043;&#21518;&#65292; pc &#20381;&#28982;&#26159;int* &#31867;&#22411;&#30340;&#25351;&#38024;</span>
@@ -826,7 +802,6 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">char</span>* <span style="color: #40E0D0;">pc</span>=(<span style="color: #8DA6CE;">char</span>*)ip;<span style="color: #AEAEAE;">//  </span><span style="color: #AEAEAE;">c++ &#20284;&#20046;&#19981;&#24314;&#35758;&#20351;&#29992; &#36825;&#31181;c&#37324;&#20351;&#29992;&#30340;&#24378;&#36716;</span>
 <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#25928;&#26524;&#19982;&#20351;&#29992; reinterpret_cast&#19968;&#26679;</span>
 <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36825;&#31181;&#24378;&#36716; &#20855;&#26377; static_cast const_cast  reinterpret_cast &#30456;&#21516;&#30340;&#21151;&#33021;,&#26356;&#31548;&#32479;</span>
@@ -835,20 +810,19 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </div>
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18">switch</h2>
-<div class="outline-text-2" id="text-18">
+<div id="outline-container-org5c53734" class="outline-2">
+<h2 id="org5c53734">switch</h2>
+<div class="outline-text-2" id="text-org5c53734">
 <p>
-执行到某个case后，如果不加break，会继续执行余下的case里的代码<br  />
-所以 在case里定义变量，可能导致重复定义同一个变量，或者因为没有执行某个case里<br  />
-的定义 ，导致 后面的case使用未定义 的变量,<br  />
-所以switch里除了最后一个case 或default可以定义变量外， 其他case语句里不可以定<br  />
-义变量, 如果一定要在case里定义变量可以用块语句(即大括号),在大括号里定义的变量<br  />
-只在此块中有效<br  />
+执行到某个case后，如果不加break，会继续执行余下的case里的代码<br />
+所以 在case里定义变量，可能导致重复定义同一个变量，或者因为没有执行某个case里<br />
+的定义 ，导致 后面的case使用未定义 的变量,<br />
+所以switch里除了最后一个case 或default可以定义变量外， 其他case语句里不可以定<br />
+义变量, 如果一定要在case里定义变量可以用块语句(即大括号),在大括号里定义的变量<br />
+只在此块中有效<br />
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>=1;
 <span style="color: #FBDE2D;">switch</span> (i) {
 <span style="color: #FBDE2D;">case</span> 1:
@@ -862,24 +836,25 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </div>
-<div id="outline-container-sec-19" class="outline-2">
-<h2 id="sec-19">内联函数</h2>
-<div class="outline-text-2" id="text-19">
-</div><div id="outline-container-sec-19-1" class="outline-3">
-<h3 id="sec-19-1">内联函数应该在头文件中定义(对编译器必须是可见的)</h3>
+<div id="outline-container-org9354826" class="outline-2">
+<h2 id="org9354826">内联函数</h2>
+<div class="outline-text-2" id="text-org9354826">
+</div>
+<div id="outline-container-orgcad2afd" class="outline-3">
+<h3 id="orgcad2afd">内联函数应该在头文件中定义(对编译器必须是可见的)</h3>
 </div>
 </div>
-<div id="outline-container-sec-20" class="outline-2">
-<h2 id="sec-20">成员函数</h2>
-<div class="outline-text-2" id="text-20">
-</div><div id="outline-container-sec-20-1" class="outline-3">
-<h3 id="sec-20-1">成员函数可在类外或类内定义，在类内定义 ，编译器隐式的将其转成内联函数</h3>
+<div id="outline-container-org0fe0e2f" class="outline-2">
+<h2 id="org0fe0e2f">成员函数</h2>
+<div class="outline-text-2" id="text-org0fe0e2f">
 </div>
-<div id="outline-container-sec-20-2" class="outline-3">
-<h3 id="sec-20-2">成员函数的隐含形参this 是一个指针(不是引用),指向调用此函数的对象的地址</h3>
-<div class="outline-text-3" id="text-20-2">
+<div id="outline-container-org7453035" class="outline-3">
+<h3 id="org7453035">成员函数可在类外或类内定义，在类内定义 ，编译器隐式的将其转成内联函数</h3>
+</div>
+<div id="outline-container-org130a419" class="outline-3">
+<h3 id="org130a419">成员函数的隐含形参this 是一个指针(不是引用),指向调用此函数的对象的地址</h3>
+<div class="outline-text-3" id="text-org130a419">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Test</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -901,17 +876,17 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </div>
-<div id="outline-container-sec-21" class="outline-2">
-<h2 id="sec-21">构造函数</h2>
-<div class="outline-text-2" id="text-21">
-</div><div id="outline-container-sec-21-1" class="outline-3">
-<h3 id="sec-21-1">必须在类中声明， 可在类内或类外定义</h3>
+<div id="outline-container-org0df705e" class="outline-2">
+<h2 id="org0df705e">构造函数</h2>
+<div class="outline-text-2" id="text-org0df705e">
 </div>
-<div id="outline-container-sec-21-2" class="outline-3">
-<h3 id="sec-21-2">构造函数的初始化列表(在参数列表后，函数体前的代码)</h3>
-<div class="outline-text-3" id="text-21-2">
+<div id="outline-container-org3f826dd" class="outline-3">
+<h3 id="org3f826dd">必须在类中声明， 可在类内或类外定义</h3>
+</div>
+<div id="outline-container-org3a7316d" class="outline-3">
+<h3 id="org3a7316d">构造函数的初始化列表(在参数列表后，函数体前的代码)</h3>
+<div class="outline-text-3" id="text-org3a7316d">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Test</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -920,18 +895,18 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 <span style="color: #FBDE2D;">private</span>:
   <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>;
 };
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-21-3" class="outline-3">
-<h3 id="sec-21-3">默认构造函数不能自动初始化 内置类型 的成员,必须自定义构造函数初始化这些成员,对于类类型的成员默认用他们默认构造函数来初始化</h3>
+<div id="outline-container-org564212d" class="outline-3">
+<h3 id="org564212d">默认构造函数不能自动初始化 内置类型 的成员,必须自定义构造函数初始化这些成员,对于类类型的成员默认用他们默认构造函数来初始化</h3>
 </div>
-<div id="outline-container-sec-21-4" class="outline-3">
-<h3 id="sec-21-4">构造函数隐式转换</h3>
-<div class="outline-text-3" id="text-21-4">
+<div id="outline-container-orgb713eff" class="outline-3">
+<h3 id="orgb713eff">构造函数隐式转换</h3>
+<div class="outline-text-3" id="text-orgb713eff">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -946,43 +921,49 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
  {
    <span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">str</span>=string(<span style="color: #ffa07a;">"hello"</span>);
    <span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">world</span>=string(<span style="color: #ffa07a;">"world"</span>);
-   <span style="color: #8DA6CE;">Name</span> <span style="color: #FF6400;">name</span>(str);
+   <span style="color: #8DA6CE;">Name</span> <span style="color: #40E0D0;">name</span>(str);
    name.copy(world);  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20256;&#36807;&#26469;&#30340;&#26159;string &#31867;&#22411;&#65292; &#20294;&#26159;copy()&#25509;&#21463;&#30340;&#26159;Name,&#32534;&#35793;&#22120;&#20250;&#33258;&#21160;&#29992;string&#35843;&#29992;Name&#30340;&#30456;&#24212;&#26500;&#36896;&#20989;&#25968;</span>
    <span style="color: #FBDE2D;">return</span> 0;
  }
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-21-4-1" name="sec-21-4-1"></a>抑制构造函数隐匿转换<br  /><div class="outline-text-4" id="text-21-4-1">
+<ul class="org-ul">
+<li><a id="org5614f9a"></a>抑制构造函数隐匿转换<br />
+<div class="outline-text-4" id="text-org5614f9a">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">public</span>:
   <span style="color: #FBDE2D;">explicit</span> <span style="color: #FF6400;">Name</span>(<span style="color: #8DA6CE;">string</span> &amp;<span style="color: #40E0D0;">str</span>){
   }
 };
+
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-sec-22" class="outline-2">
-<h2 id="sec-22">函数重载(同一个类中 ，函数名相同参数不同)</h2>
-<div class="outline-text-2" id="text-22">
-</div><div id="outline-container-sec-22-1" class="outline-3">
-<h3 id="sec-22-1">参数不同的含义，使用typedef定义一个别名后，认为使用别名跟使用本名是同一种类型</h3>
+<div id="outline-container-org729aad2" class="outline-2">
+<h2 id="org729aad2">函数重载(同一个类中 ，函数名相同参数不同)</h2>
+<div class="outline-text-2" id="text-org729aad2">
 </div>
-<div id="outline-container-sec-22-2" class="outline-3">
-<h3 id="sec-22-2">参数的const 与否，与重载</h3>
-<div class="outline-text-3" id="text-22-2">
-</div><ul class="org-ul"><li><a id="sec-22-2-1" name="sec-22-2-1"></a>对于值传递的参数,操作的只是副本,const与否并不影响副本,<br  /><div class="outline-text-4" id="text-22-2-1">
+<div id="outline-container-orgf90a592" class="outline-3">
+<h3 id="orgf90a592">参数不同的含义，使用typedef定义一个别名后，认为使用别名跟使用本名是同一种类型</h3>
+</div>
+<div id="outline-container-org136a19a" class="outline-3">
+<h3 id="org136a19a">参数的const 与否，与重载</h3>
+<div class="outline-text-3" id="text-org136a19a">
+</div>
+<ul class="org-ul">
+<li><a id="org751f7e6"></a>对于值传递的参数,操作的只是副本,const与否并不影响副本,<br />
+<div class="outline-text-4" id="text-org751f7e6">
 <p>
-值传递参数 仅const 的区别,认为是同一个函数,不能根据是否有const来区分两个函数<br  />
+值传递参数 仅const 的区别,认为是同一个函数,不能根据是否有const来区分两个函数<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20197;&#19979;&#20004;&#31181;&#37325;&#36733;&#26159;  &#19981; &#20801;&#35768;&#30340;</span>
 <span style="color: #8DA6CE;">string</span> <span style="color: #FF6400;">getj</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">pi</span>){
 }
@@ -997,9 +978,9 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </div>
 </div>
 </li>
-<li><a id="sec-22-2-2" name="sec-22-2-2"></a>对于引用形参和指针形参 可以根据 是否const 来区分两个函数<br  /><div class="outline-text-4" id="text-22-2-2">
+<li><a id="orgebada5e"></a>对于引用形参和指针形参 可以根据 是否const 来区分两个函数<br />
+<div class="outline-text-4" id="text-orgebada5e">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20197;&#19979;&#20004;&#31181;&#37325;&#36733;&#26159;&#20801;&#35768;&#30340;</span>
  <span style="color: #8DA6CE;">string</span> <span style="color: #FF6400;">getj</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">pi</span>){
    <span style="color: #FBDE2D;">return</span> str;
@@ -1017,17 +998,17 @@ i *= <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8D
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-sec-22-3" class="outline-3">
-<h3 id="sec-22-3">不能仅仅根据返回值类型不同来区别两个函数</h3>
+<div id="outline-container-org2b2fa47" class="outline-3">
+<h3 id="org2b2fa47">不能仅仅根据返回值类型不同来区别两个函数</h3>
 </div>
 </div>
-<div id="outline-container-sec-23" class="outline-2">
-<h2 id="sec-23">函数指针</h2>
-<div class="outline-text-2" id="text-23">
+<div id="outline-container-org794ca89" class="outline-2">
+<h2 id="org794ca89">函数指针</h2>
+<div class="outline-text-2" id="text-org794ca89">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">typedef</span> <span style="color: #8DA6CE;">bool</span> (*<span style="color: #8DA6CE;">compFun</span>) (<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">string</span> &amp;,<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">string</span>);
  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20197;&#19979;&#20004;&#31181;&#26041;&#24335; &#25928;&#26524;&#30456;&#21516;</span>
  <span style="color: #8DA6CE;">compFun</span> <span style="color: #40E0D0;">comF1</span>= lengComp;
@@ -1040,127 +1021,127 @@ compF1(str1,str2);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-24" class="outline-2">
-<h2 id="sec-24">IO</h2>
-<div class="outline-text-2" id="text-24">
-</div><div id="outline-container-sec-24-1" class="outline-3">
-<h3 id="sec-24-1">类的关系</h3>
-<div class="outline-text-3" id="text-24-1">
+<div id="outline-container-org7ce8a1c" class="outline-2">
+<h2 id="org7ce8a1c">IO</h2>
+<div class="outline-text-2" id="text-org7ce8a1c">
+</div>
+<div id="outline-container-org7868c6d" class="outline-3">
+<h3 id="org7868c6d">类的关系</h3>
+<div class="outline-text-3" id="text-org7868c6d">
 <p>
-fstream sstring中定义的类型都是从iostream中定义的类型继承而来<br  />
+fstream sstring中定义的类型都是从iostream中定义的类型继承而来<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">头文件</th>
-<th scope="col" class="left">头文件中的类</th>
-<th scope="col" class="left">类型</th>
+<th scope="col" class="org-left">头文件</th>
+<th scope="col" class="org-left">头文件中的类</th>
+<th scope="col" class="org-left">类型</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">iostream</td>
-<td class="left">istream,ostream,iostream</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">iostream</td>
+<td class="org-left">istream,ostream,iostream</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">fstream</td>
-<td class="left">ifstream ofstream fstream</td>
-<td class="left">文件</td>
+<td class="org-left">fstream</td>
+<td class="org-left">ifstream ofstream fstream</td>
+<td class="org-left">文件</td>
 </tr>
 
 <tr>
-<td class="left">sstream</td>
-<td class="left">istringstream,ostringstream,stringstream</td>
-<td class="left">string</td>
+<td class="org-left">sstream</td>
+<td class="org-left">istringstream,ostringstream,stringstream</td>
+<td class="org-left">string</td>
 </tr>
 </tbody>
 </table>
 
 <div class="figure">
-<p><img src="file:///Users/jixiuf/Documents/org/img/cpp-io-class.png" alt="cpp-io-class.png" /><br  />
+<p><img src="file:///Users/jixiuf/Documents/org/img/cpp-io-class.png" alt="cpp-io-class.png" /><br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-24-2" class="outline-3">
-<h3 id="sec-24-2">io 与宽字符</h3>
-<div class="outline-text-3" id="text-24-2">
+<div id="outline-container-org3983016" class="outline-3">
+<h3 id="org3983016">io 与宽字符</h3>
+<div class="outline-text-3" id="text-org3983016">
 <p>
-以上类名前加一个w ,则支持读写wchar_t类型的字符，如 wostream wistream<br  />
+以上类名前加一个w ,则支持读写wchar_t类型的字符，如 wostream wistream<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-24-3" class="outline-3">
-<h3 id="sec-24-3">IO 对象 不可赋值或复制</h3>
+<div id="outline-container-org891beb6" class="outline-3">
+<h3 id="org891beb6">IO 对象 不可赋值或复制</h3>
 </div>
-<div id="outline-container-sec-24-4" class="outline-3">
-<h3 id="sec-24-4">条件状态</h3>
-<div class="outline-text-3" id="text-24-4">
+<div id="outline-container-org88b07f6" class="outline-3">
+<h3 id="org88b07f6">条件状态</h3>
+<div class="outline-text-3" id="text-org88b07f6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">eof()</td>
-<td class="left">判断是否eof</td>
+<td class="org-left">eof()</td>
+<td class="org-left">判断是否eof</td>
 </tr>
 
 <tr>
-<td class="left">good()</td>
-<td class="left">流处于有效状态，则true</td>
+<td class="org-left">good()</td>
+<td class="org-left">流处于有效状态，则true</td>
 </tr>
 
 <tr>
-<td class="left">fail()</td>
-<td class="left">失败的IO操作</td>
+<td class="org-left">fail()</td>
+<td class="org-left">失败的IO操作</td>
 </tr>
 
 <tr>
-<td class="left">bad()</td>
-<td class="left">是否被破坏，strm::badbit位</td>
+<td class="org-left">bad()</td>
+<td class="org-left">是否被破坏，strm::badbit位</td>
 </tr>
 
 <tr>
-<td class="left">clear()</td>
-<td class="left">重置所有状态为有效态</td>
+<td class="org-left">clear()</td>
+<td class="org-left">重置所有状态为有效态</td>
 </tr>
 
 <tr>
-<td class="left">clear(flag)</td>
-<td class="left">重置某状态为有效态</td>
+<td class="org-left">clear(flag)</td>
+<td class="org-left">重置某状态为有效态</td>
 </tr>
 
 <tr>
-<td class="left">setstate(strm::iostate)</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">setstate(strm::iostate)</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">rdstate()</td>
-<td class="left">返回strm::iostate</td>
+<td class="org-left">rdstate()</td>
+<td class="org-left">返回strm::iostate</td>
 </tr>
 </tbody>
 </table>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">i</span>;
 cin&gt;&gt;i;
 <span style="color: #FBDE2D;">if</span>(cin){<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#36825;&#37324;&#26159;&#21028;&#26029; cin&#26159;&#22788;&#20110;&#26377;&#25928;&#29366;&#24577;&#65292;cin&#36319;&#25454;&#24403;&#21069;&#26465;&#20214;&#29366;&#24577; &#33258;&#21160;&#36716;&#25442; &#25104;bool</span>
@@ -1168,7 +1149,6 @@ cin&gt;&gt;i;
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
@@ -1206,11 +1186,10 @@ cin&gt;&gt;i;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-24-5" class="outline-3">
-<h3 id="sec-24-5">File</h3>
-<div class="outline-text-3" id="text-24-5">
+<div id="outline-container-org82c2b11" class="outline-3">
+<h3 id="org82c2b11">File</h3>
+<div class="outline-text-3" id="text-org82c2b11">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#19968;&#34892;&#34892;&#35835;&#21462;&#19968;&#20010;&#25991;&#20214;&#65292; &#20889;&#21040;&#21478;&#19968;&#20010;&#25991;&#20214;</span>
 <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
   <span style="color: #8DA6CE;">ifstream</span> <span style="color: #40E0D0;">fin</span>(<span style="color: #ffa07a;">"c.cpp"</span>);
@@ -1227,22 +1206,23 @@ cin&gt;&gt;i;
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-24-5-1" name="sec-24-5-1"></a>open close<br  /><div class="outline-text-4" id="text-24-5-1">
+<ul class="org-ul">
+<li><a id="org11f40b4"></a>open close<br />
+<div class="outline-text-4" id="text-org11f40b4">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">ifstream</span> <span style="color: #40E0D0;">fin</span>;
 fin.open(<span style="color: #ffa07a;">"filename"</span>);
 fin.close();
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-sec-24-6" class="outline-3">
-<h3 id="sec-24-6">字符流 stringstream ostringstream istringstream</h3>
-<div class="outline-text-3" id="text-24-6">
+<div id="outline-container-org8584d95" class="outline-3">
+<h3 id="org8584d95">字符流 stringstream ostringstream istringstream</h3>
+<div class="outline-text-3" id="text-org8584d95">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;sstream&gt;</span>
 <span style="color: #FBDE2D;">using</span> <span style="color: #D8FA3C;">std</span>::<span style="color: #8DA6CE;">stringstream</span>;
 
@@ -1256,68 +1236,68 @@ ss&lt;&lt; <span style="color: #ffa07a;">"hello"</span> &lt;&lt; 1&lt;&lt; <span
 </div>
 </div>
 </div>
-<div id="outline-container-sec-25" class="outline-2">
-<h2 id="sec-25">顺序容器</h2>
-<div class="outline-text-2" id="text-25">
-</div><div id="outline-container-sec-25-1" class="outline-3">
-<h3 id="sec-25-1">包括哪些</h3>
-<div class="outline-text-3" id="text-25-1">
+<div id="outline-container-org3f10b6a" class="outline-2">
+<h2 id="org3f10b6a">顺序容器</h2>
+<div class="outline-text-2" id="text-org3f10b6a">
+</div>
+<div id="outline-container-orgc866dfc" class="outline-3">
+<h3 id="orgc866dfc">包括哪些</h3>
+<div class="outline-text-3" id="text-orgc866dfc">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">vector</td>
-<td class="left">快速随机访问</td>
+<td class="org-left">vector</td>
+<td class="org-left">快速随机访问</td>
 </tr>
 
 <tr>
-<td class="left">list</td>
-<td class="left">支持快速插入、删除</td>
+<td class="org-left">list</td>
+<td class="org-left">支持快速插入、删除</td>
 </tr>
 
 <tr>
-<td class="left">deque</td>
-<td class="left">双端队列</td>
+<td class="org-left">deque</td>
+<td class="org-left">双端队列</td>
 </tr>
 </tbody>
 </table>
 
 <p>
-以上类型的适配器<br  />
+以上类型的适配器<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">stack</td>
-<td class="left">后进先出</td>
+<td class="org-left">stack</td>
+<td class="org-left">后进先出</td>
 </tr>
 
 <tr>
-<td class="left">queue</td>
-<td class="left">先进先出</td>
+<td class="org-left">queue</td>
+<td class="org-left">先进先出</td>
 </tr>
 
 <tr>
-<td class="left">priority_queue</td>
-<td class="left">有优先级</td>
+<td class="org-left">priority_queue</td>
+<td class="org-left">有优先级</td>
 </tr>
 </tbody>
 </table>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span><span style="color: #ffa07a;">&lt;vector&gt;</span>
 <span style="color: #7fffd4;">#include</span><span style="color: #ffa07a;">&lt;list&gt;</span>
 <span style="color: #7fffd4;">#include</span><span style="color: #ffa07a;">&lt;deque&gt;</span>
@@ -1325,71 +1305,67 @@ ss&lt;&lt; <span style="color: #ffa07a;">"hello"</span> &lt;&lt; 1&lt;&lt; <span
 </div>
 </div>
 </div>
-<div id="outline-container-sec-25-2" class="outline-3">
-<h3 id="sec-25-2">容器内元素的约束</h3>
-<div class="outline-text-3" id="text-25-2">
+<div id="outline-container-org9525ebe" class="outline-3">
+<h3 id="org9525ebe">容器内元素的约束</h3>
+<div class="outline-text-3" id="text-org9525ebe">
 <ol class="org-ol">
-<li>元素类型必须支持 赋值<br  />
-</li>
-<li>元素类型对象必须可以复制<br  />
-</li>
+<li>元素类型必须支持 赋值<br /></li>
+<li>元素类型对象必须可以复制<br /></li>
 </ol>
 <p>
-所以 引用不可以作元素 IO类不可以作元素<br  />
-容器的容器<br  />
+所以 引用不可以作元素 IO类不可以作元素<br />
+容器的容器<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt; <span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; &gt; <span style="color: #40E0D0;">lol</span>;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20013;&#38388;&#38656;&#35201;&#26377;&#31354;&#26684; &#65292;&#21542;&#21017; &#35823;&#35299;&#20026;&gt;&gt; &lt;&lt;</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-25-3" class="outline-3">
-<h3 id="sec-25-3">容器iterator支持的操作</h3>
-<div class="outline-text-3" id="text-25-3">
+<div id="outline-container-org5bef342" class="outline-3">
+<h3 id="org5bef342">容器iterator支持的操作</h3>
+<div class="outline-text-3" id="text-org5bef342">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">*iter</td>
+<td class="org-left">*iter</td>
 </tr>
 
 <tr>
-<td class="left">iter-&gt;mem</td>
+<td class="org-left">iter-&gt;mem</td>
 </tr>
 
 <tr>
-<td class="left">++iter</td>
+<td class="org-left">++iter</td>
 </tr>
 
 <tr>
-<td class="left">iter++</td>
+<td class="org-left">iter++</td>
 </tr>
 
 <tr>
-<td class="left">&#x2013;iter</td>
+<td class="org-left">&#x2013;iter</td>
 </tr>
 
 <tr>
-<td class="left">iter--</td>
+<td class="org-left">iter--</td>
 </tr>
 
 <tr>
-<td class="left">iter==iter2</td>
+<td class="org-left">iter==iter2</td>
 </tr>
 
 <tr>
-<td class="left">iter !=iter2</td>
+<td class="org-left">iter !=iter2</td>
 </tr>
 </tbody>
 </table>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">v1</span>;
 v1.push_back(1);
 v1.push_back(2);
@@ -1404,172 +1380,176 @@ v1.push_back(3);
 </div>
 </div>
 
-<ul class="org-ul"><li><a id="sec-25-3-1" name="sec-25-3-1"></a>vector deque 支持的特殊操作(数组实现的 支持随机访问的)<br  /><div class="outline-text-4" id="text-25-3-1">
+<ul class="org-ul">
+<li><a id="org5646d9b"></a>vector deque 支持的特殊操作(数组实现的 支持随机访问的)<br />
+<div class="outline-text-4" id="text-org5646d9b">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">&#xa0;</th>
-<th scope="col" class="left">return</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">return</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">iter+n</td>
-<td class="left">iter</td>
+<td class="org-left">iter+n</td>
+<td class="org-left">iter</td>
 </tr>
 
 <tr>
-<td class="left">iter-n</td>
-<td class="left">iter</td>
+<td class="org-left">iter-n</td>
+<td class="org-left">iter</td>
 </tr>
 
 <tr>
-<td class="left">iter1+=iter2</td>
-<td class="left">iter</td>
+<td class="org-left">iter1+=iter2</td>
+<td class="org-left">iter</td>
 </tr>
 
 <tr>
-<td class="left">iter1-=iter2</td>
-<td class="left">iter</td>
+<td class="org-left">iter1-=iter2</td>
+<td class="org-left">iter</td>
 </tr>
 
 <tr>
-<td class="left">iter1-iter2</td>
-<td class="left">vector&lt;type&gt;::difference_type</td>
+<td class="org-left">iter1-iter2</td>
+<td class="org-left">vector&lt;type&gt;::difference_type</td>
 </tr>
 
 <tr>
-<td class="left">&gt; &gt;= &lt; &lt;=</td>
-<td class="left">bool</td>
+<td class="org-left">&gt; &gt;= &lt; &lt;=</td>
+<td class="org-left">bool</td>
 </tr>
 </tbody>
 </table>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
 
-<div id="outline-container-sec-25-4" class="outline-3">
-<h3 id="sec-25-4">容器提供的类型</h3>
-<div class="outline-text-3" id="text-25-4">
+<div id="outline-container-orga628245" class="outline-3">
+<h3 id="orga628245">容器提供的类型</h3>
+<div class="outline-text-3" id="text-orga628245">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">&#xa0;</th>
-<th scope="col" class="left">例</th>
-<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">例</th>
+<th scope="col" class="org-left">&#xa0;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">size_type</td>
-<td class="left">vector&lt;int&gt;::size_type</td>
-<td class="left">v1.size()</td>
+<td class="org-left">size_type</td>
+<td class="org-left">vector&lt;int&gt;::size_type</td>
+<td class="org-left">v1.size()</td>
 </tr>
 
 <tr>
-<td class="left">difference_type</td>
-<td class="left">list&lt;int&gt;::difference_type</td>
-<td class="left">iter1-iter2</td>
+<td class="org-left">difference_type</td>
+<td class="org-left">list&lt;int&gt;::difference_type</td>
+<td class="org-left">iter1-iter2</td>
 </tr>
 
 <tr>
-<td class="left">iterator</td>
-<td class="left">vector&lt;string&gt;::iterator</td>
-<td class="left">vector&lt;int&gt;::iterator beg=v1.begin()</td>
+<td class="org-left">iterator</td>
+<td class="org-left">vector&lt;string&gt;::iterator</td>
+<td class="org-left">vector&lt;int&gt;::iterator beg=v1.begin()</td>
 </tr>
 
 <tr>
-<td class="left">const_iterator</td>
-<td class="left">vector&lt;string&gt;::const_iterator</td>
-<td class="left">vector&lt;int&gt;::const_iterator beg=v1.begin()</td>
+<td class="org-left">const_iterator</td>
+<td class="org-left">vector&lt;string&gt;::const_iterator</td>
+<td class="org-left">vector&lt;int&gt;::const_iterator beg=v1.begin()</td>
 </tr>
 
 <tr>
-<td class="left">reverse_iterator</td>
-<td class="left">vector&lt;string&gt;::reverse_iterator</td>
-<td class="left">v1.rbegin(),v1.rend()</td>
+<td class="org-left">reverse_iterator</td>
+<td class="org-left">vector&lt;string&gt;::reverse_iterator</td>
+<td class="org-left">v1.rbegin(),v1.rend()</td>
 </tr>
 
 <tr>
-<td class="left">const_reverse_iterator</td>
-<td class="left">list&lt;string&gt;::const_reverse_iterator</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">const_reverse_iterator</td>
+<td class="org-left">list&lt;string&gt;::const_reverse_iterator</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">value_type</td>
-<td class="left">vector&lt;string&gt;::value_type</td>
-<td class="left">vector&lt;int&gt;::value_type value1=  *(v1.begin());</td>
+<td class="org-left">value_type</td>
+<td class="org-left">vector&lt;string&gt;::value_type</td>
+<td class="org-left">vector&lt;int&gt;::value_type value1=  *(v1.begin());</td>
 </tr>
 
 <tr>
-<td class="left">reference</td>
-<td class="left">vector&lt;string&gt;::reference</td>
-<td class="left">同value_type&amp;amp;</td>
+<td class="org-left">reference</td>
+<td class="org-left">vector&lt;string&gt;::reference</td>
+<td class="org-left">同value_type&amp;</td>
 </tr>
 
 <tr>
-<td class="left">const_reference</td>
-<td class="left">vector&lt;string&gt;::const_reference</td>
-<td class="left">const value_type&amp;amp;</td>
+<td class="org-left">const_reference</td>
+<td class="org-left">vector&lt;string&gt;::const_reference</td>
+<td class="org-left">const value_type&amp;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-25-5" class="outline-3">
-<h3 id="sec-25-5">插入元素</h3>
-<div class="outline-text-3" id="text-25-5">
+<div id="outline-container-org90e5a2f" class="outline-3">
+<h3 id="org90e5a2f">插入元素</h3>
+<div class="outline-text-3" id="text-org90e5a2f">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">push_back(New)</td>
-<td class="left">append to end of &#x2026;</td>
+<td class="org-left">push_back(New)</td>
+<td class="org-left">append to end of &#x2026;</td>
 </tr>
 
 <tr>
-<td class="left">insert(iter1,New)</td>
-<td class="left">insert before element of iter1</td>
+<td class="org-left">insert(iter1,New)</td>
+<td class="org-left">insert before element of iter1</td>
 </tr>
 
 <tr>
-<td class="left">insert(iter1,n,New)</td>
-<td class="left">insert n个 New</td>
+<td class="org-left">insert(iter1,n,New)</td>
+<td class="org-left">insert n个 New</td>
 </tr>
 
 <tr>
-<td class="left">insert(iter1,iter_beg,iter_end)</td>
-<td class="left">在iter1前插入从iter_beg,到iter_end之间的元素</td>
+<td class="org-left">insert(iter1,iter_beg,iter_end)</td>
+<td class="org-left">在iter1前插入从iter_beg,到iter_end之间的元素</td>
 </tr>
 </tbody>
 </table>
 </div>
-<ul class="org-ul"><li><a id="sec-25-5-1" name="sec-25-5-1"></a>插入元素会使iterator失效<br  /><div class="outline-text-4" id="text-25-5-1">
+<ul class="org-ul">
+<li><a id="org1bc2850"></a>插入元素会使iterator失效<br />
+<div class="outline-text-4" id="text-org1bc2850">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #D8FA3C;">vector</span>&lt;<span style="color: #8DA6CE;">int</span>&gt;::<span style="color: #8DA6CE;">iterator</span> <span style="color: #40E0D0;">first</span>= v1.begin();
 v1.push_back(3);
 <span style="color: #D8FA3C;">vector</span>&lt;<span style="color: #8DA6CE;">int</span>&gt;::<span style="color: #8DA6CE;">iterator</span> <span style="color: #40E0D0;">first2</span>= v1.begin();
@@ -1579,89 +1559,90 @@ v1.push_back(3);
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-sec-25-6" class="outline-3">
-<h3 id="sec-25-6">删除元素</h3>
-<div class="outline-text-3" id="text-25-6">
+<div id="outline-container-orgce51f2b" class="outline-3">
+<h3 id="orgce51f2b">删除元素</h3>
+<div class="outline-text-3" id="text-orgce51f2b">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">c.erase(iter1)</td>
+<td class="org-left">c.erase(iter1)</td>
 </tr>
 
 <tr>
-<td class="left">c.erase(beg,end)</td>
+<td class="org-left">c.erase(beg,end)</td>
 </tr>
 
 <tr>
-<td class="left">c.clear()</td>
+<td class="org-left">c.clear()</td>
 </tr>
 
 <tr>
-<td class="left">c.pop_back()</td>
+<td class="org-left">c.pop_back()</td>
 </tr>
 
 <tr>
-<td class="left">c.pop_front()</td>
+<td class="org-left">c.pop_front()</td>
 </tr>
 
 <tr>
-<td class="left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-26" class="outline-2">
-<h2 id="sec-26">关联容器</h2>
-<div class="outline-text-2" id="text-26">
-</div><div id="outline-container-sec-26-1" class="outline-3">
-<h3 id="sec-26-1">关联窗口列表</h3>
-<div class="outline-text-3" id="text-26-1">
+<div id="outline-container-orgffd868f" class="outline-2">
+<h2 id="orgffd868f">关联容器</h2>
+<div class="outline-text-2" id="text-orgffd868f">
+</div>
+<div id="outline-container-org09aabdf" class="outline-3">
+<h3 id="org09aabdf">关联窗口列表</h3>
+<div class="outline-text-3" id="text-org09aabdf">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">map</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">map</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">set</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">set</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="left">multimap</td>
-<td class="left">key可多次出现</td>
+<td class="org-left">multimap</td>
+<td class="org-left">key可多次出现</td>
 </tr>
 
 <tr>
-<td class="left">multiset</td>
-<td class="left">&#xa0;</td>
+<td class="org-left">multiset</td>
+<td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-26-2" class="outline-3">
-<h3 id="sec-26-2">pair</h3>
-<div class="outline-text-3" id="text-26-2">
+<div id="outline-container-orgff24005" class="outline-3">
+<h3 id="orgff24005">pair</h3>
+<div class="outline-text-3" id="text-orgff24005">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;utility&gt;</span>
 <span style="color: #8DA6CE;">pair</span>&lt;<span style="color: #8DA6CE;">string</span> ,<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">p</span>(<span style="color: #ffa07a;">"v1"</span> ,100);
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; p.first &lt;&lt; <span style="color: #ffa07a;">" "</span>&lt;&lt; p.second&lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
@@ -1670,11 +1651,10 @@ p=make_pair(<span style="color: #ffa07a;">"hello"</span>, 300);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-26-3" class="outline-3">
-<h3 id="sec-26-3">map</h3>
-<div class="outline-text-3" id="text-26-3">
+<div id="outline-container-org30d0834" class="outline-3">
+<h3 id="org30d0834">map</h3>
+<div class="outline-text-3" id="text-org30d0834">
 <div class="org-src-container">
-
 <pre class="src src-c++">   <span style="color: #8DA6CE;">map</span>&lt;<span style="color: #8DA6CE;">string</span>,<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">m</span>;
    m[<span style="color: #ffa07a;">"3"</span>]=3;
    <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#20351;&#29992;&#19979;&#26631;&#35775;&#38382;&#20803;&#32032;&#65292;&#22914;&#26524;key&#19981;&#23384;&#22312;&#65292; &#21017;&#33258;&#21160;&#21019;&#24314;&#19968;&#20010;&#65292;value&#20026;&#30456;&#24212;&#31867;&#22411;&#30340;&#40664;&#35748;&#20540;</span>
@@ -1687,18 +1667,19 @@ p=make_pair(<span style="color: #ffa07a;">"hello"</span>, 300);
 }
 
 
-   <span style="color: #FBDE2D;">for</span> (map&lt;string,<span style="color: #8DA6CE;">int</span>&gt;::<span style="color: #8DA6CE;">iterator</span> <span style="color: #40E0D0;">it</span>=m.begin(); it!=m.end(); it++) {
+   <span style="color: #FBDE2D;">for</span> (<span style="color: #D8FA3C;">map</span>&lt;<span style="color: #8DA6CE;">string</span>,<span style="color: #8DA6CE;">int</span>&gt;::<span style="color: #8DA6CE;">iterator</span> <span style="color: #40E0D0;">it</span>=m.begin(); it!=m.end(); it++) {
      <span style="color: #8DA6CE;">pair</span>&lt;<span style="color: #8DA6CE;">string</span>,<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">p</span> = *it;
      <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; p.first &lt;&lt;<span style="color: #ffa07a;">"="</span>&lt;&lt;p.second &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
     }
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="sec-26-3-1" name="sec-26-3-1"></a>map 的iterator解引用 是pair类型<br  /></li>
+<ul class="org-ul">
+<li><a id="org21f6487"></a>map 的iterator解引用 是pair类型<br /></li>
 
-<li><a id="sec-26-3-2" name="sec-26-3-2"></a>map 插入<br  /><div class="outline-text-4" id="text-26-3-2">
+<li><a id="orgf62fc81"></a>map 插入<br />
+<div class="outline-text-4" id="text-orgf62fc81">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">map</span>&lt;<span style="color: #8DA6CE;">string</span>,<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">m</span>;
 m.insert(make_pair(<span style="color: #ffa07a;">"3"</span>, <span style="color: #ffa07a;">"111"</span>));
 <span style="color: #8DA6CE;">pair</span>&lt;<span style="color: #D8FA3C;">map</span>&lt;<span style="color: #8DA6CE;">string</span>,<span style="color: #8DA6CE;">string</span>&gt;::iterator,<span style="color: #8DA6CE;">bool</span>&gt; <span style="color: #40E0D0;">ret</span>=
@@ -1708,66 +1689,66 @@ m.insert(make_pair(<span style="color: #ffa07a;">"3"</span>, <span style="color:
 m[<span style="color: #ffa07a;">"4"</span>]=<span style="color: #ffa07a;">"111"</span>;
 m[<span style="color: #ffa07a;">"4"</span>]=<span style="color: #ffa07a;">"222"</span>; <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#35206;&#30422;</span>
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; m[<span style="color: #ffa07a;">"4"</span>] &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">m["4"] &#30340;&#20540; &#26159;"222" ,&#32780;&#19981;&#26159;"111"</span>
+
 </pre>
 </div>
 </div>
 </li>
-<li><a id="sec-26-3-3" name="sec-26-3-3"></a>map 删除<br  /><div class="outline-text-4" id="text-26-3-3">
+<li><a id="org844701f"></a>map 删除<br />
+<div class="outline-text-4" id="text-org844701f">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">erase(Key)</td>
+<td class="org-left">erase(Key)</td>
 </tr>
 
 <tr>
-<td class="left">erase(iter)</td>
+<td class="org-left">erase(iter)</td>
 </tr>
 
 <tr>
-<td class="left">erase(beg,end)</td>
+<td class="org-left">erase(beg,end)</td>
 </tr>
 </tbody>
 </table>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-sec-26-4" class="outline-3">
-<h3 id="sec-26-4">set</h3>
-<div class="outline-text-3" id="text-26-4">
+<div id="outline-container-org088089e" class="outline-3">
+<h3 id="org088089e">set</h3>
+<div class="outline-text-3" id="text-org088089e">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">count(Key) &#36820;&#22238;0 1 &#26159;&#21542;&#21547;&#26377;&#27492;key</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27" class="outline-2">
-<h2 id="sec-27">泛形算法(可以操作在多种容器类型上)</h2>
-<div class="outline-text-2" id="text-27">
+<div id="outline-container-org7a0d78b" class="outline-2">
+<h2 id="org7a0d78b">泛形算法(可以操作在多种容器类型上)</h2>
+<div class="outline-text-2" id="text-org7a0d78b">
 <p>
-多数算法都是通过  iterator来标记一段范围<br  />
+多数算法都是通过  iterator来标记一段范围<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;algorithm&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;numeric&gt;</span>
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-27-1" class="outline-3">
-<h3 id="sec-27-1">find(iter_beg,iter_end,search_value) 从某段范围内查找search_value,失败返回iter_end,成功返回iter</h3>
+<div id="outline-container-orgaf12e72" class="outline-3">
+<h3 id="orgaf12e72">find(iter_beg,iter_end,search_value) 从某段范围内查找search_value,失败返回iter_end,成功返回iter</h3>
 </div>
-<div id="outline-container-sec-27-2" class="outline-3">
-<h3 id="sec-27-2">accumulate(iter_beg,iter_end,init_value) 求和,类似于erlang里的lists:foldl</h3>
-<div class="outline-text-3" id="text-27-2">
+<div id="outline-container-org40fed21" class="outline-3">
+<h3 id="org40fed21">accumulate(iter_beg,iter_end,init_value) 求和,类似于erlang里的lists:foldl</h3>
+<div class="outline-text-3" id="text-org40fed21">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">v</span>;
 <span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">int</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(1);
@@ -1787,14 +1768,13 @@ v.push_back(<span style="color: #ffa07a;">"3"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-3" class="outline-3">
-<h3 id="sec-27-3">find_first_of(iter1_beg,iter1_end,iter2_beg,iter2_end)</h3>
-<div class="outline-text-3" id="text-27-3">
+<div id="outline-container-orgef97162" class="outline-3">
+<h3 id="orgef97162">find_first_of(iter1_beg,iter1_end,iter2_beg,iter2_end)</h3>
+<div class="outline-text-3" id="text-orgef97162">
 <p>
-在iter1_beg iter1_end的范围内查找任意一个属于iter2_beg iter2_end<br  />
+在iter1_beg iter1_end的范围内查找任意一个属于iter2_beg iter2_end<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(<span style="color: #ffa07a;">"1"</span>);
 v.push_back(<span style="color: #ffa07a;">"2"</span>);
@@ -1812,11 +1792,10 @@ l.push_back(<span style="color: #ffa07a;">"4"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-4" class="outline-3">
-<h3 id="sec-27-4">fill(beg,end,value) 填充value</h3>
-<div class="outline-text-3" id="text-27-4">
+<div id="outline-container-orga9d6639" class="outline-3">
+<h3 id="orga9d6639">fill(beg,end,value) 填充value</h3>
+<div class="outline-text-3" id="text-orga9d6639">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(<span style="color: #ffa07a;">"1"</span>);
 v.push_back(<span style="color: #ffa07a;">"2"</span>);
@@ -1826,11 +1805,10 @@ fill(v.begin(),v.end(),<span style="color: #ffa07a;">"test"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-5" class="outline-3">
-<h3 id="sec-27-5">fill_n(beg,N,value) 填充N个value</h3>
-<div class="outline-text-3" id="text-27-5">
+<div id="outline-container-org0b7d40b" class="outline-3">
+<h3 id="org0b7d40b">fill_n(beg,N,value) 填充N个value</h3>
+<div class="outline-text-3" id="text-org0b7d40b">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(<span style="color: #ffa07a;">"1"</span>);
 v.push_back(<span style="color: #ffa07a;">"2"</span>);
@@ -1840,10 +1818,9 @@ fill_n(v.begin(),4,<span style="color: #ffa07a;">"test"</span>);<span style="col
 </pre>
 </div>
 <p>
-引入back_iterator ,当fill_n 的N 超出容器长度之后， 自动使用push_back添加到末尾<br  />
+引入back_iterator ,当fill_n 的N 超出容器长度之后， 自动使用push_back添加到末尾<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(<span style="color: #ffa07a;">"1"</span>);
 v.push_back(<span style="color: #ffa07a;">"2"</span>);
@@ -1853,14 +1830,13 @@ fill_n(back_inserter(v),4,<span style="color: #ffa07a;">"test"</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-6" class="outline-3">
-<h3 id="sec-27-6">replace(beg,end,old,new) 把old换成new</h3>
+<div id="outline-container-orgff50f10" class="outline-3">
+<h3 id="orgff50f10">replace(beg,end,old,new) 把old换成new</h3>
 </div>
-<div id="outline-container-sec-27-7" class="outline-3">
-<h3 id="sec-27-7">replace_copy(beg,end,NewIterBeg,old,new) 不改变原来的容器，将改变后的内容存入NewIterBeg所指容器中</h3>
-<div class="outline-text-3" id="text-27-7">
+<div id="outline-container-orga1fb71d" class="outline-3">
+<h3 id="orga1fb71d">replace_copy(beg,end,NewIterBeg,old,new) 不改变原来的容器，将改变后的内容存入NewIterBeg所指容器中</h3>
+<div class="outline-text-3" id="text-orga1fb71d">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
 v.push_back(string(<span style="color: #ffa07a;">"1"</span>));
 v.push_back(string(<span style="color: #ffa07a;">"2"</span>));
@@ -1876,11 +1852,10 @@ replace_copy(v.begin(),v.end(),back_inserter(v2),string(<span style="color: #ffa
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-8" class="outline-3">
-<h3 id="sec-27-8">sort unique 排序 去重，</h3>
-<div class="outline-text-3" id="text-27-8">
+<div id="outline-container-org7f67887" class="outline-3">
+<h3 id="org7f67887">sort unique 排序 去重，</h3>
+<div class="outline-text-3" id="text-org7f67887">
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #8DA6CE;">vector</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">v</span>;
  v.push_back(string(<span style="color: #ffa07a;">"2"</span>));
  v.push_back(string(<span style="color: #ffa07a;">"2"</span>));
@@ -1902,11 +1877,10 @@ replace_copy(v.begin(),v.end(),back_inserter(v2),string(<span style="color: #ffa
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-9" class="outline-3">
-<h3 id="sec-27-9">count_if(beg,end,Pred)  类似函数式编程，</h3>
-<div class="outline-text-3" id="text-27-9">
+<div id="outline-container-org7c3dc3e" class="outline-3">
+<h3 id="org7c3dc3e">count_if(beg,end,Pred)  类似函数式编程，</h3>
+<div class="outline-text-3" id="text-org7c3dc3e">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">bool</span> <span style="color: #FF6400;">is_2</span>(<span style="color: #8DA6CE;">string</span> <span style="color: #40E0D0;">str</span>){
   str==<span style="color: #ffa07a;">"2"</span>;
 }
@@ -1923,45 +1897,45 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-27-10" class="outline-3">
-<h3 id="sec-27-10">泛形与iterator</h3>
-<div class="outline-text-3" id="text-27-10">
-</div><ul class="org-ul"><li><a id="sec-27-10-1" name="sec-27-10-1"></a>插入迭代器<br  /><div class="outline-text-4" id="text-27-10-1">
+<div id="outline-container-org38649b7" class="outline-3">
+<h3 id="org38649b7">泛形与iterator</h3>
+<div class="outline-text-3" id="text-org38649b7">
+</div>
+<ul class="org-ul">
+<li><a id="org88a056b"></a>插入迭代器<br />
+<div class="outline-text-4" id="text-org88a056b">
 <ol class="org-ol">
-<li>back_inserter  当需要插入时 用push_back<br  />
-</li>
-<li>front_inserter当需要插入时 用push_front (容器需支持push_front)<br  />
-</li>
-<li>inserter(vector,iter) 当需要插入时 在iter所指位置后插入<br  />
-</li>
+<li>back_inserter  当需要插入时 用push_back<br /></li>
+<li>front_inserter当需要插入时 用push_front (容器需支持push_front)<br /></li>
+<li>inserter(vector,iter) 当需要插入时 在iter所指位置后插入<br /></li>
 </ol>
 </div>
 </li>
-<li><a id="sec-27-10-2" name="sec-27-10-2"></a>iostream 迭代器<br  /></li>
-<li><a id="sec-27-10-3" name="sec-27-10-3"></a>反向迭代器<br  /></li></ul>
+<li><a id="org7f44c24"></a>iostream 迭代器<br /></li>
+<li><a id="orga7b1333"></a>反向迭代器<br /></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-sec-28" class="outline-2">
-<h2 id="sec-28">类</h2>
-<div class="outline-text-2" id="text-28">
+<div id="outline-container-org0d0ab49" class="outline-2">
+<h2 id="org0d0ab49">类</h2>
+<div class="outline-text-2" id="text-org0d0ab49">
 <ol class="org-ol">
-<li>类的定义必须以分号结束 ， 因为可以}后加 对象定义列表,像struct一样<br  />
+<li><p>
+类的定义必须以分号结束 ， 因为可以}后加 对象定义列表,像struct一样<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 } <span style="color: #40E0D0;">name1</span>, <span style="color: #40E0D0;">name2</span>;
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-29" class="outline-2">
-<h2 id="sec-29">类 this 指针</h2>
-<div class="outline-text-2" id="text-29">
+<div id="outline-container-orgb80fe56" class="outline-2">
+<h2 id="orgb80fe56">类 this 指针</h2>
+<div class="outline-text-2" id="text-orgb80fe56">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">this &#26159;&#25351;&#38024;</span>
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
@@ -1989,18 +1963,18 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </pre>
 </div>
 </div>
-<div id="outline-container-sec-29-1" class="outline-3">
-<h3 id="sec-29-1">this 与const</h3>
-<div class="outline-text-3" id="text-29-1">
+<div id="outline-container-org9ad181d" class="outline-3">
+<h3 id="org9ad181d">this 与const</h3>
+<div class="outline-text-3" id="text-org9ad181d">
 <ol class="org-ol">
-<li>this 的类型是 指向类类型的const 指针， 意思是它只能指向当前对象， 不能指向其<br  />
-他对象 ，可以改变所指对象 的值 ， 但不能改变this所指的地址<br  />
-</li>
-<li>在const 成员函数中，this是一个指向const类类型对象的const 指针<br  />
-即 不能改变其所指的对象 ，也不能改变其地址<br  />
-有一个问题 ，即return 当前对象时 类型也固定成this的类型，<br  />
+<li>this 的类型是 指向类类型的const 指针， 意思是它只能指向当前对象， 不能指向其<br />
+他对象 ，可以改变所指对象 的值 ， 但不能改变this所指的地址<br /></li>
+<li><p>
+在const 成员函数中，this是一个指向const类类型对象的const 指针<br />
+即 不能改变其所指的对象 ，也不能改变其地址<br />
+有一个问题 ，即return 当前对象时 类型也固定成this的类型，<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2014,20 +1988,18 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   }
 };
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-30" class="outline-2">
-<h2 id="sec-30">mutable 可变数据成员</h2>
-<div class="outline-text-2" id="text-30">
+<div id="outline-container-org47d046e" class="outline-2">
+<h2 id="org47d046e">mutable 可变数据成员</h2>
+<div class="outline-text-2" id="text-org47d046e">
 <p>
-即使在const成员函数中， 也可以对mutable成员变量进行更改<br  />
+即使在const成员函数中， 也可以对mutable成员变量进行更改<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2040,18 +2012,18 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31" class="outline-2">
-<h2 id="sec-31">友元 friend</h2>
-<div class="outline-text-2" id="text-31">
-</div><div id="outline-container-sec-31-1" class="outline-3">
-<h3 id="sec-31-1">friend Class</h3>
-<div class="outline-text-3" id="text-31-1">
+<div id="outline-container-orgba2eefa" class="outline-2">
+<h2 id="orgba2eefa">友元 friend</h2>
+<div class="outline-text-2" id="text-orgba2eefa">
+</div>
+<div id="outline-container-org1197100" class="outline-3">
+<h3 id="org1197100">friend Class</h3>
+<div class="outline-text-3" id="text-org1197100">
 <p>
-允许某些 非成员函数或类 访问类private成员，同时阻止其他一般的访问<br  />
-如 重载的操作符（操作符不是类的成员)<br  />
+允许某些 非成员函数或类 访问类private成员，同时阻止其他一般的访问<br />
+如 重载的操作符（操作符不是类的成员)<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++">  <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
   {
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#22768;&#26126;&#65292; NameF &#31867;&#65292;&#21487;&#20197;&#35775;&#38382;&#25105;&#30340;&#20040;&#26377;&#25104;&#21592;</span>
@@ -2083,11 +2055,10 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-2" class="outline-3">
-<h3 id="sec-31-2">friend Function</h3>
-<div class="outline-text-3" id="text-31-2">
+<div id="outline-container-org9627dc4" class="outline-3">
+<h3 id="org9627dc4">friend Function</h3>
+<div class="outline-text-3" id="text-org9627dc4">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>; <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#21069;&#21521;&#22768;&#26126;&#65292;&#22240;&#20026;NameF&#20381;&#36182;Name , Name&#20063;&#20381;&#36182;NameF</span>
 
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">NameF</span>{
@@ -2130,14 +2101,14 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-32" class="outline-2">
-<h2 id="sec-32">static 数据成员</h2>
-<div class="outline-text-2" id="text-32">
-</div><div id="outline-container-sec-32-1" class="outline-3">
-<h3 id="sec-32-1">static 数据成员必须在 类的定义 外 初始化 (只能一次）</h3>
-<div class="outline-text-3" id="text-32-1">
+<div id="outline-container-org3607b84" class="outline-2">
+<h2 id="org3607b84">static 数据成员</h2>
+<div class="outline-text-2" id="text-org3607b84">
+</div>
+<div id="outline-container-orgfdcc752" class="outline-3">
+<h3 id="orgfdcc752">static 数据成员必须在 类的定义 外 初始化 (只能一次）</h3>
+<div class="outline-text-3" id="text-orgfdcc752">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">private</span>:
@@ -2165,11 +2136,10 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 
-<div id="outline-container-sec-33" class="outline-2">
-<h2 id="sec-33">复制构造函数</h2>
-<div class="outline-text-2" id="text-33">
+<div id="outline-container-orgb782fcb" class="outline-2">
+<h2 id="orgb782fcb">复制构造函数</h2>
+<div class="outline-text-2" id="text-orgb782fcb">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">MyClass</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2182,11 +2152,10 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-34" class="outline-2">
-<h2 id="sec-34">赋值操作符</h2>
-<div class="outline-text-2" id="text-34">
+<div id="outline-container-org6e55715" class="outline-2">
+<h2 id="org6e55715">赋值操作符</h2>
+<div class="outline-text-2" id="text-org6e55715">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">MyClass</span>&amp; <span style="color: #D8FA3C;">MyClass</span>::<span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">=</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">MyClass</span> &amp;<span style="color: #40E0D0;">rhs</span>) {
   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Check for self-assignment!</span>
   <span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">this</span> == &amp;rhs)
@@ -2197,11 +2166,10 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-35" class="outline-2">
-<h2 id="sec-35">析构函数</h2>
-<div class="outline-text-2" id="text-35">
+<div id="outline-container-org0e712f8" class="outline-2">
+<h2 id="org0e712f8">析构函数</h2>
+<div class="outline-text-2" id="text-org0e712f8">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Name</span>
 {
 <span style="color: #FBDE2D;">private</span> :
@@ -2223,16 +2191,14 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </pre>
 </div>
 <ol class="org-ol">
-<li>即使我们自己编写了析构函数 ， 系统为我们自动 生成的合成析构函数也会运行<br  />
-</li>
+<li>即使我们自己编写了析构函数 ， 系统为我们自动 生成的合成析构函数也会运行<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-36" class="outline-2">
-<h2 id="sec-36">管理具有指针成员的类（引用计数)</h2>
-<div class="outline-text-2" id="text-36">
+<div id="outline-container-org71c3110" class="outline-2">
+<h2 id="org71c3110">管理具有指针成员的类（引用计数)</h2>
+<div class="outline-text-2" id="text-org71c3110">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;vector&gt;</span>
@@ -2245,7 +2211,7 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #8DA6CE;">size_t</span> <span style="color: #40E0D0;">cnt</span>;
   <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">p</span>;
 <span style="color: #FBDE2D;">public</span>:
-  <span style="color: #FF6400;">Nptr</span>(<span style="color: #8DA6CE;">size_t</span> <span style="color: #40E0D0;">c</span>,<span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">pr</span>):cnt(c), <span style="color: #8DA6CE;">p</span>(<span style="color: #40E0D0;">pr</span>)  {}
+  <span style="color: #FF6400;">Nptr</span>(<span style="color: #8DA6CE;">size_t</span> <span style="color: #40E0D0;">c</span>,<span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">pr</span>):cnt(c), p(pr)  {}
   ~<span style="color: #FF6400;">Nptr</span>(){
     <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; <span style="color: #ffa07a;">"~Nptr() is called"</span> &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
     <span style="color: #FBDE2D;">delete</span> p;
@@ -2262,7 +2228,7 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 {
 <span style="color: #FBDE2D;">public</span>:
   <span style="color: #8DA6CE;">Nptr</span> *<span style="color: #40E0D0;">nptr</span>;
-  <span style="color: #FF6400;">Obj</span>(<span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">i</span> ):<span style="color: #40E0D0;">nptr</span>( <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">Nptr</span>(1,i)) {}
+  <span style="color: #FF6400;">Obj</span>(<span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">i</span> ):nptr( <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">Nptr</span>(1,i)) {}
   <span style="color: #FBDE2D;">virtual</span> ~<span style="color: #FF6400;">Obj</span>(){
     <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; <span style="color: #ffa07a;">"nptr.cnt--"</span> &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
     <span style="color: #FBDE2D;">if</span> (--nptr-&gt;cnt==0){
@@ -2289,9 +2255,9 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 
 <span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">argc</span>, <span style="color: #8DA6CE;">char</span> *<span style="color: #40E0D0;">argv</span>[]){
   <span style="color: #8DA6CE;">int</span> *<span style="color: #40E0D0;">i</span>   = <span style="color: #FBDE2D;">new</span> <span style="color: #8DA6CE;">int</span>(3) ;
-  <span style="color: #8DA6CE;">Obj</span> <span style="color: #FF6400;">obj</span>(i);
+  <span style="color: #8DA6CE;">Obj</span> <span style="color: #40E0D0;">obj</span>(i);
   <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; obj.nptr-&gt;get_cnt()&lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
-  <span style="color: #8DA6CE;">Obj</span> <span style="color: #FF6400;">obj2</span>(obj);
+  <span style="color: #8DA6CE;">Obj</span> <span style="color: #40E0D0;">obj2</span>(obj);
   <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; obj.nptr-&gt;get_cnt()&lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
   <span style="color: #8DA6CE;">Obj</span> <span style="color: #40E0D0;">obj3</span>=obj2;
 
@@ -2302,25 +2268,24 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </div>
 </div>
 </div>
-<div id="outline-container-sec-37" class="outline-2">
-<h2 id="sec-37">操作符重载</h2>
-<div class="outline-text-2" id="text-37">
+<div id="outline-container-orgf90cc18" class="outline-2">
+<h2 id="orgf90cc18">操作符重载</h2>
+<div class="outline-text-2" id="text-orgf90cc18">
 <ol class="org-ol">
-<li>重载操作符 必须 具有  一个 类类型 操作数，即 不能重载内置类型的操作符，<br  />
+<li><p>
+重载操作符 必须 具有  一个 类类型 操作数，即 不能重载内置类型的操作符，<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">int</span>  <span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">+</span>(<span style="color: #8DA6CE;">int</span> ,<span style="color: #8DA6CE;">int</span> )<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">eror , int int &#37117;&#26159;&#20869;&#36716;&#31867;&#22411;</span>
 </pre>
-</div>
-</li>
-<li>优先级 结合性是固定的<br  />
-</li>
-<li>不再具备短路求值特殊性（重载 || &amp;&amp;时） ，因 重载后  ，不能保证 求值顺序，<br  />
-所以 两个值都要 求<br  />
-</li>
-<li>一般将自述和关系操作符 定义为 非成员函数，赋值 定义为成员函数(=  += )<br  />
+</div></li>
+<li>优先级 结合性是固定的<br /></li>
+<li>不再具备短路求值特殊性（重载 || &amp;&amp;时） ，因 重载后  ，不能保证 求值顺序，<br />
+所以 两个值都要 求<br /></li>
+<li><p>
+一般将自述和关系操作符 定义为 非成员函数，赋值 定义为成员函数(=  += )<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">MyClass</span>&amp; <span style="color: #D8FA3C;">MyClass</span>::<span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">=</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">MyClass</span> &amp;<span style="color: #40E0D0;">rhs</span>) { <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36171;&#20540;= &#19982;+=  &#36820;&#22238; &#24341;&#29992;</span>
   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Check for self-assignment!</span>
   <span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">this</span> == &amp;rhs)
@@ -2335,11 +2300,11 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #FBDE2D;">return</span> result;
 }
 </pre>
-</div>
-</li>
-<li>与友元函数 ，当为非成员函数时， 通常设为它的友好函数<br  />
+</div></li>
+<li><p>
+与友元函数 ，当为非成员函数时， 通常设为它的友好函数<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">A</span>
 {
   <span style="color: #FBDE2D;">friend</span> <span style="color: #8DA6CE;">A</span> <span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">+</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">A</span> &amp;<span style="color: #40E0D0;">a</span>, <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">A</span> &amp;<span style="color: #40E0D0;">a2</span>);<span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#22768;&#26126;&#20026;A&#30340;&#30721;&#20803;&#20989;&#25968;,&#36825;&#26679; &#65292;&#21487;&#20197;&#35775;&#38382;A&#30340;private member</span>
@@ -2353,22 +2318,18 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #FBDE2D;">return</span> result;
 }
 </pre>
-</div>
-</li>
-<li>不建议 重载  逗号 取地址 逻辑与 逻辑或<br  />
-</li>
-<li>如果重载了 ＋  通常也会重载 +=<br  />
-</li>
-<li>要作为map 的key 的类 ，通常要重载&lt;号与==, 如果定义了== 一般会定义!= ,如果定<br  />
-义的&lt;  通常也该提供 &gt; &gt;= &lt;=<br  />
-</li>
-<li>= [] ()  -&gt; 四个必须定义的成员函数（否则编译错)， \+= 建议定义成成员，改变对<br  />
-象状态 如++ &#x2013; 通常定义为成员，对象的操作符通常定义为非成员 如 + - * / = =<br  />
-! =<br  />
-</li>
-<li>&lt; &lt; 与 &gt; &gt; 必须非成员函数<br  />
+</div></li>
+<li>不建议 重载  逗号 取地址 逻辑与 逻辑或<br /></li>
+<li>如果重载了 ＋  通常也会重载 +=<br /></li>
+<li>要作为map 的key 的类 ，通常要重载&lt;号与==, 如果定义了== 一般会定义!= ,如果定<br />
+义的&lt;  通常也该提供 &gt; &gt;= &lt;=<br /></li>
+<li>= [] ()  -&gt; 四个必须定义的成员函数（否则编译错)， \+= 建议定义成成员，改变对<br />
+象状态 如++ &#x2013; 通常定义为成员，对象的操作符通常定义为非成员 如 + - * / = =<br />
+! =<br /></li>
+<li><p>
+&lt; &lt; 与 &gt; &gt; 必须非成员函数<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #D8FA3C;">std</span>::<span style="color: #8DA6CE;">ostream</span>&amp; <span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">&lt;&lt;</span>(<span style="color: #D8FA3C;">std</span>::<span style="color: #8DA6CE;">ostream</span>&amp; <span style="color: #40E0D0;">s</span>, <span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">MyClass</span>&amp; <span style="color: #40E0D0;">c</span>)
 {
   <span style="color: #FBDE2D;">return</span> s;
@@ -2380,20 +2341,19 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #FBDE2D;">return</span> s;
 }
 </pre>
-</div>
-</li>
-<li>= 操作符 ，可以重载 ,必须定义为成员函数<br  />
-</li>
-<li>[] 下标<br  />
+</div></li>
+<li>= 操作符 ，可以重载 ,必须定义为成员函数<br /></li>
+<li><p>
+[] 下标<br />
+</p>
 <div class="org-src-container">
-
-<pre class="src src-c++">Class&amp; <span style="color: #FBDE2D;">operator</span>[](<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">index</span>);
+<pre class="src src-c++"><span style="color: #8DA6CE;">Class</span>&amp; <span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">[]</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">index</span>);
 </pre>
-</div>
-</li>
-<li>成员访问 解引用*  箭头-&gt; (通常用在 智能指针的类中)<br  />
+</div></li>
+<li><p>
+成员访问 解引用*  箭头-&gt; (通常用在 智能指针的类中)<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">* &#24517;&#39035;&#23450;&#20041;&#20026;&#25104;&#21592;</span>
 <span style="color: #8DA6CE;">MyClass</span>&amp; <span style="color: #D8FA3C;">MyClass</span>::<span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">*</span>() {
   <span style="color: #FBDE2D;">return</span> *ptr-&gt;sp;  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">return ref</span>
@@ -2403,11 +2363,11 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #FBDE2D;">return</span> ptr-&gt;sp;  <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">return pointer</span>
 }
 </pre>
-</div>
-</li>
-<li>++ &#x2013;<br  />
+</div></li>
+<li><p>
+++ &#x2013;<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">MyClass</span>&amp; <span style="color: #D8FA3C;">MyClass</span>::<span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">++</span>() { <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">++i</span>
   <span style="color: #FBDE2D;">return</span> *<span style="color: #FBDE2D;">this</span>;
 }
@@ -2415,13 +2375,10 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
   <span style="color: #FBDE2D;">return</span> *<span style="color: #FBDE2D;">this</span>;
 }
 </pre>
-</div>
-</li>
-<li>调用操作符（） 和函数对象<br  />
-</li>
+</div></li>
+<li>调用操作符（） 和函数对象<br /></li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">MyClass</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2438,7 +2395,6 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20989;&#25968;&#23545;&#35937;&#22312; &#31639;&#27861;&#24211;&#20013;&#30340;&#24212;&#29992;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
@@ -2474,56 +2430,58 @@ v.push_back(string(<span style="color: #ffa07a;">"3"</span>));
 </pre>
 </div>
 <p>
-16  转换操作符<br  />
+16  转换操作符<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">SmallInt</span>
 {
 <span style="color: #FBDE2D;">public</span>:
   <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36716;&#25442;&#25104;int &#30340;&#36716;&#25442;&#25805;&#20316;&#31526;</span>
   <span style="color: #FBDE2D;">operator</span> <span style="color: #8DA6CE;">int</span>() <span style="color: #FBDE2D;">const</span>{ <span style="color: #FBDE2D;">return</span> 0}
 };
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38" class="outline-2">
-<h2 id="sec-38">面向对象 多承 多态(动态绑定,父类引用指向子类对象)) 封装</h2>
-<div class="outline-text-2" id="text-38">
-</div><div id="outline-container-sec-38-1" class="outline-3">
-<h3 id="sec-38-1">父类 通常 应该 将 子类需要重新定义的函数 声明为 virtual</h3>
+<div id="outline-container-orgb3f4241" class="outline-2">
+<h2 id="orgb3f4241">面向对象 多承 多态(动态绑定,父类引用指向子类对象)) 封装</h2>
+<div class="outline-text-2" id="text-orgb3f4241">
 </div>
-<div id="outline-container-sec-38-2" class="outline-3">
-<h3 id="sec-38-2">继承语法  子类:[public |private|protected] 父类, 子类权限的控制</h3>
-<div class="outline-text-3" id="text-38-2">
+<div id="outline-container-orgc2174e6" class="outline-3">
+<h3 id="orgc2174e6">父类 通常 应该 将 子类需要重新定义的函数 声明为 virtual</h3>
+</div>
+<div id="outline-container-org44ab473" class="outline-3">
+<h3 id="org44ab473">继承语法  子类:[public |private|protected] 父类, 子类权限的控制</h3>
+<div class="outline-text-3" id="text-org44ab473">
 <p>
-子类可以进一步限制 但不能 放松 它所继承来的成员的访问权限<br  />
+子类可以进一步限制 但不能 放松 它所继承来的成员的访问权限<br />
 </p>
 </div>
-<ul class="org-ul"><li><a id="sec-38-2-1" name="sec-38-2-1"></a>class Child:public Parent ,原来为public 则为public,原来为protected 则为  protected<br  /></li>
-<li><a id="sec-38-2-2" name="sec-38-2-2"></a>class Child:protect Parent ,原来为public 则为protected,原来为protected 则为protected(默认)<br  /></li>
-<li><a id="sec-38-2-3" name="sec-38-2-3"></a>class Child:private Parent ,parent所有成员在Child为成为private<br  /><div class="outline-text-4" id="text-38-2-3">
+<ul class="org-ul">
+<li><a id="org0e0f8d1"></a>class Child:public Parent ,原来为public 则为public,原来为protected 则为  protected<br /></li>
+<li><a id="orge3b0a5a"></a>class Child:protect Parent ,原来为public 则为protected,原来为protected 则为protected(默认)<br /></li>
+<li><a id="org9aff5f3"></a>class Child:private Parent ,parent所有成员在Child为成为private<br />
+<div class="outline-text-4" id="text-org9aff5f3">
 <p>
-public 的,可以继承Parent继承的接口,private protected 不行<br  />
+public 的,可以继承Parent继承的接口,private protected 不行<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Base</span>{};
  <span style="color: #FBDE2D;">struct</span> <span style="color: #8DA6CE;">D1</span>: <span style="color: #8DA6CE;">Base</span>{}  ;;&#40664;&#35748;&#26159;<span style="color: #FBDE2D;">public</span>
  <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">D2</span>:<span style="color: #8DA6CE;">Base</span>{}  &#40664;&#35748;&#26159;<span style="color: #FBDE2D;">protected</span>
 </pre>
 </div>
 </div>
-</li></ul>
+</li>
+</ul>
 </div>
 
 
-<div id="outline-container-sec-38-3" class="outline-3">
-<h3 id="sec-38-3">子类可以选择性的继承父类的 virtaul 函数</h3>
-<div class="outline-text-3" id="text-38-3">
+<div id="outline-container-orgbeb672d" class="outline-3">
+<h3 id="orgbeb672d">子类可以选择性的继承父类的 virtaul 函数</h3>
+<div class="outline-text-3" id="text-orgbeb672d">
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Parent</span>
  {
  <span style="color: #FBDE2D;">public</span>:
@@ -2538,29 +2496,26 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-4" class="outline-3">
-<h3 id="sec-38-4">子类的声明(并非定义)</h3>
-<div class="outline-text-3" id="text-38-4">
+<div id="outline-container-org2ed6904" class="outline-3">
+<h3 id="org2ed6904">子类的声明(并非定义)</h3>
+<div class="outline-text-3" id="text-org2ed6904">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#27491;&#30830;</span>
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Child</span>;
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Parent</span>;
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#38169;&#35823;</span>
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Child</span> :<span style="color: #8DA6CE;">Parent</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-5" class="outline-3">
-<h3 id="sec-38-5">virtaul</h3>
-<div class="outline-text-3" id="text-38-5">
+<div id="outline-container-org6e4c779" class="outline-3">
+<h3 id="org6e4c779">virtaul</h3>
+<div class="outline-text-3" id="text-org6e4c779">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;vector&gt;</span>
@@ -2598,15 +2553,14 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-6" class="outline-3">
-<h3 id="sec-38-6">virtaul 函数 与　默认参数</h3>
-<div class="outline-text-3" id="text-38-6">
+<div id="outline-container-org8ed938c" class="outline-3">
+<h3 id="org8ed938c">virtaul 函数 与　默认参数</h3>
+<div class="outline-text-3" id="text-org8ed938c">
 <p>
-若　父类　子类都为virtal 函数 指定了默认参数 , 则 传过来的是什么跟所指对象<br  />
-的实际类型无关, 跟 传过来形参的类型有关<br  />
+若　父类　子类都为virtal 函数 指定了默认参数 , 则 传过来的是什么跟所指对象<br />
+的实际类型无关, 跟 传过来形参的类型有关<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;vector&gt;</span>
@@ -2645,11 +2599,10 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-7" class="outline-3">
-<h3 id="sec-38-7">友元关系不能继承</h3>
-<div class="outline-text-3" id="text-38-7">
+<div id="outline-container-orgb5fd92c" class="outline-3">
+<h3 id="orgb5fd92c">友元关系不能继承</h3>
+<div class="outline-text-3" id="text-orgb5fd92c">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;vector&gt;</span>
@@ -2682,44 +2635,41 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-8" class="outline-3">
-<h3 id="sec-38-8">static</h3>
-<div class="outline-text-3" id="text-38-8">
+<div id="outline-container-orga8a749e" class="outline-3">
+<h3 id="orga8a749e">static</h3>
+<div class="outline-text-3" id="text-orga8a749e">
 <p>
-父类定义了static成员, 则无论继承多少次, 整个继承层次中只有一个这样的成员<br  />
-若为private ,则子类不能访问之<br  />
-可以这样访问 Parent.static_mem ,Child.static_mem<br  />
+父类定义了static成员, 则无论继承多少次, 整个继承层次中只有一个这样的成员<br />
+若为private ,则子类不能访问之<br />
+可以这样访问 Parent.static_mem ,Child.static_mem<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-38-9" class="outline-3">
-<h3 id="sec-38-9">继承与转化</h3>
-<div class="outline-text-3" id="text-38-9">
+<div id="outline-container-org7cc005b" class="outline-3">
+<h3 id="org7cc005b">继承与转化</h3>
+<div class="outline-text-3" id="text-org7cc005b">
 <ol class="org-ol">
-<li>可以将子类对象传给接受 "父类引用" 的函数,此行为并非对象的转换, 引用依然指向子<br  />
-类<br  />
-</li>
-<li>可以将子类对象 传给 接受 父类对象 的函数,会将 子类对象中父类的那部分 复制<br  />
-到形参(值传递)<br  />
-</li>
-<li>父类转子类<br  />
+<li>可以将子类对象传给接受 "父类引用" 的函数,此行为并非对象的转换, 引用依然指向子<br />
+类<br /></li>
+<li>可以将子类对象 传给 接受 父类对象 的函数,会将 子类对象中父类的那部分 复制<br />
+到形参(值传递)<br /></li>
+<li><p>
+父类转子类<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">Child</span> <span style="color: #40E0D0;">c</span>;
 <span style="color: #8DA6CE;">Parent</span> *<span style="color: #40E0D0;">p</span> =&amp;c;                  <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">ok</span>
 <span style="color: #8DA6CE;">Child</span> *<span style="color: #40E0D0;">cp</span> =p;                   <span style="color: #AEAEAE;">//  </span><span style="color: #AEAEAE;">error ,&#34429;&#28982;p&#25152;&#25351;&#21521;&#30340;&#26159;&#20010;Child,&#20294;,p&#26159; Parent* &#31867;&#22411;&#30340;&#25351;&#38024;, &#36716;&#21270;&#22833;&#36133;,</span>
 <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#19981;&#36807;&#21487;&#20197;&#29992;static_cast &#25110;dynamic_cast &#36827;&#34892;&#36716;&#25442;</span>
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-38-10" class="outline-3">
-<h3 id="sec-38-10">构造函数 与继承</h3>
-<div class="outline-text-3" id="text-38-10">
+<div id="outline-container-orge9db614" class="outline-3">
+<h3 id="orge9db614">构造函数 与继承</h3>
+<div class="outline-text-3" id="text-orge9db614">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Parent</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2737,15 +2687,14 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </pre>
 </div>
 <p>
-只能初始化直接父类,祖父的的初始化让父类去完成就可以了.<br  />
+只能初始化直接父类,祖父的的初始化让父类去完成就可以了.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-38-11" class="outline-3">
-<h3 id="sec-38-11">复制构造函数 与继承</h3>
-<div class="outline-text-3" id="text-38-11">
+<div id="outline-container-org4b1f4c7" class="outline-3">
+<h3 id="org4b1f4c7">复制构造函数 与继承</h3>
+<div class="outline-text-3" id="text-org4b1f4c7">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Child</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2758,11 +2707,10 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-12" class="outline-3">
-<h3 id="sec-38-12">赋值操作符 与继承</h3>
-<div class="outline-text-3" id="text-38-12">
+<div id="outline-container-orgeb16e4f" class="outline-3">
+<h3 id="orgeb16e4f">赋值操作符 与继承</h3>
+<div class="outline-text-3" id="text-orgeb16e4f">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">Child</span>&amp; <span style="color: #D8FA3C;">Child</span>::<span style="color: #FBDE2D;">operator</span><span style="color: #FF6400;">=</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">Child</span> &amp;<span style="color: #40E0D0;">rhs</span>) {
   <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">Check for self-assignment!</span>
   <span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">this</span> == &amp;rhs)
@@ -2775,26 +2723,25 @@ public 的,可以继承Parent继承的接口,private protected 不行<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-13" class="outline-3">
-<h3 id="sec-38-13">如果在构造函数 或 析构函数 中调用  虚函数,</h3>
-<div class="outline-text-3" id="text-38-13">
+<div id="outline-container-org607ebe2" class="outline-3">
+<h3 id="org607ebe2">如果在构造函数 或 析构函数 中调用  虚函数,</h3>
+<div class="outline-text-3" id="text-org607ebe2">
 <p>
-则调用的是 对象本身类型定义的版本,<br  />
-在运行构造函数 或析构函数时, 自身对象是不完整的,<br  />
-在父类构造或析构函数中,将子类对象当作父类对象对待,此时调用的虚函数<br  />
-是父类中定义的版本<br  />
+则调用的是 对象本身类型定义的版本,<br />
+在运行构造函数 或析构函数时, 自身对象是不完整的,<br />
+在父类构造或析构函数中,将子类对象当作父类对象对待,此时调用的虚函数<br />
+是父类中定义的版本<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-38-14" class="outline-3">
-<h3 id="sec-38-14">名字冲突与继承</h3>
-<div class="outline-text-3" id="text-38-14">
+<div id="outline-container-org3f40686" class="outline-3">
+<h3 id="org3f40686">名字冲突与继承</h3>
+<div class="outline-text-3" id="text-org3f40686">
 <p>
-与父类成员同名的子类成员 会屏蔽父类的,函数也一样(即便参数不同)<br  />
-Base::i ,这样可以访问 父类的,函数也一样 ,<br  />
+与父类成员同名的子类成员 会屏蔽父类的,函数也一样(即便参数不同)<br />
+Base::i ,这样可以访问 父类的,函数也一样 ,<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Parent</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2819,18 +2766,18 @@ Base::i ,这样可以访问 父类的,函数也一样 ,<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-15" class="outline-3">
-<h3 id="sec-38-15">重载</h3>
-<div class="outline-text-3" id="text-38-15">
+<div id="outline-container-org247eaa2" class="outline-3">
+<h3 id="org247eaa2">重载</h3>
+<div class="outline-text-3" id="text-org247eaa2">
 <p>
-如果 子类重定义了重载的成员, 则通过子类型 只能访问 子类中定义 的那些成员<br  />
-子类想通过自身类型使用所有的重载版本,要么重定义所有的重载版本, 要么一个不定义<br  />
-或者子类中使用using声明, using声明 只能指定函数名,不能指向参数 ,所以可以把父<br  />
-类中所有同名函数 引到子类中,然后 只重载需要的就可<br  />
+如果 子类重定义了重载的成员, 则通过子类型 只能访问 子类中定义 的那些成员<br />
+子类想通过自身类型使用所有的重载版本,要么重定义所有的重载版本, 要么一个不定义<br />
+或者子类中使用using声明, using声明 只能指定函数名,不能指向参数 ,所以可以把父<br />
+类中所有同名函数 引到子类中,然后 只重载需要的就可<br />
 </p>
 <div class="org-src-container">
-
-<pre class="src src-c++"><span style="color: #FBDE2D;">using</span> <span style="color: #FBDE2D;">namespace</span> <span style="color: #D8FA3C;">std</span>;
+<pre class="src src-c++">
+<span style="color: #FBDE2D;">using</span> <span style="color: #FBDE2D;">namespace</span> <span style="color: #D8FA3C;">std</span>;
 <span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">Parent</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2862,14 +2809,13 @@ Base::i ,这样可以访问 父类的,函数也一样 ,<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-16" class="outline-3">
-<h3 id="sec-38-16">纯虚函数 ,</h3>
-<div class="outline-text-3" id="text-38-16">
+<div id="outline-container-org962c59e" class="outline-3">
+<h3 id="org962c59e">纯虚函数 ,</h3>
+<div class="outline-text-3" id="text-org962c59e">
 <p>
-含有纯虚函数的类是抽象的 ,类似于java abstract关键字<br  />
+含有纯虚函数的类是抽象的 ,类似于java abstract关键字<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #FBDE2D;">class</span> <span style="color: #8DA6CE;">AbClass</span>
 {
 <span style="color: #FBDE2D;">public</span>:
@@ -2879,29 +2825,27 @@ Base::i ,这样可以访问 父类的,函数也一样 ,<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-38-17" class="outline-3">
-<h3 id="sec-38-17">容器与继承</h3>
-<div class="outline-text-3" id="text-38-17">
+<div id="outline-container-orgda56ead" class="outline-3">
+<h3 id="orgda56ead">容器与继承</h3>
+<div class="outline-text-3" id="text-orgda56ead">
 <p>
-容器存储是 值copy的,所以把子类存到一个父类型的容器里, 只是存了子类中属于父类<br  />
-的那一部分,<br  />
-所以, 要想解决问题,可以存储 指针到容器中,  带来的问题是, 需要管理指针所指对象<br  />
-,进一步的解决办法:又回到了 引用计数.<br  />
-设计一个中间类 里面存着 类型为父类的一个指针类型(可以指向子类向象),<br  />
-及 引用计数 来管理指向此对象的引用数,以便管理内存,为方便可能需要重定义操作符<br  />
+容器存储是 值copy的,所以把子类存到一个父类型的容器里, 只是存了子类中属于父类<br />
+的那一部分,<br />
+所以, 要想解决问题,可以存储 指针到容器中,  带来的问题是, 需要管理指针所指对象<br />
+,进一步的解决办法:又回到了 引用计数.<br />
+设计一个中间类 里面存着 类型为父类的一个指针类型(可以指向子类向象),<br />
+及 引用计数 来管理指向此对象的引用数,以便管理内存,为方便可能需要重定义操作符<br />
 </p>
 <ul class="org-ul">
-<li>-&gt;<br  />
-</li>
+<li>-&gt;<br /></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-39" class="outline-2">
-<h2 id="sec-39">模版</h2>
-<div class="outline-text-2" id="text-39">
+<div id="outline-container-org4f9b1e3" class="outline-2">
+<h2 id="org4f9b1e3">模版</h2>
+<div class="outline-text-2" id="text-org4f9b1e3">
 <div class="org-src-container">
-
 <pre class="src src-c++"> <span style="color: #FBDE2D;">template</span>&lt;<span style="color: #FBDE2D;">typename</span> <span style="color: #8DA6CE;">T</span>&gt; <span style="color: #FF6400;">compare</span>(<span style="color: #FBDE2D;">const</span> <span style="color: #8DA6CE;">T</span> &amp;<span style="color: #40E0D0;">v1</span>,<span style="color: #FBDE2D;">const</span> &amp;<span style="color: #40E0D0;">v2</span>){
    <span style="color: #FBDE2D;">if</span> (v1 &lt;v2)<span style="color: #FBDE2D;">return</span> 1;
    <span style="color: #FBDE2D;">if</span> (v1 &gt;v2)<span style="color: #FBDE2D;">return</span> -1;
@@ -2921,103 +2865,100 @@ Base::i ,这样可以访问 父类的,函数也一样 ,<br  />
 </div>
 </div>
 </div>
-<div id="outline-container-sec-40" class="outline-2">
-<h2 id="sec-40">高级内存分配</h2>
-<div class="outline-text-2" id="text-40">
-</div><div id="outline-container-sec-40-1" class="outline-3">
-<h3 id="sec-40-1">allocator 模版类</h3>
-<div class="outline-text-3" id="text-40-1">
+<div id="outline-container-org2f10b8a" class="outline-2">
+<h2 id="org2f10b8a">高级内存分配</h2>
+<div class="outline-text-2" id="text-org2f10b8a">
+</div>
+<div id="outline-container-orgf49e11a" class="outline-3">
+<h3 id="orgf49e11a">allocator 模版类</h3>
+<div class="outline-text-3" id="text-orgf49e11a">
 <p>
-内存分配和对象的初始化是可以分开进行的 ，<br  />
-主要作用是 ，预先分配一段内存 ，然后在这段内存上分配对象，<br  />
-这段内存<br  />
+内存分配和对象的初始化是可以分开进行的 ，<br />
+主要作用是 ，预先分配一段内存 ，然后在这段内存上分配对象，<br />
+这段内存<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">allocator&lt;T&gt; a</td>
-<td class="left">定义a,a可以用来为类型T申请内存，在这段内存上构造销毁对象</td>
+<td class="org-left">allocator&lt;T&gt; a</td>
+<td class="org-left">定义a,a可以用来为类型T申请内存，在这段内存上构造销毁对象</td>
 </tr>
 
 <tr>
-<td class="left">a.allocate(N)</td>
-<td class="left">为类型T 申请N个大小的内存空间，</td>
+<td class="org-left">a.allocate(N)</td>
+<td class="org-left">为类型T 申请N个大小的内存空间，</td>
 </tr>
 
 <tr>
-<td class="left">a.deallocate(ptr,N)</td>
-<td class="left">回收allocate(N)分配的内存空间</td>
+<td class="org-left">a.deallocate(ptr,N)</td>
+<td class="org-left">回收allocate(N)分配的内存空间</td>
 </tr>
 
 <tr>
-<td class="left">a.construct(ptr,t)</td>
-<td class="left">在ptr所指的内存中 利用t的复制构造函数 构造一个新的对象 (copy t 到ptr),ptr是a.allocate(n),分配到的内存</td>
+<td class="org-left">a.construct(ptr,t)</td>
+<td class="org-left">在ptr所指的内存中 利用t的复制构造函数 构造一个新的对象 (copy t 到ptr),ptr是a.allocate(n),分配到的内存</td>
 </tr>
 
 <tr>
-<td class="left">a.destroy(ptr)</td>
-<td class="left">调用ptr所指对象的析构函数，并没有释放这段内存 ，在deallocate调用之前,这段内存 可以再次分配给另一个t对象了</td>
+<td class="org-left">a.destroy(ptr)</td>
+<td class="org-left">调用ptr所指对象的析构函数，并没有释放这段内存 ，在deallocate调用之前,这段内存 可以再次分配给另一个t对象了</td>
 </tr>
 
 <tr>
-<td class="left">uninitialized_copy(beg end,beg2)</td>
-<td class="left">从beg end 范围内的对象 copy 到beg2所指对象处，beg2 指向a.allocate(n) 所分配的未初始化内存中</td>
+<td class="org-left">uninitialized_copy(beg end,beg2)</td>
+<td class="org-left">从beg end 范围内的对象 copy 到beg2所指对象处，beg2 指向a.allocate(n) 所分配的未初始化内存中</td>
 </tr>
 </tbody>
 </table>
 
 <p>
-a.construct(ptr,t) 不灵活的一点是 ，只能得用T的复制构造函数来初始化这段内存，<br  />
-即必须事先构造一个t对象， 然后利用这个t来初始化之<br  />
-应用场合， 比如vector 的实现， 预先分配n的对象的空间， add 或delete 时， 直接<br  />
-使用这些已经申请到的内存， 不必每次都向操作系统申请<br  />
+a.construct(ptr,t) 不灵活的一点是 ，只能得用T的复制构造函数来初始化这段内存，<br />
+即必须事先构造一个t对象， 然后利用这个t来初始化之<br />
+应用场合， 比如vector 的实现， 预先分配n的对象的空间， add 或delete 时， 直接<br />
+使用这些已经申请到的内存， 不必每次都向操作系统申请<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-40-2" class="outline-3">
-<h3 id="sec-40-2">普通的new</h3>
-<div class="outline-text-3" id="text-40-2">
+<div id="outline-container-orgad2577d" class="outline-3">
+<h3 id="orgad2577d">普通的new</h3>
+<div class="outline-text-3" id="text-orgad2577d">
 <p>
-string *str = new string("hello");<br  />
-实际分3 部<br  />
+string *str = new string("hello");<br />
+实际分3 部<br />
 </p>
 <ol class="org-ol">
-<li>调用 operator new 的标准库函数 ，分配足够大的内存<br  />
-</li>
-<li>调用构造函数构造对象<br  />
-</li>
-<li>返回指针<br  />
-</li>
+<li>调用 operator new 的标准库函数 ，分配足够大的内存<br /></li>
+<li>调用构造函数构造对象<br /></li>
+<li>返回指针<br /></li>
 </ol>
 
 <p>
-这里提到了 operator new ,标准库函数 只是分配内存， 未初始化,功能类似于c里的malloc<br  />
-void *operator  new (size_t); //分配size_t 大小的内存,为一个object,<br  />
-void <b>operator  new[] (size_t);//分配size_t大小的内存，为一个数组<br  />
-void *operator  delete (void</b>);// free an object<br  />
-void <b>operator  delete[] (void</b>);// free an array<br  />
+这里提到了 operator new ,标准库函数 只是分配内存， 未初始化,功能类似于c里的malloc<br />
+void *operator  new (size_t); //分配size_t 大小的内存,为一个object,<br />
+void <b>operator  new[] (size_t);//分配size_t大小的内存，为一个数组<br />
+void *operator  delete (void</b>);// free an object<br />
+void <b>operator  delete[] (void</b>);// free an array<br />
 </p>
 </div>
 </div>
 
 
-<div id="outline-container-sec-40-3" class="outline-3">
-<h3 id="sec-40-3">特殊的new ,定位new表达式</h3>
-<div class="outline-text-3" id="text-40-3">
+<div id="outline-container-org9cdfff0" class="outline-3">
+<h3 id="org9cdfff0">特殊的new ,定位new表达式</h3>
+<div class="outline-text-3" id="text-org9cdfff0">
 <p>
-new (ptr) T(param);<br  />
-在ptr所指的内存中 构造T(param)对象,比 allocator.construct(T) 好的地方是<br  />
-直接在所指内存中构造对象 ，可以使用其任何构造函数，<br  />
+new (ptr) T(param);<br />
+在ptr所指的内存中 构造T(param)对象,比 allocator.construct(T) 好的地方是<br />
+直接在所指内存中构造对象 ，可以使用其任何构造函数，<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">allocator</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">a</span>;
 <span style="color: #8DA6CE;">string</span>* <span style="color: #40E0D0;">str</span>=a.allocate(2) ;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20998;&#37197;&#31354;&#38388; hold  2 strings</span>
 <span style="color: #FBDE2D;">new</span> (str)<span style="color: #8DA6CE;">string</span>(<span style="color: #ffa07a;">"he"</span>);
@@ -3028,22 +2969,22 @@ a.construct((str+1),string(<span style="color: #ffa07a;">"llo"</span>));
 str-&gt;~string(); <span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#35843;&#29992;&#26512;&#26500;&#20989;&#25968;</span>
 a.destroy(str+1);<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#35843;&#29992;&#26512;&#26500;&#20989;&#25968;</span>
 a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#37322;&#25918;&#20869;&#23384;</span>
+
 </pre>
 </div>
 <p>
-这个操作并没有分配内存，ptr所指的内存是事先申请好了的，<br  />
-其反操作是直接调用 相应对象的析构函数<br  />
+这个操作并没有分配内存，ptr所指的内存是事先申请好了的，<br />
+其反操作是直接调用 相应对象的析构函数<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-40-4" class="outline-3">
-<h3 id="sec-40-4">string *str = new string("hello");</h3>
-<div class="outline-text-3" id="text-40-4">
+<div id="outline-container-orgb4f8c03" class="outline-3">
+<h3 id="orgb4f8c03">string *str = new string("hello");</h3>
+<div class="outline-text-3" id="text-orgb4f8c03">
 <p>
-综上 ，对此语句进行细化<br  />
+综上 ，对此语句进行细化<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">allocator</span>&lt;<span style="color: #8DA6CE;">string</span>&gt; <span style="color: #40E0D0;">a</span>;
 <span style="color: #8DA6CE;">string</span>* <span style="color: #40E0D0;">str</span>=a.allocate(1) ;<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#20998;&#37197;&#31354;&#38388; hold  1 string</span>
 <span style="color: #FBDE2D;">new</span> (str)<span style="color: #8DA6CE;">string</span>(<span style="color: #ffa07a;">"hell"</span>);
@@ -3052,7 +2993,6 @@ a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #
 </div>
 
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #8DA6CE;">string</span> *<span style="color: #40E0D0;">str</span> = <span style="color: #FBDE2D;">static_cast</span>&lt;<span style="color: #8DA6CE;">string</span>*&gt; (<span style="color: #FBDE2D;">operator</span> <span style="color: #FBDE2D;">new</span> (<span style="color: #FBDE2D;">sizeof</span>(string)));
 <span style="color: #FBDE2D;">new</span> (str)<span style="color: #8DA6CE;">string</span>(<span style="color: #ffa07a;">"hell"</span>);
 <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; *str &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
@@ -3061,11 +3001,10 @@ a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #
 </div>
 </div>
 
-<div id="outline-container-sec-40-5" class="outline-3">
-<h3 id="sec-40-5">例子 一个内存分配置基类</h3>
-<div class="outline-text-3" id="text-40-5">
+<div id="outline-container-org8b5e550" class="outline-3">
+<h3 id="org8b5e550">例子 一个内存分配置基类</h3>
+<div class="outline-text-3" id="text-org8b5e550">
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;vector&gt;</span>
@@ -3100,7 +3039,7 @@ a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #
 
   <span style="color: #D8FA3C;">std</span>::cout &lt;&lt; <span style="color: #ffa07a;">"new called"</span> &lt;&lt; <span style="color: #D8FA3C;">std</span>::endl;
   <span style="color: #FBDE2D;">if</span> (<span style="color: #FBDE2D;">sizeof</span>(T)!= sz){<span style="color: #AEAEAE;">//</span><span style="color: #AEAEAE;">&#36825;&#37324;&#20570;&#26816;&#26597; &#65292;&#20445;&#35777;&#20256;&#36807;&#26469;&#26159;T&#26412;&#36523;&#65292; &#32780;&#38750;&#20854;&#23376;&#31867;</span>
-    <span style="color: #FBDE2D;">throw</span> <span style="color: #D8FA3C;">std</span>::<span style="color: #8DA6CE;">runtime_error</span>(<span style="color: #ffa07a;">"CacheObj wrong size"</span>);
+    <span style="color: #FBDE2D;">throw</span> <span style="color: #D8FA3C;">std</span>::runtime_error(<span style="color: #ffa07a;">"CacheObj wrong size"</span>);
   }
   <span style="color: #FBDE2D;">if</span>(!free_list){               <span style="color: #AEAEAE;">// </span><span style="color: #AEAEAE;">&#22914;&#26524;free_list null</span>
     <span style="color: #8DA6CE;">T</span>* <span style="color: #40E0D0;">array</span>=t_allocator.allocate(incr_size);
@@ -3163,7 +3102,7 @@ a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-08-01</span>
-        <span title="last modification date" class="post-info">2016-09-11</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -3202,7 +3141,7 @@ a.deallocate(str,2);<span style="color: #AEAEAE;">//</span><span style="color: #
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

@@ -47,20 +47,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">安装 在Gentoo系统上安装</a></li>
-<li><a href="#sec-2">Link</a></li>
+<li><a href="#orgcabec30">安装 在Gentoo系统上安装</a></li>
+<li><a href="#org9183607">Link</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">安装 在Gentoo系统上安装</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgcabec30" class="outline-2">
+<h2 id="orgcabec30">安装 在Gentoo系统上安装</h2>
+<div class="outline-text-2" id="text-orgcabec30">
 <p>
-<a href="http://blog.kompiler.org/post/10/2011-11-30/Fix_Valgrind's_must-be-redirected_error_in_Gentoo/">http://blog.kompiler.org/post/10/2011-11-30/Fix_Valgrind's_must-be-redirected_error_in_Gentoo/</a><br  />
+<a href="http://blog.kompiler.org/post/10/2011-11-30/Fix_Valgrind's_must-be-redirected_error_in_Gentoo/">http://blog.kompiler.org/post/10/2011-11-30/Fix_Valgrind's_must-be-redirected_error_in_Gentoo/</a><br />
 </p>
 <div class="org-src-container">
-
-<pre class="src src-c" id="c"><span style="color: #7fffd4;">  #include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
+<pre class="src src-c" id="orgf9a70db"><span style="color: #7fffd4;">  #include</span> <span style="color: #ffa07a;">&lt;stdio.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;stdlib.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;malloc.h&gt;</span>
 <span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;string.h&gt;</span>
@@ -78,7 +77,7 @@
     <span style="color: #FBDE2D;">if</span>(x == 0)
     {
         printf(<span style="color: #ffa07a;">"X is zero"</span>); <span style="color: #AEAEAE;">/* </span><span style="color: #AEAEAE;">replace with cout and include</span>
-<span style="color: #AEAEAE;">                                iostream for C++ </span><span style="color: #AEAEAE;">*/</span>
+<span style="color: #AEAEAE;">                                iostream for C++</span><span style="color: #AEAEAE;"> */</span>
     }
     free(c);
     free(c);
@@ -88,56 +87,56 @@
 </div>
 <blockquote>
 <p>
-<code>=28025=</code> Memcheck, a memory error detector<br  />
-<code>=28025=</code> Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.<br  />
-<code>=28025=</code> Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info<br  />
-<code>=28025=</code> Command: ./a<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> Invalid write of size 1<br  />
-<code>=28025=</code>    at 0x400700: main (a.c:18)<br  />
-<code>=28025=</code>  Address 0x51dd0e7 is 1 bytes after a block of size 6 alloc'd<br  />
-<code>=28025=</code>    at 0x4C2AF5D: malloc (vg_replace_malloc.c:263)<br  />
-<code>=28025=</code>    by 0x4006F3: main (a.c:17)<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> Conditional jump or move depends on uninitialised value(s)<br  />
-<code>=28025=</code>    at 0x400707: main (a.c:20)<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> Invalid free() / delete / delete[] / realloc()<br  />
-<code>=28025=</code>    at 0x4C2A0BC: free (vg_replace_malloc.c:427)<br  />
-<code>=28025=</code>    by 0x400732: main (a.c:26)<br  />
-<code>=28025=</code>  Address 0x51dd0e0 is 0 bytes inside a block of size 6 free'd<br  />
-<code>=28025=</code>    at 0x4C2A0BC: free (vg_replace_malloc.c:427)<br  />
-<code>=28025=</code>    by 0x400726: main (a.c:25)<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> HEAP SUMMARY:<br  />
-<code>=28025=</code>     in use at exit: 6 bytes in 1 blocks<br  />
-<code>=28025=</code>   total heap usage: 3 allocs, 3 frees, 16 bytes allocated<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> 6 bytes in 1 blocks are definitely lost in loss record 1 of 1<br  />
-<code>=28025=</code>    at 0x4C2AF5D: malloc (vg_replace_malloc.c:263)<br  />
-<code>=28025=</code>    by 0x4006E5: main (a.c:16)<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> LEAK SUMMARY:<br  />
-<code>=28025=</code>    definitely lost: 6 bytes in 1 blocks<br  />
-<code>=28025=</code>    indirectly lost: 0 bytes in 0 blocks<br  />
-<code>=28025=</code>      possibly lost: 0 bytes in 0 blocks<br  />
-<code>=28025=</code>    still reachable: 0 bytes in 0 blocks<br  />
-<code>=28025=</code>         suppressed: 0 bytes in 0 blocks<br  />
-<code>=28025=</code><br  />
-<code>=28025=</code> For counts of detected and suppressed errors, rerun with: -v<br  />
-<code>=28025=</code> Use &#x2013;track-origins=yes to see where uninitialised values come from<br  />
-<code>=28025=</code> ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)<br  />
+<code>=28025=</code> Memcheck, a memory error detector<br />
+<code>=28025=</code> Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.<br />
+<code>=28025=</code> Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info<br />
+<code>=28025=</code> Command: ./a<br />
+<code>=28025=</code><br />
+<code>=28025=</code> Invalid write of size 1<br />
+<code>=28025=</code>    at 0x400700: main (a.c:18)<br />
+<code>=28025=</code>  Address 0x51dd0e7 is 1 bytes after a block of size 6 alloc'd<br />
+<code>=28025=</code>    at 0x4C2AF5D: malloc (vg_replace_malloc.c:263)<br />
+<code>=28025=</code>    by 0x4006F3: main (a.c:17)<br />
+<code>=28025=</code><br />
+<code>=28025=</code> Conditional jump or move depends on uninitialised value(s)<br />
+<code>=28025=</code>    at 0x400707: main (a.c:20)<br />
+<code>=28025=</code><br />
+<code>=28025=</code> Invalid free() / delete / delete[] / realloc()<br />
+<code>=28025=</code>    at 0x4C2A0BC: free (vg_replace_malloc.c:427)<br />
+<code>=28025=</code>    by 0x400732: main (a.c:26)<br />
+<code>=28025=</code>  Address 0x51dd0e0 is 0 bytes inside a block of size 6 free'd<br />
+<code>=28025=</code>    at 0x4C2A0BC: free (vg_replace_malloc.c:427)<br />
+<code>=28025=</code>    by 0x400726: main (a.c:25)<br />
+<code>=28025=</code><br />
+<code>=28025=</code><br />
+<code>=28025=</code> HEAP SUMMARY:<br />
+<code>=28025=</code>     in use at exit: 6 bytes in 1 blocks<br />
+<code>=28025=</code>   total heap usage: 3 allocs, 3 frees, 16 bytes allocated<br />
+<code>=28025=</code><br />
+<code>=28025=</code> 6 bytes in 1 blocks are definitely lost in loss record 1 of 1<br />
+<code>=28025=</code>    at 0x4C2AF5D: malloc (vg_replace_malloc.c:263)<br />
+<code>=28025=</code>    by 0x4006E5: main (a.c:16)<br />
+<code>=28025=</code><br />
+<code>=28025=</code> LEAK SUMMARY:<br />
+<code>=28025=</code>    definitely lost: 6 bytes in 1 blocks<br />
+<code>=28025=</code>    indirectly lost: 0 bytes in 0 blocks<br />
+<code>=28025=</code>      possibly lost: 0 bytes in 0 blocks<br />
+<code>=28025=</code>    still reachable: 0 bytes in 0 blocks<br />
+<code>=28025=</code>         suppressed: 0 bytes in 0 blocks<br />
+<code>=28025=</code><br />
+<code>=28025=</code> For counts of detected and suppressed errors, rerun with: -v<br />
+<code>=28025=</code> Use &#x2013;track-origins=yes to see where uninitialised values come from<br />
+<code>=28025=</code> ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)<br />
 </p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Link</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org9183607" class="outline-2">
+<h2 id="org9183607">Link</h2>
+<div class="outline-text-2" id="text-org9183607">
 <p>
-<a href="http://www.cprogramming.com/debugging/valgrind.html">http://www.cprogramming.com/debugging/valgrind.html</a><br  />
+<a href="http://www.cprogramming.com/debugging/valgrind.html">http://www.cprogramming.com/debugging/valgrind.html</a><br />
 </p>
 </div>
 </div>
@@ -147,7 +146,7 @@
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-12-27</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/linux/">Linux</a>, <a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -186,7 +185,7 @@
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

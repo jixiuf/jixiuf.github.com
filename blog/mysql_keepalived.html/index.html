@@ -29,7 +29,6 @@
         <ul>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/tags/">Tags</a></li>
-          <li><a href="/tags/">Tags</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="http://github.com/jixiuf">GitHub</a></li>
           <li><a href="/rss.xml">RSS</a></li>
@@ -48,234 +47,233 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">参考</a></li>
-<li><a href="#sec-2">目标 实现mysql 高可用性，避免mysql单点故障</a></li>
-<li><a href="#sec-3">mysql 双机热备</a></li>
-<li><a href="#sec-4">配置 keepalived</a>
+<li><a href="#orgd937e75">参考</a></li>
+<li><a href="#orgf9b0adc">目标 实现mysql 高可用性，避免mysql单点故障</a></li>
+<li><a href="#org19b26e8">mysql 双机热备</a></li>
+<li><a href="#org08636fd">配置 keepalived</a>
 <ul>
-<li><a href="#sec-4-1">MySQL-master1</a></li>
-<li><a href="#sec-4-2">MySQL-master2</a></li>
-<li><a href="#sec-4-3">/etc/keepalived/check_mysql.sh</a></li>
+<li><a href="#org2725708">MySQL-master1</a></li>
+<li><a href="#org83a0aee">MySQL-master2</a></li>
+<li><a href="#orga6bb58e">/etc/keepalived/check_mysql.sh</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">启动keepalived</a></li>
+<li><a href="#orgce9607e">启动keepalived</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">参考</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgd937e75" class="outline-2">
+<h2 id="orgd937e75">参考</h2>
+<div class="outline-text-2" id="text-orgd937e75">
 <p>
-<a href="https://github.com/chenzhiwei/linux/tree/master/keepalived">https://github.com/chenzhiwei/linux/tree/master/keepalived</a><br  />
-<a href="http://allenlyu.com/2016/05/23/mysql-keepalived-hot-standby/">http://allenlyu.com/2016/05/23/mysql-keepalived-hot-standby/</a><br  />
+<a href="https://github.com/chenzhiwei/linux/tree/master/keepalived">https://github.com/chenzhiwei/linux/tree/master/keepalived</a><br />
+<a href="http://allenlyu.com/2016/05/23/mysql-keepalived-hot-standby/">http://allenlyu.com/2016/05/23/mysql-keepalived-hot-standby/</a><br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">目标 实现mysql 高可用性，避免mysql单点故障</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgf9b0adc" class="outline-2">
+<h2 id="orgf9b0adc">目标 实现mysql 高可用性，避免mysql单点故障</h2>
+<div class="outline-text-2" id="text-orgf9b0adc">
 <p>
-Keepalived是一个基于VRRP协议来实现的WEB服务高可用方案，可以利用其来<br  />
-避免单点故障。一个WEB服务至少会有2台服务器运行 Keepalived，一台为主服<br  />
-务器（MASTER），一台为备份服务器（BACKUP），但是对外表现为一个虚拟IP，<br  />
-主服务器会发送特定的消息给备份服务器，当备份服务器收不到这个消息的时<br  />
-候，即主服务器宕机的时候，备份服务器就会接管虚拟IP，继续提供服务，从<br  />
-而保证了高可用性<br  />
+Keepalived是一个基于VRRP协议来实现的WEB服务高可用方案，可以利用其来<br />
+避免单点故障。一个WEB服务至少会有2台服务器运行 Keepalived，一台为主服<br />
+务器（MASTER），一台为备份服务器（BACKUP），但是对外表现为一个虚拟IP，<br />
+主服务器会发送特定的消息给备份服务器，当备份服务器收不到这个消息的时<br />
+候，即主服务器宕机的时候，备份服务器就会接管虚拟IP，继续提供服务，从<br />
+而保证了高可用性<br />
 </p>
 
 <p>
-Keepalived的工作原理是VRRP（Virtual Router Redundancy Protocol）虚拟<br  />
-路由冗余协议。在VRRP中有两组重要的概念：VRRP路由器和虚拟路由器，主控<br  />
-路由器和备份路由器。<br  />
+Keepalived的工作原理是VRRP（Virtual Router Redundancy Protocol）虚拟<br />
+路由冗余协议。在VRRP中有两组重要的概念：VRRP路由器和虚拟路由器，主控<br />
+路由器和备份路由器。<br />
 </p>
 
 <p>
-VRRP路由器是指运行VRRP的路由器，是物理实体，虚拟路由器是指VRRP协议创建<br  />
-的，是逻辑概念。一组VRRP路由器协同工作，共同构成一台虚拟路由器。 Vrrp<br  />
-中存在着一种选举机制，用以选出提供服务的路由即主控路由，其他的则成了备<br  />
-份路由。当主控路由失效后，备份路由中会重新选举出一个主控路由，来继续工<br  />
-作，来保障不间断服务<br  />
+VRRP路由器是指运行VRRP的路由器，是物理实体，虚拟路由器是指VRRP协议创建<br />
+的，是逻辑概念。一组VRRP路由器协同工作，共同构成一台虚拟路由器。 Vrrp<br />
+中存在着一种选举机制，用以选出提供服务的路由即主控路由，其他的则成了备<br />
+份路由。当主控路由失效后，备份路由中会重新选举出一个主控路由，来继续工<br />
+作，来保障不间断服务<br />
 </p>
 
 <p>
-<a href="/blog/lvs.html">LVS负载均衡</a><br  />
+<a href="/blog/lvs.html">LVS负载均衡</a><br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">mysql 双机热备</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org19b26e8" class="outline-2">
+<h2 id="org19b26e8">mysql 双机热备</h2>
+<div class="outline-text-2" id="text-org19b26e8">
 <p>
-主从配置见 <a href="/blog/mysql-slave.html">mysql-slave配置</a><br  />
-mysql 的双机热备 基本可以认为是 将主从模式 变成互为主从<br  />
-虽然互为主从，但仍然采用单点写入，而非同时向两个库写入<br  />
+主从配置见 <a href="/blog/mysql-slave.html">mysql-slave配置</a><br />
+mysql 的双机热备 基本可以认为是 将主从模式 变成互为主从<br />
+虽然互为主从，但仍然采用单点写入，而非同时向两个库写入<br />
 </p>
 
 <p>
-惟一需要注意的一点是处理主键自增的时候，需要避免冲突<br  />
+惟一需要注意的一点是处理主键自增的时候，需要避免冲突<br />
 </p>
 <blockquote>
 <p>
-auto-increment-increment = 2<br  />
-auto-increment-offset = 1<br  />
+auto-increment-increment = 2<br />
+auto-increment-offset = 1<br />
 </p>
 </blockquote>
 <blockquote>
 <p>
-auto-increment-increment = 2<br  />
-auto-increment-offset = 2<br  />
-</p>
-</blockquote>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">配置 keepalived</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">MySQL-master1</h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-vi /etc/keepalived/keepalived.conf<br  />
-! 开头的为注释<br  />
-</p>
-
-<blockquote>
-<p>
-! Configuration File for keepalived<br  />
-global_defs {<br  />
-    notification_email {<br  />
-    xxx@mail.com<br  />
-    }<br  />
-    notification_email_from xxx@mail.com<br  />
-    smtp_server 127.0.0.1<br  />
-    smtp_connect_timeout 30<br  />
-    router_id MySQL-ha<br  />
-    }<br  />
-</p>
-
-<p>
-vrrp_instance VI_1 {<br  />
-    state MASTER   #标记状态MASTER<br  />
-    interface eth0<br  />
-    virtual_router_id 51<br  />
-    priority 100   #MASTER权重要高于BACKUP<br  />
-    advert_int 1<br  />
-    nopreempt   #不抢占，只在优先级高的机器上设置即可<br  />
-    authentication {<br  />
-    auth_type PASS<br  />
-    auth_pass 1111<br  />
-    }<br  />
-    virtual_ipaddress {<br  />
-    192.168.1.200   #VIP虚拟 IP#虚拟IP地址，mysql客户端访问的地址<br  />
-    }<br  />
-    }<br  />
-</p>
-
-<p>
-virtual_server 192.168.1.200 3306 {   #VIP虚拟 IP<br  />
-    delay_loop 2<br  />
-    lb_algo wrr<br  />
-    lb_kind DR<br  />
-    persistence_timeout 60<br  />
-    protocol TCP<br  />
-    real_server 192.168.1.201 3306 { #本机IP地址<br  />
-    weight 3<br  />
-    notify_down /etc/keepalived/check_mysql.sh   #检测到服务down后执行的脚本<br  />
-    TCP_CHECK {<br  />
-    connect_timeout 10 #连接超时<br  />
-    nb_get_retry 3 #重试次数<br  />
-    delay_before_retry 3 #重试间隔时间<br  />
-    connect_port 3306 #mysql端口号<br  />
-    }<br  />
-    }<br  />
+auto-increment-increment = 2<br />
+auto-increment-offset = 2<br />
 </p>
 </blockquote>
 </div>
 </div>
 
+<div id="outline-container-org08636fd" class="outline-2">
+<h2 id="org08636fd">配置 keepalived</h2>
+<div class="outline-text-2" id="text-org08636fd">
+</div>
+<div id="outline-container-org2725708" class="outline-3">
+<h3 id="org2725708">MySQL-master1</h3>
+<div class="outline-text-3" id="text-org2725708">
+<p>
+vi /etc/keepalived/keepalived.conf<br />
+! 开头的为注释<br />
+</p>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">MySQL-master2</h3>
-<div class="outline-text-3" id="text-4-2">
 <blockquote>
 <p>
-<br  />
+! Configuration File for keepalived<br />
+global_defs {<br />
+    notification_email {<br />
+    xxx@mail.com<br />
+    }<br />
+    notification_email_from xxx@mail.com<br />
+    smtp_server 127.0.0.1<br />
+    smtp_connect_timeout 30<br />
+    router_id MySQL-ha<br />
+    }<br />
 </p>
 
 <p>
-! Configuration File for keepalived<br  />
-global_defs {<br  />
-     notification_email {<br  />
-     xxx@mail.com<br  />
-     }<br  />
-     notification_email_from xxx@mail.com<br  />
-     smtp_server 127.0.0.1<br  />
-     smtp_connect_timeout 30<br  />
-     router_id MySQL-ha<br  />
-     }<br  />
+vrrp_instance VI_1 {<br />
+    state MASTER   #标记状态MASTER<br />
+    interface eth0<br />
+    virtual_router_id 51<br />
+    priority 100   #MASTER权重要高于BACKUP<br />
+    advert_int 1<br />
+    nopreempt   #不抢占，只在优先级高的机器上设置即可<br />
+    authentication {<br />
+    auth_type PASS<br />
+    auth_pass 1111<br />
+    }<br />
+    virtual_ipaddress {<br />
+    192.168.1.200   #VIP虚拟 IP#虚拟IP地址，mysql客户端访问的地址<br />
+    }<br />
+    }<br />
 </p>
 
 <p>
-vrrp_instance VI_1 {<br  />
-     state BACKUP<br  />
-     interface eth0<br  />
-     virtual_router_id 51<br  />
-     priority 90<br  />
-     advert_int 1<br  />
-     nopreempt<br  />
-     authentication {<br  />
-     auth_type PASS<br  />
-     auth_pass 1111<br  />
-     }<br  />
-     virtual_ipaddress {<br  />
-     192.168.1.200<br  />
-     }<br  />
-     }<br  />
-</p>
-
-<p>
-virtual_server 192.168.1.200 3306 {<br  />
-     delay_loop 2<br  />
-     lb_algo wrr<br  />
-     lb_kind DR<br  />
-     persistence_timeout 60<br  />
-     protocol TCP<br  />
-     real_server 192.168.1.202 3306 {<br  />
-     weight 3<br  />
-     notify_down /etc/keepalived/check_mysql.sh<br  />
-     TCP_CHECK {<br  />
-     connect_timeout 10<br  />
-     nb_get_retry 3<br  />
-     delay_before_retry 3<br  />
-     connect_port 3306<br  />
-     }<br  />
-     }<br  />
+virtual_server 192.168.1.200 3306 {   #VIP虚拟 IP<br />
+    delay_loop 2<br />
+    lb_algo wrr<br />
+    lb_kind DR<br />
+    persistence_timeout 60<br />
+    protocol TCP<br />
+    real_server 192.168.1.201 3306 { #本机IP地址<br />
+    weight 3<br />
+    notify_down /etc/keepalived/check_mysql.sh   #检测到服务down后执行的脚本<br />
+    TCP_CHECK {<br />
+    connect_timeout 10 #连接超时<br />
+    nb_get_retry 3 #重试次数<br />
+    delay_before_retry 3 #重试间隔时间<br />
+    connect_port 3306 #mysql端口号<br />
+    }<br />
+    }<br />
 </p>
 </blockquote>
 </div>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">/etc/keepalived/check_mysql.sh</h3>
-<div class="outline-text-3" id="text-4-3">
+
+
+<div id="outline-container-org83a0aee" class="outline-3">
+<h3 id="org83a0aee">MySQL-master2</h3>
+<div class="outline-text-3" id="text-org83a0aee">
+<blockquote>
+<p>
+<br />
+</p>
+
+<p>
+! Configuration File for keepalived<br />
+global_defs {<br />
+     notification_email {<br />
+     xxx@mail.com<br />
+     }<br />
+     notification_email_from xxx@mail.com<br />
+     smtp_server 127.0.0.1<br />
+     smtp_connect_timeout 30<br />
+     router_id MySQL-ha<br />
+     }<br />
+</p>
+
+<p>
+vrrp_instance VI_1 {<br />
+     state BACKUP<br />
+     interface eth0<br />
+     virtual_router_id 51<br />
+     priority 90<br />
+     advert_int 1<br />
+     nopreempt<br />
+     authentication {<br />
+     auth_type PASS<br />
+     auth_pass 1111<br />
+     }<br />
+     virtual_ipaddress {<br />
+     192.168.1.200<br />
+     }<br />
+     }<br />
+</p>
+
+<p>
+virtual_server 192.168.1.200 3306 {<br />
+     delay_loop 2<br />
+     lb_algo wrr<br />
+     lb_kind DR<br />
+     persistence_timeout 60<br />
+     protocol TCP<br />
+     real_server 192.168.1.202 3306 {<br />
+     weight 3<br />
+     notify_down /etc/keepalived/check_mysql.sh<br />
+     TCP_CHECK {<br />
+     connect_timeout 10<br />
+     nb_get_retry 3<br />
+     delay_before_retry 3<br />
+     connect_port 3306<br />
+     }<br />
+     }<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orga6bb58e" class="outline-3">
+<h3 id="orga6bb58e">/etc/keepalived/check_mysql.sh</h3>
+<div class="outline-text-3" id="text-orga6bb58e">
 <div class="org-src-container">
-
 <pre class="src src-sh">!/bin/sh
 pkill keepalived
 </pre>
 </div>
 <p>
-该脚本能在mysql服务不可用时，停止keepalived，从而不独占虚拟IP地址，保障虚拟地址被其他机器的keepalived抢占<br  />
+该脚本能在mysql服务不可用时，停止keepalived，从而不独占虚拟IP地址，保障虚拟地址被其他机器的keepalived抢占<br />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">启动keepalived</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgce9607e" class="outline-2">
+<h2 id="orgce9607e">启动keepalived</h2>
+<div class="outline-text-2" id="text-orgce9607e">
 <div class="org-src-container">
-
 <pre class="src src-sh">/etc/init.d/keepalived start | restart | stop
 </pre>
 </div>
@@ -287,7 +285,7 @@ pkill keepalived
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2017-07-29</span>
-        <span title="last modification date" class="post-info">2017-07-29</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/mysql/">Mysql</a>, <a href="/tags/keepalived/">keepalived</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -326,7 +324,7 @@ pkill keepalived
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; qq &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

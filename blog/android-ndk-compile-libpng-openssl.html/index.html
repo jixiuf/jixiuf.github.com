@@ -47,19 +47,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">openssl 编译</a></li>
-<li><a href="#sec-2">libpng编译</a></li>
+<li><a href="#org3cf8fdd">openssl 编译</a></li>
+<li><a href="#orgc3ba216">libpng编译</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">openssl 编译</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org3cf8fdd" class="outline-2">
+<h2 id="org3cf8fdd">openssl 编译</h2>
+<div class="outline-text-2" id="text-org3cf8fdd">
 <p>
-openssl-build 脚本用于编译openssl<br  />
+openssl-build 脚本用于编译openssl<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">!/bin/</span><span style="color: #FBDE2D;">bash</span><span style="color: #AEAEAE;"> -e</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">@author Aleksandar Gotev (alex.gotev@mobimesh.it)</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">Hints and code taken also from http://stackoverflow.com/questions/11929773/compiling-the-latest-openssl-for-android</span>
@@ -233,29 +232,27 @@ cp -r ${<span style="color: #40E0D0;">OPENSSL_BASE_FOLDER</span>} ${<span style=
 </pre>
 </div>
 <p>
-openssl-build用法 到openssl源码所在目录,生成3<br  />
+openssl-build用法 到openssl源码所在目录,生成3<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">./openssl-build &lt;ANDROID_NDK_PATH&gt; &lt;OPENSSL_SOURCES_PATH&gt; &lt;ANDROID_TARGET_API&gt; &lt;ANDROID_TARGET_ABI&gt; &lt;GCC_VERSION&gt; &lt;OUTPUT_PATH&gt;
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">GCC_VERSION &#27604;&#22914; 4.9 &#36825;&#20010;&#25968;&#20540;&#21487;&#20197;&#21040;/usr/local/opt/android-ndk/toolchains &#36825;&#20010;&#30446;&#24405;&#19979;&#26597;&#30475;</span>
 </pre>
 </div>
 <blockquote>
 <p>
-jixiuf@snowCat-MacPro android-ndk/toolchains (master) $ ll<br  />
-total 0<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 llvm<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 x86_64-4.9<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 x86-4.9<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 mips64el-linux-android-4.9<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 mipsel-linux-android-4.9<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 aarch64-linux-android-4.9<br  />
-drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 arm-linux-androideabi-4.9<br  />
+jixiuf@snowCat-MacPro android-ndk/toolchains (master) $ ll<br />
+total 0<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 llvm<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 x86_64-4.9<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 x86-4.9<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 mips64el-linux-android-4.9<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 mipsel-linux-android-4.9<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 aarch64-linux-android-4.9<br />
+drwxr-xr-x  3 jixiuf  staff   102B  3 30  2016 arm-linux-androideabi-4.9<br />
 </p>
 </blockquote>
 <div class="org-src-container">
-
 <pre class="src src-sh">  <span style="color: #AEAEAE;">#</span>
 bash openssl-build /usr/local/opt/android-ndk . 19 x86 4.9 /tmp/openssl-x86
 bash openssl-build /usr/local/opt/android-ndk . 19 armeabi-v7a 4.9 /tmp/openssl-armeabi-v7a/
@@ -265,21 +262,19 @@ bash openssl-build /usr/local/opt/android-ndk . 19 armeabi 4.9 /tmp/openssl-arme
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">libpng编译</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgc3ba216" class="outline-2">
+<h2 id="orgc3ba216">libpng编译</h2>
+<div class="outline-text-2" id="text-orgc3ba216">
 <div class="org-src-container">
-
 <pre class="src src-sh">bash ./libpng-build /usr/local/opt/android-ndk . 19 armeabi 4.9 /tmp/libpng-armeabi
 bash ./libpng-build /usr/local/opt/android-ndk . 19 x86 4.9 /tmp/libpng-x86
  bash openssl-build /usr/local/opt/android-ndk . 19 armeabi-v7a 4.9 /tmp/openssl-a-v7a
 </pre>
 </div>
 <p>
-libpng-build<br  />
+libpng-build<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">!/bin/</span><span style="color: #FBDE2D;">bash</span><span style="color: #AEAEAE;"> -e</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">@author Aleksandar Gotev (alex.gotev@mobimesh.it)</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">Hints and code taken also from http://stackoverflow.com/questions/11929773/compiling-the-latest-libpng-for-android</span>
@@ -446,6 +441,7 @@ cp -r ${<span style="color: #40E0D0;">OPENSSL_BASE_FOLDER</span>} ${<span style=
     <span style="color: #F8F8F8;">echo</span> <span style="color: #ffa07a;">"Unsupported target ABI: $OPENSSL_TARGET_ABI"</span>
     <span style="color: #FBDE2D;">exit</span> 1
 <span style="color: #FBDE2D;">fi</span>
+
 </pre>
 </div>
 </div>
@@ -456,7 +452,7 @@ cp -r ${<span style="color: #40E0D0;">OPENSSL_BASE_FOLDER</span>} ${<span style=
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2016-11-14</span>
-        <span title="last modification date" class="post-info">2016-11-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/android/">Android</a>, <a href="/tags/cocos2dx/">Cocos2dx</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -495,7 +491,7 @@ cp -r ${<span style="color: #40E0D0;">OPENSSL_BASE_FOLDER</span>} ${<span style=
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

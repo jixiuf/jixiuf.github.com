@@ -47,26 +47,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">semantic-symref semantic-symref-symbol</a>
+<li><a href="#org26bc2f6">semantic-symref semantic-symref-symbol</a>
 <ul>
-<li><a href="#sec-1-1">Search for places where function is called(寻找某函数、变量在哪个地方被调用了)</a></li>
+<li><a href="#orgffde809">Search for places where function is called(寻找某函数、变量在哪个地方被调用了)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">semantic-symref semantic-symref-symbol</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Search for places where function is called(寻找某函数、变量在哪个地方被调用了)</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org26bc2f6" class="outline-2">
+<h2 id="org26bc2f6">semantic-symref semantic-symref-symbol</h2>
+<div class="outline-text-2" id="text-org26bc2f6">
+</div>
+<div id="outline-container-orgffde809" class="outline-3">
+<h3 id="orgffde809">Search for places where function is called(寻找某函数、变量在哪个地方被调用了)</h3>
+<div class="outline-text-3" id="text-orgffde809">
 <p>
-semantic-symref命令 可以查找到光标下变量的在本项目中声明位置 semantic-symref-symbol 可以输入你想要找的具体变量名.<br  />
-如果某些名称没有在相应的database(如gnu/global,)中找到,它会用 find-grep命令尝试搜索.可以在打开的新buffer中找到你要找的变量进行跳转.<br  />
+semantic-symref命令 可以查找到光标下变量的在本项目中声明位置 semantic-symref-symbol 可以输入你想要找的具体变量名.<br />
+如果某些名称没有在相应的database(如gnu/global,)中找到,它会用 find-grep命令尝试搜索.可以在打开的新buffer中找到你要找的变量进行跳转.<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">alexott/c-mode-cedet-hook</span> ()
   (local-set-key <span style="color: #ffa07a;">"\C-c\C-r"</span> 'semantic-symref)
   (local-set-key <span style="color: #ffa07a;">"\C-cr"</span> 'semantic-symref-symbol)
@@ -75,7 +75,6 @@ semantic-symref命令 可以查找到光标下变量的在本项目中声明位�
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-c++"><span style="color: #7fffd4;">#include</span> <span style="color: #ffa07a;">&lt;iostream&gt;</span>
 
 <span style="color: #FBDE2D;">using</span> <span style="color: #FBDE2D;">namespace</span> <span style="color: #D8FA3C;">std</span>;
@@ -103,22 +102,20 @@ semantic-symref命令 可以查找到光标下变量的在本项目中声明位�
 </pre>
 </div>
 <p>
-比如在这个一个cpp文件中<br  />
-我调用semantic-symref-symbol然后输入 "name" 四个字母<br  />
+比如在这个一个cpp文件中<br />
+我调用semantic-symref-symbol然后输入 "name" 四个字母<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-fundamental-mode">/tmp/a.cpp
   [+] class Stu {}
   [+] int main (int argc,char argv[])
 </pre>
 </div>
 <p>
-会产生一个 buffer 内容如上，<br  />
-在这个buffer中可以用这些调用<br  />
+会产生一个 buffer 内容如上，<br />
+在这个buffer中可以用这些调用<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">Tab         forward-button &#21487;&#22810;&#25353;&#20960;&#27425;tab&#36827;&#34892;&#36339;&#36716;&#65292;
 (           semantic-symref-list-create-macro-on-open-hit &#36825;&#20010;&#19981;&#24120;&#29992; ,&#36319;&#23439;&#24405;&#21046;&#30456;&#20851;
 +           semantic-symref-list-toggle-showing  toogle&#23637;&#24320;&#19982;&#21542;
@@ -129,7 +126,6 @@ Enter       &#22238;&#36710;&#20013;&#36716;&#21040;&#30456;&#24212;&#20195;&#30
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-fundamental-mode">/tmp/a.cpp
   [-] class Stu {}
     String name;
@@ -138,21 +134,21 @@ Enter       &#22238;&#36710;&#20013;&#36716;&#21040;&#30456;&#24212;&#20195;&#30
 </pre>
 </div>
 <p>
-全部展开之后的样子<br  />
+全部展开之后的样子<br />
 </p>
 <blockquote>
 <p>
-&#x2013; Variable: semantic-symref-tool<br  />
-    The value of this variable is a symbol that determines the external<br  />
-    symbol reference tool to use.  The default value, `detect', says<br  />
-    to look for the best available tool.  Other possible values are<br  />
-    `global', `idutils', `cscope', and `grep'.  Note that `grep' is<br  />
-    much slower than the others.<br  />
+&#x2013; Variable: semantic-symref-tool<br />
+    The value of this variable is a symbol that determines the external<br />
+    symbol reference tool to use.  The default value, `detect', says<br />
+    to look for the best available tool.  Other possible values are<br />
+    `global', `idutils', `cscope', and `grep'.  Note that `grep' is<br />
+    much slower than the others.<br />
 </p>
 </blockquote>
 <p>
-semantic 会使 用     `global', `idutils', `cscope', and `grep'这几个工具来实现<br  />
-以上功能， grep是最慢的<br  />
+semantic 会使 用     `global', `idutils', `cscope', and `grep'这几个工具来实现<br />
+以上功能， grep是最慢的<br />
 </p>
 </div>
 </div>
@@ -163,7 +159,7 @@ semantic 会使 用     `global', `idutils', `cscope', and `grep'这几个工具
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-08-27</span>
-        <span title="last modification date" class="post-info">2016-09-12</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/cedet/">Cedet</a>, <a href="/tags/emacs/">Emacs</a>, <a href="/tags/c/">C</a>, <a href="/tags/c++/">C++</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -202,7 +198,7 @@ semantic 会使 用     `global', `idutils', `cscope', and `grep'这几个工具
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

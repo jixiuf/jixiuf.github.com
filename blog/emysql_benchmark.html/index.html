@@ -47,24 +47,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">建表语句</a></li>
-<li><a href="#sec-2">mysqlslap 测试</a></li>
-<li><a href="#sec-3">emysql的压力测试，开一条mysql连接，用存储过程插入10000条数据</a>
+<li><a href="#orgb555357">建表语句</a></li>
+<li><a href="#org44ad756">mysqlslap 测试</a></li>
+<li><a href="#org7490df3">emysql的压力测试，开一条mysql连接，用存储过程插入10000条数据</a>
 <ul>
-<li><a href="#sec-3-1">测试用 press.erl</a></li>
+<li><a href="#org554474b">测试用 press.erl</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <p>
-本站关于mysql的测试在 <a href="/blog/benchmark_demo.html">/blog/benchmark_demo.html</a><br  />
+本站关于mysql的测试在 <a href="/blog/benchmark_demo.html">/blog/benchmark_demo.html</a><br />
 </p>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">建表语句</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgb555357" class="outline-2">
+<h2 id="orgb555357">建表语句</h2>
+<div class="outline-text-2" id="text-orgb555357">
 <div class="org-src-container">
-
 <pre class="src src-sql"> <span style="color: #FBDE2D;">CREATE</span> <span style="color: #FBDE2D;">TABLE</span> `tbl_test` (
   `id` <span style="color: #8DA6CE;">int</span>(11) <span style="color: #FBDE2D;">NOT</span> <span style="color: #FBDE2D;">NULL</span> AUTO_INCREMENT,
   `onOffType` <span style="color: #8DA6CE;">int</span>(11) <span style="color: #FBDE2D;">DEFAULT</span> <span style="color: #FBDE2D;">NULL</span>,
@@ -144,58 +143,57 @@ DELIMITER ;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">mysqlslap 测试</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org44ad756" class="outline-2">
+<h2 id="org44ad756">mysqlslap 测试</h2>
+<div class="outline-text-2" id="text-org44ad756">
 <div class="org-src-container">
-
 <pre class="src src-sh">&#20854;&#20013;&#20851;&#20110;&#24320;&#19968;&#20010;mysql&#36830;&#25509;&#25191;&#34892;10000&#27425;&#23384;&#20648;&#36807;&#31243;&#25554;&#20837;10000&#26465;&#25968;&#25454;&#30340;&#27979;&#35797;
  mysqlslap --query=<span style="color: #ffa07a;">"call insert_tbl_test(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)"</span> --concurrency=1  --number-of-queries 10000 --iterations=3 --engine=myisam -uroot -proot
 </pre>
 </div>
 <blockquote>
 <p>
-结果显示不用3s就插入了10000条数据<br  />
-jixiuf@jf /tmp/d $ mysqlslap &#x2013;query="call insert_tbl_test(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)" &#x2013;concurrency=1  &#x2013;number-of-queries 10000 &#x2013;iterations=3 &#x2013;engine=myisam -uroot -proot<br  />
-Benchmark<br  />
-    Running for engine myisam<br  />
-    Average number of seconds to run all queries: 2.496 seconds<br  />
-    Minimum number of seconds to run all queries: 2.469 seconds<br  />
-    Maximum number of seconds to run all queries: 2.551 seconds<br  />
-    Number of clients running queries: 1<br  />
-    Average number of queries per client: 10000<br  />
+结果显示不用3s就插入了10000条数据<br />
+jixiuf@jf /tmp/d $ mysqlslap &#x2013;query="call insert_tbl_test(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)" &#x2013;concurrency=1  &#x2013;number-of-queries 10000 &#x2013;iterations=3 &#x2013;engine=myisam -uroot -proot<br />
+Benchmark<br />
+    Running for engine myisam<br />
+    Average number of seconds to run all queries: 2.496 seconds<br />
+    Minimum number of seconds to run all queries: 2.469 seconds<br />
+    Maximum number of seconds to run all queries: 2.551 seconds<br />
+    Number of clients running queries: 1<br />
+    Average number of queries per client: 10000<br />
 </p>
 </blockquote>
 <div class="org-src-container">
-
-<pre class="src src-sh">&#20351;&#29992;&#26222;&#36890;&#30340;insert &#35821;&#21477; (&#23545;&#20110;&#38750;&#24120;&#31616;&#21333;&#30340;insert&#35821;&#21477; &#27809;&#26377;&#24517;&#35201;&#21253;&#35013;&#25104;&#23384;&#20648;&#36807;&#31243;&#65292;&#20197;&#19979;
- &#35777;&#26126;&#65292;&#23384;&#20648;&#36807;&#31243;&#19981;&#27604;&#31616;&#21333;insert&#24555;)
- mysqlslap --query=<span style="color: #ffa07a;">"insert into tbl_test(  accountId,  accountType,  playerId,  headHeroId,  playerLevel,  playerName,  logTime,  clientVersion,  clientType,  issuers,  flashPlayerVersion,  connectType,  gameServerName,  ipAddr,  onOffType  ) values(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)"</span>  --concurrency=1  --number-of-queries 10000 --iterations=3 --engine=myisam -uroot -proot
+<pre class="src src-sh"> &#20351;&#29992;&#26222;&#36890;&#30340;insert &#35821;&#21477; (&#23545;&#20110;&#38750;&#24120;&#31616;&#21333;&#30340;insert&#35821;&#21477; &#27809;&#26377;&#24517;&#35201;&#21253;&#35013;&#25104;&#23384;&#20648;&#36807;&#31243;&#65292;&#20197;&#19979;
+  &#35777;&#26126;&#65292;&#23384;&#20648;&#36807;&#31243;&#19981;&#27604;&#31616;&#21333;insert&#24555;)
+  mysqlslap --query=<span style="color: #ffa07a;">"insert into tbl_test(  accountId,  accountType,  playerId,  headHeroId,  playerLevel,  playerName,  logTime,  clientVersion,  clientType,  issuers,  flashPlayerVersion,  connectType,  gameServerName,  ipAddr,  onOffType  ) values(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)"</span>  --concurrency=1  --number-of-queries 10000 --iterations=3 --engine=myisam -uroot -proot
 </pre>
 </div>
 <blockquote>
 <p>
-jixiuf@jf /tmp/d $ mysqlslap &#x2013;query="insert into tbl_test(  accountId,  accountType,  playerId,  headHeroId,  playerLevel,  playerName,  logTime,  clientVersion,  clientType,  issuers,  flashPlayerVersion,  connectType,  gameServerName,  ipAddr,  onOffType  ) values(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)"  &#x2013;concurrency=1  &#x2013;number-of-queries 10000 &#x2013;iterations=3 &#x2013;engine=myisam -uroot -proot<br  />
-Benchmark<br  />
-  Running for engine myisam<br  />
-  Average number of seconds to run all queries: 1.642 seconds<br  />
-  Minimum number of seconds to run all queries: 1.620 seconds<br  />
-  Maximum number of seconds to run all queries: 1.676 seconds<br  />
-  Number of clients running queries: 1<br  />
-Average number of queries per client: 10000<br  />
+jixiuf@jf /tmp/d $ mysqlslap &#x2013;query="insert into tbl_test(  accountId,  accountType,  playerId,  headHeroId,  playerLevel,  playerName,  logTime,  clientVersion,  clientType,  issuers,  flashPlayerVersion,  connectType,  gameServerName,  ipAddr,  onOffType  ) values(1,1,1,1,1,'name','1989-01-26','ver','t','dd',1,1,'name','localhost',1)"  &#x2013;concurrency=1  &#x2013;number-of-queries 10000 &#x2013;iterations=3 &#x2013;engine=myisam -uroot -proot<br />
+Benchmark<br />
+  Running for engine myisam<br />
+  Average number of seconds to run all queries: 1.642 seconds<br />
+  Minimum number of seconds to run all queries: 1.620 seconds<br />
+  Maximum number of seconds to run all queries: 1.676 seconds<br />
+  Number of clients running queries: 1<br />
+Average number of queries per client: 10000<br />
 </p>
 </blockquote>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">emysql的压力测试，开一条mysql连接，用存储过程插入10000条数据</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org7490df3" class="outline-2">
+<h2 id="org7490df3">emysql的压力测试，开一条mysql连接，用存储过程插入10000条数据</h2>
+<div class="outline-text-2" id="text-org7490df3">
 <ol class="org-ol">
-<li>首先修改emysql的 emysql.app.src,添加env的值{lock_timeout,infinity}<br  />
-,以避免因超时 emysql不工作 。别忘了重新编译emysql<br  />
+<li><p>
+首先修改emysql的 emysql.app.src,添加env的值{lock_timeout,infinity}<br />
+,以避免因超时 emysql不工作 。别忘了重新编译emysql<br />
+</p>
 <div class="org-src-container">
-
 <pre class="src src-sh">%% Emysql .app file template
 %% This template is filled out by rebar,
 %% or make (Makefile made to fill modules<span style="color: #FBDE2D;"> in</span>)
@@ -217,16 +215,14 @@ Average number of queries per client: 10000<br  />
                 ]}
         ]}.
 </pre>
-</div>
-</li>
+</div></li>
 </ol>
 </div>
 
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">测试用 press.erl</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org554474b" class="outline-3">
+<h3 id="org554474b">测试用 press.erl</h3>
+<div class="outline-text-3" id="text-org554474b">
 <div class="org-src-container">
-
 <pre class="src src-erlang">-module(press).
 -export([get_timestamp/0,start/3,run/3]).
 -include("emysql.hrl").
@@ -291,47 +287,44 @@ test2()-&gt;
 get_timestamp() -&gt;
     {Mega,Sec,Micro} = erlang:now(),
     ((Mega*1000000+Sec)*1000000+Micro)/1000.
+
+
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">&#21551;&#29992;10000&#20010;erlang&#36827;&#31243;&#65292;&#27599;&#20010;&#36827;&#31243;&#21521;emysql&#21457;&#19968;&#26465;sql(&#23384;&#20648;&#36807;&#31243;),&#26368;&#21518;&#19968;&#20010;&#21442;&#25968;&#26159;emysql&#36830;&#25509;&#27744;
 &#37324;&#21482;&#24320;&#19968;&#20010;mysql&#36830;&#25509;
 press:start(10000,1,1).
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">&#27979;&#35797;&#32467;&#26524;&#26174;&#31034;&#22823;&#27010;&#29992;&#20102;8&#31186;&#65292;&#22823;&#27010;&#26159;&#27604;&#21333;&#32431;&#30340;mysql&#27979;&#35797;&#24930;3~4&#20493; (7583/2496=3.45)
 (emacsdd@jf.org)4&gt; press:start(10000,1,1).
 process_count:10000 sql count each process:1 used time:7583.25390625
 </pre>
 </div>
 <p>
-有些网友怀疑创建10000个进程也会消耗一部分时间 ，所以增加下面几个测试 ，结果显<br  />
-示所用时间仍然处于7~9s这个范围内，影响不大<br  />
+有些网友怀疑创建10000个进程也会消耗一部分时间 ，所以增加下面几个测试 ，结果显<br />
+示所用时间仍然处于7~9s这个范围内，影响不大<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">&#36215;&#29992;&#19968;&#20010;&#36827;&#31243;&#65292;&#27492;&#36827;&#31243;&#21521;emysql&#21457;&#36865;10000&#26465;sql&#35821;&#21477;
 1&gt;  press:start(1,10000,1).
 process_count:1 sql count each process:10000 used time:8632.112060546875
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">1&gt;  press:start(10,1000,1).
 process_count:10 sql count each process:1000 used time:7520.348876953125
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">1&gt;  press:start(100,100,1).
 process_count:100 sql count each process:100 used time:7613.68896484375
 </pre>
 </div>
-<div class="org-src-container">
 
+<div class="org-src-container">
 <pre class="src src-java"><span style="color: #FBDE2D;">import</span> <span style="color: #D8FA3C;">java</span>.<span style="color: #D8FA3C;">sql</span>.<span style="color: #8DA6CE;">Date</span>;
 <span style="color: #FBDE2D;">import</span> <span style="color: #D8FA3C;">java</span>.<span style="color: #D8FA3C;">sql</span>.<span style="color: #8DA6CE;">Types</span>;
 <span style="color: #FBDE2D;">import</span> <span style="color: #D8FA3C;">java</span>.<span style="color: #D8FA3C;">sql</span>.<span style="color: #8DA6CE;">CallableStatement</span>;
@@ -372,17 +365,17 @@ process_count:100 sql count each process:100 used time:7613.68896484375
 </div>
 <blockquote>
 <p>
-java TestMysqlConn<br  />
-7198<br  />
-java TestMysqlConn<br  />
-7453<br  />
-java TestMysqlConn<br  />
-7031<br  />
+java TestMysqlConn<br />
+7198<br />
+java TestMysqlConn<br />
+7453<br />
+java TestMysqlConn<br />
+7031<br />
 </p>
 </blockquote>
 <p>
-测测结果显示，jdbc也用了大概7s左右的时间执行10000次存储过程的插入,<br  />
-可以证明emysql跟java jdbc连mysql基本不相上下<br  />
+测测结果显示，jdbc也用了大概7s左右的时间执行10000次存储过程的插入,<br />
+可以证明emysql跟java jdbc连mysql基本不相上下<br />
 </p>
 </div>
 </div>
@@ -393,7 +386,7 @@ java TestMysqlConn<br  />
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-04-22</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/erlang/">Erlang</a>, <a href="/tags/mysql/">Mysql</a>, <a href="/tags/db/">DB</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -432,7 +425,7 @@ java TestMysqlConn<br  />
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

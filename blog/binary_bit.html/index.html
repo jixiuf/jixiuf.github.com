@@ -47,32 +47,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">首先补充点基础知识，免得一会混乱了。</a></li>
-<li><a href="#sec-2">二进制，八进制，十六进制数的表示方法举例</a></li>
-<li><a href="#sec-3">erlang 几个取size 的BIF(build in functions)</a></li>
-<li><a href="#sec-4">bit syntax 重头戏</a>
+<li><a href="#org7319eee">首先补充点基础知识，免得一会混乱了。</a></li>
+<li><a href="#org43a8bc7">二进制，八进制，十六进制数的表示方法举例</a></li>
+<li><a href="#orgfe185cc">erlang 几个取size 的BIF(build in functions)</a></li>
+<li><a href="#org26b01d6">bit syntax 重头戏</a>
 <ul>
-<li><a href="#sec-4-1">整数，</a></li>
-<li><a href="#sec-4-2">字符,每个字符以其ascii 值来处理</a></li>
-<li><a href="#sec-4-3">其他示例</a></li>
-<li><a href="#sec-4-4">二进制的表示方法，完全语法</a></li>
+<li><a href="#orga0556ea">整数，</a></li>
+<li><a href="#org21f377c">字符,每个字符以其ascii 值来处理</a></li>
+<li><a href="#org041b4ec">其他示例</a></li>
+<li><a href="#orgcf92adf">二进制的表示方法，完全语法</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">移位 and or 等传统操作</a></li>
-<li><a href="#sec-6">示例 int32&#x2013;&gt;binary binary&#x2013;&gt;int32</a></li>
-<li><a href="#sec-7">参考链接</a></li>
+<li><a href="#orgcf0f17d">移位 and or 等传统操作</a></li>
+<li><a href="#org4d0dbc3">示例 int32&#x2013;&gt;binary binary&#x2013;&gt;int32</a></li>
+<li><a href="#org07469cc">参考链接</a></li>
 </ul>
 </div>
 </div>
 <p>
-erlang 对于二进制的数据处理提供了非常强大的语法，而一般语言对于二进制数据的处<br  />
-理多用移位操作来完成。<br  />
+erlang 对于二进制的数据处理提供了非常强大的语法，而一般语言对于二进制数据的处<br />
+理多用移位操作来完成。<br />
 </p>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">首先补充点基础知识，免得一会混乱了。</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org7319eee" class="outline-2">
+<h2 id="org7319eee">首先补充点基础知识，免得一会混乱了。</h2>
+<div class="outline-text-2" id="text-org7319eee">
 <div class="org-src-container">
-
 <pre class="src src-sh">1 <span style="color: #40E0D0;">byte</span> = 8 bit (<span style="color: #40E0D0;">1&#23383;&#33410;</span> === 8&#20301;)
 1 <span style="color: #40E0D0;">int</span> =4 <span style="color: #40E0D0;">byte</span> = 32 bit(&#20854;&#20182;&#35821;&#35328;&#20013; &#19968;&#33324;&#24773;&#20917;&#19979;int &#31867;&#22411;&#20026;4&#23383;&#33410;&#65292;32&#20301;)
 2^<span style="color: #40E0D0;">8</span> =256 (2 &#30340;&#20843;&#27425;&#26041;&#26159;256,)
@@ -84,152 +83,150 @@ erlang 对于二进制的数据处理提供了非常强大的语法，而一般�
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">hex</th>
-<th scope="col" class="right">0</th>
-<th scope="col" class="right">1</th>
-<th scope="col" class="right">2</th>
-<th scope="col" class="right">3</th>
-<th scope="col" class="right">4</th>
-<th scope="col" class="right">5</th>
-<th scope="col" class="right">6</th>
-<th scope="col" class="right">7</th>
-<th scope="col" class="right">8</th>
-<th scope="col" class="right">9</th>
-<th scope="col" class="right">a</th>
-<th scope="col" class="right">b</th>
-<th scope="col" class="right">c</th>
-<th scope="col" class="right">d</th>
-<th scope="col" class="right">e</th>
-<th scope="col" class="right">f</th>
+<th scope="col" class="org-left">hex</th>
+<th scope="col" class="org-right">0</th>
+<th scope="col" class="org-right">1</th>
+<th scope="col" class="org-right">2</th>
+<th scope="col" class="org-right">3</th>
+<th scope="col" class="org-right">4</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">6</th>
+<th scope="col" class="org-right">7</th>
+<th scope="col" class="org-right">8</th>
+<th scope="col" class="org-right">9</th>
+<th scope="col" class="org-right">a</th>
+<th scope="col" class="org-right">b</th>
+<th scope="col" class="org-right">c</th>
+<th scope="col" class="org-right">d</th>
+<th scope="col" class="org-right">e</th>
+<th scope="col" class="org-right">f</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">binnary</td>
-<td class="right">0000</td>
-<td class="right">0001</td>
-<td class="right">0010</td>
-<td class="right">0011</td>
-<td class="right">0100</td>
-<td class="right">0101</td>
-<td class="right">0110</td>
-<td class="right">0111</td>
-<td class="right">1000</td>
-<td class="right">1001</td>
-<td class="right">1010</td>
-<td class="right">1011</td>
-<td class="right">1100</td>
-<td class="right">1101</td>
-<td class="right">1110</td>
-<td class="right">1111</td>
+<td class="org-left">binnary</td>
+<td class="org-right">0000</td>
+<td class="org-right">0001</td>
+<td class="org-right">0010</td>
+<td class="org-right">0011</td>
+<td class="org-right">0100</td>
+<td class="org-right">0101</td>
+<td class="org-right">0110</td>
+<td class="org-right">0111</td>
+<td class="org-right">1000</td>
+<td class="org-right">1001</td>
+<td class="org-right">1010</td>
+<td class="org-right">1011</td>
+<td class="org-right">1100</td>
+<td class="org-right">1101</td>
+<td class="org-right">1110</td>
+<td class="org-right">1111</td>
 </tr>
 </tbody>
 </table>
 <p>
-所以一个十六进制字符需要4位(4bit)来表示,故一字节(byte)可以容纳2个十六进制字符,<br  />
-故 16#ffffff 占3字节，24位，就不难理解了.<br  />
+所以一个十六进制字符需要4位(4bit)来表示,故一字节(byte)可以容纳2个十六进制字符,<br />
+故 16#ffffff 占3字节，24位，就不难理解了.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">二进制，八进制，十六进制数的表示方法举例</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org43a8bc7" class="outline-2">
+<h2 id="org43a8bc7">二进制，八进制，十六进制数的表示方法举例</h2>
+<div class="outline-text-2" id="text-org43a8bc7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="right">二进制</td>
-<td class="right">八进制</td>
-<td class="right">十六进制</td>
+<td class="org-right">二进制</td>
+<td class="org-right">八进制</td>
+<td class="org-right">十六进制</td>
 </tr>
 
 <tr>
-<td class="right">2#00001111</td>
-<td class="right">8#12345670</td>
-<td class="right">16#ff</td>
+<td class="org-right">2#00001111</td>
+<td class="org-right">8#12345670</td>
+<td class="org-right">16#ff</td>
 </tr>
 
 <tr>
-<td class="right">2#0010</td>
-<td class="right">8#123</td>
-<td class="right">16#ff0011</td>
+<td class="org-right">2#0010</td>
+<td class="org-right">8#123</td>
+<td class="org-right">16#ff0011</td>
 </tr>
 
 <tr>
-<td class="right">&#xa0;</td>
-<td class="right">&#xa0;</td>
-<td class="right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">erlang 几个取size 的BIF(build in functions)</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgfe185cc" class="outline-2">
+<h2 id="orgfe185cc">erlang 几个取size 的BIF(build in functions)</h2>
+<div class="outline-text-2" id="text-orgfe185cc">
 <ul class="org-ul">
-<li>size/1 返回字节数(byte为单位)<br  />
-</li>
-<li>bit_size/1 (返回位数,bit为单位)<br  />
-</li>
+<li>size/1 返回字节数(byte为单位)<br /></li>
+<li>bit_size/1 (返回位数,bit为单位)<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">bit syntax 重头戏</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">整数，</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org26b01d6" class="outline-2">
+<h2 id="org26b01d6">bit syntax 重头戏</h2>
+<div class="outline-text-2" id="text-org26b01d6">
+</div>
+<div id="outline-container-orga0556ea" class="outline-3">
+<h3 id="orga0556ea">整数，</h3>
+<div class="outline-text-3" id="text-orga0556ea">
 <p>
-对于字母，数字转化成binary,可以进行这样的操作<br  />
+对于字母，数字转化成binary,可以进行这样的操作<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-erlang">(emacs@jf.org)77&gt; A = &lt;&lt;12&gt;&gt;.
 &lt;&lt;"\f"&gt;&gt;
 (emacs@jf.org)78&gt; B = &lt;&lt;23&gt;&gt;.
@@ -247,38 +244,37 @@ erlang 对于二进制的数据处理提供了非常强大的语法，而一般�
 
 
 <colgroup>
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="right">decimal</td>
-<td class="right">binary</td>
+<td class="org-right">decimal</td>
+<td class="org-right">binary</td>
 </tr>
 
 <tr>
-<td class="right">12</td>
-<td class="right">00001100</td>
+<td class="org-right">12</td>
+<td class="org-right">00001100</td>
 </tr>
 
 <tr>
-<td class="right">23</td>
-<td class="right">00010111</td>
+<td class="org-right">23</td>
+<td class="org-right">00010111</td>
 </tr>
 
 <tr>
-<td class="right">257(只取前8bit 00000001)</td>
-<td class="right">0000000100000001</td>
+<td class="org-right">257(只取前8bit 00000001)</td>
+<td class="org-right">0000000100000001</td>
 </tr>
 </tbody>
 </table>
 <p>
-以上可见: 对于数字的情况：数字只能接受8bit 的数字，即小于256的数字(不包括256)<br  />
+以上可见: 对于数字的情况：数字只能接受8bit 的数字，即小于256的数字(不包括256)<br />
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-erlang">(emacs@jf.org)63&gt; B= &lt;&lt;1,2,3,4&gt;&gt;. %B是二进制数据，32bit
 &lt;&lt;1,2,3,4&gt;&gt;
 (emacs@jf.org)64&gt; &lt;&lt;C:32&gt;&gt; = B.  %给整数C赋值
@@ -293,54 +289,53 @@ erlang 对于二进制的数据处理提供了非常强大的语法，而一般�
 
 
 <colgroup>
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="right">decimal</td>
-<td class="right">binary</td>
+<td class="org-right">decimal</td>
+<td class="org-right">binary</td>
 </tr>
 
 <tr>
-<td class="right">1</td>
-<td class="right">00000001</td>
+<td class="org-right">1</td>
+<td class="org-right">00000001</td>
 </tr>
 
 <tr>
-<td class="right">2</td>
-<td class="right">00000010</td>
+<td class="org-right">2</td>
+<td class="org-right">00000010</td>
 </tr>
 
 <tr>
-<td class="right">3</td>
-<td class="right">00000011</td>
+<td class="org-right">3</td>
+<td class="org-right">00000011</td>
 </tr>
 
 <tr>
-<td class="right">4</td>
-<td class="right">00000100</td>
+<td class="org-right">4</td>
+<td class="org-right">00000100</td>
 </tr>
 
 <tr>
-<td class="right">16909060</td>
-<td class="right">00000001 00000010 00000011 00000100</td>
+<td class="org-right">16909060</td>
+<td class="org-right">00000001 00000010 00000011 00000100</td>
 </tr>
 </tbody>
 </table>
 <p>
-对以上代码进行分析,可以得知如何从一个二进制数中截取出一个int 来，<br  />
-及如何将一个int 值写到二进制数据中<br  />
+对以上代码进行分析,可以得知如何从一个二进制数中截取出一个int 来，<br />
+及如何将一个int 值写到二进制数据中<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">字符,每个字符以其ascii 值来处理</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org21f377c" class="outline-3">
+<h3 id="org21f377c">字符,每个字符以其ascii 值来处理</h3>
+<div class="outline-text-3" id="text-org21f377c">
 <div class="org-src-container">
-
 <pre class="src src-erlang">(emacs@jf.org)110&gt; A = &lt;&lt;"a"&gt;&gt;. % 等效于 A = &lt;&lt;97&gt;&gt;.
 &lt;&lt;"a"&gt;&gt;
 (emacs@jf.org)111&gt; A. % A是二进制数据
@@ -362,11 +357,10 @@ erlang 对于二进制的数据处理提供了非常强大的语法，而一般�
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">其他示例</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org041b4ec" class="outline-3">
+<h3 id="org041b4ec">其他示例</h3>
+<div class="outline-text-3" id="text-org041b4ec">
 <div class="org-src-container">
-
 <pre class="src src-erlang">(emacs@jf.org)127&gt; A = &lt;&lt;1,2,3&gt;&gt;.
 &lt;&lt;1,2,3&gt;&gt;
 (emacs@jf.org)128&gt; bit_size(A).
@@ -379,143 +373,144 @@ erlang 对于二进制的数据处理提供了非常强大的语法，而一般�
 </pre>
 </div>
 <p>
-关于位数的控制<br  />
+关于位数的控制<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="right">3:16</td>
-<td class="left">,16位的数字3</td>
-<td class="right">00000000 00000011</td>
+<td class="org-right">3:16</td>
+<td class="org-left">,16位的数字3</td>
+<td class="org-right">00000000 00000011</td>
 </tr>
 
 <tr>
-<td class="right">3</td>
-<td class="left">8位的数字3</td>
-<td class="right">00000011</td>
+<td class="org-right">3</td>
+<td class="org-left">8位的数字3</td>
+<td class="org-right">00000011</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4">二进制的表示方法，完全语法</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgcf92adf" class="outline-3">
+<h3 id="orgcf92adf">二进制的表示方法，完全语法</h3>
+<div class="outline-text-3" id="text-orgcf92adf">
 <ul class="org-ul">
-<li>Value<br  />
+<li>Value<br />
 <ul class="org-ul">
-<li>Value:Size<br  />
-</li>
-<li>Value/TypeSpecifierList<br  />
-</li>
-<li>Value:Size/TypeSpecifierList<br  />
-</li>
-</ul>
-</li>
+<li>Value:Size<br /></li>
+<li>Value/TypeSpecifierList<br /></li>
+<li>Value:Size/TypeSpecifierList<br /></li>
+</ul></li>
 </ul>
 </div>
-<ul class="org-ul"><li><a id="sec-4-4-1" name="sec-4-4-1"></a>其中TypeSpecifierList可以是以下几种类型及其组合，组合以 - 相连<br  /><ul class="org-ul"><li><a id="sec-4-4-1-1" name="sec-4-4-1-1"></a>Type(类型)<br  /><div class="outline-text-5" id="text-4-4-1-1">
+<ul class="org-ul">
+<li><a id="org217b291"></a>其中TypeSpecifierList可以是以下几种类型及其组合，组合以 - 相连<br />
+<ul class="org-ul">
+<li><a id="org15d89ac"></a>Type(类型)<br />
+<div class="outline-text-5" id="text-org15d89ac">
 <p>
-integer | float | binary | bytes | bitstring | bits | utf8 | utf16 | utf32<br  />
+integer | float | binary | bytes | bitstring | bits | utf8 | utf16 | utf32<br />
 bytes <code>= binary
-        bits =</code> bitstring<br  />
+        bits =</code> bitstring<br />
 </p>
 </div>
 </li>
-<li><a id="sec-4-4-1-2" name="sec-4-4-1-2"></a>Signedness (是否为有符号整数 + /-)<br  /><div class="outline-text-5" id="text-4-4-1-2">
+<li><a id="org9139a5d"></a>Signedness (是否为有符号整数 + /-)<br />
+<div class="outline-text-5" id="text-org9139a5d">
 <p>
-signed  | unsigned<br  />
-只有当Type 为integer 时有效，默认为unsigned<br  />
+signed  | unsigned<br />
+只有当Type 为integer 时有效，默认为unsigned<br />
 </p>
 </div>
 </li>
 
-<li><a id="sec-4-4-1-3" name="sec-4-4-1-3"></a>Endianness(字节序) (default big)<br  /><div class="outline-text-5" id="text-4-4-1-3">
+<li><a id="org4c762a1"></a>Endianness(字节序) (default big)<br />
+<div class="outline-text-5" id="text-org4c762a1">
 <p>
-       big | little | native<br  />
-       哪个字节存储在低地址(内存地址)<br  />
-       网络传输一般采用大端序big，也被称之为网络字节序，或网络序<br  />
-比如对于一个32位的整数 72 ,这32位是如何安排的<br  />
+       big | little | native<br />
+       哪个字节存储在低地址(内存地址)<br />
+       网络传输一般采用大端序big，也被称之为网络字节序，或网络序<br />
+比如对于一个32位的整数 72 ,这32位是如何安排的<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="right" />
+<col  class="org-right" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="right">72</td>
-<td class="left">little-endian</td>
-<td class="left">big-endian</td>
+<td class="org-right">72</td>
+<td class="org-left">little-endian</td>
+<td class="org-left">big-endian</td>
 </tr>
 
 <tr>
-<td class="right">72</td>
-<td class="left"><a id="72-0-0-0" name="72-0-0-0"></a></td>
-<td class="left"><a id="0-0-0-72" name="0-0-0-72"></a></td>
+<td class="org-right">72</td>
+<td class="org-left"><a id="org7f11fa5"></a></td>
+<td class="org-left"><a id="org8b9850e"></a></td>
 </tr>
 
 <tr>
-<td class="right">binary</td>
-<td class="left">01001000 00000000 00000000 00000000</td>
-<td class="left">00000000 01001000 00000000 00000000</td>
+<td class="org-right">binary</td>
+<td class="org-left">01001000 00000000 00000000 00000000</td>
+<td class="org-left">00000000 01001000 00000000 00000000</td>
 </tr>
 </tbody>
 </table>
 <div class="org-src-container">
-
 <pre class="src src-erlang">(emacs@jf.org)1&gt; A = &lt;&lt;72:32&gt;&gt;. % big-endian
 &lt;&lt;0,0,0,72&gt;&gt;
 </pre>
 </div>
 </div>
 </li>
-<li><a id="sec-4-4-1-4" name="sec-4-4-1-4"></a>Unit<br  /><div class="outline-text-5" id="text-4-4-1-4">
+<li><a id="orgedcd92b"></a>Unit<br />
+<div class="outline-text-5" id="text-orgedcd92b">
 <p>
-语法 unit:Integer ,如unit:1<br  />
-取值范围1..257<br  />
+语法 unit:Integer ,如unit:1<br />
+取值范围1..257<br />
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="right" />
+<col  class="org-right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">integer,float,bitstring</td>
-<td class="right">1</td>
+<td class="org-left">integer,float,bitstring</td>
+<td class="org-right">1</td>
 </tr>
 
 <tr>
-<td class="left">binary</td>
-<td class="right">8</td>
+<td class="org-left">binary</td>
+<td class="org-right">8</td>
 </tr>
 
 <tr>
-<td class="left">utf8 ,utf16,utf32,</td>
-<td class="right">不需要此属性</td>
+<td class="org-left">utf8 ,utf16,utf32,</td>
+<td class="org-right">不需要此属性</td>
 </tr>
 </tbody>
 </table>
 <div class="org-src-container">
-
 <pre class="src src-erlang">10&gt; &lt;&lt;X1/unsigned&gt;&gt; =  &lt;&lt;-44&gt;&gt;.
 &lt;&lt;"Ô"&gt;&gt;
 11&gt; X1.
@@ -541,37 +536,32 @@ signed  | unsigned<br  />
 </pre>
 </div>
 </div>
-</li></ul>
-</li></ul>
-</div>
-</div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">移位 and or 等传统操作</h2>
-<div class="outline-text-2" id="text-5">
-<ul class="org-ul">
-<li>bsl (Bit Shift Left),<br  />
 </li>
-<li>bsr (Bit Shift Right),<br  />
-</li>
-<li>band,<br  />
-</li>
-<li>bor,<br  />
-</li>
-<li>bxor,<br  />
-</li>
-<li>bnot.<br  />
+</ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">示例 int32&#x2013;&gt;binary binary&#x2013;&gt;int32</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgcf0f17d" class="outline-2">
+<h2 id="orgcf0f17d">移位 and or 等传统操作</h2>
+<div class="outline-text-2" id="text-orgcf0f17d">
+<ul class="org-ul">
+<li>bsl (Bit Shift Left),<br /></li>
+<li>bsr (Bit Shift Right),<br /></li>
+<li>band,<br /></li>
+<li>bor,<br /></li>
+<li>bxor,<br /></li>
+<li>bnot.<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4d0dbc3" class="outline-2">
+<h2 id="org4d0dbc3">示例 int32&#x2013;&gt;binary binary&#x2013;&gt;int32</h2>
+<div class="outline-text-2" id="text-org4d0dbc3">
 <p>
-将int32转换成binary ,从binary 头部读取32位，转成int32<br  />
+将int32转换成binary ,从binary 头部读取32位，转成int32<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-erlang">-module(aaa).
 -export([int32_2_binary/1,read_int32_from_binary/1]).
 
@@ -600,16 +590,13 @@ read_int32_from_binary(Int) when is_integer(Int) -&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">参考链接</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org07469cc" class="outline-2">
+<h2 id="org07469cc">参考链接</h2>
+<div class="outline-text-2" id="text-org07469cc">
 <ul class="org-ul">
-<li><a href="http://learnyousomeerlang.com/starting-out-for-real#bit-syntax">learnyousomeerlang.com/bit syntax</a><br  />
-</li>
-<li><a href="http://www.erlang.org/euc/00/bit_syntax.html">http://www.erlang.org/euc/00/bit_syntax.html</a><br  />
-</li>
-<li><a href="http://zh.wikipedia.org/wiki/%25E5%25AD%2597%25E8%258A%2582%25E5%25BA%258F">字节序wiki</a><br  />
-</li>
+<li><a href="http://learnyousomeerlang.com/starting-out-for-real#bit-syntax">learnyousomeerlang.com/bit syntax</a><br /></li>
+<li><a href="http://www.erlang.org/euc/00/bit_syntax.html">http://www.erlang.org/euc/00/bit_syntax.html</a><br /></li>
+<li><a href="http://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F">字节序wiki</a><br /></li>
 </ul>
 </div>
 </div>
@@ -619,7 +606,7 @@ read_int32_from_binary(Int) when is_integer(Int) -&gt;
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-01-07</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/erlang/">Erlang</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -658,7 +645,7 @@ read_int32_from_binary(Int) when is_integer(Int) -&gt;
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

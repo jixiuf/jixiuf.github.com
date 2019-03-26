@@ -47,31 +47,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Customization</a></li>
-<li><a href="#sec-2">2. Semantic's customization</a></li>
-<li><a href="#sec-3">3. Optimization of Semantic's work</a></li>
-<li><a href="#sec-4">4. Customization of Semanticdb</a></li>
-<li><a href="#sec-5">5. How to customize Semantic to work with C &amp; C++ projects</a></li>
-<li><a href="#sec-6">6. Preprocessing of source code</a></li>
-<li><a href="#sec-7">7. Work with Semantic</a></li>
-<li><a href="#sec-8">8. Names completion</a></li>
-<li><a href="#sec-9">9. Getting information about tags</a></li>
-<li><a href="#sec-10">10. Search for places where function is called</a></li>
-<li><a href="#sec-11">11. Source code folding</a></li>
-<li><a href="#sec-12">12. Work with Srecode</a></li>
-<li><a href="#sec-13">13. Additional packages</a></li>
+<li><a href="#orge85b920">1. Customization</a></li>
+<li><a href="#org53c64f5">2. Semantic's customization</a></li>
+<li><a href="#orge4e4dd9">3. Optimization of Semantic's work</a></li>
+<li><a href="#orgeb24c8a">4. Customization of Semanticdb</a></li>
+<li><a href="#org0ed167d">5. How to customize Semantic to work with C &amp; C++ projects</a></li>
+<li><a href="#org6fde27f">6. Preprocessing of source code</a></li>
+<li><a href="#org06a545a">7. Work with Semantic</a></li>
+<li><a href="#org1883d80">8. Names completion</a></li>
+<li><a href="#org9b34959">9. Getting information about tags</a></li>
+<li><a href="#orgc6e615e">10. Search for places where function is called</a></li>
+<li><a href="#org154a7ee">11. Source code folding</a></li>
+<li><a href="#org8e902d6">12. Work with Srecode</a></li>
+<li><a href="#org1f2166c">13. Additional packages</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Customization</h2>
+<div id="outline-container-orge85b920" class="outline-2">
+<h2 id="orge85b920"><span class="section-number-2">1</span> Customization</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Cedet最简单的配置就是加载cedet.el
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(load-file <span style="color: #ffa07a;">"~/emacs/cedet/common/cedet.el"</span>)
 </pre>
 </div>
@@ -80,15 +79,14 @@ Cedet最简单的配置就是加载cedet.el
 如果还想用Cedet 对项目进行管理可以再加上一这句
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(global-ede-mode t)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Semantic's customization</h2>
+<div id="outline-container-org53c64f5" class="outline-2">
+<h2 id="org53c64f5"><span class="section-number-2">2</span> Semantic's customization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这个需要根据你的需求来进行配置
@@ -97,16 +95,14 @@ Cedet最简单的配置就是加载cedet.el
 </p>
 
 <ul class="org-ul">
-<li>semantic-load-enable-minimum-features — 只启用最少的功能,仅仅对
-</li>
+<li>semantic-load-enable-minimum-features — 只启用最少的功能,仅仅对</li>
 </ul>
 <p>
 当前的buffer进行语法的采集,并将收集到的信息存到(Semanticdb)中,以后
 可以使用Semanticdb 和Ebrowse 得用采集到的信息进行相应的处理.
 </p>
 <ul class="org-ul">
-<li>semantic-load-enable-code-helpers —
-</li>
+<li>semantic-load-enable-code-helpers —</li>
 </ul>
 <p>
 启用 senator-minor-mode mode,可以实现在buffer间进行代码的导航(跳转).
@@ -117,15 +113,12 @@ semantic-idle-summary-mode显示光标下所处的tag的相应信息.
 <li>semantic-load-enable-gaudy-code-helpers —
 启用  semantic-stickyfunc-name 将当前buffer中的所有函数列在 buffer最前面的几行处,
 启用semantic-decoration-mode 用不同的faces来装饰tags
-启用semantic-idle-completion-mode会在用户停止输入内容的时候自动产生可用的名称补全.
-</li>
+启用semantic-idle-completion-mode会在用户停止输入内容的时候自动产生可用的名称补全.</li>
 
 <li>semantic-load-enable-excessive-code-helpers —
-启用which-func-mode ,在状态栏显示当前的函数名称.
-</li>
+启用which-func-mode ,在状态栏显示当前的函数名称.</li>
 
-<li>semantic-load-enable-semantic-debugging-helpers —
-</li>
+<li>semantic-load-enable-semantic-debugging-helpers —</li>
 </ul>
 <p>
 启用了多种modes 在用Semantic时进行debug操作时可以展现出现的解析错
@@ -138,7 +131,6 @@ semantic-idle-summary-mode显示光标下所处的tag的相应信息.
 如
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(semantic-load-enable-excessive-code-helpers)
 </pre>
 </div>
@@ -149,7 +141,6 @@ semantic-idle-summary-mode显示光标下所处的tag的相应信息.
 加载 semantic-ia
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">semantic-ia</span>)
 </pre>
 </div>
@@ -161,7 +152,6 @@ semantic-idle-summary-mode显示光标下所处的tag的相应信息.
 为了达到这个目换,需要下面这个命令来实现
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">semantic-gcc</span>)
 </pre>
 </div>
@@ -171,19 +161,17 @@ semantic-add-system-include函数可以实现这个功能
 它需要两个参数
 </p>
 <ol class="org-ol">
-<li>include files 的路径,及相应的major-mode,例如: 
-</li>
+<li>include files 的路径,及相应的major-mode,例如:</li>
 </ol>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(semantic-add-system-include <span style="color: #ffa07a;">"~/exp/include/boost_1_37"</span> 'c++-mode)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Optimization of Semantic's work</h2>
+<div id="outline-container-orge4e4dd9" class="outline-2">
+<h2 id="orge4e4dd9"><span class="section-number-2">3</span> Optimization of Semantic's work</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 为了优化tags ,有以下几个技巧
@@ -194,10 +182,8 @@ semantic-add-system-include函数可以实现这个功能
 <ul class="org-ul">
 <li>可以为常用的目录事先生成tags databases
  semanticdb-create-ebrowse-database 
-semanticdb-create-cscope-database   命令可以实现此功能. 
-</li>
-<li>用semanticdb-find-default-throttle变量为具体的mode来限制搜索的范
-</li>
+semanticdb-create-cscope-database   命令可以实现此功能.</li>
+<li>用semanticdb-find-default-throttle变量为具体的mode来限制搜索的范</li>
 </ul>
 <p>
     围,例如:不使用系统级的include files ,为c-mode通过从对像列表中移除系统级的变量 
@@ -216,7 +202,6 @@ Integration with imenu
 或者通过下面的代码也可以实现
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">my-semantic-hook</span> ()
   (imenu-add-to-menubar <span style="color: #ffa07a;">"TAGS"</span>))
 (add-hook 'semantic-init-hooks 'my-semantic-hook)
@@ -225,15 +210,14 @@ Integration with imenu
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Customization of Semanticdb</h2>
+<div id="outline-container-orgeb24c8a" class="outline-2">
+<h2 id="orgeb24c8a"><span class="section-number-2">4</span> Customization of Semanticdb</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 如果你使用默认的加载cedet.el的方式 ,那么Semanticdb已经自动加载了
 如果没有的话可以用下面的方式实现
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">semanticdb</span>)
 (global-semanticdb-minor-mode 1)
 </pre>
@@ -249,7 +233,6 @@ Integration with imenu
 下面的命令支持gnu/global
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">require</span> '<span style="color: #D8FA3C;">semanticdb-global</span>)
 (semanticdb-enable-gnu-global-databases 'c-mode)
 (semanticdb-enable-gnu-global-databases 'c++-mode)
@@ -260,14 +243,13 @@ Integration with imenu
 ctags支持
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(semantic-load-enable-primary-exuberent-ctags-support)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> How to customize Semantic to work with C &amp; C++ projects</h2>
+<div id="outline-container-org0ed167d" class="outline-2">
+<h2 id="org0ed167d"><span class="section-number-2">5</span> How to customize Semantic to work with C &amp; C++ projects</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 为了让Semantic更好的为C/C++工作,推荐使用EDE 对其进行项目的管理.
@@ -275,24 +257,14 @@ EDE定义特定的project 类型ede-cpp-root-project,它提供额外的Semantic�
 可以用于分析人项目中的代码.
 为了定义一个项目,需要用下面方法来定义一个项目.
 (ede-cpp-root-project "Test"
-</p>
-<p>
-:name "Test Project"
-</p>
-<p>
-:file "~/work/project/CMakeLists.txt"
-</p>
-<p>
-:include-path '("/"
-                "/Common"
-                "/Interfaces"
-                "/Libs"
-               )
-</p>
-<p>
-:system-include-path '("~/exp/include")
-</p>
-<p>
+                :name "Test Project"
+                :file "~/work/project/CMakeLists.txt"
+                :include-path '("/"
+                                "/Common"
+                                "/Interfaces"
+                                "/Libs"
+                               )
+                :system-include-path '("~/exp/include")
                 :spp-table '(("isUnix" . "")
                              ("BOOST<sub>TEST</sub><sub>DYN</sub><sub>LINK</sub>" . "")))
 你可以使用项目根目录下的任何一个文件在作为:file的值,
@@ -302,18 +274,16 @@ EDE定义特定的project 类型ede-cpp-root-project,它提供额外的Semantic�
  目根目录的.你不仅可以用目录名作参数,还可以是一个搜索include files 的
  函数,具体见EDE的手册
 :spp-table 是一系列的键值对,上面的例子定义了两个symbols isUnix
-BOOST<sub>TEST</sub><sub>DYN</sub><sub>LINK</sub>,它们会被传递给preprocessor,对于代码的解析有一定的
+BOOST<sub>TEST</sub><sub>DYN</sub><sub>LINK,它们会被传递给preprocessor,对于代码的解析有一定的</sub>
 帮助
  用户如果有必要可以重定义一些与项目内文件有关的变量.通过
-</p>
-<p>
-:local-variables变量可以实现,其值与:spp-table一样是键值对
+  :local-variables变量可以实现,其值与:spp-table一样是键值对
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Preprocessing of source code</h2>
+<div id="outline-container-org6fde27f" class="outline-2">
+<h2 id="org6fde27f"><span class="section-number-2">6</span> Preprocessing of source code</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 更详细的关于 preprocessor的内容见
@@ -331,7 +301,6 @@ semantic-lex-c-preprocessor-symbol-map变量.
 如何配置QT4
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">setq</span> qt4-base-dir <span style="color: #ffa07a;">"/usr/include/qt4"</span>)
 (semantic-add-system-include qt4-base-dir 'c++-mode)
 (add-to-list 'auto-mode-alist (cons qt4-base-dir 'c++-mode))
@@ -347,8 +316,8 @@ semantic-lex-c-preprocessor-symbol-map变量.
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> Work with Semantic</h2>
+<div id="outline-container-org06a545a" class="outline-2">
+<h2 id="org06a545a"><span class="section-number-2">7</span> Work with Semantic</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Semantic提供了几种补全方式,收集tags信息(变量,函数等),及在代码间导航.
@@ -360,7 +329,6 @@ Semantic内核实现的了.
 一些命令没有进行键绑定,你需要自已进行绑定
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(<span style="color: #FBDE2D;">defun</span> <span style="color: #FF6400;">my-cedet-hook</span> ()
   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
   (local-set-key <span style="color: #ffa07a;">"\C-c?"</span> 'semantic-ia-complete-symbol-menu)
@@ -377,8 +345,8 @@ Semantic内核实现的了.
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> Names completion</h2>
+<div id="outline-container-org1883d80" class="outline-2">
+<h2 id="org1883d80"><span class="section-number-2">8</span> Names completion</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 对函数 变量 类名进行名称的补全 Semantic内部有两个package实现了这个功能
@@ -421,8 +389,8 @@ semantic-idle-completions-mode,
 </div>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Getting information about tags</h2>
+<div id="outline-container-org9b34959" class="outline-2">
+<h2 id="org9b34959"><span class="section-number-2">9</span> Getting information about tags</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 semantic-ia包提供了几个收集变量函数类名信息的命令.
@@ -466,8 +434,8 @@ semantic-decoration-include-visit 可以在光标下name 的include 文件间跳
 </div>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> Search for places where function is called</h2>
+<div id="outline-container-orgc6e615e" class="outline-2">
+<h2 id="orgc6e615e"><span class="section-number-2">10</span> Search for places where function is called</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 semantic-symref命令
@@ -482,8 +450,8 @@ find-grep命令尝试搜索.可以在打开的新buffer中找到你要找的变�
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> Source code folding</h2>
+<div id="outline-container-org154a7ee" class="outline-2">
+<h2 id="org154a7ee"><span class="section-number-2">11</span> Source code folding</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Semantic可以实现代码折叠.跟hideshow.el提供的功能类似
@@ -523,8 +491,8 @@ senator-search-forward  senator-search-backward
 </div>
 </div>
 
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> Work with Srecode</h2>
+<div id="outline-container-org8e902d6" class="outline-2">
+<h2 id="org8e902d6"><span class="section-number-2">12</span> Work with Srecode</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 可用于定义及插入代码模版.它是contextable的,
@@ -548,8 +516,8 @@ C-c / E  (srecode-edit) 编辑模版
 </div>
 </div>
 
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> Additional packages</h2>
+<div id="outline-container-org1f2166c" class="outline-2">
+<h2 id="org1f2166c"><span class="section-number-2">13</span> Additional packages</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 eassist-list-methods 列出当前buffer中定义的函数,并可以进行跳转
@@ -563,7 +531,7 @@ eassist-switch-h-cpp 可以在include file 和源码间跳转.
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-06-08</span>
-        <span title="last modification date" class="post-info">2016-09-12</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/linux/">Linux</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -602,7 +570,7 @@ eassist-switch-h-cpp 可以在include file 和源码间跳转.
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

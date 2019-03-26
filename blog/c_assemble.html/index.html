@@ -47,18 +47,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">参考</a></li>
+<li><a href="#orgcdbe407">参考</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">参考</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgcdbe407" class="outline-2">
+<h2 id="orgcdbe407">参考</h2>
+<div class="outline-text-2" id="text-orgcdbe407">
 <p>
-<a href="http://learn.akae.cn/media/ch19s01.html">http://learn.akae.cn/media/ch19s01.html</a><br  />
+<a href="http://learn.akae.cn/media/ch19s01.html">http://learn.akae.cn/media/ch19s01.html</a><br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">bar</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">c</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">d</span>)
 {
     <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">e</span> = c + d;
@@ -79,21 +78,19 @@
 </div>
 
 <p>
-如果在编译时加上-g选项（在第 10 章 gdb讲过-g选项），那么用objdump反汇编时可以把<br  />
-C代码和汇编代码穿插起来显示，这样C代码和汇编代码的对应关系看得更清楚。反汇编的<br  />
-结果很长，以下只列出我们关心的部分。<br  />
+如果在编译时加上-g选项（在第 10 章 gdb讲过-g选项），那么用objdump反汇编时可以把<br />
+C代码和汇编代码穿插起来显示，这样C代码和汇编代码的对应关系看得更清楚。反汇编的<br />
+结果很长，以下只列出我们关心的部分。<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">gcc -g main.c
 objdump -dS a.out
 </pre>
 </div>
 <p>
-输出结果如下:<br  />
+输出结果如下:<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #D8FA3C;">main</span>:     file <span style="color: #8DA6CE;">format</span> <span style="color: #40E0D0;">elf32</span>-i386
 
 
@@ -365,15 +362,14 @@ Disassembly of section .fini:
 </div>
 
 <p>
-一段一段的理解,从main 开始:<br  />
-首先 栈的分配 是从高地址向低地址扩展的，所以入栈会导致栈顶地址变小。<br  />
-在 <span class="underline">每个函数</span> 的 <span class="underline">栈帧</span> 中，ebp指向栈底，而esp指向栈顶，在 <span class="underline">某一个函数</span> 执行过<br  />
-程中esp随着压栈和出栈操作随时变化，而ebp是不动的，函数的参数和局部变量都是通过ebp的值加上一个偏<br  />
-移量来访问<br  />
+一段一段的理解,从main 开始:<br />
+首先 栈的分配 是从高地址向低地址扩展的，所以入栈会导致栈顶地址变小。<br />
+在 <span class="underline">每个函数</span> 的 <span class="underline">栈帧</span> 中，ebp指向栈底，而esp指向栈顶，在 <span class="underline">某一个函数</span> 执行过<br />
+程中esp随着压栈和出栈操作随时变化，而ebp是不动的，函数的参数和局部变量都是通过ebp的值加上一个偏<br />
+移量来访问<br />
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">main</span>(<span style="color: #8DA6CE;">void</span>)
 {
 &#20851;&#20110;&#36825;&#20004;&#20010;&#25805;&#20316;&#22312;foo&#20989;&#25968;&#20013;&#36827;&#34892;&#35762;&#35299;
@@ -397,10 +393,9 @@ Disassembly of section .fini:
 </pre>
 </div>
 <p>
-foo函数的调用<br  />
+foo函数的调用<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c"><span style="color: #8DA6CE;">int</span> <span style="color: #FF6400;">foo</span>(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">a</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">b</span>)
 {
 &#39318;&#20808;&#32463;&#36807;main&#30340;&#35843;&#29992;&#65292;&#26632;&#19978;&#20803;&#32032;&#20381;&#27425;&#26159; 3,2,
@@ -432,10 +427,9 @@ foo函数的调用<br  />
 </pre>
 </div>
 <p>
-P.S.关于地址的表示方式 0xc(%ebp)内容见 <a href="/blog/x86.html">寻址方式</a><br  />
+P.S.关于地址的表示方式 0xc(%ebp)内容见 <a href="/blog/x86.html">寻址方式</a><br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-c">080483b4 &lt;bar&gt;:
 <span style="color: #8DA6CE;">int</span> bar(<span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">c</span>, <span style="color: #8DA6CE;">int</span> <span style="color: #40E0D0;">d</span>)
 {
@@ -462,19 +456,16 @@ P.S.关于地址的表示方式 0xc(%ebp)内容见 <a href="/blog/x86.html">寻�
 </pre>
 </div>
 <p>
-bar函数有一个int型的返回值，这个返回值是通过eax寄存器传递的，所以首先把e的值读<br  />
-到eax寄存器中。然后执行leave指令，这个指令是函数开头的push %ebp和mov %esp,%ebp<br  />
-的逆操作：<br  />
-最后是ret指令，它是call指令的逆操作：<br  />
+bar函数有一个int型的返回值，这个返回值是通过eax寄存器传递的，所以首先把e的值读<br />
+到eax寄存器中。然后执行leave指令，这个指令是函数开头的push %ebp和mov %esp,%ebp<br />
+的逆操作：<br />
+最后是ret指令，它是call指令的逆操作：<br />
 </p>
 
 <ul class="org-ul">
-<li>参数压栈传递，并且是从右向左依次压栈。<br  />
-</li>
-<li>ebp总是指向当前栈帧的栈底。<br  />
-</li>
-<li>返回值通过eax寄存器传递<br  />
-</li>
+<li>参数压栈传递，并且是从右向左依次压栈。<br /></li>
+<li>ebp总是指向当前栈帧的栈底。<br /></li>
+<li>返回值通过eax寄存器传递<br /></li>
 </ul>
 </div>
 </div>
@@ -484,7 +475,7 @@ bar函数有一个int型的返回值，这个返回值是通过eax寄存器传�
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2012-04-29</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/c/">C</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -523,7 +514,7 @@ bar函数有一个int型的返回值，这个返回值是通过eax寄存器传�
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

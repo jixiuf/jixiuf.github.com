@@ -44,12 +44,11 @@
 <div class="post">
 <h1>golang 变量倒底是在堆上还是栈上分配的分析</h1>
 <p>
-下面一段代码 ，附上行号， 主要用来分析 stu ,stu2,stu3 3个变量 究竟是在堆上分配，<br  />
-还 是在栈上分配,<br  />
-主要使用 gdb 调试， 来查看3个变量的地址<br  />
+下面一段代码 ，附上行号， 主要用来分析 stu ,stu2,stu3 3个变量 究竟是在堆上分配，<br />
+还 是在栈上分配,<br />
+主要使用 gdb 调试， 来查看3个变量的地址<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-go"> 1 package main
  2
  3 import (
@@ -86,7 +85,6 @@
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-sh">GNU gdb (GDB) 7.7
 <span style="color: #FF6400;">Copyright</span> (C) 2014 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <a href="http://gnu.org/licenses/gpl.html&gt;
@@ -185,16 +183,16 @@ Type <span style="color: #ffa07a;">"apropos word"</span> to search for commands 
 Reading symbols from c...done.
 Loading Go Runtime support.
 (gdb) l
-11     func (stu *Stu) test() {
-12             var i int
-13             fmt.Println(i)
-14     }
-15     func test(stu *Stu) {
-16             var i int
-17             fmt.Println(i)
+11      func (stu *Stu) test() {
+12              var i int
+13              fmt.Println(i)
+14      }
+15      func test(stu *Stu) {
+16              var i int
+17              fmt.Println(i)
 18
-19     }
-20     func main() {
+19      }
+20      func main() {
 (gdb) b 12  (&#22312;12&#34892; &#25171;&#19978;&#26029;&#28857;
 Breakpoint 1 at 0x2019: file /private/tmp/c.go, line 12.
 (gdb) b 16 (&#22312;16&#34892;  &#25171;&#19978;&#26029;&#28857;
@@ -206,7 +204,7 @@ Starting program: /private/tmp/c
 [New Thread 0x1c03 of process 28719]
 
 Breakpoint 1, main.(*Stu).test (<span style="color: #40E0D0;">stu</span>=0x2210361ed8) at /private/tmp/c.go:12
-12             var i int
+12              var i int
 (gdb) p stu   (&#21551;&#21160;&#35843;&#35797;&#21518; &#22312;&#31532;&#19968;&#20010;&#26029;&#28857;&#22788;&#65288;12&#34892;&#65289; &#20572;&#20303;&#65292; &#25171;&#21360;stu &#30340;&#24403;&#21069;&#22320;&#22336;
 $<span style="color: #40E0D0;">1</span> = (main.Stu *) 0x2210361ed8
 (gdb) c
@@ -214,7 +212,7 @@ Continuing.
 0
 
 Breakpoint 1, main.(*Stu).test (<span style="color: #40E0D0;">stu</span>=0x2210361ee0) at /private/tmp/c.go:12
-12             var i int
+12              var i int
 (gdb) p stu  (&#21551;&#21160;&#35843;&#35797;&#21518;  &#31532;2&#27425;&#22312;12&#34892;&#20572;&#20303;&#65292; &#25171;&#21360;stu &#30340;&#24403;&#21069;&#22320;&#22336;&#65292;&#23454;&#38469;&#26159;stu2 &#21464;&#37327;&#30340;&#22320;&#22336;,stu2,&#19982;stu &#30340;&#22320;&#22336;&#65292;&#24456;&#25509;&#36817;&#65292; &#35828;&#26126;&#20998;&#37197;&#22312;&#21516;&#19968;&#22788;&#65288; &#35201;&#20040;&#37117;&#22312;&#22534;&#22312; &#35201;&#20040;&#37117;&#22312;&#26632;&#19978;)
 $<span style="color: #40E0D0;">2</span> = (main.Stu *) 0x2210361ee0
 (gdb) c
@@ -222,7 +220,7 @@ Continuing.
 0
 
 Breakpoint 1, main.(*Stu).test (<span style="color: #40E0D0;">stu</span>=0x2101f0018) at /private/tmp/c.go:12
-12             var i int
+12              var i int
 (gdb) p stu  (&#21551;&#21160;&#35843;&#35797;&#21518;  &#31532;3&#27425;&#22312;12&#34892;&#20572;&#20303;&#65292; &#25171;&#21360;stu &#30340;&#24403;&#21069;&#22320;&#22336;&#65292;&#23454;&#38469;&#26159;stu3 &#21464;
 &#37327;&#30340;&#22320;&#22336;,stu3&#30340;&#22320;&#22336;,&#19982;stu&#30340;&#22320;&#22336;&#24046;&#36317;&#24456;&#22823;&#65292; &#35828;&#26126;&#19981;&#26159;&#20998;&#37197;&#22312;&#21516;&#19968;&#22788;&#65292;&#22312;main &#20989;&#25968;&#20013;&#65292;
 &#23450;&#20041;stu3&#26102;&#20351;&#29992;&#36807;&amp; &#25805;&#20316;&#31526;&#65292; &#25152;&#20197;&#21487;&#20197;&#22522;&#26412;&#32943;&#23450; stu3 &#26159;&#20998;&#37197;&#22312;&#22534;&#19978; &#65292;&#32780; stu stu2&#26159;&#20998;&#37197;&#22312;&#26632;
@@ -240,7 +238,7 @@ Continuing.
 0
 
 Breakpoint 2, main.test (<span style="color: #40E0D0;">stu</span>=0x2210361ed8) at /private/tmp/c.go:16
-16             var i int
+16              var i int
 (gdb) p stu
 $<span style="color: #40E0D0;">4</span> = (main.Stu *) 0x2210361ed8
 (gdb) c
@@ -248,7 +246,7 @@ Continuing.
 0
 
 Breakpoint 2, main.test (<span style="color: #40E0D0;">stu</span>=0x2210361ee0) at /private/tmp/c.go:16
-16             var i int
+16              var i int
 (gdb) p stu
 $<span style="color: #40E0D0;">5</span> = (main.Stu *) 0x2210361ee0
 (gdb) c
@@ -257,7 +255,7 @@ Continuing.
 [Switching to Thread 0x1b03 of process 28719]
 
 Breakpoint 2, main.test (<span style="color: #40E0D0;">stu</span>=0x2101f0018) at /private/tmp/c.go:16
-16             var i int
+16              var i int
 (gdb) p stu
 $<span style="color: #40E0D0;">6</span> = (main.Stu *) 0x2101f0018
 (gdb) c
@@ -266,6 +264,8 @@ Continuing.
 {0} {1} &amp;{1}
 [Inferior 1 (process 28719) exited normally]
 (gdb) q
+
+
 </pre>
 </div>
 
@@ -274,7 +274,7 @@ Continuing.
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2014-05-06</span>
-        <span title="last modification date" class="post-info">2016-01-19</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/golang/">Golang</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -313,7 +313,7 @@ Continuing.
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

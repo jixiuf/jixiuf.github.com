@@ -47,142 +47,150 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">学习目标</a></li>
-<li><a href="#sec-2">Planing for your database is the first step of managing a database</a>
+<li><a href="#org0a08ecd">学习目标</a></li>
+<li><a href="#org4dcf134">Planing for your database is the first step of managing a database</a>
 <ul>
-<li><a href="#sec-2-1">Define the purpose of your database (规划)</a></li>
-<li><a href="#sec-2-2">defind the type of your database ,同上一条</a></li>
-<li><a href="#sec-2-3">outline a database architectural design  (如何存储，几块硬盘等)</a></li>
+<li><a href="#org2a32be0">Define the purpose of your database (规划)</a></li>
+<li><a href="#orgcb4f212">defind the type of your database ,同上一条</a></li>
+<li><a href="#org491c8b5">outline a database architectural design  (如何存储，几块硬盘等)</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">Create your database</a>
+<li><a href="#orga722481">Create your database</a>
 <ul>
-<li><a href="#sec-3-1">图使用开界面的工具创建数据库，DBCA ,运行dbca 命令即可。</a></li>
-<li><a href="#sec-3-2">手工方式创建。</a></li>
+<li><a href="#orgf312124">图使用开界面的工具创建数据库，DBCA ,运行dbca 命令即可。</a></li>
+<li><a href="#org5c3c582">手工方式创建。</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">User  Oracle Data Migration Assistant  to migrate from an earlier version database</a></li>
-<li><a href="#sec-5">oracle 推荐的arch (OFA : Optimal Flexible Arch)</a></li>
+<li><a href="#org6fa565e">User  Oracle Data Migration Assistant  to migrate from an earlier version database</a></li>
+<li><a href="#orgb1828eb">oracle 推荐的arch (OFA : Optimal Flexible Arch)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">学习目标</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org0a08ecd" class="outline-2">
+<h2 id="org0a08ecd">学习目标</h2>
+<div class="outline-text-2" id="text-org0a08ecd">
 <ul class="org-ul">
-<li>list the prerequisites necessary  for database creation.<br  />
-</li>
-<li>create a database using  Oracle Database Configuration Assistant (DBCA)<br  />
-</li>
-<li>create a daatabase manually<br  />
-</li>
-<li>create a database  using Oracle Managered Files (OMF)<br  />
-</li>
+<li>list the prerequisites necessary  for database creation.<br /></li>
+<li>create a database using  Oracle Database Configuration Assistant (DBCA)<br /></li>
+<li>create a daatabase manually<br /></li>
+<li>create a database  using Oracle Managered Files (OMF)<br /></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Planing for your database is the first step of managing a database</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">Define the purpose of your database (规划)</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org4dcf134" class="outline-2">
+<h2 id="org4dcf134">Planing for your database is the first step of managing a database</h2>
+<div class="outline-text-2" id="text-org4dcf134">
+</div>
+<div id="outline-container-org2a32be0" class="outline-3">
+<h3 id="org2a32be0">Define the purpose of your database (规划)</h3>
+<div class="outline-text-3" id="text-org2a32be0">
 <ul class="org-ul">
-<li>oltp 联机事务处理 (大量并发，短小事务)<br  />
-</li>
-<li>olap 数据仓库  (少量并发，大事务)<br  />
-</li>
+<li>oltp 联机事务处理 (大量并发，短小事务)<br /></li>
+<li>olap 数据仓库  (少量并发，大事务)<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">defind the type of your database ,同上一条</h3>
+<div id="outline-container-orgcb4f212" class="outline-3">
+<h3 id="orgcb4f212">defind the type of your database ,同上一条</h3>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">outline a database architectural design  (如何存储，几块硬盘等)</h3>
+<div id="outline-container-org491c8b5" class="outline-3">
+<h3 id="org491c8b5">outline a database architectural design  (如何存储，几块硬盘等)</h3>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Create your database</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">图使用开界面的工具创建数据库，DBCA ,运行dbca 命令即可。</h3>
+<div id="outline-container-orga722481" class="outline-2">
+<h2 id="orga722481">Create your database</h2>
+<div class="outline-text-2" id="text-orga722481">
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">手工方式创建。</h3>
-<div class="outline-text-3" id="text-3-2">
-</div><ul class="org-ul"><li><a id="sec-3-2-1" name="sec-3-2-1"></a>指定 $ORACLE<sub>SID</sub> 的值<br  /></li>
-<li><a id="sec-3-2-2" name="sec-3-2-2"></a>指定一些环境变量的值<br  /><div class="outline-text-4" id="text-3-2-2">
+<div id="outline-container-orgf312124" class="outline-3">
+<h3 id="orgf312124">图使用开界面的工具创建数据库，DBCA ,运行dbca 命令即可。</h3>
+</div>
+<div id="outline-container-org5c3c582" class="outline-3">
+<h3 id="org5c3c582">手工方式创建。</h3>
+<div class="outline-text-3" id="text-org5c3c582">
+</div>
+<ul class="org-ul">
+<li><a id="org517a4e3"></a>指定 $ORACLE<sub>SID</sub> 的值<br /></li>
+<li><a id="orgae4c899"></a>指定一些环境变量的值<br />
+<div class="outline-text-4" id="text-orgae4c899">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">ORACLE<sub>BASE</sub></td>
-<td class="left">ORACLE<sub>HOME</sub></td>
-<td class="left">ORA<sub>NLS33</sub></td>
-<td class="left">PATH</td>
-<td class="left">LD<sub>LIBRARY</sub><sub>PATH</sub></td>
+<td class="org-left">ORACLE<sub>BASE</sub></td>
+<td class="org-left">ORACLE<sub>HOME</sub></td>
+<td class="org-left">ORA<sub>NLS33</sub></td>
+<td class="org-left">PATH</td>
+<td class="org-left">LD<sub>LIBRARY</sub><sub>PATH</sub></td>
 </tr>
 </tbody>
 </table>
 </div>
 </li>
-<li><a id="sec-3-2-3" name="sec-3-2-3"></a>指定 认证方法<br  /><ul class="org-ul"><li><a id="sec-3-2-3-1" name="sec-3-2-3-1"></a>with a password file<br  /></li>
-<li><a id="sec-3-2-3-2" name="sec-3-2-3-2"></a>OS authentication<br  /><div class="outline-text-5" id="text-3-2-3-2">
-<p>
-在linux 上，只要属于dba 组的用户，就有权限创建database.<br  />
-</p>
-</div>
-</li></ul>
-</li>
-<li><a id="sec-3-2-4" name="sec-3-2-4"></a>如何删除一个database<br  /><ul class="org-ul"><li><a id="sec-3-2-4-1" name="sec-3-2-4-1"></a>使用dbca图形界面删除<br  /></li>
-<li><a id="sec-3-2-4-2" name="sec-3-2-4-2"></a>手动删除<br  /><ul class="org-ul"><li><a id="sec-3-2-4-2-1" name="sec-3-2-4-2-1"></a>删除 $ORACLE<sub>HOME</sub>/dbs/ 目录下相应原parameter file ,<br  /><div class="outline-text-6" id="text-3-2-4-2-1">
-<p>
-如，以orcl database 的删除为例，删除此目录下的所有带orcl 的文件<br  />
-</p>
-</div>
-</li>
-<li><a id="sec-3-2-4-2-2" name="sec-3-2-4-2-2"></a>删除 $ORACLE<sub>BASE</sub>/oradata/$ORACLE<sub>SID目录</sub><br  /></li>
-<li><a id="sec-3-2-4-2-3" name="sec-3-2-4-2-3"></a>删除 $ORACLE<sub>BASE</sub>/admin/$ORACLE<sub>SID目录</sub><br  /></li></ul>
-</li></ul>
-</li></ul>
-</div>
-</div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">User  Oracle Data Migration Assistant  to migrate from an earlier version database</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-(数据迁移)<br  />
-</p>
-</div>
-</div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">oracle 推荐的arch (OFA : Optimal Flexible Arch)</h2>
-<div class="outline-text-2" id="text-5">
+<li><a id="org63153fa"></a>指定 认证方法<br />
 <ul class="org-ul">
-<li>Establish a directory structure  where any database  file can be stored<br  />
-on any disk resource<br  />
+<li><a id="orgca0dfd6"></a>with a password file<br /></li>
+<li><a id="org1cd4379"></a>OS authentication<br />
+<div class="outline-text-5" id="text-org1cd4379">
+<p>
+在linux 上，只要属于dba 组的用户，就有权限创建database.<br />
+</p>
+</div>
 </li>
-<li>separate objects  with different  behavior  into different tablespace<br  />
+</ul>
 </li>
-<li>Maximuse database reliablity and performance by separating database<br  />
-components across disk resource .(比如将online redo log与 data file放到<br  />
-不同磁盘上)<br  />
+<li><a id="org138b91a"></a>如何删除一个database<br />
+<ul class="org-ul">
+<li><a id="org77f124b"></a>使用dbca图形界面删除<br /></li>
+<li><a id="orgdec2c9a"></a>手动删除<br />
+<ul class="org-ul">
+<li><a id="org673b1ba"></a>删除 $ORACLE<sub>HOME</sub>/dbs/ 目录下相应原parameter file ,<br />
+<div class="outline-text-6" id="text-org673b1ba">
+<p>
+如，以orcl database 的删除为例，删除此目录下的所有带orcl 的文件<br />
+</p>
+</div>
 </li>
+<li><a id="org92c282e"></a>删除 $ORACLE<sub>BASE</sub>/oradata/$ORACLE<sub>SID目录</sub><br /></li>
+<li><a id="org161b7b6"></a>删除 $ORACLE<sub>BASE</sub>/admin/$ORACLE<sub>SID目录</sub><br /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6fa565e" class="outline-2">
+<h2 id="org6fa565e">User  Oracle Data Migration Assistant  to migrate from an earlier version database</h2>
+<div class="outline-text-2" id="text-org6fa565e">
+<p>
+(数据迁移)<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgb1828eb" class="outline-2">
+<h2 id="orgb1828eb">oracle 推荐的arch (OFA : Optimal Flexible Arch)</h2>
+<div class="outline-text-2" id="text-orgb1828eb">
+<ul class="org-ul">
+<li>Establish a directory structure  where any database  file can be stored<br />
+on any disk resource<br /></li>
+<li>separate objects  with different  behavior  into different tablespace<br /></li>
+<li>Maximuse database reliablity and performance by separating database<br />
+components across disk resource .(比如将online redo log与 data file放到<br />
+不同磁盘上)<br /></li>
 </ul>
 </div>
 </div>
@@ -192,7 +200,7 @@ components across disk resource .(比如将online redo log与 data file放到<br
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2011-07-10</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/oracle/">Oracle</a>, <a href="/tags/db/">DB</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -231,7 +239,7 @@ components across disk resource .(比如将online redo log与 data file放到<br
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

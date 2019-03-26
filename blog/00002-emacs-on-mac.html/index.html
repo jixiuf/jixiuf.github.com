@@ -47,73 +47,71 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">GNU Emacs For Mac OS X&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></a></li>
-<li><a href="#sec-2">使用brew 命令安装</a>
+<li><a href="#org0d8eaa2">GNU Emacs For Mac OS X&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></a></li>
+<li><a href="#orgcefed26">使用brew 命令安装</a>
 <ul>
-<li><a href="#sec-2-1">安装 带图形界面的emacs</a></li>
-<li><a href="#sec-2-2">安装 不带图形界面的emacs,只能在终端下使用的，</a></li>
+<li><a href="#orge39cf60">安装 带图形界面的emacs</a></li>
+<li><a href="#org3cf8c08">安装 不带图形界面的emacs,只能在终端下使用的，</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">从源代码编译emacs</a>
+<li><a href="#org4f16240">从源代码编译emacs</a>
 <ul>
-<li><a href="#sec-3-1">获取emacs 源码</a></li>
-<li><a href="#sec-3-2">只编译终端下可用的版本 编译完后 会安装到/usr/local/bin/下</a></li>
-<li><a href="#sec-3-3">编译 图形界面的</a></li>
+<li><a href="#org316bb55">获取emacs 源码</a></li>
+<li><a href="#orged41284">只编译终端下可用的版本 编译完后 会安装到/usr/local/bin/下</a></li>
+<li><a href="#orgaa9ea1a">编译 图形界面的</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">mac 启动时自动启动 emacs &#x2013;daemon进程</a></li>
-<li><a href="#sec-5">~/bin/em emacsclient 封装</a></li>
-<li><a href="#sec-6">让emacs 支持编辑 plist 文件</a></li>
-<li><a href="#sec-7">让emacs 支持编辑 applescript 脚本</a></li>
-<li><a href="#sec-8">emacs 与 iTerm2</a>
+<li><a href="#org370d3fb">mac 启动时自动启动 emacs &#x2013;daemon进程</a></li>
+<li><a href="#orgc590d2a">~/bin/em emacsclient 封装</a></li>
+<li><a href="#orgd58c023">让emacs 支持编辑 plist 文件</a></li>
+<li><a href="#orga6db71e">让emacs 支持编辑 applescript 脚本</a></li>
+<li><a href="#orgd0d509b">emacs 与 iTerm2</a>
 <ul>
-<li><a href="#sec-8-1">iTerm2 下 的emacs 绑定 C-, C-; Ctrl-return 等按键的问题</a></li>
-<li><a href="#sec-8-2">在Finder 中使用iTerm2 中的emacs/emacsclient 打开文件</a></li>
+<li><a href="#orgfed07b6">iTerm2 下 的emacs 绑定 C-, C-; Ctrl-return 等按键的问题</a></li>
+<li><a href="#orga8080f1">在Finder 中使用iTerm2 中的emacs/emacsclient 打开文件</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">GNU Emacs For Mac OS X&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org0d8eaa2" class="outline-2">
+<h2 id="org0d8eaa2">GNU Emacs For Mac OS X&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></h2>
+<div class="outline-text-2" id="text-org0d8eaa2">
 <p>
-<a href="http://emacsformacosx.com/">http://emacsformacosx.com/</a><br  />
-  去这里下载 ，下载完  托动到 /Applications/目录就可以了<br  />
+<a href="http://emacsformacosx.com/">http://emacsformacosx.com/</a><br />
+  去这里下载 ，下载完  托动到 /Applications/目录就可以了<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">使用brew 命令安装</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">安装 带图形界面的emacs</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgcefed26" class="outline-2">
+<h2 id="orgcefed26">使用brew 命令安装</h2>
+<div class="outline-text-2" id="text-orgcefed26">
+</div>
+<div id="outline-container-orge39cf60" class="outline-3">
+<h3 id="orge39cf60">安装 带图形界面的emacs</h3>
+<div class="outline-text-3" id="text-orge39cf60">
 <div class="org-src-container">
-
 <pre class="src src-sh">brew install emacs --cocoa
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">安装 不带图形界面的emacs,只能在终端下使用的，</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org3cf8c08" class="outline-3">
+<h3 id="org3cf8c08">安装 不带图形界面的emacs,只能在终端下使用的，</h3>
+<div class="outline-text-3" id="text-org3cf8c08">
 <p>
-mac 自带了emacs22 ，但是版本太老所以需要删掉<br  />
+mac 自带了emacs22 ，但是版本太老所以需要删掉<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">sudo rm -f /usr/bin/emacs
 sudo rm -f /usr/bin/emacsclient
 brew install emacs
 </pre>
 </div>
 <p>
-为方便终端下使用 定义些别名<br  />
+为方便终端下使用 定义些别名<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #F8F8F8;">alias</span> <span style="color: #40E0D0;">e</span>=<span style="color: #ffa07a;">'emacs -nw'</span>
 </pre>
 </div>
@@ -121,14 +119,14 @@ brew install emacs
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">从源代码编译emacs</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">获取emacs 源码</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org4f16240" class="outline-2">
+<h2 id="org4f16240">从源代码编译emacs</h2>
+<div class="outline-text-2" id="text-org4f16240">
+</div>
+<div id="outline-container-org316bb55" class="outline-3">
+<h3 id="org316bb55">获取emacs 源码</h3>
+<div class="outline-text-3" id="text-org316bb55">
 <div class="org-src-container">
-
 <pre class="src src-sh">git clone  git://git.sv.gnu.org/emacs.git
 &#25110;&#32773;
 git clone  git://git.sv.gnu.org/emacs.git --depth=1
@@ -136,11 +134,10 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">只编译终端下可用的版本 编译完后 会安装到/usr/local/bin/下</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orged41284" class="outline-3">
+<h3 id="orged41284">只编译终端下可用的版本 编译完后 会安装到/usr/local/bin/下</h3>
+<div class="outline-text-3" id="text-orged41284">
 <div class="org-src-container">
-
 <pre class="src src-sh">  <span style="color: #F8F8F8;">cd</span> emacs
   ./configure --without-ns
   or
@@ -153,15 +150,15 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
     /usr/local).  The bundle will be smaller, but depend on these resources (may
     require <span style="color: #ffa07a;">'sudo'</span> for <span style="color: #ffa07a;">"make install"</span>).
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">+END_QUOTE</span>
+
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">编译 图形界面的</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgaa9ea1a" class="outline-3">
+<h3 id="orgaa9ea1a">编译 图形界面的</h3>
+<div class="outline-text-3" id="text-orgaa9ea1a">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #F8F8F8;">cd</span> emacs
  ./configure
  make
@@ -169,31 +166,29 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </pre>
 </div>
 <p>
-编译完之后 会生成nextstep/Emacs.app<br  />
-把Emacs.app 移动到/Applications/目录即可<br  />
+编译完之后 会生成nextstep/Emacs.app<br />
+把Emacs.app 移动到/Applications/目录即可<br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">mac 启动时自动启动 emacs &#x2013;daemon进程</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org370d3fb" class="outline-2">
+<h2 id="org370d3fb">mac 启动时自动启动 emacs &#x2013;daemon进程</h2>
+<div class="outline-text-2" id="text-org370d3fb">
 <p>
-~/Library/LaunchAgents/emacs-daemon.plist<br  />
-把这个文件放到~/Library/LaunchAgents/目录下 ，重起下电脑，就会启动emacs &#x2013;deamon 进程<br  />
-或者执行下<br  />
+~/Library/LaunchAgents/emacs-daemon.plist<br />
+把这个文件放到~/Library/LaunchAgents/目录下 ，重起下电脑，就会启动emacs &#x2013;deamon 进程<br />
+或者执行下<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">launchctl load ~/Library/LaunchAgents/emacs-daemon.plist
 </pre>
 </div>
 <div class="org-src-container">
-
-<pre class="src src-xml">&lt;?<span style="color: #FBDE2D;">xml</span> <span style="color: #40E0D0;">version</span>=<span style="color: #ffa07a;">"</span><span style="color: #ffa07a;">1.0</span><span style="color: #ffa07a;">"</span> <span style="color: #40E0D0;">encoding</span>=<span style="color: #ffa07a;">"</span><span style="color: #ffa07a;">UTF-8</span><span style="color: #ffa07a;">"</span>?&gt;
-&lt;!<span style="color: #FBDE2D;">DOCTYPE</span> plist <span style="color: #FBDE2D;">PUBLIC</span> <span style="color: #ffa07a;">"</span><span style="color: #ffa07a;">-//Apple//DTD PLIST 1.0//EN</span><span style="color: #ffa07a;">"</span> <span style="color: #ffa07a;">"</span><span style="color: #ffa07a;">http://www.apple.com/DTDs/PropertyList-1.0.dtd</span><span style="color: #ffa07a;">"</span>&gt;
-&lt;<span style="color: #FF6400;">plist</span> <span style="color: #40E0D0;">version</span>=<span style="color: #ffa07a;">"</span><span style="color: #ffa07a;">1.0</span><span style="color: #ffa07a;">"</span>&gt;
+<pre class="src src-xml"><span style="color: #ffa07a;">&lt;?</span><span style="color: #FBDE2D;">xml</span><span style="color: #ffa07a;"> </span><span style="color: #ffa07a;">version="1.0" encoding="UTF-8"</span><span style="color: #ffa07a;">?&gt;</span>
+<span style="color: #ffa07a;">&lt;!</span><span style="color: #ffa07a;">DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
+&lt;<span style="color: #FF6400;">plist</span> <span style="color: #40E0D0;">version</span>=<span style="color: #ffa07a;">"1.0"</span>&gt;
 &lt;<span style="color: #FF6400;">dict</span>&gt;
     &lt;<span style="color: #FF6400;">key</span>&gt;EnableGlobbing&lt;/<span style="color: #FF6400;">key</span>&gt;
     &lt;<span style="color: #FF6400;">true</span>/&gt;
@@ -216,14 +211,13 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">~/bin/em emacsclient 封装</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgc590d2a" class="outline-2">
+<h2 id="orgc590d2a">~/bin/em emacsclient 封装</h2>
+<div class="outline-text-2" id="text-orgc590d2a">
 <p>
-写了个脚本命名为  ~/bin/em  封装emacsclient,配合emacs &#x2013;daemon 使用<br  />
+写了个脚本命名为  ~/bin/em  封装emacsclient,配合emacs &#x2013;daemon 使用<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">!/bin/</span><span style="color: #FBDE2D;">sh</span>
 <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">use default emacsclient in $PATH</span>
 <span style="color: #40E0D0;">EMACSCLIENT</span>=<span style="color: #ff00ff;">`command -v emacsclient`</span>
@@ -263,10 +257,9 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </pre>
 </div>
 <p>
-在 ~/.bashrc 或 ~/.zshrc 中加入以下内容<br  />
+在 ~/.bashrc 或 ~/.zshrc 中加入以下内容<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #FBDE2D;">if</span> [ -f /Applications/Emacs.app/Contents/MacOS/Emacs ]; <span style="color: #FBDE2D;">then</span>
     <span style="color: #F8F8F8;">export</span>  <span style="color: #40E0D0;">ALTERNATE_EDITOR</span>=/Applications/Emacs.app/Contents/MacOS/Emacs
 <span style="color: #FBDE2D;">fi</span>
@@ -278,11 +271,10 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">让emacs 支持编辑 plist 文件</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgd58c023" class="outline-2">
+<h2 id="orgd58c023">让emacs 支持编辑 plist 文件</h2>
+<div class="outline-text-2" id="text-orgd58c023">
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(add-to-list 'jka-compr-compression-info-list
              [<span style="color: #ffa07a;">"\\.plist$"</span>
               <span style="color: #ffa07a;">"converting text XML to binary plist"</span>
@@ -296,14 +288,13 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </div>
 </div>
 </div>
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">让emacs 支持编辑 applescript 脚本</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orga6db71e" class="outline-2">
+<h2 id="orga6db71e">让emacs 支持编辑 applescript 脚本</h2>
+<div class="outline-text-2" id="text-orga6db71e">
 <p>
-~/.emacs.d/bin/applescript-helper.sh<br  />
+~/.emacs.d/bin/applescript-helper.sh<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">/bin/sh</span>
 <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">mac &#19978; emacs &#30452;&#25509;&#32534;&#36753;&#20108;&#36827;&#21046;applescript</span>
 <span style="color: #FBDE2D;">if</span> [ <span style="color: #ffa07a;">"$1"</span> = <span style="color: #ffa07a;">"-d"</span> ]; <span style="color: #FBDE2D;">then</span>
@@ -320,7 +311,6 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </pre>
 </div>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #AEAEAE;">;; </span><span style="color: #AEAEAE;"># mac &#19978; emacs &#30452;&#25509;&#32534;&#36753;&#20108;&#36827;&#21046;applescript</span>
 (add-to-list 'jka-compr-compression-info-list
              `[<span style="color: #ffa07a;">"\\.scpt\\'"</span>
@@ -331,21 +321,21 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 </div>
 </div>
 </div>
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">emacs 与 iTerm2</h2>
-<div class="outline-text-2" id="text-8">
-</div><div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1">iTerm2 下 的emacs 绑定 C-, C-; Ctrl-return 等按键的问题</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-orgd0d509b" class="outline-2">
+<h2 id="orgd0d509b">emacs 与 iTerm2</h2>
+<div class="outline-text-2" id="text-orgd0d509b">
+</div>
+<div id="outline-container-orgfed07b6" class="outline-3">
+<h3 id="orgfed07b6">iTerm2 下 的emacs 绑定 C-, C-; Ctrl-return 等按键的问题</h3>
+<div class="outline-text-3" id="text-orgfed07b6">
 <p>
-我喜欢使用 <a href="https://iterm2.com/">iTerm2</a>这款终端<br  />
-但是在终端下的emacs 有些按键是不能按的,比如C-, C-;<br  />
- 与<a href="https://iterm2.com/">iTerm2</a> 配合 可以解决这样的问题<br  />
- <a href="http://superuser.com/questions/731427/how-do-i-send-ctrl-in-iterm2">http://superuser.com/questions/731427/how-do-i-send-ctrl-in-iterm2</a><br  />
- <img src="/assets/blog/00002-emacs-on-mac.html/iterm-key.png" alt="iterm-key.png" /><br  />
+我喜欢使用 <a href="https://iterm2.com/">iTerm2</a>这款终端<br />
+但是在终端下的emacs 有些按键是不能按的,比如C-, C-;<br />
+ 与<a href="https://iterm2.com/">iTerm2</a> 配合 可以解决这样的问题<br />
+ <a href="http://superuser.com/questions/731427/how-do-i-send-ctrl-in-iterm2">http://superuser.com/questions/731427/how-do-i-send-ctrl-in-iterm2</a><br />
+ <img src="/assets/blog/00002-emacs-on-mac.html/iterm-key.png" alt="iterm-key.png" /><br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span style="color: #ffa07a;">"C-[ [ a f"</span>) 'backward-kill-word) <span style="color: #AEAEAE;">;</span><span style="color: #AEAEAE;">== "M-[ a f" iterm2 map to ctrl-;</span>
 
 &#20063;&#21487;&#20197;&#23545;&#20854;&#20182;&#38190;&#36827;&#34892;&#32465;&#23450;
@@ -354,27 +344,27 @@ git clone  git://git.sv.gnu.org/emacs.git --depth=1
 (global-set-key (kbd <span style="color: #ffa07a;">"C-[ [ a c"</span>) 'hippie-expand)   <span style="color: #AEAEAE;">; </span><span style="color: #AEAEAE;">iterm map to ctrl-return</span>
 (global-set-key (kbd <span style="color: #ffa07a;">"C-[ [ a d"</span>) 'bm-previous)   <span style="color: #AEAEAE;">; </span><span style="color: #AEAEAE;">iterm map to ctrl-,</span>
 (global-set-key (kbd <span style="color: #ffa07a;">"C-[ [ a e"</span>) 'goto-definition)   <span style="color: #AEAEAE;">; </span><span style="color: #AEAEAE;">iterm map to ctrl-.</span>
+
 </pre>
 </div>
 <p>
-这样就实现了iTerm下的emacs 对C-; 进行绑定了<br  />
+这样就实现了iTerm下的emacs 对C-; 进行绑定了<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2">在Finder 中使用iTerm2 中的emacs/emacsclient 打开文件</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-orga8080f1" class="outline-3">
+<h3 id="orga8080f1">在Finder 中使用iTerm2 中的emacs/emacsclient 打开文件</h3>
+<div class="outline-text-3" id="text-orga8080f1">
 <p>
-打开/Applications/Automator.app 文件-&gt;新建-&gt;应用程序<br  />
-然后选择 实现工具-&gt;运行applescript 脚本<br  />
-右侧会出现 编辑applescript 脚本的内容， 里面输入以下内容<br  />
-然后 存储为EmcacClientOpenWith-InIterm2.app<br  />
-把这个EmcacClientOpenWith-InIterm2.app 移动到/Applications/目录<br  />
-在Finder 中的文件右键  打开方式 选择 /Applications/EmcacClientOpenWith-InIterm2.app<br  />
-即可用终端下的emacs/emacsclient 打开此文件<br  />
+打开/Applications/Automator.app 文件-&gt;新建-&gt;应用程序<br />
+然后选择 实现工具-&gt;运行applescript 脚本<br />
+右侧会出现 编辑applescript 脚本的内容， 里面输入以下内容<br />
+然后 存储为EmcacClientOpenWith-InIterm2.app<br />
+把这个EmcacClientOpenWith-InIterm2.app 移动到/Applications/目录<br />
+在Finder 中的文件右键  打开方式 选择 /Applications/EmcacClientOpenWith-InIterm2.app<br />
+即可用终端下的emacs/emacsclient 打开此文件<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-applescript">-- -*- coding:utf-8 mode:applescript-*-
 -- 打开 automator.app ，然后 文件  选择本目录下的EmcacClientOpenWith-InIterm2.app
 -- 本文件只是其txt 格式的备份
@@ -417,8 +407,8 @@ end run
 </pre>
 </div>
 <p>
-<img src="/assets/blog/00002-emacs-on-mac.html/automator1.jpg" alt="automator1.jpg" /><br  />
-<img src="/assets/blog/00002-emacs-on-mac.html/automator2.jpg" alt="automator2.jpg" /><br  />
+<img src="/assets/blog/00002-emacs-on-mac.html/automator1.jpg" alt="automator1.jpg" /><br />
+<img src="/assets/blog/00002-emacs-on-mac.html/automator2.jpg" alt="automator2.jpg" /><br />
 </p>
 </div>
 </div>
@@ -429,7 +419,7 @@ end run
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2015-10-17</span>
-        <span title="last modification date" class="post-info">2016-01-14</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/emacs/">Emacs</a>, <a href="/tags/mac/">Mac</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -468,7 +458,7 @@ end run
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

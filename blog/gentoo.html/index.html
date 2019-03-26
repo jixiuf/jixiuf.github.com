@@ -47,9 +47,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb71bc12">内核配置</a></li>
-<li><a href="#org6930fc1">make.conf 示例</a></li>
-<li><a href="#orga1c17be">link</a></li>
+<li><a href="#org9665f2e">内核配置</a></li>
+<li><a href="#org45885b6">make.conf 示例</a></li>
+<li><a href="#org2aa3364">link</a></li>
 </ul>
 </div>
 </div>
@@ -63,9 +63,9 @@ python-updater<br />
 sys-apps/busybox-1.17.4 编译 :清缓存,删/var/tmp/portage/  export LC_ALL=en_US.UTF-8<br />
 </p>
 
-<div id="outline-container-orgb71bc12" class="outline-2">
-<h2 id="orgb71bc12">内核配置</h2>
-<div class="outline-text-2" id="text-orgb71bc12">
+<div id="outline-container-org9665f2e" class="outline-2">
+<h2 id="org9665f2e">内核配置</h2>
+<div class="outline-text-2" id="text-org9665f2e">
 <ol class="org-ol">
 <li>filesystem 的语言设置<br />
 ntfs  936 utf8<br />
@@ -78,11 +78,11 @@ file system&#x2013;network file system &#x2013;CIFS support() 其他的不用变
 </ol>
 </div>
 </div>
-<div id="outline-container-org6930fc1" class="outline-2">
-<h2 id="org6930fc1">make.conf 示例</h2>
-<div class="outline-text-2" id="text-org6930fc1">
+<div id="outline-container-org45885b6" class="outline-2">
+<h2 id="org45885b6">make.conf 示例</h2>
+<div class="outline-text-2" id="text-org45885b6">
 <div class="org-src-container">
-<pre class="src src-sh" id="orgeabb989">  <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">for debug glibc</span>
+<pre class="src src-sh" id="org9361833">  <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">for debug glibc</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">FEATURES="splitdebug nostrip"</span>
 <span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">CFLAGS="-march=native -O2 -pipe -mfpmath=sse -ggdb"</span>
 <span style="color: #40E0D0;">CFLAGS</span>=<span style="color: #ffa07a;">"-march=native -O2 -pipe -fomit-frame-pointer -mfpmath=sse -DSYSTEM_PURESIZE_EXTRA=600000 "</span>
@@ -161,9 +161,9 @@ file system&#x2013;network file system &#x2013;CIFS support() 其他的不用变
 </div>
 </div>
 
-<div id="outline-container-orga1c17be" class="outline-2">
-<h2 id="orga1c17be">link</h2>
-<div class="outline-text-2" id="text-orga1c17be">
+<div id="outline-container-org2aa3364" class="outline-2">
+<h2 id="org2aa3364">link</h2>
+<div class="outline-text-2" id="text-org2aa3364">
 <p>
 <a href="http://mirrors.sohu.com/gentoo/releases/x86/autobuilds/current-iso/stage3-i686-20121213.tar.bz2">http://mirrors.sohu.com/gentoo/releases/x86/autobuilds/current-iso/stage3-i686-20121213.tar.bz2</a><br />
 <a href="http://mirrors.sohu.com/gentoo/releases/snapshots/current/portage-latest.tar.xz">http://mirrors.sohu.com/gentoo/releases/snapshots/current/portage-latest.tar.xz</a><br />

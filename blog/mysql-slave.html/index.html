@@ -47,72 +47,72 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">master 的配置 ip 192.168.1.132</a></li>
-<li><a href="#sec-2">slave 配置 ip 192.168.1.137</a></li>
-<li><a href="#sec-3">配置完 之后</a>
+<li><a href="#orgd33978d">master 的配置 ip 192.168.1.132</a></li>
+<li><a href="#orge5ea824">slave 配置 ip 192.168.1.137</a></li>
+<li><a href="#org7bbbb78">配置完 之后</a>
 <ul>
-<li><a href="#sec-3-1">master 上的操作</a></li>
-<li><a href="#sec-3-2">slave 上的操作</a></li>
-<li><a href="#sec-3-3">当出现主从不一致的时候的做法，</a></li>
+<li><a href="#org385f3d3">master 上的操作</a></li>
+<li><a href="#org8c9e01f">slave 上的操作</a></li>
+<li><a href="#org6a9cdfe">当出现主从不一致的时候的做法，</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">mysql热备做DR</a>
+<li><a href="#orgea46297">mysql热备做DR</a>
 <ul>
-<li><a href="#sec-4-1">在master db上使用mysqldump构建基于时间点的一致性全备</a></li>
-<li><a href="#sec-4-2">scp该sql文件到slave dr上面</a></li>
-<li><a href="#sec-4-3">在slave dr上把全备的数据入库</a></li>
-<li><a href="#sec-4-4">在master db上执行授权语句</a></li>
-<li><a href="#sec-4-5">在slave dr上设置热备关系</a></li>
-<li><a href="#sec-4-6">注：其中pos和file参数可以从mysqldump出来的sql文件前25行了解到</a></li>
-<li><a href="#sec-4-7">使用show slave status\G 查看slave的情况</a></li>
+<li><a href="#org0cb3ed0">在master db上使用mysqldump构建基于时间点的一致性全备</a></li>
+<li><a href="#org86ef3cc">scp该sql文件到slave dr上面</a></li>
+<li><a href="#org7f33729">在slave dr上把全备的数据入库</a></li>
+<li><a href="#org9870bf5">在master db上执行授权语句</a></li>
+<li><a href="#orgdbc981f">在slave dr上设置热备关系</a></li>
+<li><a href="#orgc8e13cc">注：其中pos和file参数可以从mysqldump出来的sql文件前25行了解到</a></li>
+<li><a href="#orgfdaa603">使用show slave status\G 查看slave的情况</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">master 的配置 ip 192.168.1.132</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgd33978d" class="outline-2">
+<h2 id="orgd33978d">master 的配置 ip 192.168.1.132</h2>
+<div class="outline-text-2" id="text-orgd33978d">
 <p>
-[mysqld]<br  />
-server-id = 1  #这里的数字不能和从库一样<br  />
-#需要复制的数据库，多个数据库写多行,不写的话默认复制所有库<br  />
-binlog_do_db = t1<br  />
-binlog_do_db =t2<br  />
+[mysqld]<br />
+server-id = 1  #这里的数字不能和从库一样<br />
+#需要复制的数据库，多个数据库写多行,不写的话默认复制所有库<br />
+binlog_do_db = t1<br />
+binlog_do_db =t2<br />
 </p>
 
 <p>
-log-bin                        = /data/mysql/data/mysql-bin<br  />
-#expire-logs-days               = 14<br  />
-#sync-binlog                    = 1 #事务提交后立即写入二进制日志，而不是放内存中，避免主服务器故障时事务没有写入日志<br  />
-binlog_format=MIXED   #混合格式<br  />
+log-bin                        = /data/mysql/data/mysql-bin<br />
+#expire-logs-days               = 14<br />
+#sync-binlog                    = 1 #事务提交后立即写入二进制日志，而不是放内存中，避免主服务器故障时事务没有写入日志<br />
+binlog_format=MIXED   #混合格式<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">slave 配置 ip 192.168.1.137</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orge5ea824" class="outline-2">
+<h2 id="orge5ea824">slave 配置 ip 192.168.1.137</h2>
+<div class="outline-text-2" id="text-orge5ea824">
 <p>
-[mysqld]<br  />
-server-id = 2<br  />
-replicate-do-db =t1<br  />
-replicate-do-db =t2<br  />
-binlog-format                  = mixed<br  />
-replicate-ignore-db=mysql<br  />
-log-slave-update=true<br  />
-slave-skip-errors=true<br  />
+[mysqld]<br />
+server-id = 2<br />
+replicate-do-db =t1<br />
+replicate-do-db =t2<br />
+binlog-format                  = mixed<br />
+replicate-ignore-db=mysql<br />
+log-slave-update=true<br />
+slave-skip-errors=true<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">配置完 之后</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">master 上的操作</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org7bbbb78" class="outline-2">
+<h2 id="org7bbbb78">配置完 之后</h2>
+<div class="outline-text-2" id="text-org7bbbb78">
+</div>
+<div id="outline-container-org385f3d3" class="outline-3">
+<h3 id="org385f3d3">master 上的操作</h3>
+<div class="outline-text-3" id="text-org385f3d3">
 <div class="org-src-container">
-
 <pre class="src src-sh"><span style="color: #AEAEAE;">#</span><span style="color: #AEAEAE;">master &#19978;&#21019;&#24314;&#29992;&#20110;&#21516;&#27493;&#25968;&#25454;&#30340;&#36134;&#25143;</span>
 grant replication slave on *.* to slave@<span style="color: #ffa07a;">'192.168.1.137'</span> identified by <span style="color: #ffa07a;">'slave'</span>;
 <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#38145;&#34920;</span>
@@ -122,9 +122,9 @@ show master status;
 </div>
 <blockquote>
 <p>
-mysql&gt;  show master status;<br  />
+mysql&gt;  show master status;<br />
 </p>
-<!-- This HTML table template is generated by emacs 25.2.1 -->
+<!-- This HTML table template is generated by emacs 27.0.50 -->
 <table border="1">
   <tr>
     <td align="left" valign="top">
@@ -162,11 +162,10 @@ mysql&gt;  show master status;<br  />
   </tr>
 </table>
 <p>
-mysql-bin.000005   和     2147  这两个数据 会在从库上用到<br  />
+mysql-bin.000005   和     2147  这两个数据 会在从库上用到<br />
 </p>
 </blockquote>
 <div class="org-src-container">
-
 <pre class="src src-sh"> <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#23558; t1,t2 &#24211;&#30340;&#25968;&#25454;&#23548;&#20986;&#21040;sql &#25991;&#20214; &#65292;&#28982;&#21518;&#22312;&#20174;&#24211;192.168.1.137 &#19978; &#24314;&#31435;t1,t2 &#24211;&#65292; &#25226;&#25968;&#25454;&#20998;&#21035;&#23548;&#20837;</span>
 /usr/bin/mysqldump t1 -uroot -padmin &gt;t1.sql
 /usr/bin/mysqldump t2 -uroot -padmin &gt;t2.sql
@@ -180,14 +179,13 @@ unlock tables;
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">slave 上的操作</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org8c9e01f" class="outline-3">
+<h3 id="org8c9e01f">slave 上的操作</h3>
+<div class="outline-text-3" id="text-org8c9e01f">
 <p>
-首先完成 t1,t2 两个数据库数据的同步<br  />
+首先完成 t1,t2 两个数据库数据的同步<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">create database t1;
 use t1;
 <span style="color: #F8F8F8;">source</span> t1.sql
@@ -198,160 +196,159 @@ use t2;
 </pre>
 </div>
 <p>
-然后 根据master 上  show master status 获得的数据<br  />
+然后 根据master 上  show master status 获得的数据<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">change master to <span style="color: #40E0D0;">master_host</span>=<span style="color: #ffa07a;">'192.168.1.132'</span>,<span style="color: #40E0D0;">master_user</span>=<span style="color: #ffa07a;">'slave'</span>,<span style="color: #40E0D0;">master_password</span>=<span style="color: #ffa07a;">'slave'</span>,<span style="color: #40E0D0;">master_log_file</span>=<span style="color: #ffa07a;">'mysql-bin.000005'</span>,<span style="color: #40E0D0;">master_log_pos</span>=2147;
 start slave;  <span style="color: #AEAEAE;"># </span><span style="color: #AEAEAE;">&#24320;&#22987;&#20445;&#25345;&#21516;&#27493;</span>
 </pre>
 </div>
 <p>
-此时在从库上<br  />
+此时在从库上<br />
 </p>
 <div class="org-src-container">
-
 <pre class="src src-sh">show slave status \G;
 </pre>
 </div>
 <blockquote>
 <p>
-mysql&gt; show slave status \G;<br  />
-        Slave_IO_Running: Yes<br  />
-        Slave_SQL_Running: Yes<br  />
+mysql&gt; show slave status \G;<br />
+	Slave_IO_Running: Yes<br />
+	Slave_SQL_Running: Yes<br />
 </p>
 </blockquote>
 <p>
-当 Slave_IO_Running 与Slave_SQL_Running 状态是Yes 的时候 就算配置完成了<br  />
-可以试着在master 插入数据 看看slave 上数据是否得到同步<br  />
+当 Slave_IO_Running 与Slave_SQL_Running 状态是Yes 的时候 就算配置完成了<br />
+可以试着在master 插入数据 看看slave 上数据是否得到同步<br />
 </p>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">当出现主从不一致的时候的做法，</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org6a9cdfe" class="outline-3">
+<h3 id="org6a9cdfe">当出现主从不一致的时候的做法，</h3>
+<div class="outline-text-3" id="text-org6a9cdfe">
 <p>
-stop slave;<br  />
-#表示跳过一步错误，后面的数字可变<br  />
-set global sql_slave_skip_counter =1;<br  />
-start slave;<br  />
+stop slave;<br />
+#表示跳过一步错误，后面的数字可变<br />
+set global sql_slave_skip_counter =1;<br />
+start slave;<br />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">mysql热备做DR</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">在master db上使用mysqldump构建基于时间点的一致性全备</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgea46297" class="outline-2">
+<h2 id="orgea46297">mysql热备做DR</h2>
+<div class="outline-text-2" id="text-orgea46297">
+</div>
+<div id="outline-container-org0cb3ed0" class="outline-3">
+<h3 id="org0cb3ed0">在master db上使用mysqldump构建基于时间点的一致性全备</h3>
+<div class="outline-text-3" id="text-org0cb3ed0">
 <p>
-mysqldump -uroot -pPASSWORD &#x2013;single-transaction &#x2013;master-data=2 &#x2013;skip-opt &#x2013;create-option -B item &gt; dump.sql<br  />
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">scp该sql文件到slave dr上面</h3>
-</div>
-
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">在slave dr上把全备的数据入库</h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-mysql -uroot -pPASSWORD &#x2013;default-character-set=latin1 &lt; dump.sql<br  />
+mysqldump -uroot -pPASSWORD &#x2013;single-transaction &#x2013;master-data=2 &#x2013;skip-opt &#x2013;create-option -B item &gt; dump.sql<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4">在master db上执行授权语句</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-org86ef3cc" class="outline-3">
+<h3 id="org86ef3cc">scp该sql文件到slave dr上面</h3>
+</div>
+
+<div id="outline-container-org7f33729" class="outline-3">
+<h3 id="org7f33729">在slave dr上把全备的数据入库</h3>
+<div class="outline-text-3" id="text-org7f33729">
 <p>
-GRANT REPLICATION SLAVE, REPLICATION CLIENT ON <b>.</b> TO 'repl'@'slave1ip' IDENTIFIED BY 'pass'<br  />
+mysql -uroot -pPASSWORD &#x2013;default-character-set=latin1 &lt; dump.sql<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5">在slave dr上设置热备关系</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org9870bf5" class="outline-3">
+<h3 id="org9870bf5">在master db上执行授权语句</h3>
+<div class="outline-text-3" id="text-org9870bf5">
 <p>
-CHANGE MASTER TO<br  />
-  MASTER_HOST='masterIP',<br  />
-  MASTER_USER='root',<br  />
-  MASTER_PASSWORD='pass，<br  />
-  MASTER_LOG_FILE='binlog.022804',<br  />
-  MASTER_LOG_POS=98;<br  />
-start slave;<br  />
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON <b>.</b> TO 'repl'@'slave1ip' IDENTIFIED BY 'pass'<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6">注：其中pos和file参数可以从mysqldump出来的sql文件前25行了解到</h3>
-<div class="outline-text-3" id="text-4-6">
+<div id="outline-container-orgdbc981f" class="outline-3">
+<h3 id="orgdbc981f">在slave dr上设置热备关系</h3>
+<div class="outline-text-3" id="text-orgdbc981f">
 <p>
-head -25<br  />
+CHANGE MASTER TO<br />
+  MASTER_HOST='masterIP',<br />
+  MASTER_USER='root',<br />
+  MASTER_PASSWORD='pass，<br />
+  MASTER_LOG_FILE='binlog.022804',<br />
+  MASTER_LOG_POS=98;<br />
+start slave;<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4-7" class="outline-3">
-<h3 id="sec-4-7">使用show slave status\G 查看slave的情况</h3>
-<div class="outline-text-3" id="text-4-7">
+<div id="outline-container-orgc8e13cc" class="outline-3">
+<h3 id="orgc8e13cc">注：其中pos和file参数可以从mysqldump出来的sql文件前25行了解到</h3>
+<div class="outline-text-3" id="text-orgc8e13cc">
 <p>
-说明：上述的步骤是简单的热备做dr的步骤，有常见需要注意的问题<br  />
-1）mysqldump生成全备sql时需要注意&#x2013;single-transaction &#x2013;master-data等参数，详细可以参见mysqldump &#x2013;help<br  />
-2）全备入库时，需要设置&#x2013;default-character-set，使用一致的字符集<br  />
+head -25<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfdaa603" class="outline-3">
+<h3 id="orgfdaa603">使用show slave status\G 查看slave的情况</h3>
+<div class="outline-text-3" id="text-orgfdaa603">
+<p>
+说明：上述的步骤是简单的热备做dr的步骤，有常见需要注意的问题<br />
+1）mysqldump生成全备sql时需要注意&#x2013;single-transaction &#x2013;master-data等参数，详细可以参见mysqldump &#x2013;help<br />
+2）全备入库时，需要设置&#x2013;default-character-set，使用一致的字符集<br />
 </p>
 
 <p>
-先前在使用mysqldump的时候，没有加任何选项，查看dump出来的文件，发现每<br  />
-个table的insert语句被lock tables write和unlock tables包住。mysqldump在<br  />
-备份的时候，居然锁表！如果这张表非常大，在dump的过程中，其他线程岂不是<br  />
-不能写数据？看了下mysql的manual，发现&#x2013;lock-tables默认是True，可以使<br  />
-用&#x2013;skip-opt选项来屏蔽&#x2013;lock-tables。另外，我们很多时候需要基于时间点<br  />
-的备份，如早上9点，这时，可以使用&#x2013;single-transaction选项，这个选项可<br  />
-以在dump之前发出一个BEGIN语句，获取一个短暂的全局写锁，可以所有事务性<br  />
-数据库的一致性（内部应该是使用snapshot来实现，待求证），另外通过指<br  />
-定&#x2013;master-data=2，可以在dump文件中用注释的方式指定当前dump快照使用的<br  />
-binlog文件和位置，联合&#x2013;single-transaction和&#x2013;master-data两个选项，可<br  />
-以实现基于时间点的备份和恢复，特别是做热备。<br  />
+先前在使用mysqldump的时候，没有加任何选项，查看dump出来的文件，发现每<br />
+个table的insert语句被lock tables write和unlock tables包住。mysqldump在<br />
+备份的时候，居然锁表！如果这张表非常大，在dump的过程中，其他线程岂不是<br />
+不能写数据？看了下mysql的manual，发现&#x2013;lock-tables默认是True，可以使<br />
+用&#x2013;skip-opt选项来屏蔽&#x2013;lock-tables。另外，我们很多时候需要基于时间点<br />
+的备份，如早上9点，这时，可以使用&#x2013;single-transaction选项，这个选项可<br />
+以在dump之前发出一个BEGIN语句，获取一个短暂的全局写锁，可以所有事务性<br />
+数据库的一致性（内部应该是使用snapshot来实现，待求证），另外通过指<br />
+定&#x2013;master-data=2，可以在dump文件中用注释的方式指定当前dump快照使用的<br />
+binlog文件和位置，联合&#x2013;single-transaction和&#x2013;master-data两个选项，可<br />
+以实现基于时间点的备份和恢复，特别是做热备。<br />
 </p>
 
 <p>
-[注意]&#x2013;skip-opt禁用了很多默认的选项，如&#x2013;create-option等，其<br  />
-中&#x2013;create-option是比较重要的属性，如果该选项被disable掉，则在dump出来<br  />
-的table会少了auto-increment等字段属性。<br  />
+[注意]&#x2013;skip-opt禁用了很多默认的选项，如&#x2013;create-option等，其<br />
+中&#x2013;create-option是比较重要的属性，如果该选项被disable掉，则在dump出来<br />
+的table会少了auto-increment等字段属性。<br />
 </p>
 
 
 <blockquote>
 <p>
-&#x2013;single-transaction<br  />
-                    Creates a consistent snapshot by dumping all tables in a<br  />
-                    single transaction. Works ONLY for tables stored in<br  />
-                    storage engines which support multiversioning (currently<br  />
-                    only InnoDB does); the dump is NOT guaranteed to be<br  />
-                    consistent for other storage engines. While a<br  />
-                    &#x2013;single-transaction dump is in process, to ensure a<br  />
-                    valid dump file (correct table contents and binary log<br  />
-                    position), no other connection should use the following<br  />
-                    statements: ALTER TABLE, DROP TABLE, RENAME TABLE,<br  />
-                    TRUNCATE TABLE, as consistent snapshot is not isolated<br  />
-                    from them. Option automatically turns off &#x2013;lock-tables.<br  />
-&#x2013;master-data[=#]   This causes the binary log position and filename to be<br  />
-                    appended to the output. If equal to 1, will print it as a<br  />
-                    CHANGE MASTER command; if equal to 2, that command will<br  />
-                    be prefixed with a comment symbol. This option will turn<br  />
-                    &#x2013;lock-all-tables on, unless &#x2013;single-transaction is<br  />
-                    specified too (in which case a global read lock is only<br  />
-                    taken a short time at the beginning of the dump; don't<br  />
-                    forget to read about &#x2013;single-transaction below). In all<br  />
-                    cases, any action on logs will happen at the exact moment<br  />
-                    of the dump. Option automatically turns &#x2013;lock-tables<br  />
-                    off.<br  />
+&#x2013;single-transaction<br />
+		    Creates a consistent snapshot by dumping all tables in a<br />
+		    single transaction. Works ONLY for tables stored in<br />
+		    storage engines which support multiversioning (currently<br />
+		    only InnoDB does); the dump is NOT guaranteed to be<br />
+		    consistent for other storage engines. While a<br />
+		    &#x2013;single-transaction dump is in process, to ensure a<br />
+		    valid dump file (correct table contents and binary log<br />
+		    position), no other connection should use the following<br />
+		    statements: ALTER TABLE, DROP TABLE, RENAME TABLE,<br />
+		    TRUNCATE TABLE, as consistent snapshot is not isolated<br />
+		    from them. Option automatically turns off &#x2013;lock-tables.<br />
+&#x2013;master-data[=#]   This causes the binary log position and filename to be<br />
+		    appended to the output. If equal to 1, will print it as a<br />
+		    CHANGE MASTER command; if equal to 2, that command will<br />
+		    be prefixed with a comment symbol. This option will turn<br />
+		    &#x2013;lock-all-tables on, unless &#x2013;single-transaction is<br />
+		    specified too (in which case a global read lock is only<br />
+		    taken a short time at the beginning of the dump; don't<br />
+		    forget to read about &#x2013;single-transaction below). In all<br />
+		    cases, any action on logs will happen at the exact moment<br />
+		    of the dump. Option automatically turns &#x2013;lock-tables<br />
+		    off.<br />
 </p>
 </blockquote>
 </div>
@@ -363,7 +360,7 @@ binlog文件和位置，联合&#x2013;single-transaction和&#x2013;master-data�
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2015-10-19</span>
-        <span title="last modification date" class="post-info">2016-06-23</span>
+        <span title="last modification date" class="post-info">2019-01-20</span>
         <span title="tags" class="post-info"><a href="/tags/mysql/">Mysql</a></span>
         <span title="author" class="post-info">纪秀峰</span>
       </div>
@@ -402,7 +399,7 @@ binlog文件和位置，联合&#x2013;single-transaction和&#x2013;master-data�
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       <script src="/media/js/main.js"></script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 27.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:jixiuf &lt;at&gt; gmail &lt;dot&gt; com">纪秀峰</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

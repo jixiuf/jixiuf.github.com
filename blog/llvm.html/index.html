@@ -47,16 +47,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20332d0">缩小成35G:</a></li>
-<li><a href="#orge873f8a">扩大成35G</a></li>
-<li><a href="#orgc6f5a5e">加大1G</a></li>
+<li><a href="#org7dd3801">缩小成35G:</a></li>
+<li><a href="#org8aba2f3">扩大成35G</a></li>
+<li><a href="#org4916f5a">加大1G</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org20332d0" class="outline-2">
-<h2 id="org20332d0">缩小成35G:</h2>
-<div class="outline-text-2" id="text-org20332d0">
+<div id="outline-container-org7dd3801" class="outline-2">
+<h2 id="org7dd3801">缩小成35G:</h2>
+<div class="outline-text-2" id="text-org7dd3801">
 <p>
   缩小时要先缩小文件系统，<br />
   再缩小分区<br />
@@ -70,9 +70,9 @@ resize2fs /dev/vg1/java<br />
 </div>
 </div>
 
-<div id="outline-container-orge873f8a" class="outline-2">
-<h2 id="orge873f8a">扩大成35G</h2>
-<div class="outline-text-2" id="text-orge873f8a">
+<div id="outline-container-org8aba2f3" class="outline-2">
+<h2 id="org8aba2f3">扩大成35G</h2>
+<div class="outline-text-2" id="text-org8aba2f3">
 <p>
 lvextend /dev/vg1/java -L 35G<br />
 resize2fs /dev/vg1/java<br />
@@ -80,9 +80,9 @@ resize2fs /dev/vg1/java<br />
 </div>
 </div>
 
-<div id="outline-container-orgc6f5a5e" class="outline-2">
-<h2 id="orgc6f5a5e">加大1G</h2>
-<div class="outline-text-2" id="text-orgc6f5a5e">
+<div id="outline-container-org4916f5a" class="outline-2">
+<h2 id="org4916f5a">加大1G</h2>
+<div class="outline-text-2" id="text-org4916f5a">
 <p>
 lvextend /dev/vg1/java -L +1G<br />
 resize2fs /dev/vg1/java<br />
